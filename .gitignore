@@ -1,0 +1,12 @@
+# Design handoff bundle (source only — not part of the deployed site)
+_design_src/
+design.tar.gz
+*.tar.gz
+
+# OS / editor cruft
+Thumbs.db
+.DS_Store
+desktop.ini
+*.log
+.idea/
+.vscode/
