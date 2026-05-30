@@ -1,76 +1,59 @@
 # Bảo tàng Báo chí Việt Nam — Trải nghiệm VR 360°
 
 Landing page song ngữ (Việt / English) cho **Bảo tàng Báo chí Việt Nam**, tích hợp
-tour **VR 360°** ngay trên web. Trang gồm: Hero "Bút sắc · Lòng son · Tâm sáng",
-dòng thời gian 13 mốc lịch sử báo chí, lưới 6 không gian di sản, và trình xem
-panorama 360° (Pannellum) mở trong modal toàn màn hình.
+tour **VR 360°** ngay trên web: Hero *"Bút sắc · Lòng son · Tâm sáng"*, dòng thời gian
+13 mốc lịch sử báo chí, lưới 6 không gian di sản, và trình xem panorama 360°
+(Pannellum) mở trong modal toàn màn hình.
 
-> Đây là bản **preview cho khách hàng xem trước**. Tất cả đường dẫn trong code đều ở
-> dạng **tương đối**, nên trang chạy được cả ở URL GitHub Pages mặc định lẫn ở một
-> **tên miền riêng** mà **không cần sửa code**.
+- 🌐 **Web đang chạy:** https://rei-1407.github.io/VietnamPressMuseumWebsiteVR360/
+- 📘 **Hướng dẫn vận hành (tiếng Việt):** [HUONG-DAN.md](HUONG-DAN.md)
 
-## Trang preview (live)
+> Trang là **HTML/CSS/JS tĩnh** (không cần build). Mọi đường dẫn đều **tương đối**,
+> nên chạy được cả ở link GitHub Pages mặc định lẫn ở **tên miền riêng** mà **không
+> phải sửa code**.
 
-- **GitHub Pages:** https://rei-1407.github.io/VietnamPressMuseumWebsiteVR360/
-
-Trang tự động deploy lại mỗi khi có commit mới vào nhánh `main`
-(xem `.github/workflows/deploy.yml`).
-
-## Cấu trúc dự án
+## Cấu trúc
 
 ```
-.
-├── index.html          # Trang Landing (Hero + Header)
-├── vr360-app.js        # Dữ liệu + render Timeline / Lưới di sản / Footer + i18n VI–EN
-├── vr360-viewer.js     # Trình xem VR 360° (Pannellum) — modal, hotspot, chuyển phòng
-├── assets/
-│   ├── pano-sanh.jpg        # Ảnh 360° thật: trước sảnh bảo tàng
-│   └── pano-sanh-trong.jpg  # Ảnh 360° thật: trong sảnh đón
-├── .nojekyll           # Tắt xử lý Jekyll trên GitHub Pages
-└── .github/workflows/deploy.yml
+index.html              Bố cục trang (Header + Hero)
+js/
+  data.js   ⭐ TOÀN BỘ NỘI DUNG cần sửa: chữ song ngữ (UI), dòng thời gian
+              (TIMELINE), các không gian VR (SPACES), liên hệ (CONTACT)
+  app.js       Dựng giao diện (timeline / lưới / footer) + i18n + hiệu ứng cuộn
+  viewer.js    Trình xem VR 360° (Pannellum) — modal, hotspot, chuyển phòng
+css/styles.css Màu sắc & kiểu dáng
+assets/panos/  Ảnh 360° thật (sanh-ngoai.jpg, sanh-trong.jpg, ...)
+scripts/
+  deploy.ps1       Đăng thay đổi lên web (git add/commit/push)
+  set-domain.ps1   Gắn / gỡ tên miền riêng
+.nojekyll          Tắt xử lý Jekyll trên GitHub Pages
 ```
 
 Sảnh đón dùng **ảnh 360° thật** (2 cảnh nối nhau qua "cửa"); 5 không gian còn lại
-hiện dùng panorama dựng tạm bằng canvas — chỉ cần thay bằng ảnh 360° thật khi có
-(thêm `photo:'assets/ten-anh.jpg'` cho phòng tương ứng trong `vr360-viewer.js`).
+hiện tự dựng tạm bằng canvas — thay bằng ảnh thật bất cứ lúc nào (xem HUONG-DAN.md).
+
+## Công việc thường gặp
+
+| Việc | Làm gì |
+|------|--------|
+| Thêm / sửa không gian VR | Sửa mảng `SPACES` trong `js/data.js` + thả ảnh vào `assets/panos/` |
+| Sửa chữ, dòng thời gian, liên hệ | Sửa `UI` / `TIMELINE` / `CONTACT` trong `js/data.js` |
+| Đăng lên web | `powershell -ExecutionPolicy Bypass -File scripts\deploy.ps1 "..."` |
+| Gắn tên miền riêng | `powershell -ExecutionPolicy Bypass -File scripts\set-domain.ps1 tenmien.vn` |
+
+## Triển khai (deploy)
+
+Hosting **miễn phí bằng GitHub Pages**, kiểu *Deploy from a branch* (nhánh `main`,
+thư mục gốc). Mỗi lần đẩy commit lên `main`, GitHub tự build lại — không cần CI.
 
 ## Công nghệ
 
-Trang tĩnh thuần (không cần build): **HTML + Tailwind CSS (CDN)** +
-**Pannellum** (WebGL 360°) + **Google Fonts** (Playfair Display, EB Garamond,
-Be Vietnam Pro). Cần kết nối Internet khi chạy để tải các thư viện qua CDN.
+HTML + **Tailwind CSS (CDN)** + **Pannellum** (WebGL 360°) + **Google Fonts**
+(Playfair Display, EB Garamond, Be Vietnam Pro). Cần Internet khi chạy để tải
+các thư viện qua CDN.
 
-## Xem thử ở máy (local)
-
-Mở trực tiếp `index.html`, hoặc chạy một web server tĩnh để ảnh/asset tải đúng:
+## Xem thử ở máy
 
 ```bash
-# Python
-python -m http.server 8080
-# rồi mở http://localhost:8080
+python -m http.server 8080   # rồi mở http://localhost:8080
 ```
-
-## Đổi sang tên miền riêng (custom domain)
-
-Khi đã có tên miền, làm theo 2 bước (KHÔNG cần sửa code vì đường dẫn đều tương đối):
-
-**1) Cấu hình DNS** tại nhà cung cấp tên miền:
-
-- **Tên miền con** (khuyến nghị, ví dụ `vr360.baotangbaochi.vn`):
-  tạo bản ghi `CNAME` trỏ tới `rei-1407.github.io`.
-- **Tên miền gốc / apex** (ví dụ `baotangbaochi.vn`): tạo 4 bản ghi `A` trỏ tới
-  IP của GitHub Pages:
-  ```
-  185.199.108.153
-  185.199.109.153
-  185.199.110.153
-  185.199.111.153
-  ```
-  (Tuỳ chọn thêm `AAAA` cho IPv6: `2606:50c0:8000::153`, `...8001::153`,
-  `...8002::153`, `...8003::153`.)
-
-**2) Khai báo domain trên GitHub:** vào **Settings → Pages → Custom domain**, nhập
-tên miền, lưu lại, rồi bật **Enforce HTTPS** (sau khi GitHub cấp chứng chỉ TLS, vài phút).
-
-Sau khi DNS lan truyền, trang sẽ chạy tại tên miền riêng kèm HTTPS. Để quay lại
-URL mặc định, chỉ cần xoá Custom domain trong Settings → Pages.

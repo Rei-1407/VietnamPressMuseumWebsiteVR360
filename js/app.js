@@ -1,92 +1,14 @@
 /* =========================================================
-   Bảo tàng Báo chí VN — VR360 Landing
-   Data + render (timeline, heritage grid, footer) + scroll FX
+   app.js — Dựng giao diện trang + hiệu ứng cuộn + chuyển ngôn ngữ
+   Đọc dữ liệu từ data.js (UI, TIMELINE, SPACES, CONTACT).
+   ⚠️ Nội dung chữ/không gian sửa ở data.js, KHÔNG sửa file này.
    ========================================================= */
 
-/* ---------- i18n strings ---------- */
-const I18N = {
-  vi: {
-    histEyebrow: 'Dòng chảy lịch sử',
-    histTitle: 'Dấu Ấn Lịch Sử Làng Báo',
-    histSub: 'Khám phá dòng chảy báo chí Việt Nam gắn liền với vận mệnh dân tộc.',
-    mapEyebrow: 'Không gian trải nghiệm',
-    mapTitle: 'Chạm Vào Di Sản',
-    mapSub: 'Sáu phân khu di sản số — chọn một không gian để bước vào tour VR 360°.',
-    cta: 'Khám phá Tour VR 360° ngay',
-    hover360: 'Khám phá',
-    ftTagline: 'Ngôi nhà di sản của những người làm báo Việt Nam.',
-    ftAddrLabel: 'Địa chỉ',
-    ftAddr: 'Tòa nhà Hội Nhà báo Việt Nam, Phố Dương Đình Nghệ, Cầu Giấy, Hà Nội',
-    ftPhoneLabel: 'Điện thoại',
-    ftWebLabel: 'Website',
-    ftNav: 'Điều hướng',
-    ftRights: '© 2026 Bảo tàng Báo chí Việt Nam. Trải nghiệm VR 360°.',
-    nHome:'Trang chủ', nHist:'Lịch sử', nMap:'Bản đồ', nContact:'Liên hệ',
-  },
-  en: {
-    histEyebrow: 'The current of history',
-    histTitle: 'Milestones of the Vietnamese Press',
-    histSub: "Trace the flow of Vietnam's journalism, bound to the destiny of the nation.",
-    mapEyebrow: 'Spaces to explore',
-    mapTitle: 'Touch the Heritage',
-    mapSub: 'Six digital heritage zones — choose a space to step into the VR 360° tour.',
-    cta: 'Explore the VR 360° Tour now',
-    hover360: 'Explore',
-    ftTagline: "The heritage home of Vietnam's journalists.",
-    ftAddrLabel: 'Address',
-    ftAddr: 'Vietnam Journalists Association Bldg, Dương Đình Nghệ St., Cầu Giấy, Hà Nội',
-    ftPhoneLabel: 'Phone',
-    ftWebLabel: 'Website',
-    ftNav: 'Navigation',
-    ftRights: '© 2026 Vietnam Press Museum. VR 360° Experience.',
-    nHome:'Home', nHist:'History', nMap:'Map', nContact:'Contact',
-  }
-};
-
-/* ---------- Timeline milestones ---------- */
-const TIMELINE = [
-  { kind:'era',   year:'1865 – 1925', vi:{t:'Thời Kỳ Sơ Khai', d:'Tái hiện bình minh của báo chí quốc ngữ với những tờ báo cổ quý hiếm và các hiện vật làm báo thô sơ thời đầu.'},
-                                       en:{t:'The Formative Years', d:'Reviving the dawn of Vietnamese-language journalism with rare antique newspapers and the rudimentary tools of the early press.'} },
-  { kind:'event', year:'1865',        vi:{t:'Bình minh Báo chí Quốc ngữ', d:'Sự ra đời của Gia Định Báo – tờ báo bằng chữ quốc ngữ đầu tiên, đánh dấu bước ngoặt khởi thủy của nền báo chí nước nhà.'},
-                                       en:{t:'Dawn of the Quốc Ngữ Press', d:'The birth of Gia Định Báo — the first newspaper in the Vietnamese script, a founding turning point for the nation\u2019s press.'} },
-  { kind:'event', year:'21·06·1925',  vi:{t:'Khai sinh Báo chí Cách mạng Việt Nam', d:'Cột mốc vĩ đại khi Lãnh tụ Nguyễn Ái Quốc sáng lập báo Thanh Niên, cất lên tiếng nói đấu tranh giải phóng dân tộc.'},
-                                       en:{t:'Birth of the Revolutionary Press', d:'The momentous founding of Thanh Niên newspaper by leader Nguyễn Ái Quốc, raising the voice of national liberation.'} },
-  { kind:'era',   year:'1925 – 1945', vi:{t:'Tiếng Nói Cách Mạng', d:'Cột mốc ra đời của nền Báo chí Cách mạng Việt Nam, vinh danh hành trình làm báo kiên trung của các chiến sĩ tiền bối.'},
-                                       en:{t:'The Voice of Revolution', d:'The rise of Vietnam\u2019s revolutionary journalism, honouring the steadfast journey of pioneering reporter-soldiers.'} },
-  { kind:'event', year:'1949',        vi:{t:'Trường dạy làm báo đầu tiên', d:'Thành lập Trường dạy làm báo đầu tiên mang tên Huỳnh Thúc Kháng.'},
-                                       en:{t:'First School of Journalism', d:'The founding of the first journalism training school, named after Huỳnh Thúc Kháng.'} },
-  { kind:'event', year:'1954',        vi:{t:'Đồng hành cùng tiền tuyến', d:'Khám phá tòa soạn báo tiền phương “độc nhất vô nhị” của Báo Quân đội Nhân dân hoạt động ngay tại Đồi Ngựa Hí giữa mặt trận Điện Biên Phủ khốc liệt.'},
-                                       en:{t:'Alongside the Frontline', d:'Discover the one-of-a-kind forward newsroom of the People\u2019s Army Newspaper, operating right at Đồi Ngựa Hí amid the fierce Điện Biên Phủ campaign.'} },
-  { kind:'era',   year:'1945 – 1954', vi:{t:'Kháng Chiến Chống Pháp', d:'Bản hùng ca về “báo chí chiến khu” đồng hành cùng cuộc kháng chiến trường kỳ của dân tộc.'},
-                                       en:{t:'Resistance Against France', d:'An epic of the “resistance-zone press” accompanying the nation\u2019s long war of resistance.'} },
-  { kind:'era',   year:'1954 – 1975', vi:{t:'Chống Mỹ Cứu Nước', d:'Thời kỳ oanh liệt của những “Nhà báo chiến trường” tại miền Bắc, miền Nam và các đô thị.'},
-                                       en:{t:'The War Against America', d:'The heroic era of “battlefield journalists” across the North, the South and the cities.'} },
-  { kind:'event', year:'1972',        vi:{t:'Căn hầm Báo Nhân Dân', d:'Tái hiện căn hầm kiên trung của Báo Nhân Dân – nơi khai sinh cụm từ lịch sử “Điện Biên Phủ trên không”, cùng chiếc máy quay tự chế Ngựa Trời và chiếc loa phóng thanh bên cầu Hiền Lương.'},
-                                       en:{t:'The Nhân Dân Bunker', d:'The resolute bunker of Nhân Dân newspaper — birthplace of the phrase “Điện Biên Phủ in the air” — with the home-made “Ngựa Trời” camera and the historic loudspeaker by Hiền Lương Bridge.'} },
-  { kind:'event', year:'30·04·1975',  vi:{t:'Ngày hội non sông thống nhất', d:'Báo chí hân hoan ghi dấu ngày hội non sông thống nhất.'},
-                                       en:{t:'The Day of Reunification', d:'The press joyfully records the day of national reunification.'} },
-  { kind:'era',   year:'1975 – Nay',  vi:{t:'Đổi Mới & Hội Nhập', d:'Báo chí đồng hành cùng công cuộc xây dựng đất nước, tiên phong hội nhập và phát triển công nghệ số.'},
-                                       en:{t:'Renewal & Integration', d:'Journalism accompanies nation-building, pioneering integration and the rise of digital technology.'} },
-  { kind:'event', year:'1986',        vi:{t:'Sức bật Đổi Mới', d:'Báo chí tạo sức bật mãnh liệt trong làn sóng Đổi mới, khơi nguồn từ chuyên mục nổi tiếng “Những việc cần làm ngay” của Tổng Bí thư Nguyễn Văn Linh.'},
-                                       en:{t:'The Đổi Mới Surge', d:'The press creates powerful momentum in the Đổi Mới wave, sparked by the famous column “Những việc cần làm ngay” of General Secretary Nguyễn Văn Linh.'} },
-  { kind:'event', year:'Hiện tại',    vi:{t:'Vươn mình trong kỷ nguyên số', d:'Báo chí tiên phong trên mặt trận bảo vệ chủ quyền, chống tiêu cực và vươn mình mạnh mẽ trong kỷ nguyên công nghệ số đa nền tảng.'},
-                                       en:{t:'Rising in the Digital Era', d:'Journalism stands at the forefront of defending sovereignty, fighting wrongdoing, and rising strongly in the multi-platform digital era.'} },
-];
-
-/* ---------- Heritage zones (image-only cards) ---------- */
-const ZONES = [
-  { img:'img-1', vi:'Gian Khánh Tiết',                         en:'The Hall of Welcome' },
-  { img:'img-2', vi:'Báo chí Việt Nam 1865 – 1925',            en:'Vietnamese Press 1865 – 1925' },
-  { img:'img-3', vi:'Báo chí Việt Nam 1925 – 1945',            en:'Vietnamese Press 1925 – 1945' },
-  { img:'img-4', vi:'Báo chí Việt Nam 1945 – 1954',            en:'Vietnamese Press 1945 – 1954' },
-  { img:'img-5', vi:'Báo chí Việt Nam 1954 – 1975',            en:'Vietnamese Press 1954 – 1975' },
-  { img:'img-6', vi:'Báo chí Việt Nam 1975 – Nay',             en:'Vietnamese Press 1975 – Today' },
-];
-
-/* ---------- helpers ---------- */
+/* ---------- ngôn ngữ hiện tại ---------- */
 let LANG = (() => { try { return localStorage.getItem('lp_lang') || 'vi'; } catch(e){ return 'vi'; } })();
-const t = (k) => I18N[LANG][k];
+const t = (k) => UI[LANG][k];
 
+/* ---------- icon 360° ---------- */
 function icon360(size){
   return `<svg viewBox="0 0 64 34" width="${size}" height="${size*0.53}" fill="none" stroke="currentColor" stroke-width="1.6">
     <ellipse cx="32" cy="17" rx="27" ry="10"/>
@@ -95,7 +17,7 @@ function icon360(size){
   </svg>`;
 }
 
-/* ---------- render timeline ---------- */
+/* ---------- mục "Dấu Ấn Lịch Sử Làng Báo" (timeline) ---------- */
 function renderTimeline(){
   const items = TIMELINE.map((m,i)=>{
     const side = i % 2 === 0 ? 'left' : 'right';
@@ -130,12 +52,17 @@ function renderTimeline(){
   </section>`;
 }
 
-/* ---------- render heritage grid ---------- */
+/* ---------- mục "Chạm Vào Di Sản" (lưới không gian VR) ---------- */
 function renderHeritage(){
-  const cards = ZONES.map((z,i)=>`
+  const cards = SPACES.map((s,i)=>{
+    const label = s.card[LANG];
+    const hasPhoto = !!s.thumb;
+    const imgClass = hasPhoto ? 'photo' : 'img-' + ((i % 6) + 1);   // có ảnh → cover ; chưa có → gradient vàng
+    const imgStyle = hasPhoto ? ` style="background-image:url('${s.thumb}')"` : '';
+    return `
     <div class="heritage-card reveal" style="transition-delay:${i*90}ms" role="button" tabindex="0"
-         aria-label="${z[LANG]}" title="${z[LANG]}" data-zone data-idx="${i}">
-      <div class="img ${z.img}"></div>
+         aria-label="${label}" title="${label}" data-zone data-idx="${i}">
+      <div class="img ${imgClass}"${imgStyle}></div>
       <div class="tint"></div>
       <div class="badge-360" aria-hidden="true">
         <span class="flex flex-col items-center gap-0.5">
@@ -143,7 +70,8 @@ function renderHeritage(){
           <span class="font-display text-[11px] tracking-wide -mt-0.5" data-hover360>${t('hover360')}</span>
         </span>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 
   return `<section id="ban-do" class="relative py-24 md:py-32 bg-cream2/60">
     <div class="max-w-[1180px] mx-auto px-5 md:px-8">
@@ -171,7 +99,7 @@ function renderHeritage(){
   </section>`;
 }
 
-/* ---------- render footer ---------- */
+/* ---------- Footer ---------- */
 function renderFooter(){
   return `<footer id="footer" class="relative bg-night text-cream pt-20 pb-10 overflow-hidden">
     <div class="absolute inset-0 map-grid opacity-40"></div>
@@ -214,11 +142,11 @@ function renderFooter(){
           <div class="flex gap-10">
             <div>
               <div class="eyebrow text-gold/80 mb-1.5">${t('ftPhoneLabel')}</div>
-              <a href="tel:+842437821690" class="text-cream/85 hover:text-goldlt transition">(024) 3782 1690</a>
+              <a href="${CONTACT.phoneHref}" class="text-cream/85 hover:text-goldlt transition">${CONTACT.phone}</a>
             </div>
             <div>
               <div class="eyebrow text-gold/80 mb-1.5">${t('ftWebLabel')}</div>
-              <a href="https://baotangbaochi.vn" target="_blank" rel="noopener" class="text-cream/85 hover:text-goldlt transition">baotangbaochi.vn</a>
+              <a href="${CONTACT.websiteHref}" target="_blank" rel="noopener" class="text-cream/85 hover:text-goldlt transition">${CONTACT.website}</a>
             </div>
           </div>
         </div>
@@ -233,7 +161,7 @@ function renderFooter(){
   </footer>`;
 }
 
-/* ---------- mount ---------- */
+/* ---------- gắn các mục vào trang ---------- */
 function mount(){
   document.getElementById('app-sections').innerHTML =
     renderTimeline() + renderHeritage() + renderFooter();
@@ -242,7 +170,7 @@ function mount(){
   initCardClicks();
 }
 
-/* ---------- reveal on scroll ---------- */
+/* ---------- hiệu ứng hiện dần khi cuộn ---------- */
 let revealObs;
 function initReveal(){
   if (revealObs) revealObs.disconnect();
@@ -253,14 +181,14 @@ function initReveal(){
   }, { threshold:0.14, rootMargin:'0px 0px -8% 0px' });
   document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
 
-  // timeline dot glow uses its own observer (re-triggerable)
+  // chấm tròn timeline sáng dần (observer riêng, có thể kích hoạt lại)
   const tlObs = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold:0.3 });
   document.querySelectorAll('[data-tl]').forEach(el=>tlObs.observe(el));
 }
 
-/* ---------- timeline spine fill on scroll ---------- */
+/* ---------- đường vàng timeline chạy theo cuộn ---------- */
 function initTimelineScroll(){
   const sec = document.getElementById('lich-su');
   const fill = document.getElementById('tlFill');
@@ -269,7 +197,6 @@ function initTimelineScroll(){
     const r = sec.getBoundingClientRect();
     const vh = window.innerHeight;
     const total = r.height;
-    // progress: how far the viewport center has travelled through the section
     const passed = Math.min(Math.max(vh*0.5 - r.top, 0), total);
     fill.style.height = (passed/total*100) + '%';
     requestAnimationFrame(()=>{});
@@ -279,7 +206,7 @@ function initTimelineScroll(){
   onScroll();
 }
 
-/* ---------- card / CTA click → simulate VR entry ---------- */
+/* ---------- click thẻ / CTA → mở trình xem VR ---------- */
 function initCardClicks(){
   document.querySelectorAll('[data-zone]').forEach(card=>{
     const idx = +card.dataset.idx || 0;
@@ -301,12 +228,12 @@ function initCardClicks(){
   });
 }
 
-/* ---------- language toggle ---------- */
+/* ---------- chuyển ngôn ngữ VI/EN ---------- */
 function setLang(lang){
   LANG = lang;
   document.documentElement.setAttribute('data-lang', lang);
   try{ localStorage.setItem('lp_lang', lang); }catch(e){}
-  // static header/hero text
+  // chữ tĩnh ở header/hero
   document.querySelectorAll('[data-vi-text]').forEach(el=>{
     const v = el.getAttribute(lang==='vi'?'data-vi-text':'data-en-text');
     if(v!=null) el.textContent = v;
@@ -314,16 +241,15 @@ function setLang(lang){
   document.querySelectorAll('.lang-toggle button').forEach(b=>{
     b.classList.toggle('active', b.dataset.setLang===lang);
   });
-  // re-render dynamic sections
+  // dựng lại các mục động
   mount();
 }
 
-/* ---------- header scroll state + active nav ---------- */
+/* ---------- trạng thái header khi cuộn + mục đang xem ---------- */
 function initHeader(){
   const header = document.querySelector('.site-header');
   const onScroll = ()=>{
     header.classList.toggle('scrolled', window.scrollY > 40);
-    // active nav
     const secs = ['home','lich-su','ban-do','footer'];
     let cur = 'home';
     for(const id of secs){
@@ -338,11 +264,11 @@ function initHeader(){
   onScroll();
 }
 
-/* ---------- boot ---------- */
+/* ---------- khởi động ---------- */
 document.addEventListener('DOMContentLoaded', ()=>{
   document.querySelectorAll('.lang-toggle button').forEach(b=>{
     b.addEventListener('click', ()=>setLang(b.dataset.setLang));
   });
-  setLang(LANG);      // applies static text + mounts sections
+  setLang(LANG);      // áp chữ tĩnh + dựng các mục
   initHeader();
 });

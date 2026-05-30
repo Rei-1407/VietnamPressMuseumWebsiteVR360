@@ -1,104 +1,16 @@
 /* =========================================================
-   VR 360° Viewer — procedural equirectangular panoramas
-   + Pannellum modal. Reads ZONES / LANG from vr360-app.js
+   viewer.js — Trình xem VR 360° (Pannellum) mở trong modal
+   Đọc SPACES / LANG từ data.js + app.js.
+   Phòng nào CHƯA có ảnh thật → tự dựng panorama bằng canvas.
+   ⚠️ Nội dung/không gian sửa ở data.js, KHÔNG sửa file này.
    ========================================================= */
-
-/* ---------- per-room theme + exhibits ---------- */
-const ROOMS = [
-  { tag:{vi:'Sảnh đón', en:'Lobby'},
-    name:{vi:'Sảnh đón Bảo tàng', en:'The Museum Lobby'},
-    scenes:[
-      { id:'sanh-ngoai', photo:'assets/pano-sanh.jpg', yaw:0, pitch:-2,
-        label:{vi:'Trước sảnh', en:'Forecourt'},
-        hotspots:[
-          { pitch:5,  yaw:-44, vi:'Biểu tượng “Bảo tàng Báo chí Việt Nam”', en:'“Vietnam Press Museum” emblem' },
-          { pitch:7,  yaw:38,  vi:'Trưng bày “Hoa Xuân Dâng Đảng” · Xuân 2026', en:'“Spring Blossoms to the Party” · 2026' },
-          { pitch:2,  yaw:120, vi:'Phù điêu cột · chiến sĩ cầm bút', en:'Column relief · the reporter-soldier' },
-          { pitch:0,  yaw:-120,vi:'Cột tranh cổ động · 1976', en:'Propaganda column · 1976' },
-        ],
-        links:[
-          { pitch:-6, yaw:0, to:'sanh-trong', vi:'Bước vào trong sảnh', en:'Step inside the lobby' },
-        ]},
-      { id:'sanh-trong', photo:'assets/pano-sanh-trong.jpg', yaw:25, pitch:-2,
-        label:{vi:'Trong sảnh', en:'Interior'},
-        hotspots:[
-          { pitch:7,  yaw:25,  vi:'Biển “Bảo tàng Báo chí Việt Nam”', en:'“Vietnam Press Museum” sign' },
-          { pitch:40, yaw:90,  vi:'Cờ Đảng & cờ Tổ quốc trang trí trần sảnh', en:'Party & national flags on the ceiling' },
-          { pitch:-8, yaw:33,  vi:'Thảm đỏ dẫn vào khu trưng bày', en:'Red carpet to the exhibition wing' },
-          { pitch:-2, yaw:60,  vi:'Cầu thang lên các tầng trưng bày', en:'Stairs to the exhibition floors' },
-          { pitch:-6, yaw:78,  vi:'Quầy lễ tân & vé tham quan', en:'Reception & ticket desk' },
-          { pitch:-2, yaw:135, vi:'Thang máy tham quan', en:'Visitor elevators' },
-        ],
-        links:[
-          { pitch:-6, yaw:-50, to:'sanh-ngoai', vi:'Quay ra trước sảnh', en:'Back to the forecourt' },
-        ]},
-    ],
-    wall:'#7A5A28', wall2:'#5A4220', floor:'#3A2A15', ceil:'#241a0d',
-    ex:[
-      {vi:'Biểu tượng Bút – Sen', en:'The Pen & Lotus Emblem'},
-      {vi:'Lời mở đầu di sản',     en:'Heritage Prologue'},
-      {vi:'Bản đồ tham quan',      en:'Tour Map'},
-      {vi:'Dòng thời gian 160 năm',en:'160-Year Timeline'},
-      {vi:'Sổ vàng lưu niệm',      en:'The Golden Book'},
-      {vi:'Lời chào mừng',         en:'A Warm Welcome'},
-    ]},
-  { tag:{vi:'1865 – 1925', en:'1865 – 1925'},
-    wall:'#6B5836', wall2:'#4C3D24', floor:'#352b18', ceil:'#241d10',
-    ex:[
-      {vi:'Gia Định Báo · 1865',   en:'Gia Định Báo · 1865'},
-      {vi:'Nông Cổ Mín Đàm · 1901',en:'Nông Cổ Mín Đàm · 1901'},
-      {vi:'Đông Dương Tạp Chí',    en:'Đông Dương Review'},
-      {vi:'Tạp chí Nam Phong',     en:'Nam Phong Journal'},
-      {vi:'Nghiên bút & con chữ',  en:'Ink Stone & Movable Type'},
-      {vi:'Nhà in thuở sơ khai',   en:'The Early Print House'},
-    ]},
-  { tag:{vi:'1925 – 1945', en:'1925 – 1945'},
-    wall:'#5E2A24', wall2:'#421810', floor:'#341512', ceil:'#22100b',
-    ex:[
-      {vi:'Báo Thanh Niên · 1925', en:'Thanh Niên · 1925'},
-      {vi:'Báo Búa Liềm · 1929',   en:'Búa Liềm · 1929'},
-      {vi:'Báo Dân Chúng · 1938',  en:'Dân Chúng · 1938'},
-      {vi:'Những trang in bí mật',  en:'Clandestine Pages'},
-      {vi:'Nhà tù & ngòi bút',     en:'Prison & Pen'},
-      {vi:'Cờ giải phóng',         en:'The Liberation Flag'},
-    ]},
-  { tag:{vi:'1945 – 1954', en:'1945 – 1954'},
-    wall:'#3F4A30', wall2:'#2A331F', floor:'#262e1a', ceil:'#1b2011',
-    ex:[
-      {vi:'Báo Cứu Quốc',          en:'Cứu Quốc Newspaper'},
-      {vi:'Báo Sự Thật',           en:'Sự Thật Newspaper'},
-      {vi:'Báo Quân đội ND · 1950',en:"People's Army Daily · 1950"},
-      {vi:'Trường dạy làm báo · 1949', en:'Journalism School · 1949'},
-      {vi:'Tòa soạn tiền phương',  en:'The Frontline Newsroom'},
-      {vi:'Chiến thắng Điện Biên', en:'Điện Biên Phủ Victory'},
-    ]},
-  { tag:{vi:'1954 – 1975', en:'1954 – 1975'},
-    wall:'#5A2420', wall2:'#3A130E', floor:'#2f1310', ceil:'#1f0d0a',
-    ex:[
-      {vi:'Căn hầm Báo Nhân Dân',  en:'The Nhân Dân Bunker'},
-      {vi:'Máy quay “Ngựa Trời”',  en:'The “Ngựa Trời” Camera'},
-      {vi:'Loa phóng thanh Hiền Lương', en:'Hiền Lương Loudspeaker'},
-      {vi:'Nhà báo chiến trường',  en:'Battlefield Reporters'},
-      {vi:'“Điện Biên Phủ trên không”', en:'“Điện Biên Phủ in the Air”'},
-      {vi:'Ngày 30·04·1975',       en:'30 April 1975'},
-    ]},
-  { tag:{vi:'1975 – Nay', en:'1975 – Today'},
-    wall:'#264A4A', wall2:'#173130', floor:'#152b2a', ceil:'#0e1f1e',
-    ex:[
-      {vi:'Sức bật Đổi Mới · 1986',en:'The Đổi Mới Surge · 1986'},
-      {vi:'“Những việc cần làm ngay”', en:'“Things To Do Now”'},
-      {vi:'Báo điện tử',           en:'The Online Press'},
-      {vi:'Phát thanh – Truyền hình', en:'Radio & Television'},
-      {vi:'Kỷ nguyên số đa nền tảng', en:'The Multi-Platform Era'},
-      {vi:'Hội nhập quốc tế',      en:'Global Integration'},
-    ]},
-];
 
 const PANO_W = 4096, PANO_H = 2048;
 const L = () => (typeof LANG !== 'undefined' ? LANG : 'vi');
+const SPACE_COUNT = () => SPACES.length;
 
-/* ---------- small helpers ---------- */
-function shade(hex, f){ // f<1 darken, >1 lighten
+/* ---------- helpers ---------- */
+function shade(hex, f){ // f<1 tối đi, >1 sáng lên
   const n = parseInt(hex.slice(1),16);
   let r=(n>>16)&255, g=(n>>8)&255, b=n&255;
   r=Math.min(255,Math.round(r*f)); g=Math.min(255,Math.round(g*f)); b=Math.min(255,Math.round(b*f));
@@ -114,46 +26,49 @@ function wrap(ctx, text, max){
   if(line) lines.push(line);
   return lines;
 }
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
+}
 
-/* ---------- draw one framed exhibit on the wall band ---------- */
+/* ---------- vẽ 1 khung hiện vật lên tường (cho phòng dựng tạm) ---------- */
 function drawExhibit(ctx, cx, theme, item){
   const gold='#E6C277', goldDk='#A9731F';
-  const fw=440, fh=372, fx=cx-fw/2, fy=megaTop();
-  function megaTop(){ return 0; } // placeholder (unused)
+  const fw=440;
 
   const topY = 778, frameH = 360;
   const fX = cx - fw/2, fY = topY;
 
-  // spotlight glow from ceiling
+  // hào quang đèn từ trần
   const sp = ctx.createRadialGradient(cx, 560, 30, cx, 900, 540);
   sp.addColorStop(0, 'rgba(255,236,190,.30)');
   sp.addColorStop(1, 'rgba(255,236,190,0)');
   ctx.fillStyle = sp;
   ctx.fillRect(cx-360, 470, 720, 820);
 
-  // outer gold frame
+  // khung vàng ngoài
   const fg = ctx.createLinearGradient(fX, fY, fX, fY+frameH);
   fg.addColorStop(0,'#F3DDA6'); fg.addColorStop(.5,'#D6A953'); fg.addColorStop(1,'#A9731F');
   ctx.fillStyle = fg;
   roundRect(ctx, fX-16, fY-16, fw+32, frameH+32, 10); ctx.fill();
-  // inner mat
+  // nền lót trong
   ctx.fillStyle = shade(theme.wall, .55);
   roundRect(ctx, fX, fY, fw, frameH, 4); ctx.fill();
 
-  // ---- exhibit content: stylized newspaper / portrait ----
+  // ---- nội dung: trang báo / chân dung cách điệu ----
   const pad=26, ix=fX+pad, iy=fY+pad, iw=fw-pad*2, ih=frameH-pad*2;
   ctx.fillStyle = '#F4ECDA';
   ctx.fillRect(ix, iy, iw, ih);
-  // aged tint
   const aged = ctx.createLinearGradient(ix,iy,ix,iy+ih);
   aged.addColorStop(0,'rgba(120,86,30,.05)'); aged.addColorStop(1,'rgba(120,86,30,.18)');
   ctx.fillStyle=aged; ctx.fillRect(ix,iy,iw,ih);
-  // masthead bar
+  // măng-sét
   ctx.fillStyle = goldDk;
   ctx.fillRect(ix, iy, iw, 44);
   ctx.fillStyle='#FBF3E0'; ctx.font='700 24px "Playfair Display", serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
   ctx.fillText('BÁO CHÍ', cx, iy+22);
-  // columns of "text"
+  // các cột "chữ"
   ctx.strokeStyle='rgba(60,44,20,.30)'; ctx.lineWidth=2;
   const cols=3, colW=(iw-20)/cols, lineH=14, startY=iy+62;
   for(let c=0;c<cols;c++){
@@ -165,7 +80,7 @@ function drawExhibit(ctx, cx, theme, item){
     if(c<cols-1){ ctx.strokeStyle='rgba(60,44,20,.18)'; ctx.beginPath(); ctx.moveTo(ix+10+(c+1)*colW-10, startY-4); ctx.lineTo(ix+10+(c+1)*colW-10, iy+ih-16); ctx.stroke(); ctx.strokeStyle='rgba(60,44,20,.30)'; }
   }
 
-  // ---- caption plate ----
+  // ---- bảng chú thích ----
   const capY = fY+frameH+44, capW=fw+10, capX=cx-capW/2, capH=84;
   ctx.fillStyle='rgba(20,15,8,.82)';
   roundRect(ctx, capX, capY, capW, capH, 8); ctx.fill();
@@ -179,69 +94,66 @@ function drawExhibit(ctx, cx, theme, item){
   lines.forEach((ln,i)=> ctx.fillText(ln, cx, ly + i*36));
 }
 
-function roundRect(ctx,x,y,w,h,r){
-  ctx.beginPath();
-  ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
-  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
-}
-
-/* ---------- generate equirectangular panorama ---------- */
+/* ---------- dựng panorama equirectangular cho phòng chưa có ảnh ---------- */
 function generatePano(idx){
-  const theme = ROOMS[idx];
+  const space = SPACES[idx];
+  const theme = space.theme || { wall:'#6B5836', wall2:'#4C3D24', floor:'#352b18', ceil:'#241d10' };
+  const exhibits = space.exhibits || [];
+  const slots = exhibits.length || 6;
+
   const cv = document.createElement('canvas');
   cv.width=PANO_W; cv.height=PANO_H;
   const ctx = cv.getContext('2d');
 
-  // ceiling
+  // trần
   const cg = ctx.createLinearGradient(0,0,0,PANO_H*0.34);
   cg.addColorStop(0, shade(theme.ceil,.7));
   cg.addColorStop(1, shade(theme.ceil,1.25));
   ctx.fillStyle=cg; ctx.fillRect(0,0,PANO_W,PANO_H*0.34);
 
-  // wall band
+  // dải tường
   const wg = ctx.createLinearGradient(0,PANO_H*0.30,0,PANO_H*0.72);
   wg.addColorStop(0, shade(theme.wall,1.18));
   wg.addColorStop(.5, theme.wall);
   wg.addColorStop(1, shade(theme.wall2,.92));
   ctx.fillStyle=wg; ctx.fillRect(0,PANO_H*0.30,PANO_W,PANO_H*0.42);
 
-  // floor
+  // sàn
   const flg = ctx.createLinearGradient(0,PANO_H*0.70,0,PANO_H);
   flg.addColorStop(0, shade(theme.floor,1.3));
   flg.addColorStop(1, shade(theme.floor,.7));
   ctx.fillStyle=flg; ctx.fillRect(0,PANO_H*0.70,PANO_W,PANO_H*0.30);
 
-  // floor perspective bands
+  // vạch phối cảnh sàn
   ctx.strokeStyle='rgba(230,194,119,.10)'; ctx.lineWidth=2;
   let yy=PANO_H*0.72, step=10;
   while(yy<PANO_H){ ctx.beginPath(); ctx.moveTo(0,yy); ctx.lineTo(PANO_W,yy); ctx.stroke(); step*=1.32; yy+=step; }
-  // ceiling coffers
+  // ô trần
   ctx.strokeStyle='rgba(0,0,0,.18)';
   yy=PANO_H*0.30; step=10;
   while(yy>0){ ctx.beginPath(); ctx.moveTo(0,yy); ctx.lineTo(PANO_W,yy); ctx.stroke(); step*=1.32; yy-=step; }
 
-  // horizon trim line
+  // đường chân trời
   ctx.strokeStyle='rgba(230,194,119,.45)'; ctx.lineWidth=3;
   ctx.beginPath(); ctx.moveTo(0,PANO_H*0.715); ctx.lineTo(PANO_W,PANO_H*0.715); ctx.stroke();
 
-  // wall vertical seams + exhibits (6 slots)
+  // seam tường + hiện vật
   const hotSpots=[];
-  for(let k=0;k<6;k++){
-    const cx = PANO_W*(k+0.5)/6;
-    // seam between slots
-    const seamX = PANO_W*k/6;
+  for(let k=0;k<slots;k++){
+    const cx = PANO_W*(k+0.5)/slots;
+    const seamX = PANO_W*k/slots;
     ctx.strokeStyle='rgba(0,0,0,.22)'; ctx.lineWidth=4;
     ctx.beginPath(); ctx.moveTo(seamX, PANO_H*0.30); ctx.lineTo(seamX, PANO_H*0.715); ctx.stroke();
     ctx.strokeStyle='rgba(230,194,119,.18)'; ctx.lineWidth=2;
     ctx.beginPath(); ctx.moveTo(seamX+3, PANO_H*0.30); ctx.lineTo(seamX+3, PANO_H*0.715); ctx.stroke();
 
-    drawExhibit(ctx, cx, theme, theme.ex[k]);
+    drawExhibit(ctx, cx, theme, exhibits[k]);
 
-    const yaw = (k+0.5)*60 - 180;
-    hotSpots.push({ pitch:-14, yaw, type:'info', text: theme.ex[k][L()] });
+    const yaw = (k+0.5)*(360/slots) - 180;
+    hotSpots.push({ pitch:-14, yaw, type:'info', text: exhibits[k][L()] });
   }
 
-  // soft vignette top/bottom
+  // tối góc trên/dưới
   const vg = ctx.createLinearGradient(0,0,0,PANO_H);
   vg.addColorStop(0,'rgba(0,0,0,.34)'); vg.addColorStop(.2,'rgba(0,0,0,0)');
   vg.addColorStop(.82,'rgba(0,0,0,0)'); vg.addColorStop(1,'rgba(0,0,0,.40)');
@@ -250,7 +162,7 @@ function generatePano(idx){
   return { dataURL: cv.toDataURL('image/jpeg', 0.86), hotSpots };
 }
 
-/* ---------- modal shell ---------- */
+/* ---------- khung modal ---------- */
 let viewer=null, curRoom=0, autoRot=true, hintTimer=null;
 
 function ensureModal(){
@@ -359,21 +271,21 @@ function ensureModal(){
     </div>`;
   document.body.appendChild(m);
 
-  // dots
+  // chấm tròn chọn phòng (theo số lượng SPACES)
   const dots=m.querySelector('#vrDots');
-  ROOMS.forEach((_,i)=>{ const d=document.createElement('div'); d.className='vr-dot'; d.dataset.i=i;
+  SPACES.forEach((_,i)=>{ const d=document.createElement('div'); d.className='vr-dot'; d.dataset.i=i;
     d.addEventListener('click',()=>loadRoom(i)); dots.appendChild(d); });
 
   m.querySelector('#vrClose').addEventListener('click', closeVR);
-  m.querySelector('#vrPrev').addEventListener('click', ()=>loadRoom((curRoom+5)%6));
-  m.querySelector('#vrNext').addEventListener('click', ()=>loadRoom((curRoom+1)%6));
+  m.querySelector('#vrPrev').addEventListener('click', ()=>loadRoom((curRoom + SPACE_COUNT() - 1) % SPACE_COUNT()));
+  m.querySelector('#vrNext').addEventListener('click', ()=>loadRoom((curRoom + 1) % SPACE_COUNT()));
   m.querySelector('#vrRotate').addEventListener('click', toggleRotate);
   m.querySelector('#vrFs').addEventListener('click', toggleFs);
   document.addEventListener('keydown', (e)=>{
     if(!m.classList.contains('open')) return;
     if(e.key==='Escape') closeVR();
-    if(e.key==='ArrowRight') loadRoom((curRoom+1)%6);
-    if(e.key==='ArrowLeft') loadRoom((curRoom+5)%6);
+    if(e.key==='ArrowRight') loadRoom((curRoom + 1) % SPACE_COUNT());
+    if(e.key==='ArrowLeft')  loadRoom((curRoom + SPACE_COUNT() - 1) % SPACE_COUNT());
   });
 }
 
@@ -390,10 +302,10 @@ function hotspotDoor(div, args){
 
 function loadRoom(idx){
   curRoom=idx;
-  const room=ROOMS[idx], zone=(typeof ZONES!=='undefined')?ZONES[idx]:null;
+  const room=SPACES[idx];
 
-  // title (room.name wins, else zone label, else tag)
-  const bigName = room.name ? room.name[L()] : (zone ? zone[L()] : room.tag[L()]);
+  // tiêu đề: name > card > tag
+  const bigName = room.name ? room.name[L()] : (room.card ? room.card[L()] : room.tag[L()]);
   const setKick = (extra)=> document.getElementById('vrKick').textContent = room.tag[L()] + (extra? ' · '+extra : '');
   setKick();
   document.getElementById('vrName').textContent = bigName;
@@ -401,7 +313,7 @@ function loadRoom(idx){
 
   if(viewer){ viewer.destroy(); viewer=null; }
 
-  // ---- multi-scene walkthrough room (real photos) ----
+  // ---- (A) phòng nhiều cảnh (ảnh thật) ----
   if(room.scenes){
     const scenes={};
     room.scenes.forEach(s=>{
@@ -428,7 +340,7 @@ function loadRoom(idx){
     return;
   }
 
-  // ---- single real photo ----
+  // ---- (B) 1 ảnh thật  /  (C) phòng dựng tạm ----
   let panorama, hotSpots, initYaw=-150, initPitch=-2;
   if(room.photo){
     panorama = room.photo;
@@ -474,7 +386,8 @@ function openVR(idx){
   m.classList.add('open');
   document.body.style.overflow='hidden';
   autoRot=true; document.getElementById('vrRotate').classList.remove('off');
-  loadRoom(idx||0);
+  const safe = Math.min(Math.max(idx||0, 0), SPACE_COUNT()-1);
+  loadRoom(safe);
   showHint();
 }
 function closeVR(){

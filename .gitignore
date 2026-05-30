@@ -3,6 +3,9 @@ _design_src/
 design.tar.gz
 *.tar.gz
 
+# Local agent / editor config (not part of the published site)
+.claude/
+
 # OS / editor cruft
 Thumbs.db
 .DS_Store
