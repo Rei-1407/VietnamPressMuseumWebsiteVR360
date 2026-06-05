@@ -229,11 +229,11 @@ function initCardClicks(){
 }
 
 /* ---------- chuyển ngôn ngữ VI/EN ---------- */
-function setLang(lang){
+// Áp chữ tĩnh (header/hero) — chạy được ngay, không cần dữ liệu không gian
+function applyStaticText(lang){
   LANG = lang;
   document.documentElement.setAttribute('data-lang', lang);
   try{ localStorage.setItem('lp_lang', lang); }catch(e){}
-  // chữ tĩnh ở header/hero
   document.querySelectorAll('[data-vi-text]').forEach(el=>{
     const v = el.getAttribute(lang==='vi'?'data-vi-text':'data-en-text');
     if(v!=null) el.textContent = v;
@@ -241,8 +241,10 @@ function setLang(lang){
   document.querySelectorAll('.lang-toggle button').forEach(b=>{
     b.classList.toggle('active', b.dataset.setLang===lang);
   });
-  // dựng lại các mục động
-  mount();
+}
+function setLang(lang){
+  applyStaticText(lang);
+  mount();   // dựng lại các mục động (cần window.SPACES đã tải)
 }
 
 /* ---------- trạng thái header khi cuộn + mục đang xem ---------- */
@@ -265,10 +267,20 @@ function initHeader(){
 }
 
 /* ---------- khởi động ---------- */
-document.addEventListener('DOMContentLoaded', ()=>{
+document.addEventListener('DOMContentLoaded', async ()=>{
   document.querySelectorAll('.lang-toggle button').forEach(b=>{
     b.addEventListener('click', ()=>setLang(b.dataset.setLang));
   });
-  setLang(LANG);      // áp chữ tĩnh + dựng các mục
+  applyStaticText(LANG);            // áp chữ tĩnh ngay (tránh nháy ngôn ngữ)
+  // tải danh sách KHÔNG GIAN VR từ data/spaces.json (admin sửa file này)
+  try{
+    const res = await fetch('data/spaces.json', { cache:'no-store' });
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    window.SPACES = await res.json();
+  }catch(e){
+    window.SPACES = [];
+    console.error('Không tải được data/spaces.json:', e);
+  }
+  mount();                          // dựng timeline + lưới + footer
   initHeader();
 });

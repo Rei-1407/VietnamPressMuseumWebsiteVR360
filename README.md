@@ -1,59 +1,53 @@
 # Bảo tàng Báo chí Việt Nam — Trải nghiệm VR 360°
 
-Landing page song ngữ (Việt / English) cho **Bảo tàng Báo chí Việt Nam**, tích hợp
-tour **VR 360°** ngay trên web: Hero *"Bút sắc · Lòng son · Tâm sáng"*, dòng thời gian
-13 mốc lịch sử báo chí, lưới 6 không gian di sản, và trình xem panorama 360°
-(Pannellum) mở trong modal toàn màn hình.
+Landing page song ngữ (Việt / English) tích hợp tour **VR 360°** cho **Bảo tàng Báo chí
+Việt Nam**: Hero *"Bút sắc · Lòng son · Tâm sáng"*, dòng thời gian 13 mốc, lưới 6 không
+gian di sản, trình xem panorama 360° (Pannellum), và **trang quản trị** để cập nhật
+không gian VR ngay trên web.
 
-- 🌐 **Web đang chạy:** https://rei-1407.github.io/VietnamPressMuseumWebsiteVR360/
+- 🌐 **Web:** https://baotangsobaochivietnam.com
+  *(dự phòng: https://rei-1407.github.io/VietnamPressMuseumWebsiteVR360/)*
+- 🔐 **Admin:** https://baotangsobaochivietnam.com/admin.html — tài khoản `Chuyen`
 - 📘 **Hướng dẫn vận hành (tiếng Việt):** [HUONG-DAN.md](HUONG-DAN.md)
 
-> Trang là **HTML/CSS/JS tĩnh** (không cần build). Mọi đường dẫn đều **tương đối**,
-> nên chạy được cả ở link GitHub Pages mặc định lẫn ở **tên miền riêng** mà **không
-> phải sửa code**.
+> Trang **HTML/CSS/JS tĩnh** (không cần build), host **miễn phí trên GitHub Pages**
+> (deploy-from-branch). Mọi đường dẫn đều **tương đối** nên chạy được cả ở github.io
+> lẫn tên miền riêng.
 
 ## Cấu trúc
 
 ```
-index.html              Bố cục trang (Header + Hero)
+index.html              Trang chính (Hero + Header)
+admin.html              Trang quản trị (login + sửa không gian VR)
+data/spaces.json     ⭐ Danh sách KHÔNG GIAN VR (admin đọc/ghi)
 js/
-  data.js   ⭐ TOÀN BỘ NỘI DUNG cần sửa: chữ song ngữ (UI), dòng thời gian
-              (TIMELINE), các không gian VR (SPACES), liên hệ (CONTACT)
-  app.js       Dựng giao diện (timeline / lưới / footer) + i18n + hiệu ứng cuộn
-  viewer.js    Trình xem VR 360° (Pannellum) — modal, hotspot, chuyển phòng
-css/styles.css Màu sắc & kiểu dáng
-assets/panos/  Ảnh 360° thật (sanh-ngoai.jpg, sanh-trong.jpg, ...)
-scripts/
-  deploy.ps1       Đăng thay đổi lên web (git add/commit/push)
-  set-domain.ps1   Gắn / gỡ tên miền riêng
-.nojekyll          Tắt xử lý Jekyll trên GitHub Pages
+  data.js               UI song ngữ + TIMELINE + CONTACT
+  app.js                Dựng giao diện + i18n + hiệu ứng (tải spaces.json)
+  viewer.js             Trình xem VR 360° (Pannellum)
+  admin.js              Logic admin (đọc/ghi qua GitHub API)
+css/styles.css          Màu sắc & kiểu dáng
+assets/panos/           Ảnh 360° thật
+scripts/deploy.ps1      Đăng thay đổi (khi sửa tay)
+scripts/set-domain.ps1  Gắn / gỡ tên miền riêng
+CNAME                   Tên miền riêng (baotangsobaochivietnam.com)
 ```
 
-Sảnh đón dùng **ảnh 360° thật** (2 cảnh nối nhau qua "cửa"); 5 không gian còn lại
-hiện tự dựng tạm bằng canvas — thay bằng ảnh thật bất cứ lúc nào (xem HUONG-DAN.md).
+## Cập nhật không gian VR
 
-## Công việc thường gặp
+- **Cách 1 (khuyên dùng):** mở `/admin.html` → đăng nhập → dán GitHub token →
+  thêm/đổi/xoá ảnh, sửa tên & điểm chú thích → **Lưu**. Web tự cập nhật ~1–2 phút.
+- **Cách 2:** sửa tay `data/spaces.json` rồi chạy `scripts\deploy.ps1`.
 
-| Việc | Làm gì |
-|------|--------|
-| Thêm / sửa không gian VR | Sửa mảng `SPACES` trong `js/data.js` + thả ảnh vào `assets/panos/` |
-| Sửa chữ, dòng thời gian, liên hệ | Sửa `UI` / `TIMELINE` / `CONTACT` trong `js/data.js` |
-| Đăng lên web | `powershell -ExecutionPolicy Bypass -File scripts\deploy.ps1 "..."` |
-| Gắn tên miền riêng | `powershell -ExecutionPolicy Bypass -File scripts\set-domain.ps1 tenmien.vn` |
+Chi tiết (kể cả cách tạo GitHub token) xem [HUONG-DAN.md](HUONG-DAN.md).
 
-## Triển khai (deploy)
+## Tên miền
 
-Hosting **miễn phí bằng GitHub Pages**, kiểu *Deploy from a branch* (nhánh `main`,
-thư mục gốc). Mỗi lần đẩy commit lên `main`, GitHub tự build lại — không cần CI.
+`baotangsobaochivietnam.com` đã gắn trên GitHub (file `CNAME`). Cần trỏ DNS: 4 bản
+ghi **A** (tên `@`) tới `185.199.108.153`, `185.199.109.153`, `185.199.110.153`,
+`185.199.111.153`. DNS xong → bật **Enforce HTTPS** trong Settings → Pages.
 
 ## Công nghệ
 
-HTML + **Tailwind CSS (CDN)** + **Pannellum** (WebGL 360°) + **Google Fonts**
-(Playfair Display, EB Garamond, Be Vietnam Pro). Cần Internet khi chạy để tải
-các thư viện qua CDN.
-
-## Xem thử ở máy
-
-```bash
-python -m http.server 8080   # rồi mở http://localhost:8080
-```
+HTML + **Tailwind CSS (CDN)** + **Pannellum** (WebGL 360°) + **Google Fonts**.
+Cần Internet khi chạy để tải thư viện qua CDN. Trang admin dùng **GitHub REST API**
+(token fine-grained, quyền *Contents: Read and write*) để lưu thay đổi.
