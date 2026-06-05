@@ -1,24 +1,62 @@
 [
   {
-    "card": { "vi": "Gian Khánh Tiết", "en": "The Hall of Welcome" },
+    "card": {
+      "vi": "Gian Khánh Tiết",
+      "en": "The Hall of Welcome"
+    },
     "thumb": "assets/panos/sanh-ngoai-thumb.jpg",
-    "tag": { "vi": "Sảnh đón", "en": "Lobby" },
-    "name": { "vi": "Sảnh đón Bảo tàng", "en": "The Museum Lobby" },
+    "tag": {
+      "vi": "Sảnh đón",
+      "en": "Lobby"
+    },
+    "name": {
+      "vi": "Sảnh đón Bảo tàng",
+      "en": "The Museum Lobby"
+    },
     "scenes": [
       {
         "id": "sanh-ngoai",
         "photo": "assets/panos/sanh-ngoai.jpg",
         "yaw": 0,
         "pitch": -2,
-        "label": { "vi": "Trước sảnh", "en": "Forecourt" },
+        "label": {
+          "vi": "Trước sảnh",
+          "en": "Forecourt"
+        },
         "hotspots": [
-          { "pitch": 5, "yaw": -44, "vi": "Biểu tượng “Bảo tàng Báo chí Việt Nam”", "en": "“Vietnam Press Museum” emblem" },
-          { "pitch": 7, "yaw": 38, "vi": "Trưng bày “Hoa Xuân Dâng Đảng” · Xuân 2026", "en": "“Spring Blossoms to the Party” · 2026" },
-          { "pitch": 2, "yaw": 120, "vi": "Phù điêu cột · chiến sĩ cầm bút", "en": "Column relief · the reporter-soldier" },
-          { "pitch": 0, "yaw": -120, "vi": "Cột tranh cổ động · 1976", "en": "Propaganda column · 1976" }
+          {
+            "pitch": 5,
+            "yaw": -44,
+            "vi": "Biểu tượng “Bảo tàng Báo chí Việt Nam”",
+            "en": "“Vietnam Press Museum” emblem"
+          },
+          {
+            "pitch": 7,
+            "yaw": 38,
+            "vi": "Trưng bày “Hoa Xuân Dâng Đảng” · Xuân 2026",
+            "en": "“Spring Blossoms to the Party” · 2026"
+          },
+          {
+            "pitch": 2,
+            "yaw": 120,
+            "vi": "Phù điêu cột · chiến sĩ cầm bút",
+            "en": "Column relief · the reporter-soldier"
+          },
+          {
+            "pitch": 0,
+            "yaw": -120,
+            "vi": "Cột tranh cổ động · 1976",
+            "en": "Propaganda column · 1976"
+          }
         ],
         "links": [
-          { "pitch": -6, "yaw": 0, "to": "sanh-trong", "vi": "Bước vào trong sảnh", "en": "Step inside the lobby" }
+          {
+            "pitch": -6,
+            "yaw": 0,
+            "to": "sanh-trong",
+            "vi": "Bước vào trong sảnh",
+            "en": "Step inside the lobby"
+          }
         ]
       },
       {
@@ -26,84 +64,241 @@
         "photo": "assets/panos/sanh-trong.jpg",
         "yaw": 25,
         "pitch": -2,
-        "label": { "vi": "Trong sảnh", "en": "Interior" },
+        "label": {
+          "vi": "Trong sảnh",
+          "en": "Interior"
+        },
         "hotspots": [
-          { "pitch": 7, "yaw": 25, "vi": "Biển “Bảo tàng Báo chí Việt Nam”", "en": "“Vietnam Press Museum” sign" },
-          { "pitch": 40, "yaw": 90, "vi": "Cờ Đảng & cờ Tổ quốc trang trí trần sảnh", "en": "Party & national flags on the ceiling" },
-          { "pitch": -8, "yaw": 33, "vi": "Thảm đỏ dẫn vào khu trưng bày", "en": "Red carpet to the exhibition wing" },
-          { "pitch": -2, "yaw": 60, "vi": "Cầu thang lên các tầng trưng bày", "en": "Stairs to the exhibition floors" },
-          { "pitch": -6, "yaw": 78, "vi": "Quầy lễ tân & vé tham quan", "en": "Reception & ticket desk" },
-          { "pitch": -2, "yaw": 135, "vi": "Thang máy tham quan", "en": "Visitor elevators" }
+          {
+            "pitch": 7,
+            "yaw": 25,
+            "vi": "Biển “Bảo tàng Báo chí Việt Nam”",
+            "en": "“Vietnam Press Museum” sign"
+          },
+          {
+            "pitch": 40,
+            "yaw": 90,
+            "vi": "Cờ Đảng & cờ Tổ quốc trang trí trần sảnh",
+            "en": "Party & national flags on the ceiling"
+          },
+          {
+            "pitch": -8,
+            "yaw": 33,
+            "vi": "Thảm đỏ dẫn vào khu trưng bày",
+            "en": "Red carpet to the exhibition wing"
+          },
+          {
+            "pitch": -2,
+            "yaw": 60,
+            "vi": "Cầu thang lên các tầng trưng bày",
+            "en": "Stairs to the exhibition floors"
+          },
+          {
+            "pitch": -6,
+            "yaw": 78,
+            "vi": "Quầy lễ tân & vé tham quan",
+            "en": "Reception & ticket desk"
+          },
+          {
+            "pitch": -2,
+            "yaw": 135,
+            "vi": "Thang máy tham quan",
+            "en": "Visitor elevators"
+          }
         ],
         "links": [
-          { "pitch": -6, "yaw": -50, "to": "sanh-ngoai", "vi": "Quay ra trước sảnh", "en": "Back to the forecourt" }
+          {
+            "pitch": -6,
+            "yaw": -50,
+            "to": "sanh-ngoai",
+            "vi": "Quay ra trước sảnh",
+            "en": "Back to the forecourt"
+          }
         ]
       }
     ]
   },
   {
-    "card": { "vi": "Báo chí Việt Nam 1865 – 1925", "en": "Vietnamese Press 1865 – 1925" },
-    "tag": { "vi": "1865 – 1925", "en": "1865 – 1925" },
-    "theme": { "wall": "#6B5836", "wall2": "#4C3D24", "floor": "#352b18", "ceil": "#241d10" },
+    "card": {
+      "vi": "Báo chí Việt Nam 1865 – 1925",
+      "en": "Vietnamese Press 1865 – 1925"
+    },
+    "tag": {
+      "vi": "1865 – 1925",
+      "en": "1865 – 1925"
+    },
+    "photo": "assets/panos/bao-chi-viet-nam-1865-1925-1780679169723.jpg",
+    "thumb": "assets/panos/bao-chi-viet-nam-1865-1925-1780679169723.jpg",
+    "initYaw": 0,
+    "initPitch": -2,
+    "hotspots": []
+  },
+  {
+    "card": {
+      "vi": "Báo chí Việt Nam 1925 – 1945",
+      "en": "Vietnamese Press 1925 – 1945"
+    },
+    "tag": {
+      "vi": "1925 – 1945",
+      "en": "1925 – 1945"
+    },
+    "theme": {
+      "wall": "#5E2A24",
+      "wall2": "#421810",
+      "floor": "#341512",
+      "ceil": "#22100b"
+    },
     "exhibits": [
-      { "vi": "Gia Định Báo · 1865", "en": "Gia Định Báo · 1865" },
-      { "vi": "Nông Cổ Mín Đàm · 1901", "en": "Nông Cổ Mín Đàm · 1901" },
-      { "vi": "Đông Dương Tạp Chí", "en": "Đông Dương Review" },
-      { "vi": "Tạp chí Nam Phong", "en": "Nam Phong Journal" },
-      { "vi": "Nghiên bút & con chữ", "en": "Ink Stone & Movable Type" },
-      { "vi": "Nhà in thuở sơ khai", "en": "The Early Print House" }
+      {
+        "vi": "Báo Thanh Niên · 1925",
+        "en": "Thanh Niên · 1925"
+      },
+      {
+        "vi": "Báo Búa Liềm · 1929",
+        "en": "Búa Liềm · 1929"
+      },
+      {
+        "vi": "Báo Dân Chúng · 1938",
+        "en": "Dân Chúng · 1938"
+      },
+      {
+        "vi": "Những trang in bí mật",
+        "en": "Clandestine Pages"
+      },
+      {
+        "vi": "Nhà tù & ngòi bút",
+        "en": "Prison & Pen"
+      },
+      {
+        "vi": "Cờ giải phóng",
+        "en": "The Liberation Flag"
+      }
     ]
   },
   {
-    "card": { "vi": "Báo chí Việt Nam 1925 – 1945", "en": "Vietnamese Press 1925 – 1945" },
-    "tag": { "vi": "1925 – 1945", "en": "1925 – 1945" },
-    "theme": { "wall": "#5E2A24", "wall2": "#421810", "floor": "#341512", "ceil": "#22100b" },
+    "card": {
+      "vi": "Báo chí Việt Nam 1945 – 1954",
+      "en": "Vietnamese Press 1945 – 1954"
+    },
+    "tag": {
+      "vi": "1945 – 1954",
+      "en": "1945 – 1954"
+    },
+    "theme": {
+      "wall": "#3F4A30",
+      "wall2": "#2A331F",
+      "floor": "#262e1a",
+      "ceil": "#1b2011"
+    },
     "exhibits": [
-      { "vi": "Báo Thanh Niên · 1925", "en": "Thanh Niên · 1925" },
-      { "vi": "Báo Búa Liềm · 1929", "en": "Búa Liềm · 1929" },
-      { "vi": "Báo Dân Chúng · 1938", "en": "Dân Chúng · 1938" },
-      { "vi": "Những trang in bí mật", "en": "Clandestine Pages" },
-      { "vi": "Nhà tù & ngòi bút", "en": "Prison & Pen" },
-      { "vi": "Cờ giải phóng", "en": "The Liberation Flag" }
+      {
+        "vi": "Báo Cứu Quốc",
+        "en": "Cứu Quốc Newspaper"
+      },
+      {
+        "vi": "Báo Sự Thật",
+        "en": "Sự Thật Newspaper"
+      },
+      {
+        "vi": "Báo Quân đội ND · 1950",
+        "en": "People's Army Daily · 1950"
+      },
+      {
+        "vi": "Trường dạy làm báo · 1949",
+        "en": "Journalism School · 1949"
+      },
+      {
+        "vi": "Tòa soạn tiền phương",
+        "en": "The Frontline Newsroom"
+      },
+      {
+        "vi": "Chiến thắng Điện Biên",
+        "en": "Điện Biên Phủ Victory"
+      }
     ]
   },
   {
-    "card": { "vi": "Báo chí Việt Nam 1945 – 1954", "en": "Vietnamese Press 1945 – 1954" },
-    "tag": { "vi": "1945 – 1954", "en": "1945 – 1954" },
-    "theme": { "wall": "#3F4A30", "wall2": "#2A331F", "floor": "#262e1a", "ceil": "#1b2011" },
+    "card": {
+      "vi": "Báo chí Việt Nam 1954 – 1975",
+      "en": "Vietnamese Press 1954 – 1975"
+    },
+    "tag": {
+      "vi": "1954 – 1975",
+      "en": "1954 – 1975"
+    },
+    "theme": {
+      "wall": "#5A2420",
+      "wall2": "#3A130E",
+      "floor": "#2f1310",
+      "ceil": "#1f0d0a"
+    },
     "exhibits": [
-      { "vi": "Báo Cứu Quốc", "en": "Cứu Quốc Newspaper" },
-      { "vi": "Báo Sự Thật", "en": "Sự Thật Newspaper" },
-      { "vi": "Báo Quân đội ND · 1950", "en": "People's Army Daily · 1950" },
-      { "vi": "Trường dạy làm báo · 1949", "en": "Journalism School · 1949" },
-      { "vi": "Tòa soạn tiền phương", "en": "The Frontline Newsroom" },
-      { "vi": "Chiến thắng Điện Biên", "en": "Điện Biên Phủ Victory" }
+      {
+        "vi": "Căn hầm Báo Nhân Dân",
+        "en": "The Nhân Dân Bunker"
+      },
+      {
+        "vi": "Máy quay “Ngựa Trời”",
+        "en": "The “Ngựa Trời” Camera"
+      },
+      {
+        "vi": "Loa phóng thanh Hiền Lương",
+        "en": "Hiền Lương Loudspeaker"
+      },
+      {
+        "vi": "Nhà báo chiến trường",
+        "en": "Battlefield Reporters"
+      },
+      {
+        "vi": "“Điện Biên Phủ trên không”",
+        "en": "“Điện Biên Phủ in the Air”"
+      },
+      {
+        "vi": "Ngày 30·04·1975",
+        "en": "30 April 1975"
+      }
     ]
   },
   {
-    "card": { "vi": "Báo chí Việt Nam 1954 – 1975", "en": "Vietnamese Press 1954 – 1975" },
-    "tag": { "vi": "1954 – 1975", "en": "1954 – 1975" },
-    "theme": { "wall": "#5A2420", "wall2": "#3A130E", "floor": "#2f1310", "ceil": "#1f0d0a" },
+    "card": {
+      "vi": "Báo chí Việt Nam 1975 – Nay",
+      "en": "Vietnamese Press 1975 – Today"
+    },
+    "tag": {
+      "vi": "1975 – Nay",
+      "en": "1975 – Today"
+    },
+    "theme": {
+      "wall": "#264A4A",
+      "wall2": "#173130",
+      "floor": "#152b2a",
+      "ceil": "#0e1f1e"
+    },
     "exhibits": [
-      { "vi": "Căn hầm Báo Nhân Dân", "en": "The Nhân Dân Bunker" },
-      { "vi": "Máy quay “Ngựa Trời”", "en": "The “Ngựa Trời” Camera" },
-      { "vi": "Loa phóng thanh Hiền Lương", "en": "Hiền Lương Loudspeaker" },
-      { "vi": "Nhà báo chiến trường", "en": "Battlefield Reporters" },
-      { "vi": "“Điện Biên Phủ trên không”", "en": "“Điện Biên Phủ in the Air”" },
-      { "vi": "Ngày 30·04·1975", "en": "30 April 1975" }
-    ]
-  },
-  {
-    "card": { "vi": "Báo chí Việt Nam 1975 – Nay", "en": "Vietnamese Press 1975 – Today" },
-    "tag": { "vi": "1975 – Nay", "en": "1975 – Today" },
-    "theme": { "wall": "#264A4A", "wall2": "#173130", "floor": "#152b2a", "ceil": "#0e1f1e" },
-    "exhibits": [
-      { "vi": "Sức bật Đổi Mới · 1986", "en": "The Đổi Mới Surge · 1986" },
-      { "vi": "“Những việc cần làm ngay”", "en": "“Things To Do Now”" },
-      { "vi": "Báo điện tử", "en": "The Online Press" },
-      { "vi": "Phát thanh – Truyền hình", "en": "Radio & Television" },
-      { "vi": "Kỷ nguyên số đa nền tảng", "en": "The Multi-Platform Era" },
-      { "vi": "Hội nhập quốc tế", "en": "Global Integration" }
+      {
+        "vi": "Sức bật Đổi Mới · 1986",
+        "en": "The Đổi Mới Surge · 1986"
+      },
+      {
+        "vi": "“Những việc cần làm ngay”",
+        "en": "“Things To Do Now”"
+      },
+      {
+        "vi": "Báo điện tử",
+        "en": "The Online Press"
+      },
+      {
+        "vi": "Phát thanh – Truyền hình",
+        "en": "Radio & Television"
+      },
+      {
+        "vi": "Kỷ nguyên số đa nền tảng",
+        "en": "The Multi-Platform Era"
+      },
+      {
+        "vi": "Hội nhập quốc tế",
+        "en": "Global Integration"
+      }
     ]
   }
 ]
