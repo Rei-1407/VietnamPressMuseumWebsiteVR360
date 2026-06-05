@@ -5,42 +5,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Bảo tàng Báo chí Việt Nam · VR 360°</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="css/tailwind.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap&subset=vietnamese" rel="stylesheet" />
 
-<!-- Pannellum 360° viewer -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
-<script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+<!-- Pannellum 360° viewer (tải hoãn — chỉ cần khi mở tour, không chặn hiển thị trang) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" media="print" onload="this.media='all'" />
+<script defer src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
 
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: {
-          display: ['"Playfair Display"','"EB Garamond"','Georgia','serif'],
-          serif: ['"EB Garamond"','Georgia','serif'],
-          sans: ['"Be Vietnam Pro"','system-ui','sans-serif'],
-        },
-        colors: {
-          cream:    '#FCFAF4',
-          cream2:   '#F6EFE1',
-          ink:      '#2C2113',
-          ink2:     '#5A4A30',
-          gold:     '#C99A3F',
-          goldlt:   '#E6C277',
-          goldbr:   '#EBCB82',
-          golddp:   '#A9731F',
-          bronze:   '#8A5A1C',
-          night:    '#1A140B',
-        },
-      },
-    },
-  };
-</script>
-
-<!-- Giao diện trang (xem css/styles.css) -->
+<!-- Giao diện trang (Tailwind tĩnh + style riêng) -->
 <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body class="bg-cream text-ink">

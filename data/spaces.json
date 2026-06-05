@@ -1,7 +1,7 @@
 [
   {
     "card": { "vi": "Gian Khánh Tiết", "en": "The Hall of Welcome" },
-    "thumb": "assets/panos/sanh-ngoai.jpg",
+    "thumb": "assets/panos/sanh-ngoai-thumb.jpg",
     "tag": { "vi": "Sảnh đón", "en": "Lobby" },
     "name": { "vi": "Sảnh đón Bảo tàng", "en": "The Museum Lobby" },
     "scenes": [

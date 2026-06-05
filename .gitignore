@@ -3,6 +3,9 @@ _design_src/
 design.tar.gz
 *.tar.gz
 
+# Node / Tailwind build tooling (css/tailwind.css IS committed; deps are not)
+node_modules/
+
 # Local agent / editor config (not part of the published site)
 .claude/
 
