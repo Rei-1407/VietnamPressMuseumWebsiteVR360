@@ -7,7 +7,7 @@ không gian VR ngay trên web.
 
 - 🌐 **Web:** https://baotangsobaochivietnam.com
   *(dự phòng: https://rei-1407.github.io/VietnamPressMuseumWebsiteVR360/)*
-- 🔐 **Admin:** https://baotangsobaochivietnam.com/admin.html — tài khoản `Chuyen`
+- 🔐 **Admin:** https://baotangsobaochivietnam.com/admin/ — tài khoản `Chuyen`
 - 📘 **Hướng dẫn vận hành (tiếng Việt):** [HUONG-DAN.md](HUONG-DAN.md)
 
 > Trang **HTML/CSS/JS tĩnh** (không cần build), host **miễn phí trên GitHub Pages**
@@ -18,7 +18,7 @@ không gian VR ngay trên web.
 
 ```
 index.html              Trang chính (Hero + Header)
-admin.html              Trang quản trị (login + sửa không gian VR)
+admin/index.html              Trang quản trị (login + sửa không gian VR)
 data/spaces.json     ⭐ Danh sách KHÔNG GIAN VR (admin đọc/ghi)
 js/
   data.js               UI song ngữ + TIMELINE + CONTACT
@@ -34,7 +34,7 @@ CNAME                   Tên miền riêng (baotangsobaochivietnam.com)
 
 ## Cập nhật không gian VR
 
-- **Cách 1 (khuyên dùng):** mở `/admin.html` → đăng nhập → dán GitHub token →
+- **Cách 1 (khuyên dùng):** mở `/admin/` → đăng nhập → dán GitHub token →
   thêm/đổi/xoá ảnh, sửa tên & điểm chú thích → **Lưu**. Web tự cập nhật ~1–2 phút.
 - **Cách 2:** sửa tay `data/spaces.json` rồi chạy `scripts\deploy.ps1`.
 

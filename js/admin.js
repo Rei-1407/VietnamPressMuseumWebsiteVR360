@@ -15,6 +15,11 @@ let token = '';
 let dirty = false;
 let pending = null;   // mục tiêu cho lần chọn ảnh kế tiếp
 
+// admin.html nằm ở /admin/ → các URL hiển thị (xem trước ảnh, đọc spaces.json)
+// trỏ ngược ra thư mục gốc bằng '../'. (Đường dẫn GitHub API thì KHÔNG dùng '../'.)
+const PREVIEW = '../';
+const previewCache = {};   // path -> dataURL của ảnh vừa tải lên (hiện ngay, chưa cần build)
+
 /* ---------- tiện ích ---------- */
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
@@ -127,7 +132,8 @@ function field(label, path, val, opts){
 }
 
 function imgBox(path, src, label, btns){
-  const url = src ? esc(src) + (src.startsWith('http')?'':'?t='+Date.now()) : '';
+  let url = '';
+  if(src) url = previewCache[src] ? previewCache[src] : (src.startsWith('http') ? src : PREVIEW + src + '?t=' + Date.now());
   return `<div class="flex items-center gap-3 p-3 rounded-xl bg-stone-50 border border-stone-200">
     <div class="w-28 h-20 rounded-lg bg-stone-200 bg-center bg-cover shrink-0" style="${src?`background-image:url('${url}')`:''}"></div>
     <div class="min-w-0">
@@ -308,6 +314,7 @@ $('#filePicker').addEventListener('change', async (e)=>{
     const ext = (file.name.match(/\.([a-z0-9]+)$/i)?.[1] || 'jpg').toLowerCase();
     const path = `assets/panos/${slug(hint)}-${Date.now()}.${ext==='jpeg'?'jpg':ext}`;
     const b64 = await fileToBase64(file);
+    previewCache[path] = 'data:'+(file.type||'image/jpeg')+';base64,'+b64;   // xem trước ngay
     await ghPutFile(path, b64, 'admin: tải ảnh 360° '+path);
 
     const sp = state.spaces[i];
@@ -359,7 +366,7 @@ $('#btnClearToken').addEventListener('click', ()=>{ token=''; localStorage.remov
 
 /* ---------- nạp danh sách không gian ---------- */
 async function loadSpaces(){
-  const res = await fetch('data/spaces.json?t='+Date.now(), { cache:'no-store' });
+  const res = await fetch(PREVIEW + 'data/spaces.json?t='+Date.now(), { cache:'no-store' });
   state.spaces = await res.json();
   imagesToDelete = [];
   render();

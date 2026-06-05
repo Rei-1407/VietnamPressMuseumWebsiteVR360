@@ -6,7 +6,7 @@ Tài liệu dành cho người **không chuyên kỹ thuật**. Có **2 cách** 
 
 - 🌐 Web: **https://baotangsobaochivietnam.com** (và link dự phòng
   https://rei-1407.github.io/VietnamPressMuseumWebsiteVR360/)
-- 🔐 Trang Admin: **https://baotangsobaochivietnam.com/admin.html**
+- 🔐 Trang Admin: **https://baotangsobaochivietnam.com/admin/**
 - 🗂️ Mã nguồn: https://github.com/Rei-1407/VietnamPressMuseumWebsiteVR360
 
 ---
@@ -14,7 +14,7 @@ Tài liệu dành cho người **không chuyên kỹ thuật**. Có **2 cách** 
 ## A. TRANG ADMIN (cách khuyên dùng)
 
 ### Đăng nhập
-Mở **/admin.html** → nhập tài khoản **`Chuyen`** / mật khẩu **`1234567890`**.
+Mở **/admin/** → nhập tài khoản **`Chuyen`** / mật khẩu **`1234567890`**.
 
 > ⚠️ Mật khẩu này chỉ là *lớp che nhẹ*. Quyền sửa thật sự được kiểm soát bằng
 > **GitHub token** (xem dưới). Đừng đặt thông tin nhạy cảm ở đây.
@@ -54,7 +54,7 @@ Xem khối đầu tiên (Sảnh đón) và các khối sau làm mẫu. Sửa xon
 
 ```
 index.html              Trang chính (Hero + Header)
-admin.html           ⭐ Trang quản trị (login + sửa không gian)
+admin/index.html           ⭐ Trang quản trị (login + sửa không gian)
 data/spaces.json     ⭐ Danh sách KHÔNG GIAN VR (admin đọc/ghi file này)
 js/
   data.js               Chữ giao diện (UI), dòng thời gian (TIMELINE), liên hệ
@@ -92,5 +92,5 @@ Gắn tên miền khác / gỡ: dùng `scripts\set-domain.ps1` (xem README).
 
 - **Đăng (khi sửa tay):** `powershell -ExecutionPolicy Bypass -File scripts\deploy.ps1 "mô tả"`
 - **Xem thử ở máy:** `python -m http.server 8080` → mở `http://localhost:8080`
-  (và `/admin.html`). Cần Internet để tải Tailwind/Pannellum/phông chữ.
+  (và `/admin/`). Cần Internet để tải Tailwind/Pannellum/phông chữ.
 - Sau khi đăng, chờ ~1–2 phút và **Ctrl+F5** để thấy bản mới.
