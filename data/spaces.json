@@ -115,6 +115,18 @@
             "en": "Back to the forecourt"
           }
         ]
+      },
+      {
+        "id": "canh-mq16g761",
+        "photo": "",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
       }
     ]
   },
@@ -127,8 +139,8 @@
       "vi": "1865 – 1925",
       "en": "1865 – 1925"
     },
-    "photo": "assets/panos/bao-chi-viet-nam-1865-1925-1780679169723.jpg",
-    "thumb": "assets/panos/bao-chi-viet-nam-1865-1925-1780679169723.jpg",
+    "photo": "assets/panos/bao-chi-viet-nam-1865-1925-1780679180434.jpg",
+    "thumb": "assets/panos/bao-chi-viet-nam-1865-1925-1780679180434.jpg",
     "initYaw": 0,
     "initPitch": -2,
     "hotspots": []
