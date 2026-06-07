@@ -1,0 +1,7 @@
+<svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 251.488 138.789" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M123.919 0.522034C123.919 0.522034 101.483 2.34802 99.657 25.567L75.1339 25.306L53.481 81.395L0 81.9171V100.44L52.1759 99.918L51.3929 138.789H125.744V0L123.919 0.522034Z" fill="url(#domeg)"/>
+<path transform="translate(125.744,0)" d="M1.82507 0.522034C1.82507 0.522034 24.261 2.34802 26.087 25.567L50.61 25.306L72.2631 81.395L125.744 81.9171V100.44L73.568 99.918L74.351 138.789H0V0L1.82507 0.522034Z" fill="url(#domeg)"/>
+<defs><linearGradient id="domeg" x1="125.744" y1="0" x2="125.744" y2="138.789" gradientUnits="userSpaceOnUse">
+<stop offset="0.377" stop-color="#E3AD57"/><stop offset="0.995" stop-color="#FEFCF0" stop-opacity="0.5"/>
+</linearGradient></defs>
+</svg>
