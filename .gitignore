@@ -17,3 +17,7 @@ desktop.ini
 *.log
 .idea/
 .vscode/
+
+# font sources (chỉ deploy bản woff2 đã nén)
+font/*.ttf
+font/*.otf

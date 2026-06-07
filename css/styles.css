@@ -2,20 +2,30 @@
    styles.css — Bám sát thiết kế Figma (Frame 1)
    Nền TRẮNG, thẻ khu vực cam #E6952E (đĩa trắng + icon nguyên tử + biển tên),
    tiêu đề chữ vàng kim, nút VR vàng gradient, footer nâu #814E00.
-   Font: Helvetica.
+   Font: Helvetica (chữ chung) + Arroem (chữ logo) — đúng theo Figma.
    ========================================================= */
+
+/* ===== Font thật từ Figma (file đặt trong /font, đã nén woff2) ===== */
+@font-face{ font-family:'Helvetica'; font-weight:300; font-style:normal; font-display:swap; src:url('../font/helvetica-light.woff2') format('woff2'); }
+@font-face{ font-family:'Helvetica'; font-weight:400; font-style:normal; font-display:swap; src:url('../font/helvetica.woff2') format('woff2'); }
+@font-face{ font-family:'Helvetica'; font-weight:400; font-style:italic;  font-display:swap; src:url('../font/helvetica-oblique.woff2') format('woff2'); }
+@font-face{ font-family:'Helvetica'; font-weight:700; font-style:normal; font-display:swap; src:url('../font/helvetica-bold.woff2') format('woff2'); }
+@font-face{ font-family:'Helvetica'; font-weight:700; font-style:italic;  font-display:swap; src:url('../font/helvetica-boldoblique.woff2') format('woff2'); }
+@font-face{ font-family:'Arroem';    font-weight:400; font-style:normal; font-display:swap; src:url('../font/arroem.woff2') format('woff2'); }
 
 :root{
   --paper:#FEFCF0; --ink:#2C2113; --ink2:#5A4A30;
   --gold:#C99A3F; --goldlt:#E6C277; --golddp:#A9731F;
   --orange:#E6952E; --orange2:#D07E1C; --orangelt:#F2B45E; --orangedk:#B96E14;
   --brown:#814E00; --cocoa:#814E00;
-  --hv:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  --hv:'Helvetica',Arial,sans-serif;
+  --logo:'Arroem','Helvetica',Arial,sans-serif;
 }
 *{ scroll-behavior:smooth; }
 html,body{ background:#FFFFFF; color:var(--ink); }
 body{ font-family:var(--hv); overflow-x:hidden; }
 .font-display,.font-serif{ font-family:var(--hv); }
+.font-logo{ font-family:var(--logo); }
 ::selection{ background:rgba(230,149,46,.25); }
 
 /* ===== tiêu đề chữ vàng kim (BẢN ĐỒ &… / LỊCH SỬ…) ===== */

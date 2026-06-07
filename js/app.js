@@ -116,7 +116,7 @@ function renderFooter(){
           <div class="flex items-center gap-3 mb-4">
             <img class="ft-lotus" src="assets/figma/logo.png" alt="" aria-hidden="true">
             <div class="leading-tight">
-              <div class="font-display font-bold text-[15px] tracking-wide">${LANG==='vi'?'BẢO TÀNG BÁO CHÍ':'PRESS MUSEUM'}</div>
+              <div class="font-logo text-[17px] leading-none tracking-wide" style="color:#FBEFD8">${LANG==='vi'?'BẢO TÀNG BÁO CHÍ':'PRESS MUSEUM'}</div>
               <div class="text-[10px] tracking-[.3em] uppercase" style="color:#EFB964">${LANG==='vi'?'Việt Nam':'of Vietnam'}</div>
             </div>
           </div>

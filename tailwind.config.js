@@ -5,9 +5,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
-        serif: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
-        sans: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        display: ['Helvetica', 'Arial', 'sans-serif'],
+        serif: ['Helvetica', 'Arial', 'sans-serif'],
+        sans: ['Helvetica', 'Arial', 'sans-serif'],
+        logo: ['Arroem', 'Helvetica', 'Arial', 'sans-serif'],
       },
       colors: {
         cream: '#FCFAF4', cream2: '#F6EFE1', ink: '#2C2113', ink2: '#5A4A30',
