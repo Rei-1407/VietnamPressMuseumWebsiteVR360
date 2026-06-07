@@ -133,11 +133,17 @@ body{ font-family:var(--hv); overflow-x:hidden; }
   box-shadow:0 24px 50px -28px rgba(185,110,20,.6);
   transition:transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s; }
 .map-card:hover .body{ transform:translateY(-5px); box-shadow:0 34px 60px -26px rgba(185,110,20,.72); }
-.map-card .disc{ width:23%; height:auto; aspect-ratio:1;
-  filter:drop-shadow(0 8px 16px rgba(58,36,8,.22));
+/* ảnh preview cho khu vực ĐÃ có ảnh 360° — để người xem biết không gian tồn tại */
+.map-card .body > .photo{ position:absolute; inset:0; border-radius:16px; z-index:0;
+  background-size:cover; background-position:center; }
+.map-card .body > .tint{ position:absolute; inset:0; border-radius:16px; z-index:1;
+  background:linear-gradient(180deg, rgba(230,149,46,.15) 0%, rgba(196,116,20,.50) 100%); }
+.map-card.has-photo .body{ background:#C9842E; }
+.map-card .disc{ position:relative; z-index:2; width:23%; height:auto; aspect-ratio:1;
+  filter:drop-shadow(0 8px 18px rgba(58,36,8,.32));
   transition:transform .45s cubic-bezier(.34,1.4,.5,1); }
 .map-card:hover .disc{ transform:scale(1.12); }
-.map-card .plate{ position:absolute; left:50%; bottom:0; transform:translateX(-50%);
+.map-card .plate{ position:absolute; z-index:3; left:50%; bottom:0; transform:translateX(-50%);
   min-width:74%; max-width:94%; text-align:center; white-space:nowrap;
   background:#FEFCF0; color:var(--orange2);
   font-family:var(--hv); font-weight:600; font-size:clamp(13px,1.05vw,15px);

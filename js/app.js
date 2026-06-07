@@ -60,11 +60,20 @@ function renderTimeline(){
 
 /* ---------- mục "Bản Đồ & Trải Nghiệm Khám Phá" (lưới khu vực VR) ---------- */
 function renderHeritage(){
+  // ảnh preview: ưu tiên thumb → ảnh cảnh đầu tiên → photo (để người xem biết khu vực đã có nội dung)
+  const previewOf = (s)=> s.thumb
+        || (s.scenes && (s.scenes.find(sc=>sc && sc.photo)||{}).photo)
+        || s.photo || '';
   const card = (s, gi)=>{
     const label = s.card[LANG];
-    return `<div class="map-card reveal" role="button" tabindex="0"
+    const prev = previewOf(s);
+    const bg = prev
+      ? `<div class="photo" style="background-image:url('${prev}')"></div><div class="tint"></div>`
+      : '';
+    return `<div class="map-card reveal${prev?' has-photo':''}" role="button" tabindex="0"
          aria-label="${label}" title="${label}" data-zone data-idx="${gi}">
       <div class="body">
+        ${bg}
         <img class="disc" src="assets/figma/icon360.svg" alt="" aria-hidden="true">
         <div class="plate">${label}</div>
       </div>
