@@ -19,15 +19,25 @@ function icon360(size){
 
 /* ---------- mục "Dấu Ấn Lịch Sử Làng Báo" (timeline) ---------- */
 function renderTimeline(){
-  const items = TIMELINE.map((m,i)=>{
-    const side = i % 2 === 0 ? 'left' : 'right';
+  let ev = 0;
+  const items = TIMELINE.map((m)=>{
     const c = m[LANG];
-    return `<div class="tl-item ${side} ${m.kind} reveal mb-10 md:mb-14" data-tl>
+    if(m.kind==='era'){
+      return `<div class="tl-item era reveal mb-6 md:mb-10" data-tl>
+        <div class="tl-era">
+          <div class="era-year text-goldgrad">${m.year}</div>
+          <div class="era-name">${c.t}</div>
+          <div class="era-desc">${c.d}</div>
+        </div>
+      </div>`;
+    }
+    const side = (ev++ % 2 === 0) ? 'left' : 'right';
+    return `<div class="tl-item ${side} reveal mb-10 md:mb-14" data-tl>
       <span class="tl-dot"></span>
       <div class="tl-card">
         <span class="tl-badge">${m.year}</span>
-        <h3 class="font-display text-xl md:text-2xl text-bronze leading-snug">${c.t}</h3>
-        <p class="font-serif text-ink2 mt-2 leading-relaxed text-[15px] md:text-base">${c.d}</p>
+        <h3 class="font-display text-xl md:text-2xl leading-snug">${c.t}</h3>
+        <p class="font-serif mt-2 leading-relaxed text-[15px] md:text-base">${c.d}</p>
       </div>
     </div>`;
   }).join('');
@@ -64,12 +74,8 @@ function renderHeritage(){
          aria-label="${label}" title="${label}" data-zone data-idx="${i}">
       <div class="img ${imgClass}"${imgStyle}></div>
       <div class="tint"></div>
-      <div class="badge-360" aria-hidden="true">
-        <span class="flex flex-col items-center gap-0.5">
-          ${icon360(40)}
-          <span class="font-display text-[11px] tracking-wide -mt-0.5" data-hover360>${t('hover360')}</span>
-        </span>
-      </div>
+      <div class="badge-360" aria-hidden="true">${icon360(34)}</div>
+      <div class="zone-label">${label}</div>
     </div>`;
   }).join('');
 
@@ -101,7 +107,7 @@ function renderHeritage(){
 
 /* ---------- Footer ---------- */
 function renderFooter(){
-  return `<footer id="footer" class="relative bg-night text-cream pt-20 pb-10 overflow-hidden">
+  return `<footer id="footer" class="relative bg-cocoa text-cream pt-20 pb-10 overflow-hidden">
     <div class="absolute inset-0 map-grid opacity-40"></div>
     <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full" style="background:radial-gradient(circle,rgba(201,154,63,.22),transparent 70%)"></div>
     <div class="relative max-w-[1180px] mx-auto px-5 md:px-8">
@@ -153,9 +159,9 @@ function renderFooter(){
       </div>
 
       <div class="gold-rule mt-12 mb-6 opacity-60"></div>
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream/45">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream/55">
         <span>${t('ftRights')}</span>
-        <span class="font-serif italic text-gold/60">“Bút sắc · Lòng son · Tâm sáng”</span>
+        <span class="font-serif italic text-goldlt/75">Bản quyền sản phẩm thuộc về <b class="not-italic font-semibold text-goldlt">VIRA Agency</b></span>
       </div>
     </div>
   </footer>`;
@@ -173,6 +179,11 @@ function mount(){
 /* ---------- hiệu ứng hiện dần khi cuộn ---------- */
 let revealObs;
 function initReveal(){
+  // Hiện ngay toàn bộ nếu người dùng tắt hiệu ứng (reduced-motion) hoặc URL có ?nofx
+  if (/[?&]nofx/.test(location.search) || matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.querySelectorAll('.reveal,.reveal-l,.reveal-r,[data-tl]').forEach(el=>el.classList.add('in'));
+    return;
+  }
   if (revealObs) revealObs.disconnect();
   revealObs = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{

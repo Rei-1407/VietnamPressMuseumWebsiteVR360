@@ -1,5 +1,6 @@
-# Design handoff bundle (source only — not part of the deployed site)
+# Design handoff bundle + redesign reference/captures (not part of the site)
 _design_src/
+_design_ref/
 design.tar.gz
 *.tar.gz
 
