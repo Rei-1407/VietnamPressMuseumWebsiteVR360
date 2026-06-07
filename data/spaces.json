@@ -1,8 +1,8 @@
 [
   {
     "card": {
-      "vi": "Gian Khánh Tiết",
-      "en": "The Hall of Welcome"
+      "vi": "Gian khánh tiết",
+      "en": "The Ceremonial Hall"
     },
     "thumb": "assets/panos/sanh-ngoai-thumb.jpg",
     "tag": {
@@ -128,12 +128,13 @@
         "hotspots": [],
         "links": []
       }
-    ]
+    ],
+    "floor": 1
   },
   {
     "card": {
-      "vi": "Báo chí Việt Nam 1865 – 1925",
-      "en": "Vietnamese Press 1865 – 1925"
+      "vi": "Báo chí 1865 - 1925",
+      "en": "Press 1865 - 1925"
     },
     "tag": {
       "vi": "1865 – 1925",
@@ -143,12 +144,13 @@
     "thumb": "assets/panos/bao-chi-viet-nam-1865-1925-1780679180434.jpg",
     "initYaw": 0,
     "initPitch": -2,
-    "hotspots": []
+    "hotspots": [],
+    "floor": 1
   },
   {
     "card": {
-      "vi": "Báo chí Việt Nam 1925 – 1945",
-      "en": "Vietnamese Press 1925 – 1945"
+      "vi": "Báo chí 1925 - 1945",
+      "en": "Press 1925 - 1945"
     },
     "tag": {
       "vi": "1925 – 1945",
@@ -185,12 +187,13 @@
         "vi": "Cờ giải phóng",
         "en": "The Liberation Flag"
       }
-    ]
+    ],
+    "floor": 1
   },
   {
     "card": {
-      "vi": "Báo chí Việt Nam 1945 – 1954",
-      "en": "Vietnamese Press 1945 – 1954"
+      "vi": "Báo chí 1945 - 1954",
+      "en": "Press 1945 - 1954"
     },
     "tag": {
       "vi": "1945 – 1954",
@@ -227,12 +230,13 @@
         "vi": "Chiến thắng Điện Biên",
         "en": "Điện Biên Phủ Victory"
       }
-    ]
+    ],
+    "floor": 1
   },
   {
     "card": {
-      "vi": "Báo chí Việt Nam 1954 – 1975",
-      "en": "Vietnamese Press 1954 – 1975"
+      "vi": "Báo chí 1954 - 1975",
+      "en": "Press 1954 - 1975"
     },
     "tag": {
       "vi": "1954 – 1975",
@@ -269,12 +273,188 @@
         "vi": "Ngày 30·04·1975",
         "en": "30 April 1975"
       }
+    ],
+    "floor": 1
+  },
+  {
+    "card": {
+      "vi": "Khu tưởng niệm",
+      "en": "Memorial Area"
+    },
+    "tag": {
+      "vi": "Tưởng niệm",
+      "en": "Memorial"
+    },
+    "floor": 2,
+    "theme": {
+      "wall": "#3A2A22",
+      "wall2": "#241813",
+      "floor": "#1f140f",
+      "ceil": "#160d0a"
+    },
+    "exhibits": [
+      {
+        "vi": "Đài tưởng niệm nhà báo liệt sĩ",
+        "en": "Memorial to fallen journalists"
+      },
+      {
+        "vi": "Bức tường khắc tên",
+        "en": "The wall of names"
+      },
+      {
+        "vi": "Không gian tri ân",
+        "en": "Space of remembrance"
+      },
+      {
+        "vi": "Kỷ vật nhà báo",
+        "en": "Journalists' keepsakes"
+      }
     ]
   },
   {
     "card": {
-      "vi": "Báo chí Việt Nam 1975 – Nay",
-      "en": "Vietnamese Press 1975 – Today"
+      "vi": "Triển lãm định kỳ",
+      "en": "Periodic Exhibitions"
+    },
+    "tag": {
+      "vi": "Triển lãm",
+      "en": "Exhibition"
+    },
+    "floor": 2,
+    "theme": {
+      "wall": "#2E3A44",
+      "wall2": "#1c2730",
+      "floor": "#18222a",
+      "ceil": "#101820"
+    },
+    "exhibits": [
+      {
+        "vi": "Chuyên đề theo mùa",
+        "en": "Seasonal themes"
+      },
+      {
+        "vi": "Tác phẩm báo chí tiêu biểu",
+        "en": "Featured press works"
+      },
+      {
+        "vi": "Ảnh báo chí",
+        "en": "Photojournalism"
+      },
+      {
+        "vi": "Giao lưu tác giả",
+        "en": "Author talks"
+      }
+    ]
+  },
+  {
+    "card": {
+      "vi": "Phòng đương đại",
+      "en": "Contemporary Room"
+    },
+    "tag": {
+      "vi": "Đương đại",
+      "en": "Contemporary"
+    },
+    "floor": 2,
+    "theme": {
+      "wall": "#293A38",
+      "wall2": "#172726",
+      "floor": "#13201f",
+      "ceil": "#0d1716"
+    },
+    "exhibits": [
+      {
+        "vi": "Tòa soạn hội tụ",
+        "en": "The converged newsroom"
+      },
+      {
+        "vi": "Báo chí đa phương tiện",
+        "en": "Multimedia journalism"
+      },
+      {
+        "vi": "Trí tuệ nhân tạo & báo chí",
+        "en": "AI & journalism"
+      },
+      {
+        "vi": "Màn hình tương tác",
+        "en": "Interactive screens"
+      }
+    ]
+  },
+  {
+    "card": {
+      "vi": "Truyền hình phát thanh",
+      "en": "Radio & Television"
+    },
+    "tag": {
+      "vi": "Phát thanh – Truyền hình",
+      "en": "Broadcast"
+    },
+    "floor": 2,
+    "theme": {
+      "wall": "#3A3326",
+      "wall2": "#241f13",
+      "floor": "#1f1a0f",
+      "ceil": "#15110a"
+    },
+    "exhibits": [
+      {
+        "vi": "Trường quay truyền hình",
+        "en": "The TV studio"
+      },
+      {
+        "vi": "Phòng thu phát thanh",
+        "en": "The radio booth"
+      },
+      {
+        "vi": "Máy quay qua các thời kỳ",
+        "en": "Cameras through the eras"
+      },
+      {
+        "vi": "Làn sóng đầu tiên",
+        "en": "The first broadcasts"
+      }
+    ]
+  },
+  {
+    "card": {
+      "vi": "Báo in và Báo điện tử",
+      "en": "Print & Online Press"
+    },
+    "tag": {
+      "vi": "Báo in – Điện tử",
+      "en": "Print & Online"
+    },
+    "floor": 2,
+    "theme": {
+      "wall": "#33293A",
+      "wall2": "#1f1727",
+      "floor": "#1a1320",
+      "ceil": "#120c17"
+    },
+    "exhibits": [
+      {
+        "vi": "Xưởng in & sắp chữ",
+        "en": "The press & typesetting"
+      },
+      {
+        "vi": "Măng-sét các tờ báo",
+        "en": "Newspaper mastheads"
+      },
+      {
+        "vi": "Tòa soạn điện tử",
+        "en": "The digital newsroom"
+      },
+      {
+        "vi": "Hành trình lên mạng",
+        "en": "Going online"
+      }
+    ]
+  },
+  {
+    "card": {
+      "vi": "Từ 1975 đến nay",
+      "en": "From 1975 to Now"
     },
     "tag": {
       "vi": "1975 – Nay",
@@ -311,6 +491,7 @@
         "vi": "Hội nhập quốc tế",
         "en": "Global Integration"
       }
-    ]
+    ],
+    "floor": 2
   }
 ]

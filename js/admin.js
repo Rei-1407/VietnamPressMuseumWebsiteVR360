@@ -131,6 +131,7 @@ function renderSpace(sp, i){
       ${field('Nhãn nhỏ (EN)', `${i}.tag.en`, sp.tag?.en)}
       ${field('Tên phòng VR (VI)', `${i}.name.vi`, sp.name?.vi)}
       ${field('Tên phòng VR (EN)', `${i}.name.en`, sp.name?.en)}
+      ${field('Tầng (1 hoặc 2)', `${i}.floor`, sp.floor ?? 1, {num:1})}
     </div>
 
     ${type==='scenes'   ? renderScenes(sp,i)   : ''}
@@ -419,7 +420,7 @@ $('#filePicker').addEventListener('change', async (e)=>{
     if(p.kind==='photo'){ markOldForDelete(sp.photo); markOldForDelete(sp.thumb); sp.photo=fullPath; sp.thumb=thumbPath; }
     else if(p.kind==='scene'){ const sc=sp.scenes[p.j]; markOldForDelete(sc.photo); sc.photo=fullPath; if(p.j===0){ markOldForDelete(sp.thumb); sp.thumb=thumbPath; } }
     else if(p.kind==='to-photo'){ delete sp.theme; delete sp.exhibits; sp.photo=fullPath; sp.thumb=thumbPath; sp.initYaw=0; sp.initPitch=-2; sp.hotspots=sp.hotspots||[]; }
-    else if(p.kind==='new'){ state.spaces.push({ card:{vi:'Không gian mới',en:'New space'}, thumb:thumbPath, tag:{vi:'',en:''}, name:{vi:'Không gian mới',en:'New space'}, photo:fullPath, initYaw:0, initPitch:-2, hotspots:[] }); }
+    else if(p.kind==='new'){ state.spaces.push({ card:{vi:'Không gian mới',en:'New space'}, floor:1, thumb:thumbPath, tag:{vi:'',en:''}, name:{vi:'Không gian mới',en:'New space'}, photo:fullPath, initYaw:0, initPitch:-2, hotspots:[] }); }
 
     markDirty(true); render(); setStatus('Đã tải ảnh 360° ✓ — nhớ bấm “Lưu thay đổi”.','ok');
   }catch(err){ setStatus(err.message,'err'); }

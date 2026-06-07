@@ -8,161 +8,129 @@
 let LANG = (() => { try { return localStorage.getItem('lp_lang') || 'vi'; } catch(e){ return 'vi'; } })();
 const t = (k) => UI[LANG][k];
 
-/* ---------- icon 360° ---------- */
-function icon360(size){
-  return `<svg viewBox="0 0 64 34" width="${size}" height="${size*0.53}" fill="none" stroke="currentColor" stroke-width="1.6">
-    <ellipse cx="32" cy="17" rx="27" ry="10"/>
-    <path d="M11 17c0 5 9 9 21 9s21-4 21-9" stroke-dasharray="1.5 2.6"/>
-    <text x="32" y="21" text-anchor="middle" font-family="Playfair Display, serif" font-size="11" font-weight="700" fill="currentColor" stroke="none">360°</text>
-  </svg>`;
-}
+/* icon 360° dùng ẢNH SVG gốc Figma:
+   - assets/figma/icon360.svg     → đĩa trắng + nguyên tử cam (trong thẻ khu vực)
+   - assets/figma/ic-atom-white.svg → nguyên tử trắng (trong nút VR 360°) */
 
 /* ---------- mục "Dấu Ấn Lịch Sử Làng Báo" (timeline) ---------- */
 function renderTimeline(){
-  let ev = 0;
-  const items = TIMELINE.map((m)=>{
-    const c = m[LANG];
-    if(m.kind==='era'){
-      return `<div class="tl-item era reveal mb-6 md:mb-10" data-tl>
-        <div class="tl-era">
-          <div class="era-card">${m.year}</div>
-          <div class="era-name">${c.t}</div>
-          <div class="era-desc">${c.d}</div>
-        </div>
+  // gom mỗi mốc sự kiện vào dưới mốc GIAI ĐOẠN (era) đứng ngay trước nó
+  const blocks = [];
+  TIMELINE.forEach(m=>{
+    if(m.kind==='era') blocks.push({ era:m, events:[] });
+    else if(blocks.length) blocks[blocks.length-1].events.push(m);
+  });
+
+  const body = blocks.map(b=>{
+    const c = b.era[LANG];
+    const evs = b.events.map(ev=>{
+      const e = ev[LANG];
+      return `<div class="ev-card reveal">
+        <span class="ev-badge">${ev.year}</span>
+        <h3>${e.t}</h3>
+        <p>${e.d}</p>
       </div>`;
-    }
-    const side = (ev++ % 2 === 0) ? 'left' : 'right';
-    return `<div class="tl-item ${side} reveal mb-10 md:mb-14" data-tl>
-      <span class="tl-dot"></span>
-      <div class="tl-card">
-        <span class="tl-badge">${m.year}</span>
-        <h3 class="font-display text-xl md:text-2xl leading-snug">${c.t}</h3>
-        <p class="font-serif mt-2 leading-relaxed text-[15px] md:text-base">${c.d}</p>
+    }).join('');
+    const row = b.events.length
+      ? `<div class="ev-row ${b.events.length===1?'one':''}">${evs}</div>` : '';
+    return `<div class="tl-block">
+      <div class="tl-era reveal">
+        <span class="era-pill">${b.era.year}</span>
+        <div class="era-name">${c.t}</div>
+        <p class="era-desc">${c.d}</p>
       </div>
+      ${row}
     </div>`;
   }).join('');
 
-  return `<section id="lich-su" class="relative py-24 md:py-32">
-    <div class="max-w-[1180px] mx-auto px-5 md:px-8">
-      <div class="text-center mb-16 md:mb-20 reveal">
-        <div class="flex items-center justify-center gap-3 mb-4">
-          <span class="w-8 gold-rule"></span>
-          <span class="eyebrow">${t('histEyebrow')}</span>
-          <span class="w-8 gold-rule"></span>
-        </div>
-        <h2 class="font-display font-extrabold uppercase text-4xl sm:text-5xl lg:text-[clamp(48px,7vw,84px)] text-goldgrad leading-[1.03] pb-2">${t('histTitle')}</h2>
-        <p class="font-serif italic text-ink2 text-lg md:text-xl mt-4 max-w-[52ch] mx-auto">${t('histSub')}</p>
+  return `<section id="lich-su" class="relative py-20 md:py-28">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-8">
+      <div class="text-center mb-14 md:mb-16 reveal">
+        <div class="text-goldgrad font-extrabold uppercase tracking-[.2em] text-lg md:text-2xl mb-1">${t('histKicker')}</div>
+        <h2 class="font-display font-extrabold uppercase text-goldgrad leading-[1.04] text-[clamp(30px,5.4vw,62px)]">${t('histTitle')}</h2>
+        <p class="italic text-ink2 text-base md:text-lg mt-3 max-w-[54ch] mx-auto">${t('histSub')}</p>
       </div>
-
       <div class="tl-wrap">
-        <div class="tl-spine"><div class="tl-fill" id="tlFill"></div></div>
-        ${items}
+        <div class="tl-line"></div>
+        ${body}
       </div>
     </div>
   </section>`;
 }
 
-/* ---------- mục "Chạm Vào Di Sản" (lưới không gian VR) ---------- */
+/* ---------- mục "Bản Đồ & Trải Nghiệm Khám Phá" (lưới khu vực VR) ---------- */
 function renderHeritage(){
-  const cards = SPACES.map((s,i)=>{
+  const card = (s, gi)=>{
     const label = s.card[LANG];
-    const hasPhoto = !!s.thumb;
-    const imgClass = hasPhoto ? 'photo' : 'img-' + ((i % 6) + 1);   // có ảnh → cover ; chưa có → gradient vàng
-    const imgStyle = hasPhoto ? ` style="background-image:url('${s.thumb}')"` : '';
-    return `
-    <div class="heritage-card reveal" style="transition-delay:${i*90}ms" role="button" tabindex="0"
-         aria-label="${label}" title="${label}" data-zone data-idx="${i}">
-      <div class="img ${imgClass}"${imgStyle}></div>
-      <div class="tint"></div>
-      <div class="badge-360" aria-hidden="true">${icon360(34)}</div>
-      <div class="zone-label">${label}</div>
+    return `<div class="map-card reveal" role="button" tabindex="0"
+         aria-label="${label}" title="${label}" data-zone data-idx="${gi}">
+      <div class="body">
+        <img class="disc" src="assets/figma/icon360.svg" alt="" aria-hidden="true">
+        <div class="plate">${label}</div>
+      </div>
     </div>`;
-  }).join('');
+  };
+  // gi = chỉ số toàn cục trong SPACES (mở đúng không gian VR)
+  const byFloor = (n)=> SPACES.map((s,gi)=>({s,gi})).filter(o=>(o.s.floor||1)===n);
+  const grid = (arr)=> `<div class="map-cards">${arr.map(o=>card(o.s,o.gi)).join('')}</div>`;
+  const f1 = byFloor(1), f2 = byFloor(2);
 
-  return `<section id="ban-do" class="relative py-24 md:py-32 bg-cream2/60">
-    <div class="max-w-[1180px] mx-auto px-5 md:px-8">
-      <div class="text-center mb-14 md:mb-16 reveal">
-        <div class="flex items-center justify-center gap-3 mb-4">
-          <span class="w-8 gold-rule"></span>
-          <span class="eyebrow">${t('mapEyebrow')}</span>
-          <span class="w-8 gold-rule"></span>
-        </div>
-        <h2 class="font-display font-extrabold uppercase text-4xl sm:text-5xl lg:text-[clamp(48px,7vw,84px)] text-goldgrad leading-[1.03] pb-2">${t('mapTitle')}</h2>
-        <p class="font-serif italic text-ink2 text-lg md:text-xl mt-4 max-w-[52ch] mx-auto">${t('mapSub')}</p>
+  return `<section id="ban-do" class="relative py-20 md:py-28">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-8">
+      <div class="text-center mb-12 md:mb-14 reveal">
+        <h2 class="font-display font-extrabold uppercase text-goldgrad leading-[1.05] text-[clamp(30px,5.6vw,66px)]">${t('mapTitle')}</h2>
+        <p class="italic text-[15px] md:text-lg mt-4" style="color:#E0912C">${t('mapSub')}</p>
       </div>
 
-      <div class="flex justify-center mb-9 reveal"><span class="zone-pill">${LANG==='vi'?'Khu vực tầng 1':'Floor 1'}</span></div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7">
-        ${cards}
-      </div>
+      <div class="text-center mb-9 reveal"><span class="floor-pill">${LANG==='vi'?'Khu vực tầng 1':'Floor 1 zones'}</span></div>
+      ${grid(f1)}
 
-      <div class="flex justify-center mt-16 md:mt-20 reveal">
-        <button class="cta-pulse inline-flex items-center gap-3 px-9 py-4 text-base md:text-lg" data-cta>
-          <span>${icon360(34)}</span>
-          <span data-cta-label>${t('cta')}</span>
+      <div class="text-center mt-16 mb-9 reveal"><span class="floor-pill">${LANG==='vi'?'Khu vực tầng 2':'Floor 2 zones'}</span></div>
+      ${grid(f2)}
+
+      <div class="text-center mt-16 md:mt-20 reveal">
+        <button class="cta-vr" data-cta>
+          <img src="assets/figma/ic-atom-white.svg" alt="" aria-hidden="true">
+          <span data-cta-label>${LANG==='vi'?'Trải nghiệm VR 360°':'Experience VR 360°'}</span>
         </button>
       </div>
     </div>
   </section>`;
 }
 
-/* ---------- Footer ---------- */
+/* ---------- Footer (nâu #814E00) ---------- */
 function renderFooter(){
-  return `<footer id="footer" class="relative bg-cocoa text-cream pt-20 pb-10 overflow-hidden">
-    <div class="absolute inset-0 map-grid opacity-40"></div>
-    <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full" style="background:radial-gradient(circle,rgba(201,154,63,.22),transparent 70%)"></div>
-    <div class="relative max-w-[1180px] mx-auto px-5 md:px-8">
-      <div class="grid md:grid-cols-[1.4fr_1fr_1fr] gap-10 md:gap-12">
+  return `<footer id="footer" class="pt-16 pb-9">
+    <div class="max-w-[1180px] mx-auto px-5 md:px-8">
+      <div class="grid md:grid-cols-[1.5fr_1fr_1.35fr] gap-10 md:gap-12">
         <div>
           <div class="flex items-center gap-3 mb-4">
-            <svg viewBox="0 0 64 64" width="34" height="34" aria-hidden="true">
-              <g fill="none" stroke="#E6C277" stroke-width="2" stroke-linecap="round">
-                <path d="M32 40c-7-2-13-9-13-17 6 1 11 6 13 13 2-7 7-12 13-13 0 8-6 15-13 17Z"/>
-                <path d="M20 30c-5 1-9 5-10 10 6 1 11-2 13-7"/>
-                <path d="M44 30c5 1 9 5 10 10-6 1-11-2-13-7"/>
-                <path d="M32 41v8"/>
-              </g>
-            </svg>
+            <img class="ft-lotus" src="assets/figma/logo.png" alt="" aria-hidden="true">
             <div class="leading-tight">
-              <div class="font-display text-lg text-goldlt">${LANG==='vi'?'Bảo tàng Báo chí Việt Nam':'Vietnam Press Museum'}</div>
-              <div class="text-[10px] tracking-[.28em] uppercase text-gold/70">VR 360°</div>
+              <div class="font-display font-bold text-[15px] tracking-wide">${LANG==='vi'?'BẢO TÀNG BÁO CHÍ':'PRESS MUSEUM'}</div>
+              <div class="text-[10px] tracking-[.3em] uppercase" style="color:#EFB964">${LANG==='vi'?'Việt Nam':'of Vietnam'}</div>
             </div>
           </div>
-          <p class="font-serif italic text-cream/65 text-lg max-w-[36ch]">${t('ftTagline')}</p>
+          <p class="italic text-[15px] leading-relaxed max-w-[34ch]" style="color:#F4E2C2">“${t('ftTagline')}”</p>
+          <p class="text-[12px] mt-4" style="color:#D9B583">${t('ftRights')}</p>
         </div>
 
         <div>
-          <div class="eyebrow text-gold/80 mb-4">${t('ftNav')}</div>
-          <ul class="space-y-2.5 text-cream/75">
-            <li><a href="#home" class="hover:text-goldlt transition">${t('nHome')}</a></li>
-            <li><a href="#lich-su" class="hover:text-goldlt transition">${t('nHist')}</a></li>
-            <li><a href="#ban-do" class="hover:text-goldlt transition">${t('nMap')}</a></li>
-            <li><a href="#footer" class="hover:text-goldlt transition">${t('nContact')}</a></li>
+          <div class="ft-label mb-4">${t('ftNav')}</div>
+          <ul class="space-y-2.5 text-[15px]" style="color:#F4E2C2">
+            <li><a href="#home" class="hover:text-white transition">${t('nHome')}</a></li>
+            <li><a href="#lich-su" class="hover:text-white transition">${t('nHist')}</a></li>
+            <li><a href="#ban-do" class="hover:text-white transition">${t('nMap')}</a></li>
+            <li><a href="#footer" class="hover:text-white transition">${t('nContact')}</a></li>
           </ul>
         </div>
 
-        <div class="space-y-5">
-          <div>
-            <div class="eyebrow text-gold/80 mb-1.5">${t('ftAddrLabel')}</div>
-            <p class="text-cream/75 leading-relaxed text-[15px]">${t('ftAddr')}</p>
-          </div>
-          <div class="flex gap-10">
-            <div>
-              <div class="eyebrow text-gold/80 mb-1.5">${t('ftPhoneLabel')}</div>
-              <a href="${CONTACT.phoneHref}" class="text-cream/85 hover:text-goldlt transition">${CONTACT.phone}</a>
-            </div>
-            <div>
-              <div class="eyebrow text-gold/80 mb-1.5">${t('ftWebLabel')}</div>
-              <a href="${CONTACT.websiteHref}" target="_blank" rel="noopener" class="text-cream/85 hover:text-goldlt transition">${CONTACT.website}</a>
-            </div>
-          </div>
+        <div class="space-y-3 text-[15px]" style="color:#F4E2C2">
+          <p><span class="ft-label">${t('ftPhoneLabel')}:</span> <a href="${CONTACT.phoneHref}" class="hover:text-white transition">${CONTACT.phone}</a></p>
+          <p class="leading-relaxed"><span class="ft-label">${t('ftAddrLabel')}:</span> ${t('ftAddr')}</p>
+          <p><span class="ft-label">${t('ftWebLabel')}:</span> <a href="${CONTACT.websiteHref}" target="_blank" rel="noopener" class="hover:text-white transition">${CONTACT.website}</a></p>
+          <p class="italic text-[13px] pt-2" style="color:#D9B583">Bản quyền sản phẩm thuộc về <b class="not-italic" style="color:#EFB964">VIRA Agency</b></p>
         </div>
-      </div>
-
-      <div class="gold-rule mt-12 mb-6 opacity-60"></div>
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream/55">
-        <span>${t('ftRights')}</span>
-        <span class="font-serif italic text-goldlt/75">Bản quyền sản phẩm thuộc về <b class="not-italic font-semibold text-goldlt">VIRA Agency</b></span>
       </div>
     </div>
   </footer>`;
@@ -223,9 +191,9 @@ function initCardClicks(){
   document.querySelectorAll('[data-zone]').forEach(card=>{
     const idx = +card.dataset.idx || 0;
     const fire = ()=>{
-      const b = card.querySelector('.badge-360');
+      const b = card.querySelector('.disc');
       b?.animate(
-        [{transform:'translate(-50%,-50%) scale(1)'},{transform:'translate(-50%,-50%) scale(.86)'},{transform:'translate(-50%,-50%) scale(1.05)'}],
+        [{transform:'scale(1)'},{transform:'scale(.86)'},{transform:'scale(1.12)'}],
         {duration:300, easing:'cubic-bezier(.34,1.5,.5,1)'});
       window.openVR?.(idx);
     };
