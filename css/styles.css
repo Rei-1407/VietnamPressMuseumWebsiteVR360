@@ -72,7 +72,7 @@ body{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; overflow-x:hidden
   box-shadow:0 14px 30px -18px rgba(185,110,20,.55);
 }
 .hero-tile:hover{ transform:translateY(-3px); box-shadow:0 22px 40px -18px rgba(185,110,20,.7); }
-.hero-tile svg{ width:46%; height:46%; opacity:.95; }
+.hero-tile svg, .hero-tile img{ display:block; object-fit:contain; opacity:.96; }
 .tile-a{ background:linear-gradient(150deg,#EFA945,#E08A22); }
 .tile-b{ background:linear-gradient(150deg,#F7E2BE,#EFCB8E); }
 .tile-c{ background:linear-gradient(150deg,#ECAE55,#DD8B2A); }
