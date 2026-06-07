@@ -1,6 +1,6 @@
 /* =========================================================
    admin.js — Trang quản trị Không gian VR 360°
-   Đọc/ghi data/spaces.json và ảnh trong assets/panos/ qua GitHub API.
+   Đọc/ghi data/spaces.json + ảnh/audio qua GitHub API.
    Không có server: "đăng nhập" là lớp che nhẹ; quyền ghi thật = GitHub token.
    ========================================================= */
 
@@ -13,12 +13,13 @@ const ADMIN_PASS = '1234567890';
 let state = { spaces: [] };
 let token = '';
 let dirty = false;
-let pending = null;   // mục tiêu cho lần chọn ảnh kế tiếp
+let pending = null;        // mục tiêu cho lần chọn file kế tiếp
+let imagesToDelete = [];   // file chờ xoá khi lưu
 
-// admin.html nằm ở /admin/ → các URL hiển thị (xem trước ảnh, đọc spaces.json)
-// trỏ ngược ra thư mục gốc bằng '../'. (Đường dẫn GitHub API thì KHÔNG dùng '../'.)
+// admin.html nằm ở /admin/ → URL hiển thị trỏ ngược ra gốc bằng '../'.
+// (Đường dẫn GitHub API thì KHÔNG dùng '../'.)
 const PREVIEW = '../';
-const previewCache = {};   // path -> dataURL của ảnh vừa tải lên (hiện ngay, chưa cần build)
+const previewCache = {};   // path -> dataURL của file vừa tải lên (hiện ngay, chưa cần build)
 
 /* ---------- tiện ích ---------- */
 const $ = (s) => document.querySelector(s);
@@ -29,10 +30,12 @@ function markDirty(v){ dirty=(v!==false); $('#dirty').classList.toggle('hidden',
 function slug(s){
   return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'')
     .replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase()
-    .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,32) || 'pano';
+    .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,32) || 'media';
 }
 function getByPath(root, path){ return path.split('.').reduce((o,k)=> (o==null?o:o[k]), root); }
 function setByPath(root, path, val){ const ks=path.split('.'); const last=ks.pop(); let o=root; for(const k of ks) o=o[k]; o[last]=val; }
+function delByPath(root, path){ const ks=path.split('.'); const last=ks.pop(); let o=root; for(const k of ks){ if(o==null) return; o=o[k]; } if(o) delete o[last]; }
+function markOldForDelete(p){ if(p && typeof p==='string' && /^assets\/(panos|exhibits|audio)\//.test(p)) imagesToDelete.push(p); }
 
 function b64utf8(str){
   const bytes = new TextEncoder().encode(str);
@@ -42,6 +45,20 @@ function b64utf8(str){
 }
 function fileToBase64(file){
   return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(String(r.result).split(',')[1]); r.onerror=rej; r.readAsDataURL(file); });
+}
+// nén ảnh trong trình duyệt → { base64, dataURL } (JPEG)
+function loadImageEl(file){
+  return new Promise((res,rej)=>{ const url=URL.createObjectURL(file); const im=new Image();
+    im.onload=()=>{ URL.revokeObjectURL(url); res(im); }; im.onerror=()=>{ URL.revokeObjectURL(url); rej(new Error('Ảnh không hợp lệ')); }; im.src=url; });
+}
+async function compressToBase64(file, maxW, quality){
+  const im = await loadImageEl(file);
+  const scale = Math.min(1, maxW / im.naturalWidth);
+  const w = Math.max(1, Math.round(im.naturalWidth*scale)), h = Math.max(1, Math.round(im.naturalHeight*scale));
+  const cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+  const ctx=cv.getContext('2d'); ctx.imageSmoothingQuality='high'; ctx.drawImage(im,0,0,w,h);
+  const dataURL = cv.toDataURL('image/jpeg', quality);
+  return { base64: dataURL.split(',')[1], dataURL };
 }
 
 /* ---------- GitHub API ---------- */
@@ -65,7 +82,7 @@ async function ghDeleteFile(path, message, sha){
   return r.json();
 }
 async function ghDeletePathBestEffort(path){
-  try{ const c = await ghGetContent(path); if(c && c.sha) await ghDeleteFile(path, 'admin: xoá ảnh '+path, c.sha); }catch(e){ /* bỏ qua */ }
+  try{ const c = await ghGetContent(path); if(c && c.sha) await ghDeleteFile(path, 'admin: xoá file '+path, c.sha); }catch(e){ /* bỏ qua */ }
 }
 
 /* ---------- token ---------- */
@@ -81,6 +98,7 @@ function requireToken(){ if(!token){ $('#tokenPanel').classList.remove('hidden')
    RENDER
    ========================================================= */
 function spaceType(sp){ return sp.scenes ? 'scenes' : (sp.photo ? 'photo' : 'generated'); }
+function previewUrl(src){ if(!src) return ''; return previewCache[src] ? previewCache[src] : (src.startsWith('http') ? src : PREVIEW + src + '?t=' + Date.now()); }
 
 function render(){
   const root = $('#spaces');
@@ -118,6 +136,8 @@ function renderSpace(sp, i){
     ${type==='scenes'   ? renderScenes(sp,i)   : ''}
     ${type==='photo'    ? renderPhoto(sp,i)     : ''}
     ${type==='generated'? renderGenerated(sp,i) : ''}
+
+    ${audioBox(sp,i)}
   </div>`;
 }
 
@@ -132,8 +152,7 @@ function field(label, path, val, opts){
 }
 
 function imgBox(path, src, label, btns){
-  let url = '';
-  if(src) url = previewCache[src] ? previewCache[src] : (src.startsWith('http') ? src : PREVIEW + src + '?t=' + Date.now());
+  const url = previewUrl(src);
   return `<div class="flex items-center gap-3 p-3 rounded-xl bg-stone-50 border border-stone-200">
     <div class="w-28 h-20 rounded-lg bg-stone-200 bg-center bg-cover shrink-0" style="${src?`background-image:url('${url}')`:''}"></div>
     <div class="min-w-0">
@@ -141,6 +160,27 @@ function imgBox(path, src, label, btns){
       <div class="text-xs text-stone-500 truncate">${src?esc(src):'(chưa có ảnh)'}</div>
       <div class="flex gap-2 mt-2">${btns}</div>
     </div>
+  </div>`;
+}
+
+/* ----- audio cho 1 phòng ----- */
+function audioBox(sp, i){
+  const has = !!sp.audio;
+  const loop = sp.audioLoop !== false;
+  const src = has ? previewUrl(sp.audio) : '';
+  return `<div class="mt-3 p-3 rounded-xl bg-amber-50 border border-amber-100">
+    <div class="flex items-center justify-between gap-2 flex-wrap">
+      <div class="flex items-center gap-2 min-w-0">
+        <span class="lbl">🔊 Âm thanh phòng</span>
+        ${has?`<span class="text-xs text-stone-500 truncate max-w-[200px]">${esc(sp.audio.split('/').pop())}</span>`:'<span class="text-xs text-stone-400">(chưa có — tuỳ chọn)</span>'}
+      </div>
+      <div class="flex items-center gap-2">
+        ${has?`<audio controls preload="none" src="${esc(src)}" style="height:32px;max-width:190px"></audio>`:''}
+        <button class="btn btn-ghost px-3 py-1" data-act="audio" data-i="${i}">${has?'Đổi':'⬆️ Tải audio'}</button>
+        ${has?`<button class="btn btn-danger px-2 py-1" data-act="audio-del" data-i="${i}">✕</button>`:''}
+      </div>
+    </div>
+    ${has?`<label class="flex items-center gap-2 mt-2 text-sm text-stone-600"><input type="checkbox" data-path="${i}.audioLoop" data-bool="1" ${loop?'checked':''}/> Lặp lại (hợp với nhạc nền; tắt nếu là thuyết minh đọc 1 lần)</label>`:''}
   </div>`;
 }
 
@@ -203,18 +243,39 @@ function renderGenerated(sp, i){
   </div>`;
 }
 
+/* ----- editor điểm "i": toạ độ + tiêu đề + ẢNH + MÔ TẢ (popup khi bấm) ----- */
 function hotspotsEditor(list, path){
-  const rows = list.map((h,k)=>`
-    <div class="grid grid-cols-[64px_64px_1fr_1fr_auto] gap-2 items-center">
-      <input class="inp" type="number" step="1" data-path="${path}.${k}.pitch" data-num="1" value="${esc(h.pitch)}" title="pitch (lên/xuống)"/>
-      <input class="inp" type="number" step="1" data-path="${path}.${k}.yaw"   data-num="1" value="${esc(h.yaw)}" title="yaw (trái/phải)"/>
-      <input class="inp" data-path="${path}.${k}.vi" value="${esc(h.vi)}" placeholder="Chú thích (VI)"/>
-      <input class="inp" data-path="${path}.${k}.en" value="${esc(h.en)}" placeholder="Caption (EN)"/>
-      <button class="btn btn-danger px-2 py-1" data-act="del-hotspot" data-path="${path}" data-k="${k}">✕</button>
-    </div>`).join('');
+  const si = path.split('.')[0];
+  const rows = list.map((h,k)=>{
+    const hp = `${path}.${k}`;
+    const hasImg = !!h.img;
+    return `
+    <div class="rounded-lg border border-stone-200 bg-white/70 p-2.5 space-y-2">
+      <div class="grid grid-cols-[58px_58px_1fr_1fr_auto] gap-2 items-center">
+        <input class="inp" type="number" step="1" data-path="${hp}.pitch" data-num="1" value="${esc(h.pitch)}" title="pitch (lên/xuống)"/>
+        <input class="inp" type="number" step="1" data-path="${hp}.yaw"   data-num="1" value="${esc(h.yaw)}" title="yaw (trái/phải)"/>
+        <input class="inp" data-path="${hp}.vi" value="${esc(h.vi)}" placeholder="Tiêu đề (VI)"/>
+        <input class="inp" data-path="${hp}.en" value="${esc(h.en)}" placeholder="Title (EN)"/>
+        <button class="btn btn-danger px-2 py-1" data-act="del-hotspot" data-path="${path}" data-k="${k}" title="Xoá điểm">✕</button>
+      </div>
+      <div class="flex items-start gap-2">
+        <div class="shrink-0 w-24">
+          <div class="w-24 h-16 rounded bg-stone-200 bg-center bg-cover border border-stone-200" style="${hasImg?`background-image:url('${previewUrl(h.img)}')`:''}"></div>
+          <div class="flex gap-1 mt-1">
+            <button class="btn btn-ghost px-2 py-0.5 text-xs" data-act="hs-img" data-path="${hp}.img" data-i="${si}">${hasImg?'Đổi ảnh':'➕ Ảnh'}</button>
+            ${hasImg?`<button class="btn btn-danger px-2 py-0.5 text-xs" data-act="hs-img-del" data-path="${hp}.img" data-img="${esc(h.img)}">✕</button>`:''}
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 flex-1">
+          <textarea class="inp" rows="2" data-path="${hp}.dVi" placeholder="Mô tả chi tiết (VI) — hiện trong popup">${esc(h.dVi)}</textarea>
+          <textarea class="inp" rows="2" data-path="${hp}.dEn" placeholder="Description (EN)">${esc(h.dEn)}</textarea>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
   return `<div>
     <div class="flex items-center gap-2 mb-1"><span class="lbl">Điểm chú thích “i”</span>
-      <span class="text-[11px] text-stone-400">pitch −90…90 · yaw −180…180</span></div>
+      <span class="text-[11px] text-stone-400">bấm vào điểm sẽ bung ẢNH + MÔ TẢ · pitch −90…90 · yaw −180…180</span></div>
     <div class="space-y-2">${rows || '<div class="text-sm text-stone-400">Chưa có điểm chú thích.</div>'}</div>
     <button class="btn btn-ghost mt-2" data-act="add-hotspot" data-path="${path}">➕ Thêm điểm</button>
   </div>`;
@@ -242,16 +303,17 @@ function linksEditor(list, path, sceneIds){
 /* =========================================================
    SỰ KIỆN
    ========================================================= */
-// cập nhật giá trị khi gõ (không render lại để khỏi mất con trỏ)
+// cập nhật giá trị khi gõ / đổi (không render lại để khỏi mất con trỏ)
 function onFieldChange(e){
   const el = e.target.closest('[data-path]'); if(!el) return;
-  let v = el.value;
-  if(el.dataset.num){ v = (v==='' || v==='-') ? 0 : Number(v); if(Number.isNaN(v)) v=0; }
+  let v;
+  if(el.dataset.bool){ v = el.checked; }
+  else { v = el.value; if(el.dataset.num){ v = (v==='' || v==='-') ? 0 : Number(v); if(Number.isNaN(v)) v=0; } }
   setByPath(state.spaces, el.dataset.path, v);
   markDirty(true);
 }
 $('#spaces').addEventListener('input', onFieldChange);
-$('#spaces').addEventListener('change', onFieldChange);   // cho <select> cửa
+$('#spaces').addEventListener('change', onFieldChange);   // cho <select> và checkbox
 
 // các nút thao tác
 $('#spaces').addEventListener('click', async (e)=>{
@@ -266,15 +328,15 @@ $('#spaces').addEventListener('click', async (e)=>{
     if(act==='up' && i>0){ [state.spaces[i-1],state.spaces[i]]=[state.spaces[i],state.spaces[i-1]]; markDirty(true); render(); }
     else if(act==='down' && i<state.spaces.length-1){ [state.spaces[i+1],state.spaces[i]]=[state.spaces[i],state.spaces[i+1]]; markDirty(true); render(); }
     else if(act==='del-space'){
-      if(!confirm('Xoá không gian này khỏi tour? (Ảnh của nó cũng sẽ được xoá khỏi kho khi bạn bấm Lưu)')) return;
-      const sp = state.spaces[i];
-      // gom ảnh để xoá khi lưu
-      collectImagesToDelete(sp);
+      if(!confirm('Xoá không gian này khỏi tour? (Ảnh/audio của nó cũng được dọn khỏi kho khi bấm Lưu)')) return;
+      collectImagesToDelete(state.spaces[i]);
       state.spaces.splice(i,1); markDirty(true); render();
     }
     else if(act==='add-hotspot'){ const arr=getByPath(state.spaces,path); arr.push({pitch:0,yaw:0,vi:'',en:''}); markDirty(true); render(); }
-    else if(act==='del-hotspot'){ getByPath(state.spaces,path).splice(k,1); markDirty(true); render(); }
-    else if(act==='add-link'){ const sp=state.spaces[i]; const arr=getByPath(state.spaces,path); const firstId=(state.spaces[+path.split('.')[0]].scenes||[{}])[0]?.id||''; arr.push({pitch:-6,yaw:0,to:firstId,vi:'',en:''}); markDirty(true); render(); }
+    else if(act==='del-hotspot'){ const arr=getByPath(state.spaces,path); markOldForDelete(arr[k]?.img); arr.splice(k,1); markDirty(true); render(); }
+    else if(act==='hs-img'){ pending={kind:'exhibit-img', i, target:path}; pickFile(); }
+    else if(act==='hs-img-del'){ markOldForDelete(btn.dataset.img); delByPath(state.spaces, path); markDirty(true); render(); }
+    else if(act==='add-link'){ const arr=getByPath(state.spaces,path); const firstId=(state.spaces[+path.split('.')[0]].scenes||[{}])[0]?.id||''; arr.push({pitch:-6,yaw:0,to:firstId,vi:'',en:''}); markDirty(true); render(); }
     else if(act==='del-link'){ getByPath(state.spaces,path).splice(k,1); markDirty(true); render(); }
     else if(act==='add-exhibit'){ state.spaces[i].exhibits = state.spaces[i].exhibits||[]; state.spaces[i].exhibits.push({vi:'',en:''}); markDirty(true); render(); }
     else if(act==='del-exhibit'){ state.spaces[i].exhibits.splice(k,1); markDirty(true); render(); }
@@ -283,48 +345,83 @@ $('#spaces').addEventListener('click', async (e)=>{
       sp.scenes.push({ id, photo:'', yaw:0, pitch:-2, label:{vi:'Cảnh mới',en:'New scene'}, hotspots:[], links:[] });
       markDirty(true); render(); alert('Đã thêm cảnh. Hãy bấm “Đổi ảnh” để tải ảnh 360° cho cảnh này.');
     }
-    else if(act==='del-scene'){ const sp=state.spaces[i]; if(sp.scenes.length<=1){ alert('Phòng cần ít nhất 1 cảnh.'); return; } if(!confirm('Xoá cảnh này?')) return; if(sp.scenes[j].photo) collectImagesToDelete({photo:sp.scenes[j].photo}); sp.scenes.splice(j,1); markDirty(true); render(); }
+    else if(act==='del-scene'){ const sp=state.spaces[i]; if(sp.scenes.length<=1){ alert('Phòng cần ít nhất 1 cảnh.'); return; } if(!confirm('Xoá cảnh này?')) return; collectImagesToDelete({scenes:[sp.scenes[j]]}); sp.scenes.splice(j,1); markDirty(true); render(); }
     else if(act==='replace-photo'){ pending={kind:'photo', i}; pickFile(); }
     else if(act==='replace-scene'){ pending={kind:'scene', i, j}; pickFile(); }
     else if(act==='to-photo'){ pending={kind:'to-photo', i}; pickFile(); }
+    else if(act==='audio'){ pending={kind:'audio', i}; pickFile(); }
+    else if(act==='audio-del'){ markOldForDelete(state.spaces[i].audio); delete state.spaces[i].audio; delete state.spaces[i].audioLoop; markDirty(true); render(); }
   }catch(err){ setStatus(err.message,'err'); }
 });
 
-/* ---------- ảnh chờ xoá khi lưu ---------- */
-let imagesToDelete = [];
+/* ---------- gom file để xoá khi lưu ---------- */
 function collectImagesToDelete(sp){
-  const paths=[];
-  if(sp.photo) paths.push(sp.photo);
-  if(sp.thumb && sp.thumb!==sp.photo) paths.push(sp.thumb);
-  if(sp.scenes) sp.scenes.forEach(s=>{ if(s.photo) paths.push(s.photo); });
-  paths.forEach(p=>{ if(p && p.startsWith('assets/panos/')) imagesToDelete.push(p); });
+  const out=[];
+  const add=p=>{ if(p && typeof p==='string') out.push(p); };
+  add(sp.photo); add(sp.thumb); add(sp.audio);
+  (sp.hotspots||[]).forEach(h=>add(h.img));
+  (sp.scenes||[]).forEach(s=>{ add(s.photo); (s.hotspots||[]).forEach(h=>add(h.img)); });
+  out.forEach(markOldForDelete);
 }
 
-/* ---------- chọn & tải ảnh ---------- */
-function pickFile(){ try{ requireToken(); }catch(e){ setStatus(e.message,'err'); pending=null; return; } $('#filePicker').value=''; $('#filePicker').click(); }
+/* ---------- chọn & tải file ---------- */
+function pickFile(){
+  try{ requireToken(); }catch(e){ setStatus(e.message,'err'); pending=null; return; }
+  const fp=$('#filePicker'); fp.value='';
+  fp.accept = (pending && pending.kind==='audio') ? 'audio/*' : 'image/jpeg,image/png,image/webp';
+  fp.click();
+}
 
 $('#filePicker').addEventListener('change', async (e)=>{
   const file = e.target.files[0]; if(!file || !pending) return;
   const p = pending; pending=null;
   try{
     requireToken();
-    setStatus('Đang tải ảnh lên… (ảnh lớn có thể mất chút thời gian)');
-    const i=p.i;
-    const hint = state.spaces[i]?.card?.vi || 'pano';
-    const ext = (file.name.match(/\.([a-z0-9]+)$/i)?.[1] || 'jpg').toLowerCase();
-    const path = `assets/panos/${slug(hint)}-${Date.now()}.${ext==='jpeg'?'jpg':ext}`;
-    const b64 = await fileToBase64(file);
-    previewCache[path] = 'data:'+(file.type||'image/jpeg')+';base64,'+b64;   // xem trước ngay
-    await ghPutFile(path, b64, 'admin: tải ảnh 360° '+path);
+    const i = p.i;
+    const hint = (i!=null && state.spaces[i]?.card?.vi) || 'media';
+    const ts = Date.now();
 
-    const sp = state.spaces[i];
-    if(p.kind==='photo'){ const old=sp.photo; sp.photo=path; sp.thumb=path; if(old&&old!==path) imagesToDelete.push(old); }
-    else if(p.kind==='scene'){ const sc=sp.scenes[p.j]; const old=sc.photo; sc.photo=path; if(p.j===0){ if(sp.thumb&&sp.thumb!==path&&sp.thumb!==old) imagesToDelete.push(sp.thumb); sp.thumb=path; } if(old&&old!==path) imagesToDelete.push(old); }
-    else if(p.kind==='to-photo'){ delete sp.theme; delete sp.exhibits; sp.photo=path; sp.thumb=path; sp.initYaw=0; sp.initPitch=-2; sp.hotspots=sp.hotspots||[]; }
-    else if(p.kind==='new'){ state.spaces.push({ card:{vi:'Không gian mới',en:'New space'}, thumb:path, tag:{vi:'',en:''}, name:{vi:'Không gian mới',en:'New space'}, photo:path, initYaw:0, initPitch:-2, hotspots:[] }); }
+    /* --- AUDIO --- */
+    if(p.kind==='audio'){
+      setStatus('Đang tải audio lên…');
+      const ext=(file.name.match(/\.([a-z0-9]+)$/i)?.[1]||'mp3').toLowerCase();
+      const apath=`assets/audio/${slug(hint)}-${ts}.${ext}`;
+      const b64=await fileToBase64(file);
+      previewCache[apath]='data:'+(file.type||'audio/mpeg')+';base64,'+b64;
+      await ghPutFile(apath, b64, 'admin: tải audio '+apath);
+      const sp=state.spaces[i]; markOldForDelete(sp.audio); sp.audio=apath; if(sp.audioLoop===undefined) sp.audioLoop=true;
+      markDirty(true); render(); setStatus('Đã tải audio ✓ — nhớ bấm “Lưu thay đổi”.','ok'); return;
+    }
 
-    markDirty(true); render();
-    setStatus('Đã tải ảnh lên ✓ — nhớ bấm “Lưu thay đổi” để áp dụng.', 'ok');
+    /* --- ẢNH HIỆN VẬT (popup) — nén nhỏ --- */
+    if(p.kind==='exhibit-img'){
+      setStatus('Đang xử lý & tải ảnh…');
+      const { base64, dataURL } = await compressToBase64(file, 1600, 0.82);
+      const ipath=`assets/exhibits/${slug(hint)}-${ts}.jpg`;
+      previewCache[ipath]=dataURL;
+      await ghPutFile(ipath, base64, 'admin: tải ảnh hiện vật '+ipath);
+      markOldForDelete(getByPath(state.spaces, p.target));
+      setByPath(state.spaces, p.target, ipath);
+      markDirty(true); render(); setStatus('Đã tải ảnh ✓ — nhớ bấm “Lưu thay đổi”.','ok'); return;
+    }
+
+    /* --- ẢNH 360° (pano) — nén vừa + tự tạo thumbnail --- */
+    setStatus('Đang xử lý & tải ảnh 360°… (có thể mất chút thời gian)');
+    const full  = await compressToBase64(file, 6144, 0.85);
+    const thumb = await compressToBase64(file, 1000, 0.80);
+    const fullPath  = `assets/panos/${slug(hint)}-${ts}.jpg`;
+    const thumbPath = `assets/panos/${slug(hint)}-${ts}-thumb.jpg`;
+    previewCache[fullPath]=full.dataURL; previewCache[thumbPath]=thumb.dataURL;
+    await ghPutFile(fullPath, full.base64, 'admin: tải ảnh 360° '+fullPath);
+    await ghPutFile(thumbPath, thumb.base64, 'admin: thumbnail '+thumbPath);
+
+    const sp=state.spaces[i];
+    if(p.kind==='photo'){ markOldForDelete(sp.photo); markOldForDelete(sp.thumb); sp.photo=fullPath; sp.thumb=thumbPath; }
+    else if(p.kind==='scene'){ const sc=sp.scenes[p.j]; markOldForDelete(sc.photo); sc.photo=fullPath; if(p.j===0){ markOldForDelete(sp.thumb); sp.thumb=thumbPath; } }
+    else if(p.kind==='to-photo'){ delete sp.theme; delete sp.exhibits; sp.photo=fullPath; sp.thumb=thumbPath; sp.initYaw=0; sp.initPitch=-2; sp.hotspots=sp.hotspots||[]; }
+    else if(p.kind==='new'){ state.spaces.push({ card:{vi:'Không gian mới',en:'New space'}, thumb:thumbPath, tag:{vi:'',en:''}, name:{vi:'Không gian mới',en:'New space'}, photo:fullPath, initYaw:0, initPitch:-2, hotspots:[] }); }
+
+    markDirty(true); render(); setStatus('Đã tải ảnh 360° ✓ — nhớ bấm “Lưu thay đổi”.','ok');
   }catch(err){ setStatus(err.message,'err'); }
 });
 
@@ -340,9 +437,13 @@ $('#btnSave').addEventListener('click', async ()=>{
   try{
     requireToken();
     setStatus('Đang lưu…');
-    // 1) xoá các ảnh không còn dùng (best-effort)
+    // 1) xoá các file không còn dùng (best-effort)
     const stillUsed = new Set();
-    state.spaces.forEach(sp=>{ if(sp.photo)stillUsed.add(sp.photo); if(sp.thumb)stillUsed.add(sp.thumb); if(sp.scenes)sp.scenes.forEach(s=>s.photo&&stillUsed.add(s.photo)); });
+    state.spaces.forEach(sp=>{
+      [sp.photo,sp.thumb,sp.audio].forEach(p=>p&&stillUsed.add(p));
+      (sp.hotspots||[]).forEach(h=>h.img&&stillUsed.add(h.img));
+      (sp.scenes||[]).forEach(s=>{ s.photo&&stillUsed.add(s.photo); (s.hotspots||[]).forEach(h=>h.img&&stillUsed.add(h.img)); });
+    });
     for(const path of [...new Set(imagesToDelete)]) if(!stillUsed.has(path)) await ghDeletePathBestEffort(path);
     imagesToDelete = [];
     // 2) ghi data/spaces.json

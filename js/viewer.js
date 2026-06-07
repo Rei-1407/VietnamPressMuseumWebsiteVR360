@@ -1,8 +1,9 @@
 /* =========================================================
    viewer.js — Trình xem VR 360° (Pannellum) mở trong modal
    Đọc SPACES / LANG từ data.js + app.js.
-   Phòng nào CHƯA có ảnh thật → tự dựng panorama bằng canvas.
-   ⚠️ Nội dung/không gian sửa ở data.js, KHÔNG sửa file này.
+   • Bấm điểm "i" → popup ảnh + thông tin (song ngữ)
+   • Mỗi phòng có thể có audio (nhạc nền / thuyết minh)
+   ⚠️ Nội dung sửa qua admin (data/spaces.json), KHÔNG sửa file này.
    ========================================================= */
 
 const PANO_W = 4096, PANO_H = 2048;
@@ -150,7 +151,7 @@ function generatePano(idx){
     drawExhibit(ctx, cx, theme, exhibits[k]);
 
     const yaw = (k+0.5)*(360/slots) - 180;
-    hotSpots.push({ pitch:-14, yaw, type:'info', text: exhibits[k][L()] });
+    hotSpots.push({ pitch:-14, yaw, type:'info', text: exhibits[k][L()], vi: exhibits[k].vi, en: exhibits[k].en });
   }
 
   // tối góc trên/dưới
@@ -162,8 +163,9 @@ function generatePano(idx){
   return { dataURL: cv.toDataURL('image/jpeg', 0.86), hotSpots };
 }
 
-/* ---------- khung modal ---------- */
+/* ---------- trạng thái ---------- */
 let viewer=null, curRoom=0, autoRot=true, hintTimer=null;
+let muted = (()=>{ try{ return localStorage.getItem('vr_muted')==='1'; }catch(e){ return false; } })();
 
 function ensureModal(){
   if(document.getElementById('vrModal')) return;
@@ -208,9 +210,11 @@ function ensureModal(){
     .vr-tools{ position:absolute; right:22px; bottom:96px; z-index:6; display:flex; flex-direction:column; gap:10px; }
     .vr-tool{ width:44px; height:44px; border-radius:12px; display:grid; place-items:center;
       background:rgba(8,6,3,.6); border:1px solid rgba(230,194,119,.4); color:#E6C277; cursor:pointer;
-      backdrop-filter:blur(6px); transition:all .25s; }
+      backdrop-filter:blur(6px); transition:all .25s; position:relative; }
     .vr-tool:hover{ background:rgba(230,194,119,.85); color:#1a140b; }
-    .vr-tool.off{ opacity:.45; }
+    .vr-tool.off{ opacity:.5; }
+    .vr-tool.off::after{ content:''; position:absolute; left:7px; right:7px; top:50%; height:2px;
+      background:currentColor; transform:rotate(-45deg); border-radius:2px; }
     .pnlm-hotspot-base.custom-info{ width:30px; height:30px; margin:-15px 0 0 -15px; }
     .custom-info{ border-radius:50%; background:rgba(230,194,119,.92);
       box-shadow:0 0 0 6px rgba(230,194,119,.25), 0 0 18px rgba(230,194,119,.7);
@@ -232,9 +236,29 @@ function ensureModal(){
       background:rgba(8,6,3,.92); color:#F1E8D5; font-family:'EB Garamond',serif; font-style:italic;
       font-size:16px; padding:6px 14px; border-radius:9999px; border:1px solid rgba(230,194,119,.6); pointer-events:none; }
     @keyframes doorp{ 0%{ box-shadow:0 0 0 0 rgba(230,194,119,.55),0 8px 26px rgba(0,0,0,.45);} 70%{ box-shadow:0 0 0 22px rgba(230,194,119,0),0 8px 26px rgba(0,0,0,.45);} 100%{ box-shadow:0 0 0 0 rgba(230,194,119,0),0 8px 26px rgba(0,0,0,.45);} }
+
+    /* ----- Popup hiện vật (bấm điểm "i") ----- */
+    .vr-exhibit{ position:absolute; inset:0; z-index:20; display:none; }
+    .vr-exhibit.open{ display:block; }
+    .vr-ex-backdrop{ position:absolute; inset:0; background:rgba(6,4,2,.74); backdrop-filter:blur(3px); }
+    .vr-ex-card{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+      width:min(560px,92vw); max-height:88vh; overflow:auto; background:#14100a;
+      border:1px solid rgba(230,194,119,.5); border-radius:16px; padding-bottom:20px;
+      box-shadow:0 30px 80px -20px rgba(0,0,0,.75); animation:exin .3s cubic-bezier(.2,.7,.2,1); }
+    @keyframes exin{ from{ opacity:0; transform:translate(-50%,-46%); } to{ opacity:1; transform:translate(-50%,-50%); } }
+    .vr-ex-close{ position:absolute; top:10px; right:10px; width:38px; height:38px; border-radius:50%;
+      background:rgba(8,6,3,.7); border:1px solid rgba(230,194,119,.5); color:#F1E8D5; cursor:pointer;
+      z-index:2; font-size:15px; display:grid; place-items:center; }
+    .vr-ex-close:hover{ background:rgba(230,194,119,.9); color:#1a140b; }
+    .vr-ex-card img{ width:100%; max-height:56vh; object-fit:cover; border-radius:16px 16px 0 0;
+      display:block; background:#0c0905; }
+    .vr-ex-card img[src=""],.vr-ex-card img:not([src]){ display:none; }
+    .vr-ex-title{ font-family:'Playfair Display',serif; font-size:22px; color:#E6C277; padding:16px 22px 0; }
+    .vr-ex-desc{ font-family:'EB Garamond',serif; font-size:17px; line-height:1.6; color:#EADFC9;
+      padding:10px 22px 0; white-space:pre-wrap; }
     @media(max-width:640px){
       .vr-roomtitle .n{ font-size:19px; } .vr-tools{ bottom:90px; right:14px; }
-      .vr-hint .t{ font-size:15px; }
+      .vr-hint .t{ font-size:15px; } .vr-ex-title{ font-size:19px; } .vr-ex-desc{ font-size:16px; }
     }
   `;
   document.head.appendChild(style);
@@ -257,6 +281,9 @@ function ensureModal(){
       <div class="t" id="vrHintT"></div>
     </div>
     <div class="vr-tools">
+      <div class="vr-tool" id="vrSound" title="Bật/tắt âm thanh" style="display:none">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M16 9a3 3 0 0 1 0 6"/><path d="M19 7a6 6 0 0 1 0 10"/></svg>
+      </div>
       <div class="vr-tool" id="vrRotate" title="Tự xoay">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v5h-5"/></svg>
       </div>
@@ -268,7 +295,17 @@ function ensureModal(){
       <div class="vr-nav" id="vrPrev" aria-label="Phòng trước"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 5l-7 7 7 7"/></svg></div>
       <div class="vr-dots" id="vrDots"></div>
       <div class="vr-nav" id="vrNext" aria-label="Phòng sau"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 5l7 7-7 7"/></svg></div>
-    </div>`;
+    </div>
+    <div class="vr-exhibit" id="vrExhibit">
+      <div class="vr-ex-backdrop" id="vrExBackdrop"></div>
+      <div class="vr-ex-card">
+        <button class="vr-ex-close" id="vrExClose" aria-label="Đóng">✕</button>
+        <img id="vrExImg" alt="" />
+        <div class="vr-ex-title" id="vrExTitle"></div>
+        <div class="vr-ex-desc" id="vrExDesc"></div>
+      </div>
+    </div>
+    <audio id="vrAudio"></audio>`;
   document.body.appendChild(m);
 
   // chấm tròn chọn phòng (theo số lượng SPACES)
@@ -281,9 +318,14 @@ function ensureModal(){
   m.querySelector('#vrNext').addEventListener('click', ()=>loadRoom((curRoom + 1) % SPACE_COUNT()));
   m.querySelector('#vrRotate').addEventListener('click', toggleRotate);
   m.querySelector('#vrFs').addEventListener('click', toggleFs);
+  m.querySelector('#vrSound').addEventListener('click', toggleSound);
+  m.querySelector('#vrExClose').addEventListener('click', closeExhibit);
+  m.querySelector('#vrExBackdrop').addEventListener('click', closeExhibit);
   document.addEventListener('keydown', (e)=>{
     if(!m.classList.contains('open')) return;
-    if(e.key==='Escape') closeVR();
+    const exOpen = document.getElementById('vrExhibit')?.classList.contains('open');
+    if(e.key==='Escape'){ exOpen ? closeExhibit() : closeVR(); return; }
+    if(exOpen) return;
     if(e.key==='ArrowRight') loadRoom((curRoom + 1) % SPACE_COUNT());
     if(e.key==='ArrowLeft')  loadRoom((curRoom + SPACE_COUNT() - 1) % SPACE_COUNT());
   });
@@ -300,6 +342,45 @@ function hotspotDoor(div, args){
   const s=document.createElement('span'); s.textContent=args.text; div.appendChild(s);
 }
 
+/* ---------- popup hiện vật (ảnh + thông tin) ---------- */
+function hotspotClick(e, args){ openExhibit(args || {}); }
+function openExhibit(a){
+  const box=document.getElementById('vrExhibit'); if(!box) return;
+  const lang=L();
+  const title = a[lang] || a.vi || a.en || '';
+  const desc  = (lang==='vi' ? (a.dvi||a.den) : (a.den||a.dvi)) || '';
+  const img   = a.img || '';
+  const imgEl = document.getElementById('vrExImg');
+  if(img){ imgEl.src=img; } else { imgEl.removeAttribute('src'); }
+  document.getElementById('vrExTitle').textContent = title;
+  const descEl = document.getElementById('vrExDesc');
+  descEl.textContent = desc; descEl.style.display = desc ? '' : 'none';
+  box.classList.add('open');
+}
+function closeExhibit(){ document.getElementById('vrExhibit')?.classList.remove('open'); }
+
+/* ---------- audio mỗi phòng ---------- */
+function applyRoomAudio(room){
+  const a=document.getElementById('vrAudio'); const btn=document.getElementById('vrSound');
+  if(!a || !btn) return;
+  if(room.audio){
+    btn.style.display='';
+    if(a.getAttribute('src') !== room.audio){ a.setAttribute('src', room.audio); a.load(); }
+    a.loop = room.audioLoop !== false;
+    btn.classList.toggle('off', muted);
+    if(muted){ a.pause(); } else { a.play().catch(()=>{}); }
+  } else {
+    a.pause(); a.removeAttribute('src'); btn.style.display='none';
+  }
+}
+function toggleSound(){
+  muted=!muted; try{ localStorage.setItem('vr_muted', muted?'1':'0'); }catch(e){}
+  const a=document.getElementById('vrAudio'); const btn=document.getElementById('vrSound');
+  btn.classList.toggle('off', muted);
+  if(!a.getAttribute('src')) return;
+  if(muted){ a.pause(); } else { a.play().catch(()=>{}); }
+}
+
 function loadRoom(idx){
   curRoom=idx;
   const room=SPACES[idx];
@@ -310,8 +391,15 @@ function loadRoom(idx){
   setKick();
   document.getElementById('vrName').textContent = bigName;
   document.querySelectorAll('.vr-dot').forEach(d=>d.classList.toggle('active', +d.dataset.i===idx));
+  closeExhibit();
+  applyRoomAudio(room);
 
   if(viewer){ viewer.destroy(); viewer=null; }
+
+  // hàm tạo cấu hình 1 điểm "i" (tooltip khi rê + popup khi bấm)
+  const infoSpot = (h)=>({ pitch:h.pitch, yaw:h.yaw, type:'info', cssClass:'custom-info',
+    createTooltipFunc:hotspotTooltip, createTooltipArgs:{ text: h[L()]||h.vi||h.text||'' },
+    clickHandlerFunc:hotspotClick, clickHandlerArgs:{ vi:h.vi, en:h.en, img:h.img, dvi:h.dVi, den:h.dEn } });
 
   // ---- (A) phòng nhiều cảnh (ảnh thật) ----
   if(room.scenes){
@@ -320,8 +408,7 @@ function loadRoom(idx){
       scenes[s.id] = {
         type:'equirectangular', panorama:s.photo, yaw:s.yaw??0, pitch:s.pitch??-2, hfov:100,
         hotSpots:[
-          ...(s.hotspots||[]).map(h=>({ pitch:h.pitch, yaw:h.yaw, type:'info',
-            cssClass:'custom-info', createTooltipFunc:hotspotTooltip, createTooltipArgs:{text:h[L()]||h.vi} })),
+          ...(s.hotspots||[]).map(infoSpot),
           ...(s.links||[]).map(lk=>({ pitch:lk.pitch??-4, yaw:lk.yaw, type:'scene', sceneId:lk.to,
             cssClass:'custom-door', createTooltipFunc:hotspotDoor, createTooltipArgs:{text:lk[L()]||lk.vi} })),
         ]
@@ -345,7 +432,7 @@ function loadRoom(idx){
   if(room.photo){
     panorama = room.photo;
     initYaw = room.initYaw ?? 0; initPitch = room.initPitch ?? -2;
-    hotSpots = (room.hotspots||[]).map(h=>({ pitch:h.pitch, yaw:h.yaw, type:'info', text:h[L()]||h.vi }));
+    hotSpots = (room.hotspots||[]);
   }else{
     const gen = generatePano(idx);
     panorama = gen.dataURL; hotSpots = gen.hotSpots;
@@ -355,7 +442,7 @@ function loadRoom(idx){
     type:'equirectangular', panorama, autoLoad:true,
     autoRotate: autoRot? -2 : 0, showControls:false, hfov:100, minHfov:50, maxHfov:120,
     pitch:initPitch, yaw:initYaw, compass:false, draggable:true,
-    hotSpots: hotSpots.map(h=>({ ...h, cssClass:'custom-info', createTooltipFunc:hotspotTooltip, createTooltipArgs:{text:h.text} })),
+    hotSpots: hotSpots.map(infoSpot),
     sceneFadeDuration:600,
   });
 }
@@ -363,10 +450,10 @@ function loadRoom(idx){
 function showHint(){
   const h=document.getElementById('vrHint');
   document.getElementById('vrHintT').textContent =
-    L()==='vi' ? 'Kéo để nhìn quanh không gian' : 'Drag to look around the space';
+    L()==='vi' ? 'Kéo để nhìn quanh · bấm điểm vàng để xem chi tiết' : 'Drag to look around · tap a gold dot for details';
   h.style.opacity='1';
   clearTimeout(hintTimer);
-  hintTimer=setTimeout(()=>{ h.style.opacity='0'; }, 3200);
+  hintTimer=setTimeout(()=>{ h.style.opacity='0'; }, 3600);
 }
 
 function toggleRotate(){
@@ -394,6 +481,8 @@ function closeVR(){
   const m=document.getElementById('vrModal');
   m.classList.remove('open');
   document.body.style.overflow='';
+  closeExhibit();
+  const a=document.getElementById('vrAudio'); if(a) a.pause();
   if(document.fullscreenElement) document.exitFullscreen?.();
   setTimeout(()=>{ if(viewer){ viewer.destroy(); viewer=null; } }, 400);
 }
