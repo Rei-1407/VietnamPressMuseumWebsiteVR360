@@ -12,9 +12,9 @@
 }
 *{ scroll-behavior:smooth; }
 html,body{ background:#FFFFFF; color:var(--ink); }
-body{ font-family:'Be Vietnam Pro',system-ui,sans-serif; overflow-x:hidden; }
-.font-display{ font-family:'Playfair Display','EB Garamond',serif; }
-.font-serif{ font-family:'EB Garamond',Georgia,serif; }
+body{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; overflow-x:hidden; }
+.font-display{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; }
+.font-serif{ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; }
 
 ::selection{ background:rgba(230,149,46,.25); }
 

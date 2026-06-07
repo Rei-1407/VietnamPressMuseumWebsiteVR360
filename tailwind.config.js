@@ -5,9 +5,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Playfair Display"', '"EB Garamond"', 'Georgia', 'serif'],
-        serif: ['"EB Garamond"', 'Georgia', 'serif'],
-        sans: ['"Be Vietnam Pro"', 'system-ui', 'sans-serif'],
+        display: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        serif: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        sans: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
       },
       colors: {
         cream: '#FCFAF4', cream2: '#F6EFE1', ink: '#2C2113', ink2: '#5A4A30',
