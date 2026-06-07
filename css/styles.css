@@ -60,10 +60,10 @@ body{ font-family:'Be Vietnam Pro',system-ui,sans-serif; overflow-x:hidden; }
 /* ===== Hero ===== */
 .hero-101{
   font-family:'Playfair Display',serif; font-weight:800;
-  color:#F6E7CF;
-  line-height:.8; letter-spacing:-.04em;
-  user-select:none;
-  text-shadow:0 2px 0 #fff;
+  line-height:.8; letter-spacing:-.05em; user-select:none;
+  background:linear-gradient(135deg,#F8E7C2 0%,#F0C77E 48%,#E29A48 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  opacity:.92;
 }
 .hero-tile{
   position:relative; border-radius:12px; overflow:hidden;
@@ -148,12 +148,14 @@ body{ font-family:'Be Vietnam Pro',system-ui,sans-serif; overflow-x:hidden; }
 @media(min-width:860px){
   .tl-era{ width:100%; left:0; padding-left:0; padding-right:0; text-align:center; }
 }
-.tl-era .era-year{ font-family:'Playfair Display',serif; font-weight:800;
-  font-size:30px; line-height:1.05; }
-.tl-era .era-name{ font-family:'Playfair Display',serif; font-weight:700; text-transform:uppercase;
-  letter-spacing:.06em; font-size:19px; color:var(--orangedk); margin-top:4px; }
+.tl-era .era-card{ display:inline-block; background:#fff; border:1px solid rgba(230,149,46,.35);
+  border-radius:22px; padding:14px 44px; box-shadow:0 20px 44px -24px rgba(185,110,20,.5);
+  font-family:'Playfair Display',serif; font-style:italic; font-weight:700;
+  font-size:clamp(28px,3vw,38px); color:var(--orange2); line-height:1.05; }
+.tl-era .era-name{ font-family:'Playfair Display',serif; font-weight:800; text-transform:uppercase;
+  letter-spacing:.06em; font-size:clamp(20px,2.2vw,26px); color:var(--orangedk); margin-top:16px; }
 .tl-era .era-desc{ font-family:'EB Garamond',serif; font-style:italic; color:var(--ink2);
-  max-width:46ch; margin:8px auto 0; }
+  max-width:50ch; margin:10px auto 0; font-size:clamp(16px,1.3vw,18px); }
 .tl-item.era{ padding-left:0; text-align:center; }
 .tl-item.era .tl-dot{ display:none; }
 @media(min-width:860px){ .tl-item.era{ width:100%; left:0; padding-right:0; } }

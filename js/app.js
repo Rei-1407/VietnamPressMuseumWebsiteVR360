@@ -25,7 +25,7 @@ function renderTimeline(){
     if(m.kind==='era'){
       return `<div class="tl-item era reveal mb-6 md:mb-10" data-tl>
         <div class="tl-era">
-          <div class="era-year text-goldgrad">${m.year}</div>
+          <div class="era-card">${m.year}</div>
           <div class="era-name">${c.t}</div>
           <div class="era-desc">${c.d}</div>
         </div>
@@ -50,7 +50,7 @@ function renderTimeline(){
           <span class="eyebrow">${t('histEyebrow')}</span>
           <span class="w-8 gold-rule"></span>
         </div>
-        <h2 class="font-display text-4xl md:text-5xl lg:text-[56px] text-goldgrad leading-[1.06] pb-1">${t('histTitle')}</h2>
+        <h2 class="font-display font-extrabold uppercase text-4xl sm:text-5xl lg:text-[clamp(48px,7vw,84px)] text-goldgrad leading-[1.03] pb-2">${t('histTitle')}</h2>
         <p class="font-serif italic text-ink2 text-lg md:text-xl mt-4 max-w-[52ch] mx-auto">${t('histSub')}</p>
       </div>
 
@@ -87,11 +87,12 @@ function renderHeritage(){
           <span class="eyebrow">${t('mapEyebrow')}</span>
           <span class="w-8 gold-rule"></span>
         </div>
-        <h2 class="font-display text-4xl md:text-5xl lg:text-[56px] text-goldgrad leading-[1.06] pb-1">${t('mapTitle')}</h2>
+        <h2 class="font-display font-extrabold uppercase text-4xl sm:text-5xl lg:text-[clamp(48px,7vw,84px)] text-goldgrad leading-[1.03] pb-2">${t('mapTitle')}</h2>
         <p class="font-serif italic text-ink2 text-lg md:text-xl mt-4 max-w-[52ch] mx-auto">${t('mapSub')}</p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+      <div class="flex justify-center mb-9 reveal"><span class="zone-pill">${LANG==='vi'?'Khu vực tầng 1':'Floor 1'}</span></div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7">
         ${cards}
       </div>
 

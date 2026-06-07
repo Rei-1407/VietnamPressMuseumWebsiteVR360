@@ -65,65 +65,67 @@
 
 <!-- ============================= HERO ============================= -->
 <section id="home" class="relative pt-[72px] min-h-screen flex items-center overflow-hidden">
-  <div class="max-w-[1280px] mx-auto w-full px-5 md:px-8 grid lg:grid-cols-[1.05fr_.95fr] gap-8 lg:gap-12 items-center py-12">
+  <div class="max-w-[1560px] mx-auto w-full px-5 md:px-10 grid lg:grid-cols-[1.22fr_.85fr] gap-6 lg:gap-10 items-center py-6">
 
-    <!-- Left: 101 + nib + headline -->
+    <!-- Left: giant 101 (behind) + big nib + headline -->
     <div class="relative">
-      <!-- 101 watermark -->
-      <div class="hero-101 absolute -top-6 left-0 text-[150px] sm:text-[200px] lg:text-[230px] pointer-events-none select-none">101</div>
-
-      <!-- Pen nib -->
-      <div class="relative flex justify-center lg:justify-start">
-        <svg viewBox="0 0 200 360" width="170" class="relative z-10 drop-shadow-[0_18px_30px_rgba(188,131,31,.35)]" aria-hidden="true">
-          <defs>
-            <linearGradient id="nib" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#F4DDA9"/>
-              <stop offset=".45" stop-color="#E3B25E"/>
-              <stop offset="1" stop-color="#C5851E"/>
-            </linearGradient>
-          </defs>
-          <path d="M88 16 Q100 6 112 16 L120 92 Q176 122 168 204 L100 338 L32 204 Q24 122 80 92 Z"
-                fill="url(#nib)"/>
-          <rect x="96.5" y="40" width="7" height="150" rx="3.5" fill="#FCFAF4"/>
-          <circle cx="100" cy="206" r="22" fill="#FCFAF4"/>
-          <circle cx="100" cy="206" r="22" fill="none" stroke="#C5851E" stroke-width="1.5" stroke-opacity=".4"/>
-        </svg>
+      <!-- 101 watermark (khổng lồ) -->
+      <div class="hero-101 absolute inset-y-0 left-0 right-0 flex items-center justify-center lg:justify-start pointer-events-none select-none z-0">
+        <span class="leading-none text-[210px] sm:text-[320px] lg:text-[clamp(360px,29vw,520px)]">101</span>
       </div>
 
-      <!-- Headline -->
-      <div class="relative z-10 mt-6 lg:mt-8 lg:pl-2 text-center lg:text-left">
-        <h1 class="font-display leading-[.98]">
-          <span class="block font-serif italic font-semibold text-[36px] sm:text-[48px] text-goldgrad uppercase tracking-wide" data-vi-text="Bút Sắc" data-en-text="Sharp Pen">Bút Sắc</span>
-          <span class="block text-[40px] sm:text-[56px] font-bold tracking-tight text-bronze uppercase" data-vi-text="Lòng Son" data-en-text="Pure Heart">Lòng Son</span>
-          <span class="block text-[40px] sm:text-[56px] font-bold tracking-tight text-bronze uppercase" data-vi-text="Tâm Sáng" data-en-text="Bright Soul">Tâm Sáng</span>
-        </h1>
-        <p class="font-serif italic text-gold text-lg sm:text-xl mt-5 max-w-[42ch] mx-auto lg:mx-0"
-           data-vi-text="Tự hào trăm năm Báo chí Cách mạng Việt Nam giữ lửa ngòi bút."
-           data-en-text="A proud century of Vietnam's revolutionary press, keeping the pen's flame alive.">
-          Tự hào trăm năm Báo chí Cách mạng Việt Nam giữ lửa ngòi bút.
-        </p>
+      <!-- nib (trái) + headline (phải), 101 nằm sau -->
+      <div class="relative z-10 grid grid-cols-1 sm:grid-cols-[auto_1fr] items-center gap-3 sm:gap-7 lg:gap-9">
+        <div class="justify-self-center sm:justify-self-start w-[150px] sm:w-[230px] lg:w-[clamp(250px,19vw,360px)] shrink-0">
+          <svg viewBox="0 0 200 360" class="w-full drop-shadow-[0_26px_44px_rgba(188,131,31,.32)]" aria-hidden="true">
+            <defs>
+              <linearGradient id="nib" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#F6E0AE"/>
+                <stop offset=".45" stop-color="#EBB45A"/>
+                <stop offset="1" stop-color="#D8851F"/>
+              </linearGradient>
+            </defs>
+            <path d="M88 16 Q100 6 112 16 L120 92 Q176 122 168 204 L100 338 L32 204 Q24 122 80 92 Z" fill="url(#nib)"/>
+            <rect x="96.5" y="40" width="7" height="150" rx="3.5" fill="#FFFFFF"/>
+            <circle cx="100" cy="206" r="22" fill="#FFFFFF"/>
+            <circle cx="100" cy="206" r="22" fill="none" stroke="#D8851F" stroke-width="1.5" stroke-opacity=".4"/>
+          </svg>
+        </div>
+
+        <div class="text-center sm:text-left">
+          <h1 class="font-display leading-[.94]">
+            <span class="block font-serif italic font-semibold text-[40px] sm:text-[54px] lg:text-[clamp(48px,4.6vw,66px)] text-goldgrad uppercase tracking-wide" data-vi-text="Bút Sắc" data-en-text="Sharp Pen">Bút Sắc</span>
+            <span class="block text-[46px] sm:text-[62px] lg:text-[clamp(54px,5.3vw,76px)] font-extrabold tracking-tight text-bronze uppercase" data-vi-text="Lòng Son" data-en-text="Pure Heart">Lòng Son</span>
+            <span class="block text-[46px] sm:text-[62px] lg:text-[clamp(54px,5.3vw,76px)] font-extrabold tracking-tight text-bronze uppercase" data-vi-text="Tâm Sáng" data-en-text="Bright Soul">Tâm Sáng</span>
+          </h1>
+          <p class="font-serif italic text-orange text-lg sm:text-xl mt-5 max-w-[40ch] mx-auto sm:mx-0"
+             data-vi-text="Tự hào trăm năm Báo chí Cách mạng Việt Nam giữ lửa ngòi bút."
+             data-en-text="A proud century of Vietnam's revolutionary press, keeping the pen's flame alive.">
+            Tự hào trăm năm Báo chí Cách mạng Việt Nam giữ lửa ngòi bút.
+          </p>
+        </div>
       </div>
     </div>
 
-    <!-- Right: gold tiles -->
-    <div class="grid grid-cols-2 gap-3 sm:gap-4 max-w-[440px] w-full mx-auto">
+    <!-- Right: 2×3 lưới ô lớn -->
+    <div class="grid grid-cols-2 gap-4 sm:gap-5 w-full max-w-[620px] mx-auto lg:mx-0 lg:ml-auto">
       <div class="hero-tile tile-a aspect-square">
         <svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"><rect x="8" y="18" width="20" height="16" rx="2"/><path d="M28 23l10-5v14l-10-5"/><circle cx="15" cy="13" r="3.5"/><circle cx="22" cy="12" r="3"/></svg>
       </div>
       <div class="hero-tile tile-b aspect-square">
-        <svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.2"><rect x="8" y="11" width="32" height="26" rx="3"/><path d="M8 18h32"/><circle cx="13" cy="14.5" r="1.2" fill="#fff"/><path d="M22 25h12"/></svg>
+        <svg viewBox="0 0 48 48" fill="none" stroke="#E08A22" stroke-width="2.2"><rect x="8" y="11" width="32" height="26" rx="3"/><path d="M8 18h32"/><circle cx="13" cy="14.5" r="1.2" fill="#E08A22"/><path d="M22 25h12"/></svg>
       </div>
       <div class="hero-tile tile-c aspect-square">
         <svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><rect x="7" y="20" width="34" height="18" rx="3"/><path d="M14 20l22-9"/><circle cx="16" cy="29" r="4"/><path d="M31 26h4M31 31h4"/></svg>
       </div>
       <div class="hero-tile tile-d aspect-square">
-        <svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M10 36h28"/><path d="M16 36V25a8 8 0 0116 0v11"/><path d="M24 17v-4"/></svg>
+        <svg viewBox="0 0 48 48" fill="none" stroke="#E08A22" stroke-width="2.2" stroke-linecap="round"><path d="M10 36h28"/><path d="M16 36V25a8 8 0 0116 0v11"/><path d="M24 17v-4"/></svg>
       </div>
       <div class="hero-tile tile-e aspect-square cursor-pointer" onclick="document.getElementById('lich-su').scrollIntoView()">
-        <svg class="arrow-bounce" viewBox="0 0 48 48" fill="none" stroke="#C2902F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 12v24M14 27l10 10 10-10"/></svg>
+        <svg class="arrow-bounce" viewBox="0 0 48 48" fill="none" stroke="#D8851F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 12v24M14 27l10 10 10-10"/></svg>
       </div>
       <div class="hero-tile tile-f aspect-square">
-        <span class="font-serif italic text-white/70 text-[11px] sm:text-xs px-2 text-center leading-tight">@vietnampressmuseum</span>
+        <span class="font-serif italic text-white/85 text-xs sm:text-sm px-2 text-center leading-tight">@vietnampressmuseum</span>
       </div>
     </div>
   </div>
