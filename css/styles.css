@@ -7,10 +7,14 @@
 
 /* ===== Font thật từ Figma (file đặt trong /font, đã nén woff2) ===== */
 @font-face{ font-family:'Helvetica'; font-weight:300; font-style:normal; font-display:swap; src:url('../font/helvetica-light.woff2') format('woff2'); }
+/* Helvetica Light thiếu các glyph tiếng Việt (Ắ Ả Đ Ồ Ệ…) → lấy bù từ Regular (đủ dấu) */
+@font-face{ font-family:'Helvetica'; font-weight:300; font-style:normal; font-display:swap; src:url('../font/helvetica.woff2') format('woff2'); unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EFF; }
+@font-face{ font-family:'Helvetica'; font-weight:300; font-style:italic; font-display:swap; src:url('../font/helvetica-oblique.woff2') format('woff2'); }
 @font-face{ font-family:'Helvetica'; font-weight:400; font-style:normal; font-display:swap; src:url('../font/helvetica.woff2') format('woff2'); }
 @font-face{ font-family:'Helvetica'; font-weight:400; font-style:italic;  font-display:swap; src:url('../font/helvetica-oblique.woff2') format('woff2'); }
 @font-face{ font-family:'Helvetica'; font-weight:700; font-style:normal; font-display:swap; src:url('../font/helvetica-bold.woff2') format('woff2'); }
 @font-face{ font-family:'Helvetica'; font-weight:700; font-style:italic;  font-display:swap; src:url('../font/helvetica-boldoblique.woff2') format('woff2'); }
+@font-face{ font-family:'Helvetica'; font-weight:800; font-style:normal; font-display:swap; src:url('../font/helvetica-bold.woff2') format('woff2'); }
 @font-face{ font-family:'Arroem';    font-weight:400; font-style:normal; font-display:swap; src:url('../font/arroem.woff2') format('woff2'); }
 
 :root{
@@ -67,6 +71,60 @@ body{ font-family:var(--hv); overflow-x:hidden; }
 .btn-vr:hover{ transform:translateY(-2px); box-shadow:0 16px 30px -10px rgba(185,110,20,.85); filter:brightness(1.04); }
 
 /* ===== Hero tiles ===== */
+.hero-mark{
+  position:relative; min-height:clamp(620px,54vw,820px);
+  display:flex; align-items:center;
+}
+.hero-101{
+  position:absolute; z-index:0; top:50%; left:46%;
+  width:clamp(760px,116%,1048px); height:auto; max-width:none;
+  transform:translate(-50%,-50%);
+  pointer-events:none; user-select:none;
+}
+.hero-lockup{
+  position:relative; z-index:1; display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  align-items:center; gap:clamp(48px,5vw,84px);
+}
+.hero-nib{
+  justify-self:start;
+  width:clamp(320px,25vw,420px); height:auto;
+  filter:drop-shadow(0 26px 44px rgba(188,131,31,.28));
+}
+.hero-copy{
+  min-width:0; text-align:left;
+  transform:translateY(clamp(88px,6.5vw,112px));
+}
+.hero-headline{
+  font-family:var(--hv); font-style:italic; line-height:.96;
+}
+.hero-word{
+  display:block; text-transform:uppercase; letter-spacing:0;
+}
+.hero-word-top{
+  font-weight:300; font-size:clamp(40px,3.4vw,56px);
+}
+.hero-word-main{
+  color:var(--brown); font-weight:400; font-size:clamp(46px,3.9vw,62px);
+}
+.hero-subline{
+  max-width:33ch; margin-top:24px; color:var(--brown);
+  font-size:clamp(18px,1.25vw,20px); line-height:1.25; font-style:italic;
+}
+@media(max-width:1023px){
+  .hero-mark{ min-height:auto; }
+  .hero-101{ left:50%; width:112%; }
+  .hero-nib{ width:clamp(210px,32vw,330px); }
+  .hero-word-top{ font-size:clamp(40px,6vw,54px); }
+  .hero-word-main{ font-size:clamp(44px,6.7vw,60px); }
+}
+@media(max-width:639px){
+  .hero-lockup{ grid-template-columns:1fr; gap:12px; justify-items:center; }
+  .hero-nib{ justify-self:center; width:clamp(140px,42vw,210px); }
+  .hero-copy{ text-align:center; transform:none; }
+  .hero-subline{ margin-left:auto; margin-right:auto; }
+}
+
 .hero-tile{
   position:relative; border-radius:14px; overflow:hidden;
   display:grid; place-items:center;
@@ -128,6 +186,23 @@ body{ font-family:var(--hv); overflow-x:hidden; }
 /* =========================================================
    BẢN ĐỒ — thẻ khu vực (cam) + biển tên + 2 nhóm tầng
    ========================================================= */
+.map-heading{
+  max-width:min(1500px,100%); margin:0 auto 76px; padding:0 30px;
+  text-align:center;
+}
+.map-title-figma{
+  font-family:var(--hv); font-weight:800; font-style:normal;
+  text-transform:uppercase; letter-spacing:0; line-height:.92;
+  font-size:clamp(42px,7.15vw,108px);
+  background:linear-gradient(180deg,#F0C26E 0%,#E2A950 58%,#BE8126 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter:drop-shadow(0 18px 9px rgba(226,169,80,.24));
+}
+.map-heading p{
+  margin-top:28px; color:#E0912C; font-family:var(--hv);
+  font-size:clamp(15px,1.2vw,18px); font-style:italic; line-height:1.35;
+}
+
 .floor-pill{ display:inline-block; font-family:var(--hv); font-style:italic; font-weight:700;
   color:var(--brown); background:#fff; border:1px solid rgba(230,149,46,.40);
   border-radius:9999px; padding:9px 34px; font-size:clamp(17px,1.5vw,21px);

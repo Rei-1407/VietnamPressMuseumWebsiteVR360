@@ -85,12 +85,12 @@ function renderHeritage(){
   const f1 = byFloor(1), f2 = byFloor(2);
 
   return `<section id="ban-do" class="relative py-20 md:py-28">
-    <div class="max-w-[1100px] mx-auto px-5 md:px-8">
-      <div class="text-center mb-12 md:mb-14 reveal">
-        <h2 class="font-display font-extrabold uppercase text-goldgrad leading-[1.05] text-[clamp(30px,5.6vw,66px)]">${t('mapTitle')}</h2>
-        <p class="italic text-[15px] md:text-lg mt-4" style="color:#E0912C">${t('mapSub')}</p>
-      </div>
+    <div class="map-heading reveal">
+      <h2 class="map-title-figma">${t('mapTitle')}</h2>
+      <p>${t('mapSub')}</p>
+    </div>
 
+    <div class="max-w-[1100px] mx-auto px-5 md:px-8">
       <div class="text-center mb-9 reveal"><span class="floor-pill">${LANG==='vi'?'Khu vực tầng 1':'Floor 1 zones'}</span></div>
       ${grid(f1)}
 
