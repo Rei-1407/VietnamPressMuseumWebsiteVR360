@@ -117,8 +117,8 @@
         ]
       },
       {
-        "id": "canh-mq16g761",
-        "photo": "assets/panos/gian-khanh-tiet-1780679275778.jpg",
+        "id": "canh-mq5d4xwk",
+        "photo": "",
         "yaw": 0,
         "pitch": -2,
         "label": {
@@ -156,39 +156,12 @@
       "vi": "1925 – 1945",
       "en": "1925 – 1945"
     },
-    "theme": {
-      "wall": "#5E2A24",
-      "wall2": "#421810",
-      "floor": "#341512",
-      "ceil": "#22100b"
-    },
-    "exhibits": [
-      {
-        "vi": "Báo Thanh Niên · 1925",
-        "en": "Thanh Niên · 1925"
-      },
-      {
-        "vi": "Báo Búa Liềm · 1929",
-        "en": "Búa Liềm · 1929"
-      },
-      {
-        "vi": "Báo Dân Chúng · 1938",
-        "en": "Dân Chúng · 1938"
-      },
-      {
-        "vi": "Những trang in bí mật",
-        "en": "Clandestine Pages"
-      },
-      {
-        "vi": "Nhà tù & ngòi bút",
-        "en": "Prison & Pen"
-      },
-      {
-        "vi": "Cờ giải phóng",
-        "en": "The Liberation Flag"
-      }
-    ],
-    "floor": 1
+    "floor": 1,
+    "photo": "assets/panos/bao-chi-1925-1945-1780933958397.jpg",
+    "thumb": "assets/panos/bao-chi-1925-1945-1780933958397-thumb.jpg",
+    "initYaw": 0,
+    "initPitch": -2,
+    "hotspots": []
   },
   {
     "card": {
@@ -199,39 +172,12 @@
       "vi": "1945 – 1954",
       "en": "1945 – 1954"
     },
-    "theme": {
-      "wall": "#3F4A30",
-      "wall2": "#2A331F",
-      "floor": "#262e1a",
-      "ceil": "#1b2011"
-    },
-    "exhibits": [
-      {
-        "vi": "Báo Cứu Quốc",
-        "en": "Cứu Quốc Newspaper"
-      },
-      {
-        "vi": "Báo Sự Thật",
-        "en": "Sự Thật Newspaper"
-      },
-      {
-        "vi": "Báo Quân đội ND · 1950",
-        "en": "People's Army Daily · 1950"
-      },
-      {
-        "vi": "Trường dạy làm báo · 1949",
-        "en": "Journalism School · 1949"
-      },
-      {
-        "vi": "Tòa soạn tiền phương",
-        "en": "The Frontline Newsroom"
-      },
-      {
-        "vi": "Chiến thắng Điện Biên",
-        "en": "Điện Biên Phủ Victory"
-      }
-    ],
-    "floor": 1
+    "floor": 1,
+    "photo": "assets/panos/bao-chi-1945-1954-1780934999780.jpg",
+    "thumb": "assets/panos/bao-chi-1945-1954-1780934999780-thumb.jpg",
+    "initYaw": 0,
+    "initPitch": -2,
+    "hotspots": []
   },
   {
     "card": {
@@ -242,39 +188,12 @@
       "vi": "1954 – 1975",
       "en": "1954 – 1975"
     },
-    "theme": {
-      "wall": "#5A2420",
-      "wall2": "#3A130E",
-      "floor": "#2f1310",
-      "ceil": "#1f0d0a"
-    },
-    "exhibits": [
-      {
-        "vi": "Căn hầm Báo Nhân Dân",
-        "en": "The Nhân Dân Bunker"
-      },
-      {
-        "vi": "Máy quay “Ngựa Trời”",
-        "en": "The “Ngựa Trời” Camera"
-      },
-      {
-        "vi": "Loa phóng thanh Hiền Lương",
-        "en": "Hiền Lương Loudspeaker"
-      },
-      {
-        "vi": "Nhà báo chiến trường",
-        "en": "Battlefield Reporters"
-      },
-      {
-        "vi": "“Điện Biên Phủ trên không”",
-        "en": "“Điện Biên Phủ in the Air”"
-      },
-      {
-        "vi": "Ngày 30·04·1975",
-        "en": "30 April 1975"
-      }
-    ],
-    "floor": 1
+    "floor": 1,
+    "photo": "assets/panos/bao-chi-1954-1975-1780935714441.jpg",
+    "thumb": "assets/panos/bao-chi-1954-1975-1780935714441-thumb.jpg",
+    "initYaw": 0,
+    "initPitch": -2,
+    "hotspots": []
   },
   {
     "card": {
@@ -286,30 +205,11 @@
       "en": "Memorial"
     },
     "floor": 2,
-    "theme": {
-      "wall": "#3A2A22",
-      "wall2": "#241813",
-      "floor": "#1f140f",
-      "ceil": "#160d0a"
-    },
-    "exhibits": [
-      {
-        "vi": "Đài tưởng niệm nhà báo liệt sĩ",
-        "en": "Memorial to fallen journalists"
-      },
-      {
-        "vi": "Bức tường khắc tên",
-        "en": "The wall of names"
-      },
-      {
-        "vi": "Không gian tri ân",
-        "en": "Space of remembrance"
-      },
-      {
-        "vi": "Kỷ vật nhà báo",
-        "en": "Journalists' keepsakes"
-      }
-    ]
+    "photo": "assets/panos/khu-tuong-niem-1780935745819.jpg",
+    "thumb": "assets/panos/khu-tuong-niem-1780935745819-thumb.jpg",
+    "initYaw": 0,
+    "initPitch": -2,
+    "hotspots": []
   },
   {
     "card": {
@@ -356,30 +256,11 @@
       "en": "Contemporary"
     },
     "floor": 2,
-    "theme": {
-      "wall": "#293A38",
-      "wall2": "#172726",
-      "floor": "#13201f",
-      "ceil": "#0d1716"
-    },
-    "exhibits": [
-      {
-        "vi": "Tòa soạn hội tụ",
-        "en": "The converged newsroom"
-      },
-      {
-        "vi": "Báo chí đa phương tiện",
-        "en": "Multimedia journalism"
-      },
-      {
-        "vi": "Trí tuệ nhân tạo & báo chí",
-        "en": "AI & journalism"
-      },
-      {
-        "vi": "Màn hình tương tác",
-        "en": "Interactive screens"
-      }
-    ]
+    "photo": "assets/panos/phong-duong-dai-1780935781556.jpg",
+    "thumb": "assets/panos/phong-duong-dai-1780935781556-thumb.jpg",
+    "initYaw": 0,
+    "initPitch": -2,
+    "hotspots": []
   },
   {
     "card": {
@@ -391,30 +272,11 @@
       "en": "Broadcast"
     },
     "floor": 2,
-    "theme": {
-      "wall": "#3A3326",
-      "wall2": "#241f13",
-      "floor": "#1f1a0f",
-      "ceil": "#15110a"
-    },
-    "exhibits": [
-      {
-        "vi": "Trường quay truyền hình",
-        "en": "The TV studio"
-      },
-      {
-        "vi": "Phòng thu phát thanh",
-        "en": "The radio booth"
-      },
-      {
-        "vi": "Máy quay qua các thời kỳ",
-        "en": "Cameras through the eras"
-      },
-      {
-        "vi": "Làn sóng đầu tiên",
-        "en": "The first broadcasts"
-      }
-    ]
+    "photo": "assets/panos/truyen-hinh-phat-thanh-1780935814548.jpg",
+    "thumb": "assets/panos/truyen-hinh-phat-thanh-1780935814548-thumb.jpg",
+    "initYaw": 0,
+    "initPitch": -2,
+    "hotspots": []
   },
   {
     "card": {
@@ -426,30 +288,11 @@
       "en": "Print & Online"
     },
     "floor": 2,
-    "theme": {
-      "wall": "#33293A",
-      "wall2": "#1f1727",
-      "floor": "#1a1320",
-      "ceil": "#120c17"
-    },
-    "exhibits": [
-      {
-        "vi": "Xưởng in & sắp chữ",
-        "en": "The press & typesetting"
-      },
-      {
-        "vi": "Măng-sét các tờ báo",
-        "en": "Newspaper mastheads"
-      },
-      {
-        "vi": "Tòa soạn điện tử",
-        "en": "The digital newsroom"
-      },
-      {
-        "vi": "Hành trình lên mạng",
-        "en": "Going online"
-      }
-    ]
+    "photo": "assets/panos/bao-in-va-bao-dien-tu-1780935952396.jpg",
+    "thumb": "assets/panos/bao-in-va-bao-dien-tu-1780935952396-thumb.jpg",
+    "initYaw": 0,
+    "initPitch": -2,
+    "hotspots": []
   },
   {
     "card": {
@@ -460,38 +303,11 @@
       "vi": "1975 – Nay",
       "en": "1975 – Today"
     },
-    "theme": {
-      "wall": "#264A4A",
-      "wall2": "#173130",
-      "floor": "#152b2a",
-      "ceil": "#0e1f1e"
-    },
-    "exhibits": [
-      {
-        "vi": "Sức bật Đổi Mới · 1986",
-        "en": "The Đổi Mới Surge · 1986"
-      },
-      {
-        "vi": "“Những việc cần làm ngay”",
-        "en": "“Things To Do Now”"
-      },
-      {
-        "vi": "Báo điện tử",
-        "en": "The Online Press"
-      },
-      {
-        "vi": "Phát thanh – Truyền hình",
-        "en": "Radio & Television"
-      },
-      {
-        "vi": "Kỷ nguyên số đa nền tảng",
-        "en": "The Multi-Platform Era"
-      },
-      {
-        "vi": "Hội nhập quốc tế",
-        "en": "Global Integration"
-      }
-    ],
-    "floor": 2
+    "floor": 2,
+    "photo": "assets/panos/tu-1975-den-nay-1780935988940.jpg",
+    "thumb": "assets/panos/tu-1975-den-nay-1780935988940-thumb.jpg",
+    "initYaw": 0,
+    "initPitch": -2,
+    "hotspots": []
   }
 ]
