@@ -83,10 +83,14 @@ function renderHeritage(){
   const byFloor = (n)=> SPACES.map((s,gi)=>({s,gi})).filter(o=>(o.s.floor||1)===n);
   const grid = (arr)=> `<div class="map-cards">${arr.map(o=>card(o.s,o.gi)).join('')}</div>`;
   const f1 = byFloor(1), f2 = byFloor(2);
+  const mapTitle = t('mapTitle')
+    .split('<br>')
+    .map(line=>`<span>${line}</span>`)
+    .join('');
 
-  return `<section id="ban-do" class="relative py-20 md:py-28">
+  return `<section id="ban-do" class="map-section relative">
     <div class="map-heading reveal">
-      <h2 class="map-title-figma">${t('mapTitle')}</h2>
+      <h2 class="map-title-figma">${mapTitle}</h2>
       <p>${t('mapSub')}</p>
     </div>
 
