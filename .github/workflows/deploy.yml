@@ -23,15 +23,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      # Tự chuyển Pages sang build bằng Actions nếu repo còn ở chế độ deploy-from-branch
-      # (GITHUB_TOKEN có pages:write — không cần vào Settings làm tay)
-      - name: Ensure Pages source = GitHub Actions
+      # Tự chuyển Pages sang build bằng Actions + GẮN TÊN MIỀN RIÊNG
+      # (đổi build_type từng làm GitHub gỡ binding domain → luôn set lại cname ở đây)
+      - name: Ensure Pages source = GitHub Actions + custom domain
         run: |
           curl -s -X PUT \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github+json" \
             https://api.github.com/repos/${{ github.repository }}/pages \
-            -d '{"build_type":"workflow"}' || true
+            -d '{"build_type":"workflow","cname":"baotangsobaochivietnam.com"}' || true
       - name: Configure Pages
         uses: actions/configure-pages@v4
         with:
