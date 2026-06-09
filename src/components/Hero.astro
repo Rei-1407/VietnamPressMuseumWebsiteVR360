@@ -40,7 +40,7 @@ const vi = UI.vi, en = UI.en;
 <style is:global>
   /* ===== Hero ===== */
   .hero-stage{
-    position:relative; width:min(1560px,calc(100% - 64px)); margin:0 auto;
+    position:relative; width:100%; margin:0;
     display:grid; grid-template-columns:minmax(0,1.08fr) minmax(480px,.92fr);
     align-items:center; gap:clamp(24px,3vw,52px); padding:clamp(28px,4vh,56px) 0;
   }
@@ -49,9 +49,9 @@ const vi = UI.vi, en = UI.en;
     display:flex; align-items:center; overflow:visible;
   }
   .hero-101{
-    position:absolute; z-index:0; top:50%; left:43%;
-    width:min(125%,1048px); height:auto; max-width:none;
-    transform:translate(-50%,-50%);
+    position:absolute; z-index:0; top:50%; left:max(-1.14vw,-22px);
+    width:min(54.62vw,1048px); height:auto; max-width:none;
+    transform:translateY(-50%);
     pointer-events:none; user-select:none;
   }
   .hero-lockup{
@@ -83,7 +83,7 @@ const vi = UI.vi, en = UI.en;
     font-size:clamp(18px,1.25vw,20px); line-height:1.25; font-style:italic;
   }
   .hero-tiles{
-    width:100%; max-width:none; margin:0; display:grid;
+    width:100%; max-width:none; margin:0; justify-self:end; display:grid;
     grid-template-columns:repeat(2,minmax(0,1fr));
     grid-template-rows:repeat(3,minmax(0,1fr)); gap:0;
     aspect-ratio:803/997;
@@ -94,7 +94,7 @@ const vi = UI.vi, en = UI.en;
   /* Laptop: giữ hai cột nhưng gom các thành phần gần nhau hơn. */
   @media(max-width:1439px){
     .hero-stage{
-      width:min(1280px,calc(100% - 48px));
+      width:100%;
       grid-template-columns:minmax(0,1.06fr) minmax(420px,.94fr);
       gap:clamp(18px,2vw,30px);
     }
@@ -113,7 +113,7 @@ const vi = UI.vi, en = UI.en;
       gap:28px; padding:32px 0 56px;
     }
     .hero-mark{ min-height:clamp(480px,70vw,600px); }
-    .hero-101{ left:43%; width:min(112%,820px); }
+    .hero-101{ left:43%; width:min(112%,820px); transform:translate(-50%,-50%); }
     .hero-lockup{ grid-template-columns:minmax(220px,.9fr) minmax(230px,.75fr); gap:18px; }
     .hero-nib{ width:min(100%,330px); }
     .hero-copy{ transform:translateY(54px); }

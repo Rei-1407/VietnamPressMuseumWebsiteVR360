@@ -47,11 +47,14 @@ const vi = UI.vi, en = UI.en;
   /* ===== Chiều cao header: Figma là vùng ~136px @1920, MỌI THỨ canh giữa trục dọc
      (tâm logo ≈ tâm nav ≈ tâm nút VR). Mobile & khi cuộn: thanh gọn 72px. ===== */
   .header-inner{
-    width:min(1560px,calc(100% - 64px)); height:72px; margin:0 auto;
+    position:relative; width:100%; height:72px; padding-inline:clamp(20px,2.5vw,48px);
     transition:height .35s ease;
   }
-  .primary-nav{ margin-left:auto; }
-  .header-actions{ flex:none; margin-left:clamp(24px,3vw,54px); }
+  .primary-nav{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    margin:0;
+  }
+  .header-actions{ flex:none; margin-left:auto; }
   @media(min-width:1024px){
     .header-inner{ height:clamp(104px, 7.083vw, 136px); }
     .site-header.scrolled .header-inner{ height:72px; }
@@ -75,7 +78,6 @@ const vi = UI.vi, en = UI.en;
   .site-header.scrolled .logo-line{ opacity:0; }
   /* mobile: logo gọn trong thanh 72px, chữ quá nhỏ nên ẩn */
   @media(max-width:1023px){
-    .header-inner{ width:calc(100% - 40px); }
     .logo-lockup{ width:60px; }
     .logo-line{ display:none; }
   }
@@ -84,7 +86,7 @@ const vi = UI.vi, en = UI.en;
     .header-actions{ margin-left:auto; }
   }
   @media(max-width:639px){
-    .header-inner{ width:calc(100% - 32px); }
+    .header-inner{ padding-inline:16px; }
     .header-actions{ gap:8px; }
     .lang-toggle button{ padding:5px 10px; }
   }
