@@ -18,7 +18,7 @@ const { title = 'Bảo tàng Báo chí Việt Nam · VR 360°' } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>{title}</title>
+    <title data-vi-text={title} data-en-text="Vietnam Press Museum · VR 360°">{title}</title>
 
     <!-- Favicon: logo hoa sen (trên nền vàng thương hiệu) -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -42,6 +42,12 @@ const { title = 'Bảo tàng Báo chí Việt Nam · VR 360°' } = Astro.props;
           const v = el.getAttribute(lang === 'vi' ? 'data-vi-text' : 'data-en-text');
           if (v != null) el.textContent = v;
         });
+        for (const attr of ['title', 'aria-label', 'alt', 'placeholder']) {
+          document.querySelectorAll<HTMLElement>(`[data-vi-${attr}]`).forEach((el) => {
+            const v = el.getAttribute(lang === 'vi' ? `data-vi-${attr}` : `data-en-${attr}`);
+            if (v != null) el.setAttribute(attr, v);
+          });
+        }
         document.querySelectorAll<HTMLButtonElement>('.lang-toggle button').forEach((b) => {
           b.classList.toggle('active', b.dataset.setLang === lang);
         });

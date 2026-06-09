@@ -29,6 +29,7 @@ export const UI = {
     ftPhoneLabel: 'Điện thoại',
     ftWebLabel: 'Website',
     ftNav: 'Điều hướng',
+    ftCredit: 'Bản quyền sản phẩm thuộc về',
     ftRights: '© 2026 Bảo tàng Báo chí Việt Nam. Trải nghiệm VR 360°.',
     nHome: 'Trang chủ', nHist: 'Lịch sử', nMap: 'Bản đồ', nContact: 'Liên hệ',
     logoLine: 'BẢO TÀNG BÁO CHÍ VIỆT NAM',
@@ -48,14 +49,15 @@ export const UI = {
     hover360: 'Explore',
     ftTagline: "The heritage home of Vietnam's journalists.",
     ftAddrLabel: 'Address',
-    ftAddr: 'Vietnam Journalists Association Bldg, Dương Đình Nghệ St., Cầu Giấy, Hà Nội',
+    ftAddr: 'Vietnam Journalists Association Building, Duong Dinh Nghe Street, Cau Giay District, Hanoi',
     ftPhoneLabel: 'Phone',
     ftWebLabel: 'Website',
     ftNav: 'Navigation',
+    ftCredit: 'Product copyright belongs to',
     ftRights: '© 2026 Vietnam Press Museum. VR 360° Experience.',
     nHome: 'Home', nHist: 'History', nMap: 'Map', nContact: 'Contact',
     logoLine: 'VIETNAM PRESS MUSEUM',
-    heroW1: 'Bảo tàng', heroW2: 'Báo chí', heroW3: 'Việt Nam',
+    heroW1: 'Vietnam', heroW2: 'Press', heroW3: 'Museum',
     heroSub: "A proud century of Vietnam's revolutionary press, keeping the pen's flame alive.",
   },
 } as const;
@@ -74,6 +76,7 @@ export const CONTACT = {
 export interface TimelineItem {
   kind: 'era' | 'event';
   year: string;
+  yearEn?: string;
   vi: { t: string; d: string };
   en: { t: string; d: string };
 }
@@ -82,7 +85,7 @@ export const TIMELINE: TimelineItem[] = [
   { kind:'era',   year:'1865 - 1925', vi:{t:'Thời Kỳ Sơ Khai', d:'Tái hiện bình minh của báo chí quốc ngữ với những tờ báo cổ quý hiếm và các hiện vật làm báo thô sơ thời đầu.'},
                                        en:{t:'The Formative Years', d:'Reviving the dawn of Vietnamese-language journalism with rare antique newspapers and the rudimentary tools of the early press.'} },
   { kind:'event', year:'1865',        vi:{t:'Bình minh Báo chí Quốc ngữ', d:'Sự ra đời của Gia Định Báo – tờ báo bằng chữ quốc ngữ đầu tiên, đánh dấu bước ngoặt khởi thủy của nền báo chí nước nhà.'},
-                                       en:{t:'Dawn of the Quốc Ngữ Press', d:'The birth of Gia Định Báo — the first newspaper in the Vietnamese script, a founding turning point for the nation’s press.'} },
+                                       en:{t:'Dawn of the Vietnamese-Script Press', d:'The birth of Gia Định Báo — the first newspaper in the Vietnamese script, a founding turning point for the nation’s press.'} },
   { kind:'event', year:'21.06.1925',  vi:{t:'Khai sinh Báo chí Cách mạng Việt Nam', d:'Cột mốc vĩ đại khi Lãnh tụ Nguyễn Ái Quốc sáng lập báo Thanh Niên, cất lên tiếng nói đấu tranh giải phóng dân tộc.'},
                                        en:{t:'Birth of the Revolutionary Press', d:'The momentous founding of Thanh Niên newspaper by leader Nguyễn Ái Quốc, raising the voice of national liberation.'} },
   { kind:'era',   year:'1925 - 1945', vi:{t:'Tiếng Nói Cách Mạng', d:'Cột mốc ra đời của nền Báo chí Cách mạng Việt Nam, vinh danh hành trình làm báo kiên trung của các chiến sĩ tiền bối.'},
@@ -94,13 +97,13 @@ export const TIMELINE: TimelineItem[] = [
   { kind:'era',   year:'1954 - 1975', vi:{t:'Chống Mỹ Cứu Nước', d:'Thời kỳ oanh liệt của những “Nhà báo chiến trường” tại miền Bắc, miền Nam và các đô thị.'},
                                        en:{t:'The War Against America', d:'The heroic era of “battlefield journalists” across the North, the South and the cities.'} },
   { kind:'event', year:'1972',        vi:{t:'Tái hiện hầm kiên trung', d:'Nơi khai sinh ra cụm từ lịch sử “Điện Biên Phủ trên không”. Cùng với đó là câu chuyện về chiếc máy quay tự chế Ngựa Trời của thời kỳ đầu truyền hình và chiếc loa phóng thanh lịch sử bên cầu Hiền Lương.'},
-                                       en:{t:'The Nhân Dân Bunker', d:'The resolute bunker of Nhân Dân newspaper — birthplace of the phrase “Điện Biên Phủ in the air” — with the home-made “Ngựa Trời” camera and the historic loudspeaker by Hiền Lương Bridge.'} },
+                                       en:{t:'The Nhân Dân Bunker', d:'The resolute bunker of Nhân Dân newspaper — birthplace of the phrase “Điện Biên Phủ in the air” — with the home-made “Sky Horse” camera and the historic loudspeaker by Hiền Lương Bridge.'} },
   { kind:'event', year:'30.04.1975',  vi:{t:'Báo chí hân hoan ghi dấu ngày hội non sông thống nhất', d:''},
                                        en:{t:'The Day of Reunification', d:'The press joyfully records the day of national reunification.'} },
-  { kind:'era',   year:'1975 - Nay',  vi:{t:'Đổi Mới & Hội Nhập', d:'Báo chí đồng hành cùng công cuộc xây dựng đất nước, tiên phong hội nhập và phát triển công nghệ số.'},
+  { kind:'era',   year:'1975 - Nay', yearEn:'1975 - Present', vi:{t:'Đổi Mới & Hội Nhập', d:'Báo chí đồng hành cùng công cuộc xây dựng đất nước, tiên phong hội nhập và phát triển công nghệ số.'},
                                        en:{t:'Renewal & Integration', d:'Journalism accompanies nation-building, pioneering integration and the rise of digital technology.'} },
   { kind:'event', year:'1986',        vi:{t:'“Những việc cần làm ngay”', d:'Báo chí tạo sức bật mãnh liệt trong làn sóng Đổi mới, khơi nguồn từ chuyên mục nổi tiếng “Những việc cần làm ngay” của Tổng Bí thư Nguyễn Văn Linh.'},
-                                       en:{t:'The Đổi Mới Surge', d:'The press creates powerful momentum in the Đổi Mới wave, sparked by the famous column “Những việc cần làm ngay” of General Secretary Nguyễn Văn Linh.'} },
-  { kind:'event', year:'Hiện tại',    vi:{t:'Thời đại mới', d:'Báo chí luôn tiên phong trên mặt trận bảo vệ chủ quyền, chống tiêu cực và vươn mình mạnh mẽ trong kỷ nguyên công nghệ số đa nền tảng.'},
+                                       en:{t:'The Renewal Surge', d:'The press gained powerful momentum during the Renewal era, sparked by General Secretary Nguyễn Văn Linh’s renowned column “Things That Must Be Done Immediately”.'} },
+  { kind:'event', year:'Hiện tại', yearEn:'Present', vi:{t:'Thời đại mới', d:'Báo chí luôn tiên phong trên mặt trận bảo vệ chủ quyền, chống tiêu cực và vươn mình mạnh mẽ trong kỷ nguyên công nghệ số đa nền tảng.'},
                                        en:{t:'Rising in the Digital Era', d:'Journalism stands at the forefront of defending sovereignty, fighting wrongdoing, and rising strongly in the multi-platform digital era.'} },
 ];

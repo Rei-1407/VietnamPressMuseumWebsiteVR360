@@ -24,7 +24,8 @@
       <div class="k" id="vrKick"></div>
       <div class="n" id="vrName"></div>
     </div>
-    <div class="vr-close" id="vrClose" title="Đóng" aria-label="Close">
+    <div class="vr-close" id="vrClose" title="Đóng" aria-label="Đóng"
+         data-vi-title="Đóng" data-en-title="Close" data-vi-aria-label="Đóng" data-en-aria-label="Close">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </div>
   </div>
@@ -35,31 +36,39 @@
   </div>
 
   <div class="vr-tools">
-    <div class="vr-tool" id="vrSound" title="Bật/tắt âm thanh" style="display:none">
+    <div class="vr-tool" id="vrSound" title="Bật/tắt âm thanh" style="display:none"
+         data-vi-title="Bật/tắt âm thanh" data-en-title="Toggle sound">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M16 9a3 3 0 0 1 0 6"/><path d="M19 7a6 6 0 0 1 0 10"/></svg>
     </div>
-    <div class="vr-tool" id="vrRotate" title="Tự xoay">
+    <div class="vr-tool" id="vrRotate" title="Tự xoay"
+         data-vi-title="Tự xoay" data-en-title="Auto-rotate">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v5h-5"/></svg>
     </div>
-    <div class="vr-tool" id="vrFs" title="Toàn màn hình">
+    <div class="vr-tool" id="vrFs" title="Toàn màn hình"
+         data-vi-title="Toàn màn hình" data-en-title="Fullscreen">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6"/></svg>
     </div>
   </div>
 
   <div class="vr-bottom">
-    <div class="vr-nav" id="vrPrev" aria-label="Phòng trước"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="vr-nav" id="vrPrev" aria-label="Phòng trước"
+         data-vi-aria-label="Phòng trước" data-en-aria-label="Previous room"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 5l-7 7 7 7"/></svg></div>
     <div class="vr-dots" id="vrDots"></div>
-    <div class="vr-nav" id="vrNext" aria-label="Phòng sau"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 5l7 7-7 7"/></svg></div>
+    <div class="vr-nav" id="vrNext" aria-label="Phòng sau"
+         data-vi-aria-label="Phòng sau" data-en-aria-label="Next room"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 5l7 7-7 7"/></svg></div>
   </div>
 
   <div class="vr-scenenav" id="vrSceneNav" style="display:none">
-    <button class="vr-sc-next" id="vrScNext" title="Sang cảnh tiếp" aria-label="Sang cảnh tiếp"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 26l12-12 12 12"/><path d="M12 39l12-12 12 12"/></svg><span id="vrScLabel"></span></button>
+    <button class="vr-sc-next" id="vrScNext" title="Sang cảnh tiếp" aria-label="Sang cảnh tiếp"
+            data-vi-title="Sang cảnh tiếp" data-en-title="Next scene"
+            data-vi-aria-label="Sang cảnh tiếp" data-en-aria-label="Next scene"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 26l12-12 12 12"/><path d="M12 39l12-12 12 12"/></svg><span id="vrScLabel"></span></button>
   </div>
 
   <div class="vr-exhibit" id="vrExhibit">
     <div class="vr-ex-backdrop" id="vrExBackdrop"></div>
     <div class="vr-ex-card">
-      <button class="vr-ex-close" id="vrExClose" aria-label="Đóng">✕</button>
+      <button class="vr-ex-close" id="vrExClose" aria-label="Đóng"
+              data-vi-aria-label="Đóng" data-en-aria-label="Close">✕</button>
       <img id="vrExImg" alt="" />
       <div class="vr-ex-title" id="vrExTitle"></div>
       <div class="vr-ex-desc" id="vrExDesc"></div>
@@ -247,7 +256,7 @@
     ctx.fillStyle = goldDk;
     ctx.fillRect(ix, iy, iw, 44);
     ctx.fillStyle = '#FBF3E0'; ctx.font = '700 24px "Playfair Display", serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.fillText('BÁO CHÍ', cx, iy + 22);
+    ctx.fillText(L() === 'vi' ? 'BÁO CHÍ' : 'PRESS', cx, iy + 22);
     // các cột "chữ"
     ctx.strokeStyle = 'rgba(60,44,20,.30)'; ctx.lineWidth = 2;
     const cols = 3, colW = (iw - 20) / cols, lineH = 14, startY = iy + 62;
@@ -564,8 +573,11 @@
   }
 
   function openVR(idx: number) {
-    if (!(window as any).pannellum) { alert('Trình xem 360° đang tải, vui lòng thử lại sau giây lát.'); return; }
-    if (!SPACE_COUNT()) { console.warn('SPACES chưa tải xong.'); return; }
+    if (!(window as any).pannellum) {
+      alert(L() === 'vi' ? 'Trình xem 360° đang tải, vui lòng thử lại sau giây lát.' : 'The 360° viewer is loading. Please try again in a moment.');
+      return;
+    }
+    if (!SPACE_COUNT()) { console.warn(L() === 'vi' ? 'SPACES chưa tải xong.' : 'Spaces have not finished loading.'); return; }
     ensureDots();
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -584,4 +596,10 @@
   }
 
   (window as any).openVR = openVR;
+
+  document.addEventListener('langchange', () => {
+    if (!modal.classList.contains('open') || !SPACE_COUNT()) return;
+    loadRoom(curRoom, curSceneId || undefined);
+    showHint();
+  });
 </script>

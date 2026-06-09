@@ -7,8 +7,10 @@ const vi = UI.vi, en = UI.en;
 <header class="site-header fixed top-0 inset-x-0 z-50">
   <div class="header-inner max-w-[1280px] mx-auto px-5 md:px-8 flex items-center justify-between gap-4">
     <!-- Logo hoa sen (lockup Figma: ô 130×130 @1920 treo từ mép trên, chữ Arroem bên dưới) -->
-    <a href="#home" class="logo-lockup shrink-0" aria-label="Bảo tàng Báo chí Việt Nam">
-      <img src="/assets/figma/logo-lotus.png" alt="Bảo tàng Báo chí Việt Nam" />
+    <a href="#home" class="logo-lockup shrink-0" aria-label="Bảo tàng Báo chí Việt Nam"
+       data-vi-aria-label="Bảo tàng Báo chí Việt Nam" data-en-aria-label="Vietnam Press Museum">
+      <img src="/assets/figma/logo-lotus.png" alt="Bảo tàng Báo chí Việt Nam"
+           data-vi-alt="Bảo tàng Báo chí Việt Nam" data-en-alt="Vietnam Press Museum" />
       <span class="logo-line" data-vi-text={vi.logoLine} data-en-text={en.logoLine}>{vi.logoLine}</span>
     </a>
 
@@ -23,16 +25,17 @@ const vi = UI.vi, en = UI.en;
       <a href="#footer" class="navlink" data-nav data-vi-text={vi.nContact} data-en-text={en.nContact}>{vi.nContact}</a>
     </nav>
 
-    <!-- Right: toggle ngôn ngữ + nút VR -->
+    <!-- Right: nút VR + toggle ngôn ngữ -->
     <div class="flex items-center gap-3">
-      <div class="lang-toggle" role="tablist" aria-label="Language">
-        <button type="button" data-set-lang="vi" class="active">VI</button>
-        <button type="button" data-set-lang="en">EN</button>
-      </div>
       <a href="#ban-do" class="btn-vr hidden sm:inline-flex items-center gap-2 pl-3.5 pr-5 py-2 text-sm">
         <img src="/assets/figma/ic-atom-white.svg" alt="" aria-hidden="true" class="w-[18px] h-[18px]" />
         <span data-vi-text={vi.cta} data-en-text={en.cta}>{vi.cta}</span>
       </a>
+      <div class="lang-toggle" role="tablist" aria-label="Ngôn ngữ"
+           data-vi-aria-label="Ngôn ngữ" data-en-aria-label="Language">
+        <button type="button" data-set-lang="vi" class="active">VI</button>
+        <button type="button" data-set-lang="en">EN</button>
+      </div>
     </div>
   </div>
 </header>

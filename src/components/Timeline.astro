@@ -30,7 +30,7 @@ for (const item of TIMELINE) {
 
         <div class="tl-era-card tl-card reveal">
           <div class="tl-card-body"></div>
-          <div class="tl-year">{block.era.year}</div>
+          <div class="tl-year" data-vi-text={block.era.year} data-en-text={block.era.yearEn ?? block.era.year}>{block.era.year}</div>
           <div class="tl-card-copy">
             <h3 data-vi-text={block.era.vi.t} data-en-text={block.era.en.t}>{block.era.vi.t}</h3>
             <p data-vi-text={block.era.vi.d} data-en-text={block.era.en.d}>{block.era.vi.d}</p>
@@ -42,7 +42,7 @@ for (const item of TIMELINE) {
             {block.events.map((event) => (
               <div class="tl-event-card tl-card reveal">
                 <div class="tl-card-body"></div>
-                <div class="tl-year">{event.year}</div>
+                <div class="tl-year" data-vi-text={event.year} data-en-text={event.yearEn ?? event.year}>{event.year}</div>
                 <div class="tl-card-copy">
                   <h3 data-vi-text={event.vi.t} data-en-text={event.en.t}>{event.vi.t}</h3>
                   <p data-vi-text={event.vi.d} data-en-text={event.en.d}>{event.vi.d}</p>

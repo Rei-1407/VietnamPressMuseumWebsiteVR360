@@ -119,7 +119,7 @@
             "yaw": 0,
             "to": "canh-mq5d4xwk",
             "vi": "Gian Khánh tiết",
-            "en": ""
+            "en": "Ceremonial Hall"
           }
         ]
       },
@@ -137,8 +137,8 @@
           {
             "pitch": -6,
             "yaw": 0,
-            "vi": "",
-            "en": "",
+            "vi": "Đi tới Báo chí 1865 - 1925",
+            "en": "Go to Press 1865 - 1925",
             "toRoom": "bao-chi-1865-1925"
           }
         ]
@@ -467,7 +467,7 @@
   {
     "card": {
       "vi": "Từ 1975 đến nay",
-      "en": "From 1975 to Now"
+      "en": "From 1975 to Present"
     },
     "tag": {
       "vi": "1975 – Nay",
