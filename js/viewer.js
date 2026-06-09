@@ -317,8 +317,7 @@ function ensureModal(){
       <div class="vr-nav" id="vrNext" aria-label="Phòng sau"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 5l7 7-7 7"/></svg></div>
     </div>
     <div class="vr-scenenav" id="vrSceneNav" style="display:none">
-      <button class="vr-sc-prev" id="vrScPrev" title="Cảnh trước" aria-label="Cảnh trước"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <button class="vr-sc-next" id="vrScNext" title="Sang cảnh tiếp" aria-label="Sang cảnh tiếp"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14l12 12 12-12"/><path d="M12 27l12 12 12-12"/></svg><span id="vrScLabel"></span></button>
+      <button class="vr-sc-next" id="vrScNext" title="Sang cảnh tiếp" aria-label="Sang cảnh tiếp"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 26l12-12 12 12"/><path d="M12 39l12-12 12 12"/></svg><span id="vrScLabel"></span></button>
     </div>
     <div class="vr-exhibit" id="vrExhibit">
       <div class="vr-ex-backdrop" id="vrExBackdrop"></div>
@@ -341,7 +340,6 @@ function ensureModal(){
   m.querySelector('#vrPrev').addEventListener('click', ()=>loadRoom((curRoom + SPACE_COUNT() - 1) % SPACE_COUNT()));
   m.querySelector('#vrNext').addEventListener('click', ()=>loadRoom((curRoom + 1) % SPACE_COUNT()));
   m.querySelector('#vrScNext').addEventListener('click', ()=>goScene(1));
-  m.querySelector('#vrScPrev').addEventListener('click', ()=>goScene(-1));
   m.querySelector('#vrRotate').addEventListener('click', toggleRotate);
   m.querySelector('#vrFs').addEventListener('click', toggleFs);
   m.querySelector('#vrSound').addEventListener('click', toggleSound);
