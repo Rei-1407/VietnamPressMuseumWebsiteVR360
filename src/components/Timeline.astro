@@ -64,9 +64,12 @@ for (const m of TIMELINE) {
     border-radius:9999px; padding:8px 30px; font-size:clamp(18px,1.7vw,23px);
     box-shadow:var(--shadow-pill); }
   .era-name{ font-family:var(--hv); font-weight:800; text-transform:uppercase; letter-spacing:.02em;
-    font-size:clamp(21px,2.3vw,29px); margin-top:18px; line-height:1.1;
+    font-size:clamp(21px,2.3vw,29px); line-height:1.1;
     background:var(--grad-gold-text);
-    -webkit-background-clip:text; background-clip:text; color:transparent; }
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    /* nới vùng nền cho dấu tiếng Việt trên chữ HOA (xem chú thích .text-goldgrad) */
+    padding:.14em .08em .06em;
+    margin:calc(18px - .14em) -.08em -.06em; }
   .era-desc{ font-family:var(--hv); font-style:italic; color:var(--ink2);
     max-width:62ch; margin:12px auto 0; font-size:clamp(15px,1.2vw,17px); line-height:1.6; }
   .ev-row{ display:flex; flex-wrap:wrap; gap:22px; justify-content:center; margin:28px auto 0; }

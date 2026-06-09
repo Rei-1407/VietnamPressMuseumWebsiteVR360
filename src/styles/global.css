@@ -28,10 +28,14 @@ body{ font-family:var(--hv); overflow-x:hidden; }
 ::selection{ background:rgba(230,149,46,.25); }
 
 /* ===== Utility dùng chung giữa các section ===== */
-/* chữ vàng kim gradient */
+/* chữ vàng kim gradient.
+   ⚠️ Chữ gradient = background-clip:text + color:transparent → dấu tiếng Việt
+   trên chữ HOA (Ả Ử Ỳ…) nhô ra NGOÀI vùng nền sẽ thành trong suốt (mất dấu).
+   Fix: nới vùng nền bằng padding, bù lại bằng margin âm (bố cục không đổi). */
 .text-goldgrad{
   background:var(--grad-gold-text);
   -webkit-background-clip:text; background-clip:text; color:transparent;
+  padding:.14em .08em .1em; margin:-.14em -.08em -.1em;
 }
 .gold-rule{ height:1px; background:linear-gradient(90deg,transparent,rgba(230,149,46,.6),transparent); }
 .gold-rule-v{ width:1px; background:linear-gradient(180deg,transparent,rgba(230,149,46,.5),transparent); }
