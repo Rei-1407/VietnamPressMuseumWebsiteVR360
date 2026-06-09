@@ -165,6 +165,7 @@ function generatePano(idx){
 
 /* ---------- trạng thái ---------- */
 let viewer=null, curRoom=0, autoRot=true, hintTimer=null;
+let curScenes=null, curSceneId=null;   // cảnh của phòng hiện tại (cho thanh mũi tên sàn)
 let muted = (()=>{ try{ return localStorage.getItem('vr_muted')==='1'; }catch(e){ return false; } })();
 
 function ensureModal(){
@@ -236,6 +237,25 @@ function ensureModal(){
       background:rgba(8,6,3,.92); color:#F1E8D5; font-family:'EB Garamond',serif; font-style:italic;
       font-size:16px; padding:6px 14px; border-radius:9999px; border:1px solid rgba(230,194,119,.6); pointer-events:none; }
     @keyframes doorp{ 0%{ box-shadow:0 0 0 0 rgba(230,194,119,.55),0 8px 26px rgba(0,0,0,.45);} 70%{ box-shadow:0 0 0 22px rgba(230,194,119,0),0 8px 26px rgba(0,0,0,.45);} 100%{ box-shadow:0 0 0 0 rgba(230,194,119,0),0 8px 26px rgba(0,0,0,.45);} }
+    /* ----- Mũi tên sàn sang cảnh kế (luôn hiện khi phòng có nhiều cảnh) ----- */
+    .vr-scenenav{ position:absolute; left:50%; bottom:108px; transform:translateX(-50%); z-index:7;
+      display:flex; align-items:center; gap:20px; }
+    .vr-sc-prev{ width:44px; height:44px; border-radius:50%; display:grid; place-items:center; cursor:pointer;
+      background:rgba(8,6,3,.5); border:1px solid rgba(230,194,119,.45); color:#E6C277; transition:all .2s; }
+    .vr-sc-prev:hover{ background:rgba(230,194,119,.92); color:#1a140b; }
+    .vr-sc-next{ position:relative; display:grid; place-items:center; cursor:pointer; border:none; background:none; color:#fff; padding:0; }
+    .vr-sc-next svg{ width:72px; height:72px;
+      transform:perspective(160px) rotateX(52deg);
+      filter:drop-shadow(0 8px 10px rgba(0,0,0,.6)); transition:filter .2s;
+      animation:arrowB 1.7s ease-in-out infinite; }
+    .vr-sc-next:hover svg{ filter:drop-shadow(0 12px 18px rgba(0,0,0,.78)) brightness(1.22); }
+    @keyframes arrowB{ 0%,100%{ transform:perspective(160px) rotateX(52deg) translateY(-2px);} 50%{ transform:perspective(160px) rotateX(52deg) translateY(9px);} }
+    .vr-sc-next span{ position:absolute; bottom:116%; left:50%; transform:translateX(-50%); white-space:nowrap;
+      background:rgba(8,6,3,.85); color:#F1E8D5; font-family:'Helvetica',Arial,sans-serif; font-style:italic;
+      font-size:13.5px; padding:5px 13px; border-radius:9999px; border:1px solid rgba(230,194,119,.5);
+      opacity:0; transition:opacity .2s; pointer-events:none; }
+    .vr-sc-next:hover span{ opacity:1; }
+    @media(max-width:640px){ .vr-scenenav{ bottom:118px; } .vr-sc-next svg{ width:60px; height:60px; } }
 
     /* ----- Popup hiện vật (bấm điểm "i") ----- */
     .vr-exhibit{ position:absolute; inset:0; z-index:20; display:none; }
@@ -296,6 +316,10 @@ function ensureModal(){
       <div class="vr-dots" id="vrDots"></div>
       <div class="vr-nav" id="vrNext" aria-label="Phòng sau"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 5l7 7-7 7"/></svg></div>
     </div>
+    <div class="vr-scenenav" id="vrSceneNav" style="display:none">
+      <button class="vr-sc-prev" id="vrScPrev" title="Cảnh trước" aria-label="Cảnh trước"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="vr-sc-next" id="vrScNext" title="Sang cảnh tiếp" aria-label="Sang cảnh tiếp"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14l12 12 12-12"/><path d="M12 27l12 12 12-12"/></svg><span id="vrScLabel"></span></button>
+    </div>
     <div class="vr-exhibit" id="vrExhibit">
       <div class="vr-ex-backdrop" id="vrExBackdrop"></div>
       <div class="vr-ex-card">
@@ -316,6 +340,8 @@ function ensureModal(){
   m.querySelector('#vrClose').addEventListener('click', closeVR);
   m.querySelector('#vrPrev').addEventListener('click', ()=>loadRoom((curRoom + SPACE_COUNT() - 1) % SPACE_COUNT()));
   m.querySelector('#vrNext').addEventListener('click', ()=>loadRoom((curRoom + 1) % SPACE_COUNT()));
+  m.querySelector('#vrScNext').addEventListener('click', ()=>goScene(1));
+  m.querySelector('#vrScPrev').addEventListener('click', ()=>goScene(-1));
   m.querySelector('#vrRotate').addEventListener('click', toggleRotate);
   m.querySelector('#vrFs').addEventListener('click', toggleFs);
   m.querySelector('#vrSound').addEventListener('click', toggleSound);
@@ -388,8 +414,28 @@ function gotoRoom(roomId, sceneId){
   loadRoom(idx, sceneId);
 }
 
+/* chuyển sang cảnh kế / trước trong cùng phòng (thanh mũi tên sàn) */
+function goScene(delta){
+  if(!viewer || !curScenes || curScenes.length<2) return;
+  const ids = curScenes.map(s=>s.id);
+  let i = ids.indexOf(curSceneId); if(i<0) i=0;
+  const target = ids[(i+delta+ids.length)%ids.length];
+  try{ viewer.loadScene(target); }catch(e){}
+}
+function refreshSceneNav(){
+  const nav=document.getElementById('vrSceneNav'); if(!nav) return;
+  if(!curScenes || curScenes.length<2){ nav.style.display='none'; return; }
+  nav.style.display='flex';
+  const i = Math.max(0, curScenes.findIndex(s=>s.id===curSceneId));
+  const next = curScenes[(i+1)%curScenes.length];
+  const lbl = document.getElementById('vrScLabel');
+  if(lbl){ let t = next && next.label ? (next.label[L()]||'').trim() : '';
+    if(/^(cảnh|scene)\s*\d*$|^cảnh mới$|^new scene$/i.test(t)) t='';
+    lbl.textContent = t || (L()==='vi'?'Cảnh tiếp theo':'Next scene'); }
+}
+
 function loadRoom(idx, initScene){
-  curRoom=idx;
+  curRoom=idx; curScenes=null;
   const room=SPACES[idx];
 
   // tiêu đề: name > card > tag
@@ -418,8 +464,14 @@ function loadRoom(idx, initScene){
 
   // ---- (A) phòng nhiều cảnh (ảnh thật) ----
   if(room.scenes){
+    const list = room.scenes, n = list.length;
+    // nhãn góc trên: tên cảnh + "Cảnh j/n" để khách biết phòng có nhiều cảnh
+    const kickOf = (s)=>{ let lbl = s && s.label ? (s.label[L()]||'').trim() : '';
+      if(/^(cảnh|scene)\s*\d*$|^cảnh mới$|^new scene$/i.test(lbl)) lbl='';   // bỏ nhãn chung chung
+      const j = list.indexOf(s)+1, cnt = (L()==='vi'?'Cảnh ':'Scene ')+j+'/'+n;
+      return n>1 ? (lbl ? lbl+' · '+cnt : cnt) : lbl; };
     const scenes={};
-    room.scenes.forEach(s=>{
+    list.forEach((s)=>{
       scenes[s.id] = {
         type:'equirectangular', panorama:s.photo, yaw:s.yaw??0, pitch:s.pitch??-2, hfov:100,
         hotSpots:[
@@ -428,18 +480,16 @@ function loadRoom(idx, initScene){
         ]
       };
     });
-    const first = (initScene && room.scenes.some(s=>s.id===initScene)) ? initScene : room.scenes[0].id;
+    const first = (initScene && list.some(s=>s.id===initScene)) ? initScene : list[0].id;
     viewer = window.pannellum.viewer('pano', {
       default:{ firstScene:first, autoLoad:true, showControls:false,
         hfov:100, minHfov:50, maxHfov:120, sceneFadeDuration:800, autoRotate: autoRot? -2 : 0 },
       scenes
     });
-    viewer.on('scenechange', (id)=>{
-      const s = room.scenes.find(x=>x.id===id);
-      setKick(s && s.label ? s.label[L()] : '');
-    });
-    const fs = room.scenes.find(s=>s.id===first) || room.scenes[0];
-    setKick(fs && fs.label ? fs.label[L()] : '');
+    curScenes = (n>1) ? list : null; curSceneId = first;   // bật thanh mũi tên sàn nếu >1 cảnh
+    viewer.on('scenechange', (id)=>{ curSceneId=id; setKick(kickOf(list.find(x=>x.id===id))); refreshSceneNav(); });
+    setKick(kickOf(list.find(s=>s.id===first) || list[0]));
+    refreshSceneNav();
     return;
   }
 
@@ -461,6 +511,7 @@ function loadRoom(idx, initScene){
     hotSpots: hotSpots.map(infoSpot),
     sceneFadeDuration:600,
   });
+  refreshSceneNav();
 }
 
 function showHint(){
