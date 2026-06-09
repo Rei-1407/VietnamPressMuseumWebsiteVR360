@@ -133,7 +133,15 @@
           "en": "New scene"
         },
         "hotspots": [],
-        "links": []
+        "links": [
+          {
+            "pitch": -6,
+            "yaw": 0,
+            "to": "canh-mq5d4xwk",
+            "vi": "",
+            "en": ""
+          }
+        ]
       }
     ],
     "floor": 1
