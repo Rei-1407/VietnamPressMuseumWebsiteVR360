@@ -1,0 +1,140 @@
+---
+/* =========================================================
+   admin.astro — Trang quản trị Không gian VR 360° (/admin/)
+   Trang độc lập (không dùng Base layout): login nhẹ + editor.
+   Logic nằm ở src/scripts/admin.js (GitHub API).
+   ========================================================= */
+import '../styles/global.css'; // Tailwind utilities (editor render class lúc chạy)
+---
+
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quản trị · VR 360° Bảo tàng Báo chí</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <!-- Pannellum: để bấm chọn vị trí trên ảnh 360° -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" is:inline />
+  <script defer src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js" is:inline></script>
+</head>
+<body class="bg-stone-100 text-stone-800 min-h-screen">
+
+  <!-- ===================== ĐĂNG NHẬP ===================== -->
+  <div id="login" class="min-h-screen grid place-items-center p-6">
+    <form id="loginForm" class="card w-full max-w-sm p-7 shadow-lg">
+      <div class="flex items-center gap-2 mb-1">
+        <svg viewBox="0 0 64 64" width="30" height="30"><g fill="none" stroke="#C2902F" stroke-width="2.4" stroke-linecap="round"><path d="M32 40c-7-2-13-9-13-17 6 1 11 6 13 13 2-7 7-12 13-13 0 8-6 15-13 17Z"/><path d="M32 41v8"/></g></svg>
+        <h1 class="text-lg font-bold text-amber-700">Trang quản trị VR 360°</h1>
+      </div>
+      <p class="text-sm text-stone-500 mb-5">Bảo tàng Báo chí Việt Nam</p>
+
+      <label class="lbl" for="u">Tài khoản</label>
+      <input id="u" class="inp mt-1 mb-3" autocomplete="username" />
+      <label class="lbl" for="p">Mật khẩu</label>
+      <input id="p" type="password" class="inp mt-1" autocomplete="current-password" />
+      <p id="loginErr" class="text-red-600 text-sm mt-2 hidden">Sai tài khoản hoặc mật khẩu.</p>
+
+      <button class="btn btn-gold w-full mt-5">Đăng nhập</button>
+      <p class="text-[11px] leading-relaxed text-stone-400 mt-4">
+        Lưu ý bảo mật: đây là lớp bảo vệ nhẹ phía trình duyệt. Khả năng chỉnh sửa thật
+        sự được kiểm soát bằng GitHub token (chỉ lưu trên máy này).
+      </p>
+    </form>
+  </div>
+
+  <!-- ===================== ỨNG DỤNG ===================== -->
+  <div id="app" class="hidden max-w-[1080px] mx-auto p-4 md:p-6">
+
+    <header class="flex flex-wrap items-center justify-between gap-3 mb-5">
+      <div>
+        <h1 class="text-xl font-bold text-amber-700">Quản trị Không gian VR 360°</h1>
+        <p class="text-sm text-stone-500">Tải lên · xoá · sửa ảnh và thông tin từng không gian</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <span id="tokenBadge" class="pill bg-stone-200 text-stone-600">Chưa có token</span>
+        <button id="btnToken" class="btn btn-ghost">Token</button>
+        <button id="btnLogout" class="btn btn-ghost">Đăng xuất</button>
+      </div>
+    </header>
+
+    <!-- Bảng nhập token -->
+    <div id="tokenPanel" class="card p-5 mb-5 hidden">
+      <h2 class="font-bold text-stone-700 mb-1">GitHub Token (để lưu thay đổi)</h2>
+      <p class="text-sm text-stone-500 mb-3">
+        Token chỉ được lưu trong trình duyệt này (localStorage), không gửi đi đâu khác ngoài GitHub.
+      </p>
+      <details class="mb-3 text-sm">
+        <summary class="text-amber-700 font-medium">Cách tạo token (bấm để xem)</summary>
+        <ol class="list-decimal ml-5 mt-2 space-y-1 text-stone-600">
+          <li>Vào <a class="text-amber-700 underline" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> (đăng nhập tài khoản sở hữu repo).</li>
+          <li>Mục <b>Repository access</b> → chọn <b>Only select repositories</b> → chọn <b>VietnamPressMuseumWebsiteVR360</b>.</li>
+          <li>Mục <b>Permissions → Repository permissions → Contents</b> → chọn <b>Read and write</b>.</li>
+          <li>Bấm <b>Generate token</b>, sao chép chuỗi bắt đầu bằng <code>github_pat_…</code> và dán vào ô dưới.</li>
+        </ol>
+      </details>
+      <div class="flex gap-2">
+        <input id="tokenInput" class="inp" placeholder="github_pat_… hoặc ghp_…" autocomplete="off" />
+        <button id="btnSaveToken" class="btn btn-gold whitespace-nowrap">Lưu token</button>
+        <button id="btnClearToken" class="btn btn-danger whitespace-nowrap">Xoá</button>
+      </div>
+      <p id="tokenMsg" class="text-sm mt-2"></p>
+    </div>
+
+    <!-- Thanh công cụ -->
+    <div class="flex flex-wrap items-center gap-2 mb-4">
+      <button id="btnAdd" class="btn btn-ghost">➕ Thêm không gian</button>
+      <button id="btnReload" class="btn btn-ghost">↻ Tải lại từ máy chủ</button>
+      <button id="btnSave" class="btn btn-gold">💾 Lưu thay đổi</button>
+      <span id="dirty" class="pill bg-amber-100 text-amber-700 hidden">● Có thay đổi chưa lưu</span>
+      <span id="status" class="text-sm text-stone-500"></span>
+    </div>
+
+    <div id="spaces" class="space-y-4"></div>
+
+    <p class="text-xs text-stone-400 mt-8 leading-relaxed">
+      Sau khi “Lưu thay đổi”, GitHub tự build lại web (~1–2 phút). Ảnh tải lên được lưu vào
+      <code>assets/panos/</code>; danh sách không gian lưu vào <code>data/spaces.json</code>.
+    </p>
+  </div>
+
+  <input type="file" id="filePicker" accept="image/jpeg,image/png,image/webp" class="hidden" />
+
+  <!-- ===== Bộ chọn vị trí trên ảnh 360° (bấm để đặt mũi tên / điểm) ===== -->
+  <div id="pickModal" class="hidden fixed inset-0 z-50 bg-black/70">
+    <div class="absolute inset-2 md:inset-8 rounded-2xl overflow-hidden bg-black flex flex-col shadow-2xl">
+      <div class="flex items-center justify-between gap-3 px-4 py-2.5 bg-stone-900 text-stone-100">
+        <span class="text-sm">📍 <b>Bấm vào vị trí</b> bạn muốn đặt trên ảnh · <b>kéo</b> để xoay nhìn quanh</span>
+        <button id="pickClose" class="btn btn-ghost py-1">Xong / Đóng</button>
+      </div>
+      <div id="pickPano" class="flex-1 min-h-0 cursor-crosshair"></div>
+    </div>
+  </div>
+
+  <style is:global>
+    /* is:global vì editor render DOM bằng JS lúc chạy (các class .inp/.btn/.card...) */
+    body{ font-family:system-ui,'Segoe UI',sans-serif; }
+    .inp{ width:100%; border:1px solid #e7e0cf; border-radius:8px; padding:8px 10px; font-size:14px; background:#fff; }
+    .inp:focus{ outline:2px solid #e6c277; border-color:#e6c277; }
+    .btn{ border-radius:8px; padding:8px 14px; font-weight:600; font-size:14px; transition:.15s; cursor:pointer; }
+    .btn-gold{ background:linear-gradient(180deg,#E8C77E,#C2902F); color:#2c2113; }
+    .btn-gold:hover{ filter:brightness(1.05); }
+    .btn-ghost{ background:#fff; border:1px solid #e7e0cf; color:#5a4a30; }
+    .btn-ghost:hover{ background:#faf6ec; }
+    .btn-danger{ background:#fee2e2; color:#b91c1c; border:1px solid #fecaca; }
+    .btn-danger:hover{ background:#fecaca; }
+    .card{ background:#fff; border:1px solid #ece4d2; border-radius:14px; }
+    .lbl{ font-size:12px; font-weight:600; color:#7c6a45; text-transform:uppercase; letter-spacing:.04em; }
+    .pill{ font-size:11px; font-weight:700; padding:2px 9px; border-radius:999px; }
+    details>summary{ cursor:pointer; list-style:none; }
+    details>summary::-webkit-details-marker{ display:none; }
+  </style>
+
+  <script>
+    import '../scripts/admin.js';
+  </script>
+</body>
+</html>
