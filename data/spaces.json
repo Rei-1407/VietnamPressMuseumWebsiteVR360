@@ -110,15 +110,22 @@
           {
             "pitch": -6,
             "yaw": -50,
-            "to": "sanh-ngoai",
+            "to": "canh-mq5d4xwk",
             "vi": "Quay ra trước sảnh",
             "en": "Back to the forecourt"
+          },
+          {
+            "pitch": -6,
+            "yaw": 0,
+            "to": "canh-mq5d4xwk",
+            "vi": "Gian Khánh tiết",
+            "en": ""
           }
         ]
       },
       {
         "id": "canh-mq5d4xwk",
-        "photo": "",
+        "photo": "assets/panos/gian-khanh-tiet-1780968502218.jpg",
         "yaw": 0,
         "pitch": -2,
         "label": {
