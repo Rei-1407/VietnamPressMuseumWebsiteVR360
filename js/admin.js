@@ -281,14 +281,16 @@ function renderGenerated(sp, i){
 /* ----- editor điểm "i": toạ độ + tiêu đề + ẢNH + MÔ TẢ (popup khi bấm) ----- */
 function hotspotsEditor(list, path){
   const si = path.split('.')[0];
+  const scenePath = path.replace(/\.hotspots$/,'');   // cảnh/phòng chứa điểm (để lấy ảnh cho bộ chọn vị trí)
   const rows = list.map((h,k)=>{
     const hp = `${path}.${k}`;
     const hasImg = !!h.img;
     return `
     <div class="rounded-lg border border-stone-200 bg-white/70 p-2.5 space-y-2">
-      <div class="grid grid-cols-[58px_58px_1fr_1fr_auto] gap-2 items-center">
+      <div class="grid grid-cols-[52px_52px_auto_1fr_1fr_auto] gap-2 items-center">
         <input class="inp" type="number" step="1" data-path="${hp}.pitch" data-num="1" value="${esc(h.pitch)}" title="pitch (lên/xuống)"/>
         <input class="inp" type="number" step="1" data-path="${hp}.yaw"   data-num="1" value="${esc(h.yaw)}" title="yaw (trái/phải)"/>
+        <button class="btn btn-ghost px-2 py-1 whitespace-nowrap" data-act="pick-pos" data-scene="${scenePath}" data-target="${hp}" title="Bấm chọn vị trí ngay trên ảnh 360°">📍 Đặt</button>
         <input class="inp" data-path="${hp}.vi" value="${esc(h.vi)}" placeholder="Tiêu đề (VI)"/>
         <input class="inp" data-path="${hp}.en" value="${esc(h.en)}" placeholder="Title (EN)"/>
         <button class="btn btn-danger px-2 py-1" data-act="del-hotspot" data-path="${path}" data-k="${k}" title="Xoá điểm">✕</button>
@@ -320,6 +322,7 @@ function hotspotsEditor(list, path){
 function linksEditor(list, path, roomIndex){
   const cur = state.spaces[roomIndex] || {};
   const myScenes = cur.scenes || [];
+  const scenePath = path.replace(/\.links$/,'');   // cảnh chứa cửa (để lấy ảnh cho bộ chọn vị trí)
   const rows = list.map((lk,k)=>{
     const lp = `${path}.${k}`;
     const targetVal = lk.toRoom ? ('room:'+lk.toRoom) : ('scene:'+(lk.to || (myScenes[0]?.id||'')));
@@ -338,9 +341,10 @@ function linksEditor(list, path, roomIndex){
       }
     }
     return `<div class="rounded-lg border border-stone-200 bg-white/70 p-2.5 space-y-2">
-      <div class="grid grid-cols-[58px_58px_1fr_auto] gap-2 items-center">
+      <div class="grid grid-cols-[52px_52px_auto_1fr_auto] gap-2 items-center">
         <input class="inp" type="number" step="1" data-path="${lp}.pitch" data-num="1" value="${esc(lk.pitch)}" title="pitch (lên/xuống)"/>
         <input class="inp" type="number" step="1" data-path="${lp}.yaw" data-num="1" value="${esc(lk.yaw)}" title="yaw (trái/phải)"/>
+        <button class="btn btn-ghost px-2 py-1 whitespace-nowrap" data-act="pick-pos" data-scene="${scenePath}" data-target="${lp}" title="Bấm chọn vị trí ngay trên ảnh 360°">📍 Đặt</button>
         <select class="inp" data-linktarget data-linkpath="${lp}" title="Đi tới đâu">
           <optgroup label="Trong phòng này">${sceneOpts}</optgroup>
           <optgroup label="Sang phòng khác">${roomOpts}</optgroup>
@@ -415,6 +419,7 @@ $('#spaces').addEventListener('click', async (e)=>{
     else if(act==='hs-img-del'){ markOldForDelete(btn.dataset.img); delByPath(state.spaces, path); markDirty(true); render(); }
     else if(act==='add-link'){ const arr=getByPath(state.spaces,path); const firstId=(state.spaces[+path.split('.')[0]].scenes||[{}])[0]?.id||''; arr.push({pitch:-6,yaw:0,to:firstId,vi:'',en:''}); markDirty(true); render(); }
     else if(act==='del-link'){ getByPath(state.spaces,path).splice(k,1); markDirty(true); render(); }
+    else if(act==='pick-pos'){ openPicker(btn.dataset.scene, btn.dataset.target); }
     else if(act==='add-exhibit'){ state.spaces[i].exhibits = state.spaces[i].exhibits||[]; state.spaces[i].exhibits.push({vi:'',en:''}); markDirty(true); render(); }
     else if(act==='del-exhibit'){ state.spaces[i].exhibits.splice(k,1); markDirty(true); render(); }
     else if(act==='add-scene'){
@@ -514,6 +519,41 @@ $('#filePicker').addEventListener('change', async (e)=>{
     markDirty(true); render(); setStatus('Đã tải ảnh 360° ✓ — nhớ bấm “Lưu thay đổi”.','ok');
   }catch(err){ setStatus(err.message,'err'); }
 });
+
+/* ===== Bộ chọn vị trí trên ảnh 360° (bấm thẳng vào ảnh để đặt pitch/yaw) ===== */
+let pickViewer=null, pickTarget=null;
+function openPicker(scenePath, targetPath){
+  const photo = scenePath ? getByPath(state.spaces, scenePath+'.photo') : '';
+  if(!photo){ alert('Cảnh/phòng này chưa có ảnh 360°. Hãy tải ảnh 360° trước rồi mới đặt vị trí.'); return; }
+  if(!window.pannellum){ alert('Trình xem ảnh đang tải, thử lại sau 1–2 giây.'); return; }
+  pickTarget = targetPath;
+  $('#pickModal').classList.remove('hidden');
+  if(pickViewer){ try{ pickViewer.destroy(); }catch(e){} pickViewer=null; }
+  $('#pickPano').innerHTML='';
+  const cur = getByPath(state.spaces, targetPath) || {};
+  pickViewer = window.pannellum.viewer('pickPano', {
+    type:'equirectangular', panorama: previewUrl(photo), autoLoad:true, showControls:false,
+    hfov:110, minHfov:50, maxHfov:120, draggable:true, yaw:+cur.yaw||0, pitch:+cur.pitch||0,
+  });
+  const cont = $('#pickPano');
+  cont.removeEventListener('click', onPickClick);
+  cont.addEventListener('click', onPickClick);
+}
+function onPickClick(e){
+  if(!pickViewer || !pickTarget) return;
+  let c; try{ c = pickViewer.mouseEventToCoords(e); }catch(err){ return; }
+  if(!c) return;
+  setByPath(state.spaces, pickTarget+'.pitch', Math.round(c[0]));
+  setByPath(state.spaces, pickTarget+'.yaw',   Math.round(c[1]));
+  markDirty(true); closePicker(); render();
+  setStatus('Đã đặt vị trí ✓ — nhớ bấm “Lưu thay đổi”.','ok');
+}
+function closePicker(){
+  $('#pickModal').classList.add('hidden');
+  if(pickViewer){ try{ pickViewer.destroy(); }catch(e){} pickViewer=null; }
+  pickTarget=null;
+}
+$('#pickClose').addEventListener('click', closePicker);
 
 /* ---------- nút toolbar ---------- */
 $('#btnAdd').addEventListener('click', ()=>{ pending={kind:'new', i:null}; pickFile(); });

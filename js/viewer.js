@@ -423,6 +423,9 @@ function goScene(delta){
 function refreshSceneNav(){
   const nav=document.getElementById('vrSceneNav'); if(!nav) return;
   if(!curScenes || curScenes.length<2){ nav.style.display='none'; return; }
+  // ƯU TIÊN cửa do admin đặt: cảnh hiện tại đã có "cửa sang cảnh khác" → ẩn nút trắng dự phòng
+  const cur = curScenes.find(s=>s.id===curSceneId) || curScenes[0];
+  if((cur.links||[]).some(l=>l.to && !l.toRoom)){ nav.style.display='none'; return; }
   nav.style.display='flex';
   const i = Math.max(0, curScenes.findIndex(s=>s.id===curSceneId));
   const next = curScenes[(i+1)%curScenes.length];

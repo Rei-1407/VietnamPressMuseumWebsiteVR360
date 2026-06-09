@@ -9,6 +9,9 @@
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
 <link rel="stylesheet" href="../css/tailwind.css" />
+<!-- Pannellum: để bấm chọn vị trí trên ảnh 360° -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
 <style>
   body{ font-family:system-ui,'Segoe UI',sans-serif; }
   .inp{ width:100%; border:1px solid #e7e0cf; border-radius:8px; padding:8px 10px; font-size:14px; background:#fff; }
@@ -108,6 +111,18 @@
 </div>
 
 <input type="file" id="filePicker" accept="image/jpeg,image/png,image/webp" class="hidden" />
+
+<!-- ===== Bộ chọn vị trí trên ảnh 360° (bấm để đặt mũi tên / điểm) ===== -->
+<div id="pickModal" class="hidden fixed inset-0 z-50 bg-black/70">
+  <div class="absolute inset-2 md:inset-8 rounded-2xl overflow-hidden bg-black flex flex-col shadow-2xl">
+    <div class="flex items-center justify-between gap-3 px-4 py-2.5 bg-stone-900 text-stone-100">
+      <span class="text-sm">📍 <b>Bấm vào vị trí</b> bạn muốn đặt trên ảnh · <b>kéo</b> để xoay nhìn quanh</span>
+      <button id="pickClose" class="btn btn-ghost py-1">Xong / Đóng</button>
+    </div>
+    <div id="pickPano" class="flex-1 min-h-0 cursor-crosshair"></div>
+  </div>
+</div>
+
 <script src="../js/admin.js"></script>
 </body>
 </html>
