@@ -5,7 +5,7 @@ const vi = UI.vi, en = UI.en;
 ---
 
 <header class="site-header fixed top-0 inset-x-0 z-50">
-  <div class="max-w-[1280px] mx-auto px-5 md:px-8 h-[72px] flex items-center justify-between gap-4">
+  <div class="header-inner max-w-[1280px] mx-auto px-5 md:px-8 flex items-center justify-between gap-4">
     <!-- Logo hoa sen (lockup Figma: ô 130×130 @1920 treo từ mép trên, chữ Arroem bên dưới) -->
     <a href="#home" class="logo-lockup shrink-0" aria-label="Bảo tàng Báo chí Việt Nam">
       <img src="/assets/figma/logo-lotus.png" alt="Bảo tàng Báo chí Việt Nam" />
@@ -41,12 +41,19 @@ const vi = UI.vi, en = UI.en;
   /* ===== Header ===== */
   .site-header{ transition: background .4s, box-shadow .4s, border-color .4s; }
 
-  /* ===== Logo lockup (Figma: 130×130 @1920, x=78 y=6; chữ ở 73.6% chiều cao, cỡ 6.62% cạnh ô) ===== */
+  /* ===== Chiều cao header: Figma là vùng ~136px @1920, MỌI THỨ canh giữa trục dọc
+     (tâm logo ≈ tâm nav ≈ tâm nút VR). Mobile & khi cuộn: thanh gọn 72px. ===== */
+  .header-inner{ height:72px; transition:height .35s ease; }
+  @media(min-width:1024px){
+    .header-inner{ height:clamp(104px, 7.083vw, 136px); }
+    .site-header.scrolled .header-inner{ height:72px; }
+  }
+
+  /* ===== Logo lockup (Figma: 130×130 @1920; chữ ở 73.6% chiều cao, cỡ 6.62% cạnh ô) ===== */
   .logo-lockup{
-    position:relative; display:block; align-self:flex-start;
+    position:relative; display:block;
     width:clamp(96px, 6.77vw, 130px); aspect-ratio:1/1;
-    margin-top:6px;
-    transition:width .35s ease, margin-top .35s ease;
+    transition:width .35s ease;
   }
   .logo-lockup img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
   .logo-line{
@@ -56,8 +63,13 @@ const vi = UI.vi, en = UI.en;
     transition:opacity .25s;
   }
   /* cuộn xuống: thu nhỏ lọt thanh 72px, ẩn dòng chữ (Figma không định nghĩa trạng thái này) */
-  .site-header.scrolled .logo-lockup{ width:56px; margin-top:8px; }
+  .site-header.scrolled .logo-lockup{ width:56px; }
   .site-header.scrolled .logo-line{ opacity:0; }
+  /* mobile: logo gọn trong thanh 72px, chữ quá nhỏ nên ẩn */
+  @media(max-width:1023px){
+    .logo-lockup{ width:60px; }
+    .logo-line{ display:none; }
+  }
   .site-header.scrolled{
     background:rgba(255,255,255,.88);
     backdrop-filter:blur(14px) saturate(140%);
