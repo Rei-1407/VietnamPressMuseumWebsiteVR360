@@ -1,0 +1,56 @@
+---
+/* Footer — nền nâu thương hiệu, 3 cột: logo+tagline / điều hướng / liên hệ */
+import { UI, CONTACT } from '../content/site';
+const vi = UI.vi, en = UI.en;
+---
+
+<footer id="footer" class="pt-16 pb-9 bg-brown text-ft-bright">
+  <div class="max-w-[1180px] mx-auto px-5 md:px-8">
+    <div class="grid md:grid-cols-[1.5fr_1fr_1.35fr] gap-10 md:gap-12">
+      <!-- Cột 1: logo + tagline + bản quyền -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img class="ft-lotus" src="/assets/figma/logo.png" alt="" aria-hidden="true" />
+          <div class="leading-tight">
+            <div class="font-logo text-[17px] leading-none tracking-wide text-ft-bright"
+                 data-vi-text={vi.ftLogoTop} data-en-text={en.ftLogoTop}>{vi.ftLogoTop}</div>
+            <div class="text-[10px] tracking-[.3em] uppercase text-ft-accent"
+                 data-vi-text={vi.ftLogoSub} data-en-text={en.ftLogoSub}>{vi.ftLogoSub}</div>
+          </div>
+        </div>
+        <p class="italic text-[15px] leading-relaxed max-w-[34ch] text-ft-text">“<span
+           data-vi-text={vi.ftTagline} data-en-text={en.ftTagline}>{vi.ftTagline}</span>”</p>
+        <p class="text-[12px] mt-4 text-ft-dim"
+           data-vi-text={vi.ftRights} data-en-text={en.ftRights}>{vi.ftRights}</p>
+      </div>
+
+      <!-- Cột 2: điều hướng -->
+      <div>
+        <div class="ft-label mb-4" data-vi-text={vi.ftNav} data-en-text={en.ftNav}>{vi.ftNav}</div>
+        <ul class="space-y-2.5 text-[15px] text-ft-text">
+          <li><a href="#home" class="hover:text-white transition" data-vi-text={vi.nHome} data-en-text={en.nHome}>{vi.nHome}</a></li>
+          <li><a href="#lich-su" class="hover:text-white transition" data-vi-text={vi.nHist} data-en-text={en.nHist}>{vi.nHist}</a></li>
+          <li><a href="#ban-do" class="hover:text-white transition" data-vi-text={vi.nMap} data-en-text={en.nMap}>{vi.nMap}</a></li>
+          <li><a href="#footer" class="hover:text-white transition" data-vi-text={vi.nContact} data-en-text={en.nContact}>{vi.nContact}</a></li>
+        </ul>
+      </div>
+
+      <!-- Cột 3: liên hệ -->
+      <div class="space-y-3 text-[15px] text-ft-text">
+        <p><span class="ft-label"><span data-vi-text={vi.ftPhoneLabel} data-en-text={en.ftPhoneLabel}>{vi.ftPhoneLabel}</span>:</span>
+          <a href={CONTACT.phoneHref} class="hover:text-white transition">{CONTACT.phone}</a></p>
+        <p class="leading-relaxed"><span class="ft-label"><span data-vi-text={vi.ftAddrLabel} data-en-text={en.ftAddrLabel}>{vi.ftAddrLabel}</span>:</span>
+          <span data-vi-text={vi.ftAddr} data-en-text={en.ftAddr}>{vi.ftAddr}</span></p>
+        <p><span class="ft-label"><span data-vi-text={vi.ftWebLabel} data-en-text={en.ftWebLabel}>{vi.ftWebLabel}</span>:</span>
+          <a href={CONTACT.websiteHref} target="_blank" rel="noopener" class="hover:text-white transition">{CONTACT.website}</a></p>
+        <p class="italic text-[13px] pt-2 text-ft-dim">Bản quyền sản phẩm thuộc về <b class="not-italic text-ft-accent">VIRA Agency</b></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style is:global>
+  /* ===== Footer ===== */
+  .ft-label{ color:var(--ft-accent); font-weight:600; }
+  .ft-lotus{ width:54px; height:54px; object-fit:contain; filter:brightness(0) invert(1); opacity:.92; }
+</style>

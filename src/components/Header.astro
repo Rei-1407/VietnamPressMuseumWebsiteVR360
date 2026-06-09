@@ -1,0 +1,94 @@
+---
+/* Header — logo + nav + toggle ngôn ngữ + nút VR (fixed, blur khi cuộn) */
+import { UI } from '../content/site';
+const vi = UI.vi, en = UI.en;
+---
+
+<header class="site-header fixed top-0 inset-x-0 z-50">
+  <div class="max-w-[1280px] mx-auto px-5 md:px-8 h-[72px] flex items-center justify-between gap-4">
+    <!-- Logo -->
+    <a href="#home" class="flex items-center gap-3 shrink-0">
+      <img src="/assets/figma/logo.png" alt="Bảo tàng Báo chí Việt Nam" width="46" height="46"
+           class="w-11 h-11 object-contain shrink-0" />
+      <div class="leading-tight">
+        <div class="font-logo text-[17px] leading-none tracking-wide text-brown"
+             data-vi-text={vi.logoTop} data-en-text={en.logoTop}>{vi.logoTop}</div>
+        <div class="text-[9px] tracking-[.28em] uppercase text-orange mt-0.5"
+             data-vi-text={vi.logoSub} data-en-text={en.logoSub}>{vi.logoSub}</div>
+      </div>
+    </a>
+
+    <!-- Nav -->
+    <nav class="hidden md:flex items-center gap-7 text-[15px]">
+      <a href="#home" class="navlink" data-nav data-vi-text={vi.nHome} data-en-text={en.nHome}>{vi.nHome}</a>
+      <span class="gold-rule-v h-4"></span>
+      <a href="#lich-su" class="navlink" data-nav data-vi-text={vi.nHist} data-en-text={en.nHist}>{vi.nHist}</a>
+      <span class="gold-rule-v h-4"></span>
+      <a href="#ban-do" class="navlink" data-nav data-vi-text={vi.nMap} data-en-text={en.nMap}>{vi.nMap}</a>
+      <span class="gold-rule-v h-4"></span>
+      <a href="#footer" class="navlink" data-nav data-vi-text={vi.nContact} data-en-text={en.nContact}>{vi.nContact}</a>
+    </nav>
+
+    <!-- Right: toggle ngôn ngữ + nút VR -->
+    <div class="flex items-center gap-3">
+      <div class="lang-toggle" role="tablist" aria-label="Language">
+        <button type="button" data-set-lang="vi" class="active">VI</button>
+        <button type="button" data-set-lang="en">EN</button>
+      </div>
+      <a href="#ban-do" class="btn-vr hidden sm:inline-flex items-center gap-2 pl-3.5 pr-5 py-2 text-sm">
+        <img src="/assets/figma/ic-atom-white.svg" alt="" aria-hidden="true" class="w-[18px] h-[18px]" />
+        <span data-vi-text={vi.cta} data-en-text={en.cta}>{vi.cta}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<style is:global>
+  /* ===== Header ===== */
+  .site-header{ transition: background .4s, box-shadow .4s, border-color .4s; }
+  .site-header.scrolled{
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(14px) saturate(140%);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);
+    box-shadow:0 1px 0 rgba(230,149,46,.25), 0 12px 30px -22px rgba(58,36,8,.5);
+  }
+  .navlink{ position:relative; color:var(--ink2); font-weight:500; transition:color .25s; }
+  .navlink:hover{ color:var(--orangedk); }
+  .navlink::after{
+    content:""; position:absolute; left:0; bottom:-6px; height:1.5px; width:0;
+    background:var(--grad-orange-pill); transition:width .3s;
+  }
+  .navlink:hover::after,.navlink.active::after{ width:100%; }
+
+  .lang-toggle{ display:inline-flex; border:1px solid rgba(230,149,46,.55); border-radius:9999px; padding:2px; }
+  .lang-toggle button{ padding:5px 12px; font-size:11px; font-weight:700; letter-spacing:.1em; color:#b08a4f; border-radius:9999px; transition:all .25s; }
+  .lang-toggle button.active{ background:var(--grad-orange-pill); color:#fff; box-shadow:0 3px 8px -2px rgba(185,110,20,.5); }
+
+  /* nút VR vàng gradient (header) */
+  .btn-vr{
+    background:var(--grad-gold-btn);
+    color:#fff; font-weight:600; border-radius:9999px;
+    box-shadow:0 10px 24px -10px rgba(185,110,20,.7), inset 0 1px 0 rgba(255,255,255,.5);
+    transition:transform .25s, box-shadow .25s, filter .25s;
+  }
+  .btn-vr:hover{ transform:translateY(-2px); box-shadow:0 16px 30px -10px rgba(185,110,20,.85); filter:brightness(1.04); }
+</style>
+
+<script>
+  /* trạng thái header khi cuộn + đánh dấu mục đang xem */
+  const header = document.querySelector('.site-header')!;
+  function onScroll() {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+    const secs = ['home', 'lich-su', 'ban-do', 'footer'];
+    let cur = 'home';
+    for (const id of secs) {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= 140) cur = id;
+    }
+    document.querySelectorAll('[data-nav]').forEach((a) => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>

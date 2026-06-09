@@ -1,14 +1,20 @@
 ---
-// Placeholder Pha 0 — sẽ thay bằng bản ghép component ở Pha 2
+/* Trang chính — ghép các section. Sửa giao diện ở từng component,
+   sửa CHỮ ở src/content/site.ts, sửa MÀU ở src/styles/tokens.css. */
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Timeline from '../components/Timeline.astro';
+import HeritageMap from '../components/HeritageMap.astro';
+import Footer from '../components/Footer.astro';
+import VRViewer from '../components/VRViewer.astro';
 ---
 
-<!doctype html>
-<html lang="vi">
-  <head>
-    <meta charset="utf-8" />
-    <title>Bảo tàng Báo chí Việt Nam · VR 360°</title>
-  </head>
-  <body>
-    <h1>Astro scaffold OK</h1>
-  </body>
-</html>
+<Base>
+  <Header />
+  <Hero />
+  <Timeline />
+  <HeritageMap />
+  <Footer />
+  <VRViewer />
+</Base>

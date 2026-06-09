@@ -1,0 +1,89 @@
+---
+/* Timeline — "Dấu Ấn Lịch Sử Làng Báo": mốc giai đoạn (era) + thẻ sự kiện (event).
+   Dữ liệu: TIMELINE trong src/content/site.ts — render tĩnh lúc build,
+   chữ song ngữ đổi tại chỗ qua data-vi-text/data-en-text. */
+import { UI, TIMELINE, type TimelineItem } from '../content/site';
+const vi = UI.vi, en = UI.en;
+
+// gom mỗi mốc sự kiện vào dưới mốc GIAI ĐOẠN (era) đứng ngay trước nó
+interface Block { era: TimelineItem; events: TimelineItem[] }
+const blocks: Block[] = [];
+for (const m of TIMELINE) {
+  if (m.kind === 'era') blocks.push({ era: m, events: [] });
+  else if (blocks.length) blocks[blocks.length - 1].events.push(m);
+}
+---
+
+<section id="lich-su" class="relative py-20 md:py-28">
+  <div class="max-w-[1100px] mx-auto px-5 md:px-8">
+    <div class="text-center mb-14 md:mb-16 reveal">
+      <div class="text-goldgrad font-extrabold uppercase tracking-[.2em] text-lg md:text-2xl mb-1"
+           data-vi-text={vi.histKicker} data-en-text={en.histKicker}>{vi.histKicker}</div>
+      <h2 class="font-display font-extrabold uppercase text-goldgrad leading-[1.04] text-[clamp(30px,5.4vw,62px)]"
+          data-vi-text={vi.histTitle} data-en-text={en.histTitle}>{vi.histTitle}</h2>
+      <p class="italic text-ink2 text-base md:text-lg mt-3 max-w-[54ch] mx-auto"
+         data-vi-text={vi.histSub} data-en-text={en.histSub}>{vi.histSub}</p>
+    </div>
+
+    <div class="tl-wrap">
+      <div class="tl-line"></div>
+      {blocks.map((b) => (
+        <div class="tl-block">
+          <div class="tl-era reveal">
+            <span class="era-pill">{b.era.year}</span>
+            <div class="era-name" data-vi-text={b.era.vi.t} data-en-text={b.era.en.t}>{b.era.vi.t}</div>
+            <p class="era-desc" data-vi-text={b.era.vi.d} data-en-text={b.era.en.d}>{b.era.vi.d}</p>
+          </div>
+          {b.events.length > 0 && (
+            <div class={`ev-row ${b.events.length === 1 ? 'one' : ''}`}>
+              {b.events.map((ev) => (
+                <div class="ev-card reveal">
+                  <span class="ev-badge">{ev.year}</span>
+                  <h3 data-vi-text={ev.vi.t} data-en-text={ev.en.t}>{ev.vi.t}</h3>
+                  <p data-vi-text={ev.vi.d} data-en-text={ev.en.d}>{ev.vi.d}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  /* ===== Timeline ===== */
+  #lich-su{ background:#fff; }
+  .tl-wrap{ position:relative; max-width:1000px; margin:0 auto; }
+  .tl-line{ position:absolute; top:10px; bottom:10px; left:50%; width:2px; transform:translateX(-1px);
+    background:linear-gradient(180deg,rgba(230,149,46,0),rgba(230,149,46,.32) 5%,rgba(230,149,46,.32) 95%,rgba(230,149,46,0)); z-index:0; }
+  .tl-block{ position:relative; z-index:1; margin-bottom:54px; }
+  .tl-era{ text-align:center; }
+  .era-pill{ display:inline-block; font-family:var(--hv); font-style:italic; font-weight:700;
+    color:var(--brown); background:#fff; border:1px solid rgba(230,149,46,.42);
+    border-radius:9999px; padding:8px 30px; font-size:clamp(18px,1.7vw,23px);
+    box-shadow:var(--shadow-pill); }
+  .era-name{ font-family:var(--hv); font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    font-size:clamp(21px,2.3vw,29px); margin-top:18px; line-height:1.1;
+    background:var(--grad-gold-text);
+    -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .era-desc{ font-family:var(--hv); font-style:italic; color:var(--ink2);
+    max-width:62ch; margin:12px auto 0; font-size:clamp(15px,1.2vw,17px); line-height:1.6; }
+  .ev-row{ display:flex; flex-wrap:wrap; gap:22px; justify-content:center; margin:28px auto 0; }
+  .ev-card{ width:calc((100% - 22px)/2); min-width:240px;
+    background:#fff; border:1.5px solid #F0D4A4; border-radius:16px; padding:20px 24px;
+    box-shadow:var(--shadow-card); text-align:left;
+    transition:transform .4s, box-shadow .4s; }
+  .ev-row.one .ev-card{ width:min(440px,100%); }
+  .ev-card:hover{ transform:translateY(-3px); box-shadow:0 26px 50px -24px rgba(185,110,20,.55); }
+  .ev-badge{ display:inline-block; font-family:var(--hv); font-weight:700; font-size:13px; letter-spacing:.04em;
+    color:#fff; background:var(--grad-orange-badge);
+    border-radius:9999px; padding:4px 15px; margin-bottom:12px; }
+  .ev-card h3{ font-family:var(--hv); font-weight:700; text-transform:uppercase; letter-spacing:.01em;
+    font-size:clamp(16px,1.35vw,19px); color:var(--brown); line-height:1.28; }
+  .ev-card p{ font-family:var(--hv); color:var(--ink2); margin-top:8px; font-size:14.5px; line-height:1.6; }
+  @media(max-width:680px){
+    .tl-line{ left:0; }
+    .ev-row .ev-card{ width:100%; }
+  }
+</style>

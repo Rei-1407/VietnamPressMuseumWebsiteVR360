@@ -1,0 +1,182 @@
+---
+/* Hero — "101" + ngòi bút + headline "Bút Sắc / Lòng Son / Tâm Sáng" + lưới 6 ô icon */
+import { UI } from '../content/site';
+const vi = UI.vi, en = UI.en;
+---
+
+<section id="home" class="relative pt-[72px] min-h-screen flex items-center overflow-hidden">
+  <div class="hero-stage max-w-[1560px] mx-auto w-full px-5 md:px-10 grid lg:grid-cols-[1.22fr_.85fr] gap-6 lg:gap-10 items-center py-6">
+
+    <!-- Trái: số 101 (SVG gốc Figma) + ngòi bút + headline -->
+    <div class="hero-mark">
+      <img src="/assets/figma/101.svg" alt="" aria-hidden="true" class="hero-101" />
+
+      <div class="hero-lockup">
+        <img src="/assets/figma/nib.png" alt="" aria-hidden="true" class="hero-nib" />
+
+        <div class="hero-copy">
+          <h1 class="hero-headline">
+            <span class="hero-word hero-word-top text-goldgrad" data-vi-text={vi.heroW1} data-en-text={en.heroW1}>{vi.heroW1}</span>
+            <span class="hero-word hero-word-main" data-vi-text={vi.heroW2} data-en-text={en.heroW2}>{vi.heroW2}</span>
+            <span class="hero-word hero-word-main" data-vi-text={vi.heroW3} data-en-text={en.heroW3}>{vi.heroW3}</span>
+          </h1>
+          <p class="hero-subline" data-vi-text={vi.heroSub} data-en-text={en.heroSub}>{vi.heroSub}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phải: lưới 2×3 ô icon (gốc Figma) -->
+    <div class="hero-tiles grid grid-cols-2 gap-3 sm:gap-3.5 w-full max-w-[600px] mx-auto lg:mx-0 lg:ml-auto">
+      <div class="hero-tile tile-a aspect-[5/4]"><img src="/assets/figma/ic-camera.svg" alt="" class="w-[36%]" /></div>
+      <div class="hero-tile tile-b aspect-[5/4]"><img src="/assets/figma/ic-news.svg" alt="" class="w-[46%]" /></div>
+      <div class="hero-tile tile-c aspect-[5/4]"><img src="/assets/figma/ic-radio.svg" alt="" class="w-[45%]" /></div>
+      <div class="hero-tile tile-d aspect-[5/4]"><img src="/assets/figma/ic-dome.svg" alt="" class="w-[62%]" /></div>
+      <div class="hero-tile tile-e aspect-[5/4] cursor-pointer" data-scroll-to="lich-su"><img src="/assets/figma/ic-arrow.svg" alt="" class="w-[9%] arrow-bounce" /></div>
+      <div class="hero-tile tile-f aspect-[5/4]"><img src="/assets/figma/ic-handle.svg" alt="" class="w-[63%]" /></div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  /* ===== Hero ===== */
+  .hero-stage{ position:relative; }
+  .hero-mark{
+    position:relative; min-height:clamp(620px,54vw,820px);
+    display:flex; align-items:center;
+  }
+  .hero-101{
+    position:absolute; z-index:0; top:50%; left:46%;
+    width:clamp(760px,116%,1048px); height:auto; max-width:none;
+    transform:translate(-50%,-50%);
+    pointer-events:none; user-select:none;
+  }
+  .hero-lockup{
+    position:relative; z-index:1; display:grid;
+    grid-template-columns:auto minmax(0,1fr);
+    align-items:center; gap:clamp(48px,5vw,84px);
+  }
+  .hero-nib{
+    justify-self:start;
+    width:clamp(320px,25vw,420px); height:auto;
+    filter:drop-shadow(0 26px 44px rgba(188,131,31,.28));
+  }
+  .hero-copy{
+    min-width:0; text-align:left;
+    transform:translateY(clamp(88px,6.5vw,112px));
+  }
+  .hero-headline{
+    font-family:var(--hv); font-style:italic; line-height:.96;
+    color:var(--brown); overflow:visible;
+  }
+  .hero-word{
+    display:block; text-transform:uppercase; letter-spacing:0;
+    background:none; -webkit-background-clip:initial; background-clip:initial;
+    color:inherit; overflow:visible;
+  }
+  .hero-word-top{ font-weight:300; font-size:clamp(40px,3.4vw,56px); }
+  .hero-word-main{ color:var(--brown); font-weight:400; font-size:clamp(46px,3.9vw,62px); }
+  .hero-subline{
+    max-width:33ch; margin-top:24px; color:var(--brown);
+    font-size:clamp(18px,1.25vw,20px); line-height:1.25; font-style:italic;
+  }
+
+  /* desktop ≥1024px: dàn theo toạ độ thiết kế 1920 (đối chiếu Figma) */
+  @media(min-width:1024px){
+    #home{ align-items:flex-start; }
+    .hero-stage{
+      --hero-design-w:min(100vw,167.28svh);
+      --hero-x:calc((100vw - var(--hero-design-w)) / 2);
+      width:100vw; max-width:none;
+      height:calc(min(59.78vw,100svh) - 72px);
+      margin:0 auto; padding:0; display:block;
+    }
+    .hero-mark{
+      position:absolute; inset:0; min-height:0; display:block; overflow:visible;
+    }
+    .hero-101{
+      top:calc(min(8.05vw,13.46svh) - 72px);
+      left:calc(var(--hero-x) + max(-1.14vw,-1.90svh));
+      width:min(54.62vw,91.37svh);
+      max-width:1048.69px; transform:none;
+    }
+    .hero-lockup{ position:absolute; inset:0; display:block; z-index:1; }
+    .hero-nib{
+      position:absolute;
+      left:calc(var(--hero-x) + min(2.38vw,3.99svh));
+      top:calc(min(8.16vw,13.65svh) - 72px);
+      width:min(25.29vw,42.31svh);
+      max-width:485.61px;
+    }
+    .hero-copy{
+      position:absolute;
+      left:calc(var(--hero-x) + min(31.56vw,52.80svh));
+      top:calc(min(34.90vw,58.38svh) - 72px);
+      width:clamp(300px,min(17.81vw,29.80svh),342px);
+      transform:none; text-align:left; overflow:visible;
+    }
+    .hero-headline{ line-height:clamp(63px,min(4.06vw,6.80svh),78px); }
+    .hero-word-top,
+    .hero-word-main{
+      font-size:clamp(52px,min(3.36vw,5.62svh),64.5px);
+      line-height:clamp(63px,min(4.06vw,6.80svh),78px); font-weight:400;
+    }
+    .hero-word-top{ font-weight:300; }
+    .hero-subline{
+      width:clamp(300px,min(17.81vw,29.80svh),342px);
+      margin-top:clamp(18px,min(1.15vw,1.92svh),22px);
+      font-size:clamp(18px,min(1.15vw,1.92svh),22px);
+      line-height:clamp(24px,min(1.50vw,2.51svh),28.8px);
+    }
+    .hero-tiles{
+      position:absolute;
+      left:calc(var(--hero-x) + min(57.98vw,96.99svh));
+      top:calc(min(8.06vw,13.48svh) - 72px);
+      width:min(41.82vw,69.95svh); max-width:803px;
+      height:calc(min(59.78vw,100svh) - min(8.06vw,13.48svh));
+      margin:0; display:grid; grid-template-columns:repeat(2,1fr);
+      grid-template-rows:repeat(3,1fr); gap:0;
+    }
+    .hero-tiles .hero-tile{ aspect-ratio:auto; border-radius:0; box-shadow:none; }
+    .hero-tiles .hero-tile:hover{ transform:none; box-shadow:none; }
+  }
+  @media(max-width:1023px){
+    .hero-mark{ min-height:auto; }
+    .hero-101{ left:50%; width:112%; }
+    .hero-nib{ width:clamp(210px,32vw,330px); }
+    .hero-word-top{ font-size:clamp(40px,6vw,54px); }
+    .hero-word-main{ font-size:clamp(44px,6.7vw,60px); }
+  }
+  @media(max-width:639px){
+    .hero-lockup{ grid-template-columns:1fr; gap:12px; justify-items:center; }
+    .hero-nib{ justify-self:center; width:clamp(140px,42vw,210px); }
+    .hero-copy{ text-align:center; transform:none; }
+    .hero-subline{ margin-left:auto; margin-right:auto; }
+  }
+
+  .hero-tile{
+    position:relative; border-radius:14px; overflow:hidden;
+    display:grid; place-items:center;
+    transition:transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s;
+    box-shadow:0 14px 30px -18px rgba(185,110,20,.55);
+  }
+  .hero-tile:hover{ transform:translateY(-3px); box-shadow:0 22px 40px -18px rgba(185,110,20,.7); }
+  .hero-tile svg, .hero-tile img{ display:block; object-fit:contain; opacity:.96; }
+  .tile-a{ background:linear-gradient(150deg,#EFA945,#E08A22); }
+  .tile-b{ background:linear-gradient(150deg,#F7E2BE,#EFCB8E); }
+  .tile-c{ background:linear-gradient(150deg,#ECAE55,#DD8B2A); }
+  .tile-d{ background:linear-gradient(150deg,#F7E7C6,#EDD3A0); }
+  .tile-e{ background:linear-gradient(150deg,#F9EDD2,#F2DCAE); }
+  .tile-f{ background:linear-gradient(150deg,#EBA647,#DB8624); }
+  .arrow-bounce{ animation: bob 2.4s ease-in-out infinite; }
+  @keyframes bob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(8px); } }
+  @media (prefers-reduced-motion: reduce){ .arrow-bounce{ animation:none; } }
+</style>
+
+<script>
+  /* ô mũi tên → cuộn xuống mục Lịch sử */
+  document.querySelectorAll<HTMLElement>('[data-scroll-to]').forEach((el) => {
+    el.addEventListener('click', () => {
+      document.getElementById(el.dataset.scrollTo!)?.scrollIntoView();
+    });
+  });
+</script>

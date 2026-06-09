@@ -1,0 +1,81 @@
+---
+/* =========================================================
+   Base.astro — khung trang chung: <head>, favicon, font,
+   cơ chế SONG NGỮ (data-vi-text/data-en-text) + hiệu ứng reveal.
+   ---------------------------------------------------------
+   Song ngữ: mọi phần tử có data-vi-text / data-en-text sẽ được
+   đổi textContent tại chỗ khi bấm VI/EN — KHÔNG render lại trang.
+   Script phát sự kiện 'langchange' cho phần động (map cards, VR).
+   ========================================================= */
+import '../styles/global.css';
+
+interface Props { title?: string }
+const { title = 'Bảo tàng Báo chí Việt Nam · VR 360°' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="vi" data-lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+
+    <!-- Favicon: logo hoa sen (trên nền vàng thương hiệu) -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  </head>
+  <body class="bg-white text-ink">
+    <slot />
+
+    <script>
+      /* ---------- SONG NGỮ (VI/EN) ---------- */
+      const LANG_KEY = 'lp_lang';
+      function currentLang(): string {
+        try { return localStorage.getItem(LANG_KEY) || 'vi'; } catch { return 'vi'; }
+      }
+      function applyLang(lang: string) {
+        document.documentElement.setAttribute('data-lang', lang);
+        try { localStorage.setItem(LANG_KEY, lang); } catch { /* private mode */ }
+        document.querySelectorAll<HTMLElement>('[data-vi-text]').forEach((el) => {
+          const v = el.getAttribute(lang === 'vi' ? 'data-vi-text' : 'data-en-text');
+          if (v != null) el.textContent = v;
+        });
+        document.querySelectorAll<HTMLButtonElement>('.lang-toggle button').forEach((b) => {
+          b.classList.toggle('active', b.dataset.setLang === lang);
+        });
+        document.dispatchEvent(new CustomEvent('langchange', { detail: lang }));
+      }
+      // cho phần động (map cards, VR viewer) đọc/đổi ngôn ngữ
+      (window as any).__lang = currentLang;
+      (window as any).__applyLang = applyLang;
+
+      document.querySelectorAll<HTMLButtonElement>('[data-set-lang]').forEach((b) => {
+        b.addEventListener('click', () => applyLang(b.dataset.setLang!));
+      });
+      applyLang(currentLang());
+
+      /* ---------- hiệu ứng hiện dần khi cuộn ---------- */
+      let revealObs: IntersectionObserver | null = null;
+      const noFx = /[?&]nofx/.test(location.search)
+        || matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function rescanReveal() {
+        const els = document.querySelectorAll<HTMLElement>('.reveal:not(.in)');
+        if (noFx) { els.forEach((el) => el.classList.add('in')); return; }
+        if (!revealObs) {
+          revealObs = new IntersectionObserver((entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) { e.target.classList.add('in'); revealObs!.unobserve(e.target); }
+            });
+          }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+        }
+        els.forEach((el) => revealObs!.observe(el));
+      }
+      // phần động render thêm .reveal mới thì gọi lại hàm này
+      (window as any).__rescanReveal = rescanReveal;
+      rescanReveal();
+    </script>
+  </body>
+</html>
