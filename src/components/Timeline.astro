@@ -5,88 +5,309 @@
 import { UI, TIMELINE, type TimelineItem } from '../content/site';
 const vi = UI.vi, en = UI.en;
 
-// gom mỗi mốc sự kiện vào dưới mốc GIAI ĐOẠN (era) đứng ngay trước nó
 interface Block { era: TimelineItem; events: TimelineItem[] }
 const blocks: Block[] = [];
-for (const m of TIMELINE) {
-  if (m.kind === 'era') blocks.push({ era: m, events: [] });
-  else if (blocks.length) blocks[blocks.length - 1].events.push(m);
+for (const item of TIMELINE) {
+  if (item.kind === 'era') blocks.push({ era: item, events: [] });
+  else if (blocks.length) blocks[blocks.length - 1].events.push(item);
 }
 ---
 
-<section id="lich-su" class="relative py-20 md:py-28">
-  <div class="max-w-[1100px] mx-auto px-5 md:px-8">
-    <div class="text-center mb-14 md:mb-16 reveal">
-      <div class="text-goldgrad font-extrabold uppercase tracking-[.2em] text-lg md:text-2xl mb-1"
-           data-vi-text={vi.histKicker} data-en-text={en.histKicker}>{vi.histKicker}</div>
-      <h2 class="font-display font-extrabold uppercase text-goldgrad leading-[1.04] text-[clamp(30px,5.4vw,62px)]"
-          data-vi-text={vi.histTitle} data-en-text={en.histTitle}>{vi.histTitle}</h2>
-      <p class="italic text-ink2 text-base md:text-lg mt-3 max-w-[54ch] mx-auto"
-         data-vi-text={vi.histSub} data-en-text={en.histSub}>{vi.histSub}</p>
-    </div>
+<section id="lich-su">
+  <div class="tl-heading reveal">
+    <div class="tl-kicker text-goldgrad uppercase"
+         data-vi-text={vi.histKicker} data-en-text={en.histKicker}>{vi.histKicker}</div>
+    <h2 class="tl-title text-goldgrad uppercase"
+        data-vi-text={vi.histTitle} data-en-text={en.histTitle}>{vi.histTitle}</h2>
+    <p class="tl-subtitle"
+       data-vi-text={vi.histSub} data-en-text={en.histSub}>{vi.histSub}</p>
+  </div>
 
-    <div class="tl-wrap">
-      <div class="tl-line"></div>
-      {blocks.map((b) => (
-        <div class="tl-block">
-          <div class="tl-era reveal">
-            <span class="era-pill">{b.era.year}</span>
-            <div class="era-name" data-vi-text={b.era.vi.t} data-en-text={b.era.en.t}>{b.era.vi.t}</div>
-            <p class="era-desc" data-vi-text={b.era.vi.d} data-en-text={b.era.en.d}>{b.era.vi.d}</p>
+  <div class="tl-wrap">
+    {blocks.map((block, index) => (
+      <div class={`tl-block tl-block-${index + 1} ${block.events.length ? 'has-events' : 'no-events'}`}>
+        {(index === 0 || index === blocks.length - 1) && <div class="tl-decor" aria-hidden="true"></div>}
+
+        <div class="tl-era-card tl-card reveal">
+          <div class="tl-card-body"></div>
+          <div class="tl-year">{block.era.year}</div>
+          <div class="tl-card-copy">
+            <h3 data-vi-text={block.era.vi.t} data-en-text={block.era.en.t}>{block.era.vi.t}</h3>
+            <p data-vi-text={block.era.vi.d} data-en-text={block.era.en.d}>{block.era.vi.d}</p>
           </div>
-          {b.events.length > 0 && (
-            <div class={`ev-row ${b.events.length === 1 ? 'one' : ''}`}>
-              {b.events.map((ev) => (
-                <div class="ev-card reveal">
-                  <span class="ev-badge">{ev.year}</span>
-                  <h3 data-vi-text={ev.vi.t} data-en-text={ev.en.t}>{ev.vi.t}</h3>
-                  <p data-vi-text={ev.vi.d} data-en-text={ev.en.d}>{ev.vi.d}</p>
-                </div>
-              ))}
-            </div>
-          )}
         </div>
-      ))}
-    </div>
+
+        {block.events.length > 0 && (
+          <div class={`tl-events ${block.events.length === 1 ? 'single' : 'double'}`}>
+            {block.events.map((event) => (
+              <div class="tl-event-card tl-card reveal">
+                <div class="tl-card-body"></div>
+                <div class="tl-year">{event.year}</div>
+                <div class="tl-card-copy">
+                  <h3 data-vi-text={event.vi.t} data-en-text={event.en.t}>{event.vi.t}</h3>
+                  <p data-vi-text={event.vi.d} data-en-text={event.en.d}>{event.vi.d}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    ))}
   </div>
 </section>
 
 <style is:global>
-  /* ===== Timeline ===== */
-  #lich-su{ background:#fff; }
-  .tl-wrap{ position:relative; max-width:1000px; margin:0 auto; }
-  .tl-line{ position:absolute; top:10px; bottom:10px; left:50%; width:2px; transform:translateX(-1px);
-    background:linear-gradient(180deg,rgba(230,149,46,0),rgba(230,149,46,.32) 5%,rgba(230,149,46,.32) 95%,rgba(230,149,46,0)); z-index:0; }
-  .tl-block{ position:relative; z-index:1; margin-bottom:54px; }
-  .tl-era{ text-align:center; }
-  .era-pill{ display:inline-block; font-family:var(--hv); font-style:italic; font-weight:700;
-    color:var(--brown); background:#fff; border:1px solid rgba(230,149,46,.42);
-    border-radius:9999px; padding:8px 30px; font-size:clamp(18px,1.7vw,23px);
-    box-shadow:var(--shadow-pill); }
-  .era-name{ font-family:var(--hv); font-weight:800; text-transform:uppercase; letter-spacing:.02em;
-    font-size:clamp(21px,2.3vw,29px); line-height:1.1;
-    background:var(--grad-gold-text);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    /* nới vùng nền cho dấu tiếng Việt trên chữ HOA (xem chú thích .text-goldgrad) */
-    padding:.14em .08em .06em;
-    margin:calc(18px - .14em) -.08em -.06em; }
-  .era-desc{ font-family:var(--hv); font-style:italic; color:var(--ink2);
-    max-width:62ch; margin:12px auto 0; font-size:clamp(15px,1.2vw,17px); line-height:1.6; }
-  .ev-row{ display:flex; flex-wrap:wrap; gap:22px; justify-content:center; margin:28px auto 0; }
-  .ev-card{ width:calc((100% - 22px)/2); min-width:240px;
-    background:#fff; border:1.5px solid #F0D4A4; border-radius:16px; padding:20px 24px;
-    box-shadow:var(--shadow-card); text-align:left;
-    transition:transform .4s, box-shadow .4s; }
-  .ev-row.one .ev-card{ width:min(440px,100%); }
-  .ev-card:hover{ transform:translateY(-3px); box-shadow:0 26px 50px -24px rgba(185,110,20,.55); }
-  .ev-badge{ display:inline-block; font-family:var(--hv); font-weight:700; font-size:13px; letter-spacing:.04em;
-    color:#fff; background:var(--grad-orange-badge);
-    border-radius:9999px; padding:4px 15px; margin-bottom:12px; }
-  .ev-card h3{ font-family:var(--hv); font-weight:700; text-transform:uppercase; letter-spacing:.01em;
-    font-size:clamp(16px,1.35vw,19px); color:var(--brown); line-height:1.28; }
-  .ev-card p{ font-family:var(--hv); color:var(--ink2); margin-top:8px; font-size:14.5px; line-height:1.6; }
-  @media(max-width:680px){
-    .tl-line{ left:0; }
-    .ev-row .ev-card{ width:100%; }
+  /* ===== Timeline — tỷ lệ desktop dựa trên frame Figma 1920px ===== */
+  #lich-su{
+    position:relative;
+    overflow:hidden;
+    background:#fff;
+    padding:clamp(76px,5.95vw,114px) 0 clamp(72px,5.47vw,105px);
+  }
+
+  .tl-heading{
+    position:relative;
+    z-index:2;
+    width:min(92vw,1425px);
+    margin:0 auto clamp(84px,7.08vw,136px);
+    text-align:center;
+  }
+  .tl-kicker,.tl-title{
+    font-family:var(--hv);
+    font-weight:800;
+    font-size:clamp(39px,5.52vw,106px);
+    line-height:.93;
+    letter-spacing:.01em;
+  }
+  .tl-title{ white-space:nowrap; }
+  .tl-subtitle{
+    max-width:72ch;
+    margin:clamp(18px,1.2vw,23px) auto 0;
+    color:var(--orange2);
+    font-family:var(--hv);
+    font-size:clamp(12px,1.25vw,24px);
+    font-style:italic;
+    font-weight:300;
+    line-height:1.35;
+  }
+
+  .tl-wrap{
+    position:relative;
+    z-index:1;
+    width:100%;
+    max-width:1920px;
+    margin:0 auto;
+  }
+  .tl-block{
+    --event-gap:clamp(52px,4.15vw,80px);
+    position:relative;
+    z-index:1;
+    margin-bottom:clamp(78px,6.05vw,116px);
+  }
+  .tl-block-1{ margin-bottom:clamp(70px,4.95vw,95px); }
+  .tl-block-2{ margin-bottom:clamp(82px,6.25vw,120px); }
+  .tl-block-3{ --event-gap:clamp(46px,3.35vw,64px); }
+  .tl-block-4{ margin-bottom:clamp(96px,7.8vw,150px); }
+  .tl-block:last-child{ margin-bottom:0; }
+
+  .tl-decor{
+    position:absolute;
+    z-index:-1;
+    top:clamp(86px,6.95vw,133px);
+    left:50%;
+    width:100vw;
+    height:clamp(256px,26.72vw,513px);
+    transform:translateX(-50%);
+    background:url('/assets/figma/timeline/decor-strip.png') center/cover no-repeat;
+    pointer-events:none;
+  }
+
+  .tl-card{
+    position:relative;
+    z-index:1;
+    aspect-ratio:2.179 / 1;
+    margin-inline:auto;
+    text-align:center;
+  }
+  .tl-card-body{
+    position:absolute;
+    inset:15.4% 0 0;
+    border-radius:clamp(15px,1.72vw,33px);
+  }
+  .tl-year{
+    position:absolute;
+    z-index:2;
+    top:0;
+    left:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:70.6%;
+    height:38.9%;
+    transform:translateX(-50%);
+    border-radius:clamp(15px,1.75vw,34px);
+    font-family:var(--hv);
+    font-size:clamp(25px,3.75vw,72px);
+    font-style:italic;
+    font-weight:300;
+    line-height:1;
+    white-space:nowrap;
+  }
+  .tl-card-copy{
+    position:absolute;
+    z-index:2;
+    top:45.5%;
+    right:6%;
+    left:6%;
+    display:flex;
+    height:46%;
+    flex-direction:column;
+    align-items:center;
+  }
+  .tl-card-copy h3{
+    font-family:var(--hv);
+    font-size:clamp(14px,2.08vw,40px);
+    font-weight:700;
+    line-height:1.08;
+    text-transform:uppercase;
+  }
+  .tl-card-copy p{
+    margin-top:auto;
+    margin-bottom:4%;
+    font-family:var(--hv);
+    font-size:clamp(9px,1.25vw,24px);
+    font-weight:300;
+    line-height:1.22;
+  }
+
+  .tl-era-card{ width:min(46.43vw,892px); }
+  .tl-era-card .tl-card-body{
+    border:1px solid rgba(129,78,0,.58);
+    background:#fff;
+  }
+  .tl-era-card .tl-year{
+    border:1px solid rgba(129,78,0,.58);
+    background:#fff;
+    color:var(--brown);
+  }
+  .tl-era-card .tl-card-copy{ color:var(--brown); }
+
+  .tl-events{
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    gap:min(8.6vw,165px);
+    width:100%;
+    margin-top:var(--event-gap);
+  }
+  .tl-event-card{ width:min(40.1vw,770px); color:#fff; }
+  .tl-event-card .tl-card-body{
+    border:1px solid rgba(255,255,255,.95);
+    background:var(--orange);
+  }
+  .tl-event-card .tl-year{
+    border:1px solid #fff;
+    background:var(--orange);
+    color:#fff;
+  }
+  .tl-event-card .tl-card-copy p{ margin-bottom:3%; }
+
+  /* Connector nét chấm giữa thẻ giai đoạn và thẻ sự kiện. */
+  .tl-events::before,
+  .tl-events.double::after,
+  .tl-event-card::before{
+    content:"";
+    position:absolute;
+    z-index:-1;
+    border-color:rgba(129,78,0,.72);
+    border-style:dashed;
+    pointer-events:none;
+  }
+  .tl-events.single::before{
+    top:calc(-1 * var(--event-gap));
+    left:50%;
+    height:var(--event-gap);
+    border-width:0 0 0 1px;
+  }
+  .tl-events.double::before{
+    top:calc(-1 * var(--event-gap));
+    left:50%;
+    height:calc(var(--event-gap) / 2);
+    border-width:0 0 0 1px;
+  }
+  .tl-events.double::after{
+    top:calc(-1 * var(--event-gap) / 2);
+    left:25%;
+    width:50%;
+    border-width:1px 0 0;
+  }
+  .tl-events.double .tl-event-card::before{
+    top:calc(-1 * var(--event-gap) / 2);
+    left:50%;
+    height:calc(var(--event-gap) / 2);
+    border-width:0 0 0 1px;
+  }
+
+  @media(max-width:900px){
+    .tl-heading{ width:min(92vw,700px); }
+    .tl-kicker,.tl-title{ font-size:clamp(35px,7.2vw,62px); }
+    .tl-title{ white-space:normal; }
+    .tl-subtitle{ font-size:clamp(12px,2vw,17px); }
+    .tl-block{
+      --event-gap:48px;
+      margin-bottom:76px;
+    }
+    .tl-era-card{ width:min(72vw,620px); }
+    .tl-event-card{ width:min(64vw,550px); }
+    .tl-events.double{
+      flex-direction:column;
+      align-items:center;
+      gap:44px;
+    }
+    .tl-events.double::before{
+      height:var(--event-gap);
+    }
+    .tl-events.double::after{ display:none; }
+    .tl-events.double .tl-event-card::before{ display:none; }
+    .tl-events.double .tl-event-card + .tl-event-card::before{
+      display:block;
+      top:-44px;
+      left:50%;
+      height:44px;
+      border-width:0 0 0 1px;
+    }
+    .tl-decor{
+      top:70px;
+      height:clamp(230px,45vw,390px);
+      background-size:auto 100%;
+    }
+  }
+
+  @media(max-width:560px){
+    #lich-su{ padding-top:64px; padding-bottom:52px; }
+    .tl-heading{ margin-bottom:64px; }
+    .tl-kicker,.tl-title{ font-size:clamp(30px,9.8vw,48px); }
+    .tl-subtitle{ max-width:34ch; }
+    .tl-era-card{ width:88vw; }
+    .tl-event-card{
+      width:82vw;
+      height:clamp(165px,44vw,210px);
+      aspect-ratio:auto;
+    }
+    .tl-year{ font-size:clamp(22px,7.4vw,34px); }
+    .tl-card-copy h3{ font-size:clamp(12px,4vw,18px); }
+    .tl-card-copy p{ font-size:clamp(8px,2.65vw,12px); }
+    .tl-block{ margin-bottom:64px; }
+    .tl-events.double{ gap:36px; }
+    .tl-events.double .tl-event-card + .tl-event-card::before{
+      top:-36px;
+      height:36px;
+    }
+    .tl-decor{
+      top:56px;
+      height:220px;
+    }
   }
 </style>
