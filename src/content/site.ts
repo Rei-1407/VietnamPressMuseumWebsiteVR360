@@ -32,7 +32,7 @@ export const UI = {
     ftRights: '© 2026 Bảo tàng Báo chí Việt Nam. Trải nghiệm VR 360°.',
     nHome: 'Trang chủ', nHist: 'Lịch sử', nMap: 'Bản đồ', nContact: 'Liên hệ',
     logoLine: 'BẢO TÀNG BÁO CHÍ VIỆT NAM',
-    heroW1: 'Bút Sắc', heroW2: 'Lòng Son', heroW3: 'Tâm Sáng',
+    heroW1: 'Bảo tàng', heroW2: 'Báo chí', heroW3: 'Việt Nam',
     heroSub: 'Tự hào trăm năm Báo chí Cách mạng Việt Nam giữ lửa ngòi bút',
   },
   en: {
@@ -55,7 +55,7 @@ export const UI = {
     ftRights: '© 2026 Vietnam Press Museum. VR 360° Experience.',
     nHome: 'Home', nHist: 'History', nMap: 'Map', nContact: 'Contact',
     logoLine: 'VIETNAM PRESS MUSEUM',
-    heroW1: 'Sharp Pen', heroW2: 'Pure Heart', heroW3: 'Bright Soul',
+    heroW1: 'Bảo tàng', heroW2: 'Báo chí', heroW3: 'Việt Nam',
     heroSub: "A proud century of Vietnam's revolutionary press, keeping the pen's flame alive.",
   },
 } as const;
