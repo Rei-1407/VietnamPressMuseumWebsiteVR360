@@ -5,7 +5,7 @@ const vi = UI.vi, en = UI.en;
 ---
 
 <section id="home" class="relative pt-[72px] min-h-screen flex items-center overflow-hidden">
-  <div class="hero-stage max-w-[1560px] mx-auto w-full px-5 md:px-10 grid lg:grid-cols-[1.22fr_.85fr] gap-6 lg:gap-10 items-center py-6">
+  <div class="hero-stage">
 
     <!-- Trái: số 101 (SVG gốc Figma) + ngòi bút + headline -->
     <div class="hero-mark">
@@ -39,30 +39,33 @@ const vi = UI.vi, en = UI.en;
 
 <style is:global>
   /* ===== Hero ===== */
-  .hero-stage{ position:relative; }
+  .hero-stage{
+    position:relative; width:min(1560px,calc(100% - 64px)); margin:0 auto;
+    display:grid; grid-template-columns:minmax(0,1.08fr) minmax(480px,.92fr);
+    align-items:center; gap:clamp(24px,3vw,52px); padding:clamp(28px,4vh,56px) 0;
+  }
   .hero-mark{
-    position:relative; min-height:clamp(620px,54vw,820px);
-    display:flex; align-items:center;
+    position:relative; min-width:0; min-height:clamp(620px,46vw,790px);
+    display:flex; align-items:center; overflow:visible;
   }
   .hero-101{
-    position:absolute; z-index:0; top:50%; left:46%;
-    width:clamp(760px,116%,1048px); height:auto; max-width:none;
+    position:absolute; z-index:0; top:50%; left:43%;
+    width:min(125%,1048px); height:auto; max-width:none;
     transform:translate(-50%,-50%);
     pointer-events:none; user-select:none;
   }
   .hero-lockup{
-    position:relative; z-index:1; display:grid;
-    grid-template-columns:auto minmax(0,1fr);
-    align-items:center; gap:clamp(48px,5vw,84px);
+    position:relative; z-index:1; width:100%; display:grid;
+    grid-template-columns:minmax(260px,.96fr) minmax(250px,.72fr);
+    align-items:center; gap:clamp(20px,2.5vw,46px);
   }
   .hero-nib{
-    justify-self:start;
-    width:clamp(320px,25vw,420px); height:auto;
+    justify-self:center; width:min(100%,430px); height:auto;
     filter:drop-shadow(0 26px 44px rgba(188,131,31,.28));
   }
   .hero-copy{
     min-width:0; text-align:left;
-    transform:translateY(clamp(88px,6.5vw,112px));
+    transform:translateY(clamp(72px,7vw,124px));
   }
   .hero-headline{
     font-family:var(--hv); font-style:italic; line-height:.96;
@@ -73,84 +76,66 @@ const vi = UI.vi, en = UI.en;
     background:none; -webkit-background-clip:initial; background-clip:initial;
     color:inherit; overflow:visible;
   }
-  .hero-word-top{ font-weight:300; font-size:clamp(40px,3.4vw,56px); }
-  .hero-word-main{ color:var(--brown); font-weight:400; font-size:clamp(46px,3.9vw,62px); }
+  .hero-word-top{ font-weight:300; font-size:clamp(42px,3.25vw,62px); }
+  .hero-word-main{ color:var(--brown); font-weight:400; font-size:clamp(42px,3.25vw,62px); }
   .hero-subline{
     max-width:33ch; margin-top:24px; color:var(--brown);
     font-size:clamp(18px,1.25vw,20px); line-height:1.25; font-style:italic;
   }
+  .hero-tiles{
+    width:100%; max-width:none; margin:0; display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-rows:repeat(3,minmax(0,1fr)); gap:0;
+    aspect-ratio:803/997;
+  }
+  .hero-tiles .hero-tile{ aspect-ratio:auto; border-radius:0; box-shadow:none; }
+  .hero-tiles .hero-tile:hover{ transform:none; box-shadow:none; }
 
-  /* desktop ≥1024px: dàn theo toạ độ thiết kế 1920 (đối chiếu Figma) */
-  @media(min-width:1024px){
-    #home{ align-items:flex-start; }
+  /* Laptop: giữ hai cột nhưng gom các thành phần gần nhau hơn. */
+  @media(max-width:1439px){
     .hero-stage{
-      --hero-design-w:min(100vw,167.28svh);
-      --hero-x:calc((100vw - var(--hero-design-w)) / 2);
-      width:100vw; max-width:none;
-      height:calc(min(59.78vw,100svh) - 72px);
-      margin:0 auto; padding:0; display:block;
+      width:min(1280px,calc(100% - 48px));
+      grid-template-columns:minmax(0,1.06fr) minmax(420px,.94fr);
+      gap:clamp(18px,2vw,30px);
     }
-    .hero-mark{
-      position:absolute; inset:0; min-height:0; display:block; overflow:visible;
-    }
-    .hero-101{
-      top:calc(min(8.05vw,13.46svh) - 72px);
-      left:calc(var(--hero-x) + max(-1.14vw,-1.90svh));
-      width:min(54.62vw,91.37svh);
-      max-width:1048.69px; transform:none;
-    }
-    .hero-lockup{ position:absolute; inset:0; display:block; z-index:1; }
-    .hero-nib{
-      position:absolute;
-      left:calc(var(--hero-x) + min(2.38vw,3.99svh));
-      top:calc(min(8.16vw,13.65svh) - 72px);
-      width:min(25.29vw,42.31svh);
-      max-width:485.61px;
-    }
-    .hero-copy{
-      position:absolute;
-      left:calc(var(--hero-x) + min(31.56vw,52.80svh));
-      top:calc(min(34.90vw,58.38svh) - 72px);
-      width:clamp(300px,min(17.81vw,29.80svh),342px);
-      transform:none; text-align:left; overflow:visible;
-    }
-    .hero-headline{ line-height:clamp(63px,min(4.06vw,6.80svh),78px); }
-    .hero-word-top,
-    .hero-word-main{
-      font-size:clamp(52px,min(3.36vw,5.62svh),64.5px);
-      line-height:clamp(63px,min(4.06vw,6.80svh),78px); font-weight:400;
-    }
-    .hero-word-top{ font-weight:300; }
-    .hero-subline{
-      width:clamp(300px,min(17.81vw,29.80svh),342px);
-      margin-top:clamp(18px,min(1.15vw,1.92svh),22px);
-      font-size:clamp(18px,min(1.15vw,1.92svh),22px);
-      line-height:clamp(24px,min(1.50vw,2.51svh),28.8px);
-    }
-    .hero-tiles{
-      position:absolute;
-      left:calc(var(--hero-x) + min(57.98vw,96.99svh));
-      top:calc(min(8.06vw,13.48svh) - 72px);
-      width:min(41.82vw,69.95svh); max-width:803px;
-      height:calc(min(59.78vw,100svh) - min(8.06vw,13.48svh));
-      margin:0; display:grid; grid-template-columns:repeat(2,1fr);
-      grid-template-rows:repeat(3,1fr); gap:0;
-    }
-    .hero-tiles .hero-tile{ aspect-ratio:auto; border-radius:0; box-shadow:none; }
-    .hero-tiles .hero-tile:hover{ transform:none; box-shadow:none; }
+    .hero-mark{ min-height:clamp(560px,50vw,690px); }
+    .hero-lockup{ grid-template-columns:minmax(230px,.92fr) minmax(230px,.72fr); gap:18px; }
+    .hero-copy{ transform:translateY(clamp(62px,6vw,88px)); }
+    .hero-word-top,.hero-word-main{ font-size:clamp(42px,3.8vw,54px); }
+    .hero-subline{ font-size:clamp(16px,1.35vw,19px); }
   }
+
+  /* Tablet: giới thiệu thành một khối, lưới icon nằm ngay bên dưới. */
   @media(max-width:1023px){
-    .hero-mark{ min-height:auto; }
-    .hero-101{ left:50%; width:112%; }
-    .hero-nib{ width:clamp(210px,32vw,330px); }
-    .hero-word-top{ font-size:clamp(40px,6vw,54px); }
-    .hero-word-main{ font-size:clamp(44px,6.7vw,60px); }
+    #home{ min-height:auto; }
+    .hero-stage{
+      width:min(820px,calc(100% - 40px)); display:grid; grid-template-columns:1fr;
+      gap:28px; padding:32px 0 56px;
+    }
+    .hero-mark{ min-height:clamp(480px,70vw,600px); }
+    .hero-101{ left:43%; width:min(112%,820px); }
+    .hero-lockup{ grid-template-columns:minmax(220px,.9fr) minmax(230px,.75fr); gap:18px; }
+    .hero-nib{ width:min(100%,330px); }
+    .hero-copy{ transform:translateY(54px); }
+    .hero-word-top,.hero-word-main{ font-size:clamp(42px,6.2vw,56px); }
+    .hero-subline{ font-size:clamp(17px,2.3vw,20px); }
+    .hero-tiles{ width:min(680px,100%); justify-self:center; aspect-ratio:803/720; }
+    .hero-tile{ border-radius:14px; box-shadow:0 14px 30px -18px rgba(185,110,20,.55); }
+    .hero-tile:hover{ transform:translateY(-3px); box-shadow:0 22px 40px -18px rgba(185,110,20,.7); }
   }
+
   @media(max-width:639px){
-    .hero-lockup{ grid-template-columns:1fr; gap:12px; justify-items:center; }
-    .hero-nib{ justify-self:center; width:clamp(140px,42vw,210px); }
-    .hero-copy{ text-align:center; transform:none; }
-    .hero-subline{ margin-left:auto; margin-right:auto; }
+    .hero-stage{ width:calc(100% - 32px); gap:22px; padding:22px 0 40px; }
+    .hero-mark{ min-height:540px; align-items:flex-start; }
+    .hero-101{ top:37%; left:50%; width:135%; }
+    .hero-lockup{ grid-template-columns:1fr; gap:8px; justify-items:center; }
+    .hero-nib{ width:min(54vw,205px); }
+    .hero-copy{ width:100%; text-align:center; transform:none; }
+    .hero-headline{ line-height:1; }
+    .hero-word-top,.hero-word-main{ font-size:clamp(38px,12vw,48px); line-height:1.04; }
+    .hero-subline{ max-width:30ch; margin:16px auto 0; font-size:16px; line-height:1.35; }
+    .hero-tiles{ width:100%; aspect-ratio:5/6; gap:8px; }
+    .hero-tile{ border-radius:10px; }
   }
 
   .hero-tile{

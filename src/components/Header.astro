@@ -5,7 +5,7 @@ const vi = UI.vi, en = UI.en;
 ---
 
 <header class="site-header fixed top-0 inset-x-0 z-50">
-  <div class="header-inner max-w-[1280px] mx-auto px-5 md:px-8 flex items-center justify-between gap-4">
+  <div class="header-inner flex items-center gap-4">
     <!-- Logo hoa sen (lockup Figma: ô 130×130 @1920 treo từ mép trên, chữ Arroem bên dưới) -->
     <a href="#home" class="logo-lockup shrink-0" aria-label="Bảo tàng Báo chí Việt Nam"
        data-vi-aria-label="Bảo tàng Báo chí Việt Nam" data-en-aria-label="Vietnam Press Museum">
@@ -15,7 +15,7 @@ const vi = UI.vi, en = UI.en;
     </a>
 
     <!-- Nav -->
-    <nav class="hidden md:flex items-center gap-7 text-[15px]">
+    <nav class="primary-nav hidden md:flex items-center gap-7 text-[15px]">
       <a href="#home" class="navlink" data-nav data-vi-text={vi.nHome} data-en-text={en.nHome}>{vi.nHome}</a>
       <span class="gold-rule-v h-4"></span>
       <a href="#lich-su" class="navlink" data-nav data-vi-text={vi.nHist} data-en-text={en.nHist}>{vi.nHist}</a>
@@ -26,7 +26,7 @@ const vi = UI.vi, en = UI.en;
     </nav>
 
     <!-- Right: nút VR + toggle ngôn ngữ -->
-    <div class="flex items-center gap-3">
+    <div class="header-actions flex items-center gap-3">
       <a href="#ban-do" class="btn-vr hidden sm:inline-flex items-center gap-2 pl-3.5 pr-5 py-2 text-sm">
         <img src="/assets/figma/ic-atom-white.svg" alt="" aria-hidden="true" class="w-[18px] h-[18px]" />
         <span data-vi-text={vi.cta} data-en-text={en.cta}>{vi.cta}</span>
@@ -46,7 +46,12 @@ const vi = UI.vi, en = UI.en;
 
   /* ===== Chiều cao header: Figma là vùng ~136px @1920, MỌI THỨ canh giữa trục dọc
      (tâm logo ≈ tâm nav ≈ tâm nút VR). Mobile & khi cuộn: thanh gọn 72px. ===== */
-  .header-inner{ height:72px; transition:height .35s ease; }
+  .header-inner{
+    width:min(1560px,calc(100% - 64px)); height:72px; margin:0 auto;
+    transition:height .35s ease;
+  }
+  .primary-nav{ margin-left:auto; }
+  .header-actions{ flex:none; margin-left:clamp(24px,3vw,54px); }
   @media(min-width:1024px){
     .header-inner{ height:clamp(104px, 7.083vw, 136px); }
     .site-header.scrolled .header-inner{ height:72px; }
@@ -70,8 +75,18 @@ const vi = UI.vi, en = UI.en;
   .site-header.scrolled .logo-line{ opacity:0; }
   /* mobile: logo gọn trong thanh 72px, chữ quá nhỏ nên ẩn */
   @media(max-width:1023px){
+    .header-inner{ width:calc(100% - 40px); }
     .logo-lockup{ width:60px; }
     .logo-line{ display:none; }
+  }
+  @media(max-width:1099px){
+    .primary-nav{ display:none !important; }
+    .header-actions{ margin-left:auto; }
+  }
+  @media(max-width:639px){
+    .header-inner{ width:calc(100% - 32px); }
+    .header-actions{ gap:8px; }
+    .lang-toggle button{ padding:5px 10px; }
   }
   .site-header.scrolled{
     background:rgba(255,255,255,.88);
