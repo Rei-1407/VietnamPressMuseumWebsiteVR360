@@ -7,22 +7,22 @@ const vi = UI.vi, en = UI.en;
 <footer id="footer" class="pt-16 pb-9 bg-brown text-ft-bright">
   <div class="max-w-[1180px] mx-auto px-5 md:px-8">
     <div class="grid md:grid-cols-[1.5fr_1fr_1.35fr] gap-10 md:gap-12">
-      <!-- Cột 1: logo lockup + tagline + bản quyền -->
-      <div>
+      <!-- Cột 1: logo lockup + tagline + bản quyền (© ghim đáy cột — ngang hàng "Liên hệ" & dòng VIRA như Figma) -->
+      <div class="flex flex-col">
         <div class="ft-lockup" aria-hidden="true">
           <img src="/assets/figma/logo-lotus.png" alt="" />
           <span class="ft-lockup-line" data-vi-text={vi.logoLine} data-en-text={en.logoLine}>{vi.logoLine}</span>
         </div>
         <p class="italic text-[15px] leading-relaxed max-w-[34ch] text-ft-text -mt-1">“<span
            data-vi-text={vi.ftTagline} data-en-text={en.ftTagline}>{vi.ftTagline}</span>”</p>
-        <p class="text-[12px] mt-7 text-ft-dim"
+        <p class="text-[12px] mt-7 md:mt-auto text-ft-dim"
            data-vi-text={vi.ftRights} data-en-text={en.ftRights}>{vi.ftRights}</p>
       </div>
 
-      <!-- Cột 2: điều hướng -->
+      <!-- Cột 2: điều hướng (nhịp dòng 45px như Figma — cột này định chiều cao chung) -->
       <div>
-        <div class="ft-label mb-4" data-vi-text={vi.ftNav} data-en-text={en.ftNav}>{vi.ftNav}</div>
-        <ul class="space-y-2.5 text-[15px] text-ft-text">
+        <div class="ft-label mb-[17px]" data-vi-text={vi.ftNav} data-en-text={en.ftNav}>{vi.ftNav}</div>
+        <ul class="space-y-[17px] text-[15px] text-ft-text">
           <li><a href="#home" class="hover:text-white transition" data-vi-text={vi.nHome} data-en-text={en.nHome}>{vi.nHome}</a></li>
           <li><a href="#lich-su" class="hover:text-white transition" data-vi-text={vi.nHist} data-en-text={en.nHist}>{vi.nHist}</a></li>
           <li><a href="#ban-do" class="hover:text-white transition" data-vi-text={vi.nMap} data-en-text={en.nMap}>{vi.nMap}</a></li>
@@ -30,15 +30,15 @@ const vi = UI.vi, en = UI.en;
         </ul>
       </div>
 
-      <!-- Cột 3: liên hệ -->
-      <div class="space-y-3 text-[15px] text-ft-text">
+      <!-- Cột 3: liên hệ (dòng VIRA ghim đáy cột) -->
+      <div class="flex flex-col text-[15px] text-ft-text">
         <p><span class="ft-label"><span data-vi-text={vi.ftPhoneLabel} data-en-text={en.ftPhoneLabel}>{vi.ftPhoneLabel}</span>:</span>
           <a href={CONTACT.phoneHref} class="hover:text-white transition">{CONTACT.phone}</a></p>
-        <p class="leading-relaxed"><span class="ft-label"><span data-vi-text={vi.ftAddrLabel} data-en-text={en.ftAddrLabel}>{vi.ftAddrLabel}</span>:</span>
+        <p class="mt-3 leading-relaxed"><span class="ft-label"><span data-vi-text={vi.ftAddrLabel} data-en-text={en.ftAddrLabel}>{vi.ftAddrLabel}</span>:</span>
           <span data-vi-text={vi.ftAddr} data-en-text={en.ftAddr}>{vi.ftAddr}</span></p>
-        <p><span class="ft-label"><span data-vi-text={vi.ftWebLabel} data-en-text={en.ftWebLabel}>{vi.ftWebLabel}</span>:</span>
+        <p class="mt-3"><span class="ft-label"><span data-vi-text={vi.ftWebLabel} data-en-text={en.ftWebLabel}>{vi.ftWebLabel}</span>:</span>
           <a href={CONTACT.websiteHref} target="_blank" rel="noopener" class="hover:text-white transition">{CONTACT.website}</a></p>
-        <p class="italic text-[13px] pt-2 text-ft-dim">Bản quyền sản phẩm thuộc về <b class="not-italic text-ft-accent">VIRA Agency</b></p>
+        <p class="italic text-[13px] mt-4 md:mt-auto text-ft-dim">Bản quyền sản phẩm thuộc về <b class="not-italic text-ft-accent">VIRA Agency</b></p>
       </div>
     </div>
   </div>
