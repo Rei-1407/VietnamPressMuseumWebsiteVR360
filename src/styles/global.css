@@ -1,0 +1,45 @@
+/* =========================================================
+   global.css — Tailwind + font + base + utility dùng chung
+   (CSS riêng của từng section nằm trong <style> của component đó)
+   ========================================================= */
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Font thật từ Figma (file trong /public/font, đã nén woff2) ===== */
+@font-face{ font-family:'Helvetica'; font-weight:300; font-style:normal; font-display:swap; src:url('/font/helvetica-light.woff2') format('woff2'); }
+/* Helvetica Light thiếu glyph tiếng Việt (Ắ Ả Đ Ồ Ệ…) → bù từ Regular (đủ dấu) */
+@font-face{ font-family:'Helvetica'; font-weight:300; font-style:normal; font-display:swap; src:url('/font/helvetica.woff2') format('woff2'); unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+1EA0-1EFF; }
+@font-face{ font-family:'Helvetica'; font-weight:300; font-style:italic; font-display:swap; src:url('/font/helvetica-oblique.woff2') format('woff2'); }
+@font-face{ font-family:'Helvetica'; font-weight:400; font-style:normal; font-display:swap; src:url('/font/helvetica.woff2') format('woff2'); }
+@font-face{ font-family:'Helvetica'; font-weight:400; font-style:italic;  font-display:swap; src:url('/font/helvetica-oblique.woff2') format('woff2'); }
+@font-face{ font-family:'Helvetica'; font-weight:700; font-style:normal; font-display:swap; src:url('/font/helvetica-bold.woff2') format('woff2'); }
+@font-face{ font-family:'Helvetica'; font-weight:700; font-style:italic;  font-display:swap; src:url('/font/helvetica-boldoblique.woff2') format('woff2'); }
+@font-face{ font-family:'Helvetica'; font-weight:800; font-style:normal; font-display:swap; src:url('/font/helvetica-bold.woff2') format('woff2'); }
+@font-face{ font-family:'Arroem';    font-weight:400; font-style:normal; font-display:swap; src:url('/font/arroem.woff2') format('woff2'); }
+
+/* ===== Base ===== */
+*{ scroll-behavior:smooth; }
+html,body{ background:#FFFFFF; color:var(--ink); }
+body{ font-family:var(--hv); overflow-x:hidden; }
+.font-logo{ font-family:var(--logo); }
+::selection{ background:rgba(230,149,46,.25); }
+
+/* ===== Utility dùng chung giữa các section ===== */
+/* chữ vàng kim gradient */
+.text-goldgrad{
+  background:var(--grad-gold-text);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.gold-rule{ height:1px; background:linear-gradient(90deg,transparent,rgba(230,149,46,.6),transparent); }
+.gold-rule-v{ width:1px; background:linear-gradient(180deg,transparent,rgba(230,149,46,.5),transparent); }
+
+/* hiệu ứng hiện dần khi cuộn (initReveal trong client script) */
+.reveal{ opacity:0; transform:translateY(34px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+.reveal.in{ opacity:1; transform:none; }
+
+@media (prefers-reduced-motion: reduce){
+  .reveal{ opacity:1 !important; transform:none !important; }
+}

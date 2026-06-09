@@ -4,8 +4,10 @@ _design_ref/
 design.tar.gz
 *.tar.gz
 
-# Node / Tailwind build tooling (css/tailwind.css IS committed; deps are not)
+# Node / build tooling
 node_modules/
+dist/
+.astro/
 
 # Local agent / editor config (not part of the published site)
 .claude/
@@ -19,8 +21,8 @@ desktop.ini
 .vscode/
 
 # font sources (chỉ deploy bản woff2 đã nén)
-font/*.ttf
-font/*.otf
+public/font/*.ttf
+public/font/*.otf
 
 # thư mục sao lưu tạm của người dùng
 _backup_*/

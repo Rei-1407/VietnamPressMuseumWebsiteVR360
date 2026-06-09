@@ -1,0 +1,63 @@
+/* =========================================================
+   tokens.css — MỘT NGUỒN SỰ THẬT cho màu sắc / font / hiệu ứng
+   ---------------------------------------------------------
+   Mọi giá trị thị giác của site nằm ở đây (đối chiếu Figma ở Pha 5).
+   - Tailwind config map vào các biến này (tailwind.config.js)
+   - CSS component dùng trực tiếp var(--...)
+   Sửa màu ở ĐÂY — không sửa lẻ trong component.
+   ========================================================= */
+:root{
+  /* ---- Nền & chữ ---- */
+  --paper:   #FEFCF0;   /* nền kem nhạt (thẻ biển tên khu vực) */
+  --cream:   #FCFAF4;
+  --cream2:  #F6EFE1;
+  --ink:     #2C2113;   /* chữ chính */
+  --ink2:    #5A4A30;   /* chữ phụ / mô tả */
+  --night:   #1A140B;
+
+  /* ---- Nâu thương hiệu (headline hero, footer) ---- */
+  --brown:   #814E00;   /* nâu chủ đạo — headline + nền footer */
+  --cocoa:   #3A2408;
+  --cocoa2:  #52340C;
+  --bronze:  #8A5A1C;
+
+  /* ---- Cam thương hiệu (thẻ khu vực, nav hover, pill) ---- */
+  --orange:    #E6952E;
+  --orange2:   #D07E1C;
+  --orangelt:  #F2B45E;
+  --orangedk:  #B96E14;
+
+  /* ---- Vàng kim (tiêu đề gradient, nút VR) ---- */
+  --gold:    #C99A3F;
+  --goldlt:  #E6C277;
+  --goldbr:  #EBCB82;
+  --golddp:  #A9731F;
+
+  /* ---- Footer (chữ trên nền nâu) ---- */
+  --ft-text:   #F4E2C2;  /* chữ thường */
+  --ft-bright: #FBEFD8;  /* chữ logo */
+  --ft-accent: #EFB964;  /* nhãn / nhấn */
+  --ft-dim:    #D9B583;  /* chữ mờ (bản quyền) */
+
+  /* ---- Gradient dùng lặp lại ---- */
+  /* chữ vàng kim (LỊCH SỬ LÀNG BÁO, tên giai đoạn) */
+  --grad-gold-text: linear-gradient(180deg,#EEC976 0%,#D89A3C 52%,#B47C24 100%);
+  /* chữ vàng kim cỡ đại (BẢN ĐỒ & TRẢI NGHIỆM KHÁM PHÁ) */
+  --grad-gold-display: linear-gradient(180deg,#F0C26E 0%,#E2A950 58%,#BE8126 100%);
+  /* nút vàng (Trải nghiệm VR 360°) */
+  --grad-gold-btn: linear-gradient(180deg,#F3DBB2 0%,#E9C079 45%,#E2A950 100%);
+  /* nút/badge cam (nút ngôn ngữ active, badge năm) */
+  --grad-orange-pill: linear-gradient(180deg,#F2B45E,#D07E1C);
+  --grad-orange-badge: linear-gradient(135deg,#F2B45E,#E6952E 60%,#D07E1C);
+
+  /* ---- Bóng đổ chuẩn (màu gốc cam/nâu đất) ---- */
+  --shadow-card:  0 18px 40px -26px rgba(185,110,20,.45);
+  --shadow-tile:  0 24px 50px -28px rgba(185,110,20,.6);
+  --shadow-pill:  0 10px 24px -14px rgba(185,110,20,.5);
+  --shadow-btn:   0 18px 40px -16px rgba(185,110,20,.7), inset 0 1px 0 rgba(255,255,255,.55);
+  --shadow-plate: 0 12px 26px -14px rgba(58,36,8,.38);
+
+  /* ---- Font ---- */
+  --hv:   'Helvetica', Arial, sans-serif;
+  --logo: 'Arroem', 'Helvetica', Arial, sans-serif;
+}

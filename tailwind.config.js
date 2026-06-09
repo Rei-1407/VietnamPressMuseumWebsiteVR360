@@ -1,22 +1,22 @@
-/** Tailwind config — build CSS tĩnh thay cho CDN runtime.
- *  Build lại bằng:  scripts\build-css.ps1   (khi đổi class trong HTML/JS) */
+/** Tailwind config — màu/font lấy từ src/styles/tokens.css (1 nguồn sự thật).
+ *  Sửa giá trị màu ở tokens.css, KHÔNG sửa hex ở đây. */
 module.exports = {
-  content: ['./index.html', './admin/index.html', './js/*.js'],
+  content: ['./src/**/*.{astro,html,js,ts,jsx,tsx,md}'],
   theme: {
     extend: {
       fontFamily: {
-        display: ['Helvetica', 'Arial', 'sans-serif'],
-        serif: ['Helvetica', 'Arial', 'sans-serif'],
         sans: ['Helvetica', 'Arial', 'sans-serif'],
+        display: ['Helvetica', 'Arial', 'sans-serif'],
         logo: ['Arroem', 'Helvetica', 'Arial', 'sans-serif'],
       },
       colors: {
-        cream: '#FCFAF4', cream2: '#F6EFE1', ink: '#2C2113', ink2: '#5A4A30',
-        gold: '#C99A3F', goldlt: '#E6C277', goldbr: '#EBCB82', golddp: '#A9731F',
-        bronze: '#8A5A1C', night: '#1A140B',
-        // ----- New Design (Figma) accents -----
-        orange: '#E6952E', orange2: '#D07E1C', orangelt: '#F2B45E', orangedk: '#B96E14',
-        cocoa: '#3A2408', cocoa2: '#52340C', paper: '#FEFCF0',
+        paper: 'var(--paper)', cream: 'var(--cream)', cream2: 'var(--cream2)',
+        ink: 'var(--ink)', ink2: 'var(--ink2)', night: 'var(--night)',
+        brown: 'var(--brown)', cocoa: 'var(--cocoa)', cocoa2: 'var(--cocoa2)', bronze: 'var(--bronze)',
+        orange: 'var(--orange)', orange2: 'var(--orange2)', orangelt: 'var(--orangelt)', orangedk: 'var(--orangedk)',
+        gold: 'var(--gold)', goldlt: 'var(--goldlt)', goldbr: 'var(--goldbr)', golddp: 'var(--golddp)',
+        'ft-text': 'var(--ft-text)', 'ft-bright': 'var(--ft-bright)',
+        'ft-accent': 'var(--ft-accent)', 'ft-dim': 'var(--ft-dim)',
       },
     },
   },
