@@ -6,16 +6,10 @@ const vi = UI.vi, en = UI.en;
 
 <header class="site-header fixed top-0 inset-x-0 z-50">
   <div class="max-w-[1280px] mx-auto px-5 md:px-8 h-[72px] flex items-center justify-between gap-4">
-    <!-- Logo -->
-    <a href="#home" class="flex items-center gap-3 shrink-0">
-      <img src="/assets/figma/logo.png" alt="Bảo tàng Báo chí Việt Nam" width="46" height="46"
-           class="w-11 h-11 object-contain shrink-0" />
-      <div class="leading-tight">
-        <div class="font-logo text-[17px] leading-none tracking-wide text-brown"
-             data-vi-text={vi.logoTop} data-en-text={en.logoTop}>{vi.logoTop}</div>
-        <div class="text-[9px] tracking-[.28em] uppercase text-orange mt-0.5"
-             data-vi-text={vi.logoSub} data-en-text={en.logoSub}>{vi.logoSub}</div>
-      </div>
+    <!-- Logo hoa sen (lockup Figma: ô 130×130 @1920 treo từ mép trên, chữ Arroem bên dưới) -->
+    <a href="#home" class="logo-lockup shrink-0" aria-label="Bảo tàng Báo chí Việt Nam">
+      <img src="/assets/figma/logo-lotus.png" alt="Bảo tàng Báo chí Việt Nam" />
+      <span class="logo-line" data-vi-text={vi.logoLine} data-en-text={en.logoLine}>{vi.logoLine}</span>
     </a>
 
     <!-- Nav -->
@@ -46,6 +40,24 @@ const vi = UI.vi, en = UI.en;
 <style is:global>
   /* ===== Header ===== */
   .site-header{ transition: background .4s, box-shadow .4s, border-color .4s; }
+
+  /* ===== Logo lockup (Figma: 130×130 @1920, x=78 y=6; chữ ở 73.6% chiều cao, cỡ 6.62% cạnh ô) ===== */
+  .logo-lockup{
+    position:relative; display:block; align-self:flex-start;
+    width:clamp(96px, 6.77vw, 130px); aspect-ratio:1/1;
+    margin-top:6px;
+    transition:width .35s ease, margin-top .35s ease;
+  }
+  .logo-lockup img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
+  .logo-line{
+    position:absolute; top:73.6%; left:50%; transform:translateX(-50%);
+    white-space:nowrap; font-family:var(--logo); font-weight:400;
+    font-size:clamp(6.4px, 0.4485vw, 8.7px); color:var(--brown);
+    transition:opacity .25s;
+  }
+  /* cuộn xuống: thu nhỏ lọt thanh 72px, ẩn dòng chữ (Figma không định nghĩa trạng thái này) */
+  .site-header.scrolled .logo-lockup{ width:56px; margin-top:8px; }
+  .site-header.scrolled .logo-line{ opacity:0; }
   .site-header.scrolled{
     background:rgba(255,255,255,.88);
     backdrop-filter:blur(14px) saturate(140%);
