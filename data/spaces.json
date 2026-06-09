@@ -292,12 +292,58 @@
       "en": "1925 – 1945"
     },
     "floor": 1,
-    "photo": "assets/panos/bao-chi-1925-1945-1780933958397.jpg",
     "thumb": "assets/panos/bao-chi-1925-1945-1780933958397-thumb.jpg",
-    "initYaw": 0,
-    "initPitch": -2,
-    "hotspots": [],
-    "id": "bao-chi-1925-1945"
+    "id": "bao-chi-1925-1945",
+    "scenes": [
+      {
+        "id": "bao-chi-1925-1945-1",
+        "photo": "assets/panos/bao-chi-1925-1945-1780933958397.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 1",
+          "en": "Scene 1"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq6aigod",
+        "photo": "assets/panos/bao-chi-1925-1945-1780988448548.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq6ajkzp",
+        "photo": "assets/panos/bao-chi-1925-1945-1780988470886.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq6ajyec",
+        "photo": "assets/panos/bao-chi-1925-1945-1780988488935.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      }
+    ]
   },
   {
     "card": {
