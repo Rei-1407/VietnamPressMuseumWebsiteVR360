@@ -110,14 +110,14 @@
           {
             "pitch": -6,
             "yaw": -50,
-            "to": "canh-mq5d4xwk",
+            "to": "sanh-ngoai",
             "vi": "Quay ra trước sảnh",
             "en": "Back to the forecourt"
           },
           {
             "pitch": -6,
             "yaw": 0,
-            "to": "sanh-trong",
+            "to": "canh-mq5d4xwk",
             "vi": "Gian Khánh tiết",
             "en": ""
           }
