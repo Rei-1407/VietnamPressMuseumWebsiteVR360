@@ -137,14 +137,15 @@
           {
             "pitch": -6,
             "yaw": 0,
-            "to": "canh-mq5d4xwk",
             "vi": "",
-            "en": ""
+            "en": "",
+            "toRoom": "bao-chi-1865-1925"
           }
         ]
       }
     ],
-    "floor": 1
+    "floor": 1,
+    "id": "gian-khanh-tiet"
   },
   {
     "card": {
@@ -155,12 +156,131 @@
       "vi": "1865 – 1925",
       "en": "1865 – 1925"
     },
-    "photo": "assets/panos/bao-chi-viet-nam-1865-1925-1780679180434.jpg",
     "thumb": "assets/panos/bao-chi-viet-nam-1865-1925-1780679180434.jpg",
-    "initYaw": 0,
-    "initPitch": -2,
-    "hotspots": [],
-    "floor": 1
+    "floor": 1,
+    "id": "bao-chi-1865-1925",
+    "scenes": [
+      {
+        "id": "bao-chi-1865-1925-1",
+        "photo": "assets/panos/bao-chi-viet-nam-1865-1925-1780679180434.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 1",
+          "en": "Scene 1"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq6a4lee",
+        "photo": "assets/panos/bao-chi-1865-1925-1780987807415.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq6a6hpa",
+        "photo": "assets/panos/bao-chi-1865-1925-1780987856350.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq6a6u3p",
+        "photo": "assets/panos/bao-chi-1865-1925-1780987877608.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq6a7c9w",
+        "photo": "assets/panos/bao-chi-1865-1925-1780987940359.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq6a8r5h",
+        "photo": "assets/panos/bao-chi-1865-1925-1780988028326.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq6aag6l",
+        "photo": "assets/panos/bao-chi-1865-1925-1780988040229.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq6aaoa4",
+        "photo": "assets/panos/bao-chi-1865-1925-1780988049633.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq6aavlh",
+        "photo": "assets/panos/bao-chi-1865-1925-1780988059178.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq6ab2tp",
+        "photo": "assets/panos/bao-chi-1865-1925-1780988071685.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      }
+    ]
   },
   {
     "card": {
@@ -176,7 +296,8 @@
     "thumb": "assets/panos/bao-chi-1925-1945-1780933958397-thumb.jpg",
     "initYaw": 0,
     "initPitch": -2,
-    "hotspots": []
+    "hotspots": [],
+    "id": "bao-chi-1925-1945"
   },
   {
     "card": {
@@ -192,7 +313,8 @@
     "thumb": "assets/panos/bao-chi-1945-1954-1780934999780-thumb.jpg",
     "initYaw": 0,
     "initPitch": -2,
-    "hotspots": []
+    "hotspots": [],
+    "id": "bao-chi-1945-1954"
   },
   {
     "card": {
@@ -208,7 +330,8 @@
     "thumb": "assets/panos/bao-chi-1954-1975-1780935714441-thumb.jpg",
     "initYaw": 0,
     "initPitch": -2,
-    "hotspots": []
+    "hotspots": [],
+    "id": "bao-chi-1954-1975"
   },
   {
     "card": {
@@ -224,7 +347,8 @@
     "thumb": "assets/panos/khu-tuong-niem-1780935745819-thumb.jpg",
     "initYaw": 0,
     "initPitch": -2,
-    "hotspots": []
+    "hotspots": [],
+    "id": "khu-tuong-niem"
   },
   {
     "card": {
@@ -240,7 +364,8 @@
     "thumb": "assets/panos/trien-lam-dinh-ky-1780936124832-thumb.jpg",
     "initYaw": 0,
     "initPitch": -2,
-    "hotspots": []
+    "hotspots": [],
+    "id": "trien-lam-dinh-ky"
   },
   {
     "card": {
@@ -256,7 +381,8 @@
     "thumb": "assets/panos/phong-duong-dai-1780935781556-thumb.jpg",
     "initYaw": 0,
     "initPitch": -2,
-    "hotspots": []
+    "hotspots": [],
+    "id": "phong-duong-dai"
   },
   {
     "card": {
@@ -272,7 +398,8 @@
     "thumb": "assets/panos/truyen-hinh-phat-thanh-1780935814548-thumb.jpg",
     "initYaw": 0,
     "initPitch": -2,
-    "hotspots": []
+    "hotspots": [],
+    "id": "truyen-hinh-phat-thanh"
   },
   {
     "card": {
@@ -288,7 +415,8 @@
     "thumb": "assets/panos/bao-in-va-bao-dien-tu-1780935952396-thumb.jpg",
     "initYaw": 0,
     "initPitch": -2,
-    "hotspots": []
+    "hotspots": [],
+    "id": "bao-in-va-bao-dien-tu"
   },
   {
     "card": {
@@ -304,6 +432,7 @@
     "thumb": "assets/panos/tu-1975-den-nay-1780935988940-thumb.jpg",
     "initYaw": 0,
     "initPitch": -2,
-    "hotspots": []
+    "hotspots": [],
+    "id": "tu-1975-den-nay"
   }
 ]
