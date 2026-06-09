@@ -100,7 +100,34 @@ function requireToken(){ if(!token){ $('#tokenPanel').classList.remove('hidden')
 function spaceType(sp){ return sp.scenes ? 'scenes' : (sp.photo ? 'photo' : 'generated'); }
 function previewUrl(src){ if(!src) return ''; return previewCache[src] ? previewCache[src] : (src.startsWith('http') ? src : PREVIEW + src + '?t=' + Date.now()); }
 
+/* ---------- id ổn định cho từng phòng (để cửa liên phòng không sai khi sắp xếp lại) ---------- */
+function ensureRoomIds(){
+  const used = new Set(state.spaces.map(s=>s.id).filter(Boolean));
+  state.spaces.forEach(sp=>{
+    if(sp.id) return;
+    const base = slug(sp.card?.vi || sp.tag?.vi || 'phong'); let id = base, n = 2;
+    while(!id || used.has(id)){ id = base + '-' + n; n++; }
+    sp.id = id; used.add(id);
+  });
+}
+function roomById(id){ return state.spaces.find(s=>s.id===id); }
+function uniqueSceneId(sp, base){
+  base = base || 'canh';
+  const used = new Set((sp.scenes||[]).map(s=>s.id)); let id = base, n = 2;
+  while(used.has(id)){ id = base + '-' + n; n++; }
+  return id;
+}
+/* chuyển phòng "một ảnh" -> phòng "nhiều cảnh" (ảnh cũ thành Cảnh 1, giữ điểm chú thích) */
+function convertPhotoToScenes(sp){
+  if(sp.scenes) return;
+  const sid = uniqueSceneId(sp, slug(sp.card?.vi||'canh') + '-1');
+  sp.scenes = [{ id:sid, photo:sp.photo||'', yaw:sp.initYaw??0, pitch:sp.initPitch??-2,
+    label:{ vi:'Cảnh 1', en:'Scene 1' }, hotspots:sp.hotspots||[], links:[] }];
+  delete sp.photo; delete sp.initYaw; delete sp.initPitch; delete sp.hotspots;
+}
+
 function render(){
+  ensureRoomIds();
   const root = $('#spaces');
   if(!state.spaces.length){ root.innerHTML = `<div class="card p-6 text-center text-stone-500">Chưa có không gian nào. Bấm “➕ Thêm không gian”.</div>`; return; }
   root.innerHTML = state.spaces.map((sp,i)=>renderSpace(sp,i)).join('');
@@ -198,11 +225,18 @@ function renderPhoto(sp, i){
         ${field('Góc dọc ban đầu (pitch)', `${i}.initPitch`, sp.initPitch ?? -2, {num:1})}
       </div>
     </details>
+    <div class="rounded-xl border border-amber-200 bg-amber-50/60 p-3">
+      <div class="lbl mb-1">Nhiều cảnh & lối đi</div>
+      <p class="text-xs text-stone-500 mb-2">Phòng đang ở dạng <b>một cảnh</b>. Thêm cảnh 360° khác, hoặc tạo cửa đi sang phòng/cảnh khác — phòng sẽ tự chuyển sang dạng nhiều cảnh (ảnh hiện tại thành Cảnh 1, giữ nguyên điểm chú thích &amp; âm thanh).</p>
+      <div class="flex flex-wrap gap-2">
+        <button class="btn btn-ghost" data-act="add-scene-to-photo" data-i="${i}">➕ Thêm cảnh 360°</button>
+        <button class="btn btn-ghost" data-act="add-door-to-photo" data-i="${i}">➕ Thêm cửa sang phòng/cảnh khác</button>
+      </div>
+    </div>
   </div>`;
 }
 
 function renderScenes(sp, i){
-  const ids = sp.scenes.map(s=>s.id);
   const scenes = sp.scenes.map((sc,j)=>`
     <div class="rounded-xl border border-stone-200 p-3">
       <div class="flex items-center justify-between mb-2">
@@ -216,7 +250,7 @@ function renderScenes(sp, i){
         ${field('Nhãn cảnh (EN)', `${i}.scenes.${j}.label.en`, sc.label?.en)}
       </div>
       <div class="mt-3">${hotspotsEditor(sc.hotspots||[], `${i}.scenes.${j}.hotspots`)}</div>
-      <div class="mt-3">${linksEditor(sc.links||[], `${i}.scenes.${j}.links`, ids)}</div>
+      <div class="mt-3">${linksEditor(sc.links||[], `${i}.scenes.${j}.links`, i)}</div>
     </div>`).join('');
   return `<div class="space-y-3">
     ${scenes}
@@ -282,20 +316,47 @@ function hotspotsEditor(list, path){
   </div>`;
 }
 
-function linksEditor(list, path, sceneIds){
+
+function linksEditor(list, path, roomIndex){
+  const cur = state.spaces[roomIndex] || {};
+  const myScenes = cur.scenes || [];
   const rows = list.map((lk,k)=>{
-    const opts = sceneIds.map(id=>`<option value="${esc(id)}" ${id===lk.to?'selected':''}>${esc(id)}</option>`).join('');
-    return `<div class="grid grid-cols-[64px_64px_1fr_1fr_auto] gap-2 items-center">
-      <input class="inp" type="number" step="1" data-path="${path}.${k}.pitch" data-num="1" value="${esc(lk.pitch)}" title="pitch"/>
-      <input class="inp" type="number" step="1" data-path="${path}.${k}.yaw"   data-num="1" value="${esc(lk.yaw)}" title="yaw"/>
-      <select class="inp" data-path="${path}.${k}.to" title="Đi tới cảnh">${opts}</select>
-      <input class="inp" data-path="${path}.${k}.vi" value="${esc(lk.vi)}" placeholder="Nhãn cửa (VI)"/>
-      <button class="btn btn-danger px-2 py-1" data-act="del-link" data-path="${path}" data-k="${k}">✕</button>
-    </div>
-    <input class="inp" data-path="${path}.${k}.en" value="${esc(lk.en)}" placeholder="Door label (EN)"/>`;
+    const lp = `${path}.${k}`;
+    const targetVal = lk.toRoom ? ('room:'+lk.toRoom) : ('scene:'+(lk.to || (myScenes[0]?.id||'')));
+    const sceneOpts = myScenes.map(s=>`<option value="scene:${esc(s.id)}" ${('scene:'+s.id===targetVal)?'selected':''}>${esc(s.label?.vi||s.id)}</option>`).join('');
+    const roomOpts = state.spaces.map((sp,ri)=> ri===roomIndex ? '' :
+      `<option value="room:${esc(sp.id)}" ${('room:'+sp.id===targetVal)?'selected':''}>${esc(sp.card?.vi||sp.id)}</option>`).join('');
+    let sceneSub = '';
+    if(lk.toRoom){
+      const tr = roomById(lk.toRoom);
+      const trScenes = (tr && tr.scenes) ? tr.scenes : [];
+      if(trScenes.length>1){
+        const subOpts = `<option value="">(cảnh chính)</option>` +
+          trScenes.map(s=>`<option value="${esc(s.id)}" ${s.id===lk.toScene?'selected':''}>${esc(s.label?.vi||s.id)}</option>`).join('');
+        sceneSub = `<div><span class="text-[11px] text-stone-400">Cảnh đến trong phòng đó</span>
+          <select class="inp mt-1" data-linkscene data-linkpath="${lp}">${subOpts}</select></div>`;
+      }
+    }
+    return `<div class="rounded-lg border border-stone-200 bg-white/70 p-2.5 space-y-2">
+      <div class="grid grid-cols-[58px_58px_1fr_auto] gap-2 items-center">
+        <input class="inp" type="number" step="1" data-path="${lp}.pitch" data-num="1" value="${esc(lk.pitch)}" title="pitch (lên/xuống)"/>
+        <input class="inp" type="number" step="1" data-path="${lp}.yaw" data-num="1" value="${esc(lk.yaw)}" title="yaw (trái/phải)"/>
+        <select class="inp" data-linktarget data-linkpath="${lp}" title="Đi tới đâu">
+          <optgroup label="Trong phòng này">${sceneOpts}</optgroup>
+          <optgroup label="Sang phòng khác">${roomOpts}</optgroup>
+        </select>
+        <button class="btn btn-danger px-2 py-1" data-act="del-link" data-path="${path}" data-k="${k}" title="Xoá cửa">✕</button>
+      </div>
+      ${sceneSub}
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <input class="inp" data-path="${lp}.vi" value="${esc(lk.vi)}" placeholder="Nhãn cửa (VI)"/>
+        <input class="inp" data-path="${lp}.en" value="${esc(lk.en)}" placeholder="Door label (EN)"/>
+      </div>
+    </div>`;
   }).join('');
   return `<div>
-    <div class="lbl mb-1">Nút “cửa” đi sang cảnh khác</div>
+    <div class="flex items-center gap-2 mb-1"><span class="lbl">Cửa / lối đi</span>
+      <span class="text-[11px] text-stone-400">sang cảnh khác trong phòng, hoặc sang phòng khác · pitch -90..90 · yaw -180..180</span></div>
     <div class="space-y-2">${rows || '<div class="text-sm text-stone-400">Chưa có cửa.</div>'}</div>
     <button class="btn btn-ghost mt-2" data-act="add-link" data-path="${path}">➕ Thêm cửa</button>
   </div>`;
@@ -306,6 +367,21 @@ function linksEditor(list, path, sceneIds){
    ========================================================= */
 // cập nhật giá trị khi gõ / đổi (không render lại để khỏi mất con trỏ)
 function onFieldChange(e){
+  // cửa: chọn đích (cảnh trong phòng này / sang phòng khác)
+  const tgt = e.target.closest('[data-linktarget]');
+  if(tgt){
+    const lk = getByPath(state.spaces, tgt.dataset.linkpath); if(!lk) return;
+    const v = tgt.value;
+    if(v.indexOf('scene:')===0){ lk.to = v.slice(6); delete lk.toRoom; delete lk.toScene; }
+    else if(v.indexOf('room:')===0){ lk.toRoom = v.slice(5); delete lk.to; delete lk.toScene; }
+    markDirty(true); render(); return;
+  }
+  const lsc = e.target.closest('[data-linkscene]');
+  if(lsc){
+    const lk = getByPath(state.spaces, lsc.dataset.linkpath); if(!lk) return;
+    if(lsc.value) lk.toScene = lsc.value; else delete lk.toScene;
+    markDirty(true); return;
+  }
   const el = e.target.closest('[data-path]'); if(!el) return;
   let v;
   if(el.dataset.bool){ v = el.checked; }
@@ -345,6 +421,19 @@ $('#spaces').addEventListener('click', async (e)=>{
       const sp=state.spaces[i]; const id='canh-'+(Date.now().toString(36));
       sp.scenes.push({ id, photo:'', yaw:0, pitch:-2, label:{vi:'Cảnh mới',en:'New scene'}, hotspots:[], links:[] });
       markDirty(true); render(); alert('Đã thêm cảnh. Hãy bấm “Đổi ảnh” để tải ảnh 360° cho cảnh này.');
+    }
+    else if(act==='add-scene-to-photo'){
+      const sp=state.spaces[i]; convertPhotoToScenes(sp);
+      const id=uniqueSceneId(sp,'canh-'+(Date.now().toString(36)));
+      sp.scenes.push({ id, photo:'', yaw:0, pitch:-2, label:{vi:'Cảnh mới',en:'New scene'}, hotspots:[], links:[] });
+      markDirty(true); render(); alert('Đã chuyển phòng sang dạng nhiều cảnh. Bấm nút Đổi ảnh ở cảnh mới để tải ảnh 360°.');
+    }
+    else if(act==='add-door-to-photo'){
+      const sp=state.spaces[i]; convertPhotoToScenes(sp);
+      const sc=sp.scenes[0]; sc.links=sc.links||[];
+      const other=state.spaces.find((x,ri)=>ri!==i);
+      sc.links.push(other ? {pitch:-6,yaw:0,toRoom:other.id,vi:'',en:''} : {pitch:-6,yaw:0,to:sc.id,vi:'',en:''});
+      markDirty(true); render();
     }
     else if(act==='del-scene'){ const sp=state.spaces[i]; if(sp.scenes.length<=1){ alert('Phòng cần ít nhất 1 cảnh.'); return; } if(!confirm('Xoá cảnh này?')) return; collectImagesToDelete({scenes:[sp.scenes[j]]}); sp.scenes.splice(j,1); markDirty(true); render(); }
     else if(act==='replace-photo'){ pending={kind:'photo', i}; pickFile(); }

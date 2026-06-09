@@ -21,3 +21,6 @@ desktop.ini
 # font sources (chỉ deploy bản woff2 đã nén)
 font/*.ttf
 font/*.otf
+
+# thư mục sao lưu tạm của người dùng
+_backup_*/

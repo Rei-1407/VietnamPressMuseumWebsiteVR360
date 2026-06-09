@@ -381,7 +381,14 @@ function toggleSound(){
   if(muted){ a.pause(); } else { a.play().catch(()=>{}); }
 }
 
-function loadRoom(idx){
+/* đi sang phòng khác (cửa liên phòng): tìm phòng theo id rồi nạp, có thể vào đúng cảnh */
+function gotoRoom(roomId, sceneId){
+  const idx = SPACES.findIndex(s=>s.id===roomId);
+  if(idx<0){ console.warn('Cửa liên phòng: không tìm thấy phòng', roomId); return; }
+  loadRoom(idx, sceneId);
+}
+
+function loadRoom(idx, initScene){
   curRoom=idx;
   const room=SPACES[idx];
 
@@ -401,6 +408,14 @@ function loadRoom(idx){
     createTooltipFunc:hotspotTooltip, createTooltipArgs:{ text: h[L()]||h.vi||h.text||'' },
     clickHandlerFunc:hotspotClick, clickHandlerArgs:{ vi:h.vi, en:h.en, img:h.img, dvi:h.dVi, den:h.dEn } });
 
+  // 1 "cửa": sang cảnh khác trong phòng (type:scene) hoặc sang phòng khác (click -> gotoRoom)
+  const doorSpot = (lk)=>{
+    const base = { pitch:lk.pitch??-4, yaw:lk.yaw, cssClass:'custom-door',
+      createTooltipFunc:hotspotDoor, createTooltipArgs:{ text: lk[L()]||lk.vi||'' } };
+    if(lk.toRoom) return { ...base, type:'info', clickHandlerFunc:()=>setTimeout(()=>gotoRoom(lk.toRoom, lk.toScene), 0) };
+    return { ...base, type:'scene', sceneId:lk.to };
+  };
+
   // ---- (A) phòng nhiều cảnh (ảnh thật) ----
   if(room.scenes){
     const scenes={};
@@ -409,21 +424,22 @@ function loadRoom(idx){
         type:'equirectangular', panorama:s.photo, yaw:s.yaw??0, pitch:s.pitch??-2, hfov:100,
         hotSpots:[
           ...(s.hotspots||[]).map(infoSpot),
-          ...(s.links||[]).map(lk=>({ pitch:lk.pitch??-4, yaw:lk.yaw, type:'scene', sceneId:lk.to,
-            cssClass:'custom-door', createTooltipFunc:hotspotDoor, createTooltipArgs:{text:lk[L()]||lk.vi} })),
+          ...(s.links||[]).map(doorSpot),
         ]
       };
     });
+    const first = (initScene && room.scenes.some(s=>s.id===initScene)) ? initScene : room.scenes[0].id;
     viewer = window.pannellum.viewer('pano', {
-      default:{ firstScene:room.scenes[0].id, autoLoad:true, showControls:false,
+      default:{ firstScene:first, autoLoad:true, showControls:false,
         hfov:100, minHfov:50, maxHfov:120, sceneFadeDuration:800, autoRotate: autoRot? -2 : 0 },
       scenes
     });
     viewer.on('scenechange', (id)=>{
       const s = room.scenes.find(x=>x.id===id);
-      setKick(s ? s.label[L()] : '');
+      setKick(s && s.label ? s.label[L()] : '');
     });
-    setKick(room.scenes[0].label ? room.scenes[0].label[L()] : '');
+    const fs = room.scenes.find(s=>s.id===first) || room.scenes[0];
+    setKick(fs && fs.label ? fs.label[L()] : '');
     return;
   }
 
