@@ -51,8 +51,8 @@
         ],
         "links": [
           {
-            "pitch": -6,
-            "yaw": 0,
+            "pitch": -14,
+            "yaw": 5,
             "to": "sanh-trong",
             "vi": "Bước vào trong sảnh",
             "en": "Step inside the lobby"
@@ -108,15 +108,15 @@
         ],
         "links": [
           {
-            "pitch": -6,
-            "yaw": -50,
+            "pitch": -11,
+            "yaw": -43,
             "to": "sanh-ngoai",
             "vi": "Quay ra trước sảnh",
             "en": "Back to the forecourt"
           },
           {
-            "pitch": -6,
-            "yaw": 0,
+            "pitch": -10,
+            "yaw": 23,
             "to": "canh-mq5d4xwk",
             "vi": "Gian Khánh tiết",
             "en": "Ceremonial Hall"
@@ -135,11 +135,12 @@
         "hotspots": [],
         "links": [
           {
-            "pitch": -6,
-            "yaw": 0,
+            "pitch": -22,
+            "yaw": 99,
             "vi": "Đi tới Báo chí 1865 - 1925",
             "en": "Go to Press 1865 - 1925",
-            "toRoom": "bao-chi-1865-1925"
+            "toRoom": "bao-chi-1865-1925",
+            "toScene": "bao-chi-1865-1925-1"
           }
         ]
       }
@@ -168,114 +169,6 @@
         "label": {
           "vi": "Cảnh 1",
           "en": "Scene 1"
-        },
-        "hotspots": [],
-        "links": []
-      },
-      {
-        "id": "canh-mq6a4lee",
-        "photo": "assets/panos/bao-chi-1865-1925-1780987807415.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh mới",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": []
-      },
-      {
-        "id": "canh-mq6a6hpa",
-        "photo": "assets/panos/bao-chi-1865-1925-1780987856350.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh mới",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": []
-      },
-      {
-        "id": "canh-mq6a6u3p",
-        "photo": "assets/panos/bao-chi-1865-1925-1780987877608.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh mới",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": []
-      },
-      {
-        "id": "canh-mq6a7c9w",
-        "photo": "assets/panos/bao-chi-1865-1925-1780987940359.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh mới",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": []
-      },
-      {
-        "id": "canh-mq6a8r5h",
-        "photo": "assets/panos/bao-chi-1865-1925-1780988028326.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh mới",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": []
-      },
-      {
-        "id": "canh-mq6aag6l",
-        "photo": "assets/panos/bao-chi-1865-1925-1780988040229.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh mới",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": []
-      },
-      {
-        "id": "canh-mq6aaoa4",
-        "photo": "assets/panos/bao-chi-1865-1925-1780988049633.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh mới",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": []
-      },
-      {
-        "id": "canh-mq6aavlh",
-        "photo": "assets/panos/bao-chi-1865-1925-1780988059178.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh mới",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": []
-      },
-      {
-        "id": "canh-mq6ab2tp",
-        "photo": "assets/panos/bao-chi-1865-1925-1780988071685.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh mới",
-          "en": "New scene"
         },
         "hotspots": [],
         "links": []
