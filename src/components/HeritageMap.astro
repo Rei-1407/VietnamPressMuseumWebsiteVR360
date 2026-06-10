@@ -81,13 +81,17 @@ const vi = UI.vi, en = UI.en;
   @media(max-width:520px){ .map-card{ width:100%; } }
 
   .map-card .body{ position:relative; aspect-ratio:7/5; border-radius:16px;
-    background:var(--orange); display:grid; place-items:center;
+    background:var(--orange); display:grid; place-items:center; overflow:hidden;
     box-shadow:var(--shadow-tile);
     transition:transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s; }
   .map-card:hover .body{ transform:translateY(-5px); box-shadow:0 34px 60px -26px rgba(185,110,20,.72); }
   /* ảnh preview cho khu vực ĐÃ có ảnh 360° */
   .map-card .body > .photo{ position:absolute; inset:0; border-radius:16px; z-index:0;
-    background-size:cover; background-position:center; }
+    background-size:cover; background-position:center;
+    transform:scale(1.01) rotate(0);
+    transition:transform .65s cubic-bezier(.2,.75,.2,1); }
+  .map-card:hover .body > .photo{ transform:scale(1.09) rotate(1.5deg); }
+  .map-card:nth-child(even):hover .body > .photo{ transform:scale(1.09) rotate(-1.5deg); }
   .map-card .body > .tint{ position:absolute; inset:0; border-radius:16px; z-index:1;
     background:linear-gradient(180deg, rgba(230,149,46,.15) 0%, rgba(196,116,20,.50) 100%); }
   .map-card.has-photo .body{ background:#C9842E; }
@@ -114,6 +118,11 @@ const vi = UI.vi, en = UI.en;
     transition:transform .25s, filter .25s; }
   .cta-vr:hover{ transform:translateY(-2px); filter:brightness(1.04); }
   .cta-vr img{ width:30px; height:30px; }
+  @media (prefers-reduced-motion: reduce){
+    .map-card .body > .photo{ transition:none; }
+    .map-card:hover .body > .photo,
+    .map-card:nth-child(even):hover .body > .photo{ transform:scale(1.01); }
+  }
 </style>
 
 <script>
