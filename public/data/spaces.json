@@ -146,9 +146,7 @@
       }
     ],
     "floor": 1,
-    "id": "gian-khanh-tiet",
-    "audio": "assets/audio/gian-khanh-tiet-1781077844739.mp3",
-    "audioLoop": true
+    "id": "gian-khanh-tiet"
   },
   {
     "card": {
@@ -238,9 +236,7 @@
         "hotspots": [],
         "links": []
       }
-    ],
-    "audio": "assets/audio/bao-chi-1925-1945-1781077876839.mp3",
-    "audioLoop": true
+    ]
   },
   {
     "card": {
