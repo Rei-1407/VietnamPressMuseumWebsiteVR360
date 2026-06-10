@@ -36,10 +36,10 @@
   </div>
 
   <div class="vr-tools">
-    <div class="vr-tool" id="vrSound" title="Bật/tắt âm thanh" style="display:none"
-         data-vi-title="Bật/tắt âm thanh" data-en-title="Toggle sound">
+    <button type="button" class="vr-tool off unavailable" id="vrSound" title="Phòng này chưa có âm thanh"
+         aria-label="Phòng này chưa có âm thanh" disabled>
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M16 9a3 3 0 0 1 0 6"/><path d="M19 7a6 6 0 0 1 0 10"/></svg>
-    </div>
+    </button>
     <div class="vr-tool" id="vrRotate" title="Tự xoay"
          data-vi-title="Tự xoay" data-en-title="Auto-rotate">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v5h-5"/></svg>
@@ -119,11 +119,13 @@
   .vr-tools{ position:absolute; right:22px; bottom:96px; z-index:6; display:flex; flex-direction:column; gap:10px; }
   .vr-tool{ width:44px; height:44px; border-radius:12px; display:grid; place-items:center;
     background:rgba(8,6,3,.6); border:1px solid rgba(230,194,119,.4); color:#E6C277; cursor:pointer;
-    backdrop-filter:blur(6px); transition:all .25s; position:relative; }
+    backdrop-filter:blur(6px); transition:all .25s; position:relative; padding:0; }
   .vr-tool:hover{ background:rgba(230,194,119,.85); color:#1a140b; }
   .vr-tool.off{ opacity:.5; }
   .vr-tool.off::after{ content:''; position:absolute; left:7px; right:7px; top:50%; height:2px;
     background:currentColor; transform:rotate(-45deg); border-radius:2px; }
+  .vr-tool.unavailable{ opacity:.64; cursor:not-allowed; border-color:rgba(230,194,119,.58); }
+  .vr-tool.unavailable:hover{ background:rgba(8,6,3,.6); color:#E6C277; }
   .pnlm-hotspot-base.custom-info{ width:30px; height:30px; margin:-15px 0 0 -15px; }
   .custom-info{ border-radius:50%; background:rgba(230,194,119,.92);
     box-shadow:0 0 0 6px rgba(230,194,119,.25), 0 0 18px rgba(230,194,119,.7);
@@ -420,23 +422,37 @@
   function closeExhibit() { $id('vrExhibit').classList.remove('open'); }
 
   /* ---------- audio mỗi phòng ---------- */
+  function updateSoundControl(hasAudio: boolean) {
+    const btn = $id('vrSound') as HTMLButtonElement;
+    const label = !hasAudio
+      ? (L() === 'vi' ? 'Phòng này chưa có âm thanh' : 'No audio in this room')
+      : muted
+        ? (L() === 'vi' ? 'Bật âm thanh' : 'Turn sound on')
+        : (L() === 'vi' ? 'Tắt âm thanh' : 'Mute sound');
+    btn.disabled = !hasAudio;
+    btn.classList.toggle('unavailable', !hasAudio);
+    btn.classList.toggle('off', !hasAudio || muted);
+    btn.title = label;
+    btn.setAttribute('aria-label', label);
+    btn.setAttribute('aria-pressed', String(hasAudio && !muted));
+  }
   function applyRoomAudio(room: any) {
-    const a = $id('vrAudio') as HTMLAudioElement; const btn = $id('vrSound');
+    const a = $id('vrAudio') as HTMLAudioElement;
     if (room.audio) {
-      btn.style.display = '';
       if (a.getAttribute('src') !== room.audio) { a.setAttribute('src', room.audio); a.load(); }
       a.loop = room.audioLoop !== false;
-      btn.classList.toggle('off', muted);
+      updateSoundControl(true);
       if (muted) { a.pause(); } else { a.play().catch(() => {}); }
     } else {
-      a.pause(); a.removeAttribute('src'); btn.style.display = 'none';
+      a.pause(); a.removeAttribute('src'); a.load();
+      updateSoundControl(false);
     }
   }
   function toggleSound() {
-    muted = !muted; try { localStorage.setItem('vr_muted', muted ? '1' : '0'); } catch { /* */ }
-    const a = $id('vrAudio') as HTMLAudioElement; const btn = $id('vrSound');
-    btn.classList.toggle('off', muted);
+    const a = $id('vrAudio') as HTMLAudioElement;
     if (!a.getAttribute('src')) return;
+    muted = !muted; try { localStorage.setItem('vr_muted', muted ? '1' : '0'); } catch { /* */ }
+    updateSoundControl(true);
     if (muted) { a.pause(); } else { a.play().catch(() => {}); }
   }
 
