@@ -91,18 +91,49 @@ const vi = UI.vi, en = UI.en;
   .hero-tiles .hero-tile{ aspect-ratio:auto; border-radius:0; box-shadow:none; }
   .hero-tiles .hero-tile:hover{ transform:none; box-shadow:none; }
 
-  /* Laptop: giữ hai cột nhưng gom các thành phần gần nhau hơn. */
-  @media(max-width:1439px){
+  /* ===== Desktop ≥1024px: CANVAS FIGMA scale theo bề rộng =====
+     Toàn bộ hero = khung thiết kế 1920×1147.77 thu/phóng NGUYÊN TỈ LỆ:
+     trái sát mép trái (101 tràn -1.14%), phải sát mép phải (lưới icon kết thúc ở 100%).
+     Dùng đơn vị cqw (1cqw = 1% bề rộng stage) thay vì vw để KHÔNG bị lệch bởi
+     thanh cuộn dọc (100vw tính cả scrollbar → hụt ~15px mép phải).
+     Toạ độ = (px trong Figma)/1920 × 100cqw; trừ 72px vì section đệm pt-[72px]. */
+  @media(min-width:1024px){
+    /* container đặt ở SECTION để cqw của stage (kể cả height của chính nó) tham chiếu đúng */
+    #home{ align-items:flex-start; container-type:inline-size; }
     .hero-stage{
-      width:100%;
-      grid-template-columns:minmax(0,1.06fr) minmax(420px,.94fr);
-      gap:clamp(18px,2vw,30px);
+      display:block; width:100%; max-width:none;
+      height:calc(59.78cqw - 72px);   /* 1147.77/1920 = 59.78% bề rộng */
+      margin:0; padding:0;
     }
-    .hero-mark{ min-height:clamp(560px,50vw,690px); }
-    .hero-lockup{ grid-template-columns:minmax(230px,.92fr) minmax(230px,.72fr); gap:18px; }
-    .hero-copy{ transform:translateY(clamp(62px,6vw,88px)); }
-    .hero-word-top,.hero-word-main{ font-size:clamp(42px,3.8vw,54px); }
-    .hero-subline{ font-size:clamp(16px,1.35vw,19px); }
+    .hero-mark{ position:absolute; inset:0; min-height:0; display:block; overflow:visible; }
+    .hero-101{
+      top:calc(8.05cqw - 72px); left:-1.14cqw;
+      width:54.62cqw; max-width:none; transform:none;
+    }
+    .hero-lockup{ position:absolute; inset:0; display:block; }
+    .hero-nib{
+      position:absolute; left:2.38cqw; top:calc(8.16cqw - 72px);
+      width:25.29cqw; max-width:none;
+    }
+    .hero-copy{
+      position:absolute; left:31.56cqw; top:calc(34.90cqw - 72px);
+      width:17.81cqw; transform:none; text-align:left;
+    }
+    .hero-headline{ line-height:4.06cqw; }
+    .hero-word-top,.hero-word-main{ font-size:3.36cqw; line-height:4.06cqw; }
+    .hero-subline{
+      width:17.81cqw; max-width:none;
+      margin-top:1.15cqw; font-size:1.15cqw; line-height:1.5cqw;
+    }
+    .hero-tiles{
+      position:absolute; left:58.18cqw; top:calc(8.06cqw - 72px);
+      width:41.82cqw; max-width:none; aspect-ratio:auto;
+      height:calc(59.78cqw - 8.06cqw);
+      margin:0; justify-self:auto;
+      display:grid; grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(3,1fr); gap:0;
+    }
+    .hero-tiles .hero-tile{ aspect-ratio:auto; border-radius:0; box-shadow:none; }
+    .hero-tiles .hero-tile:hover{ transform:none; box-shadow:none; }
   }
 
   /* Tablet: giới thiệu thành một khối, lưới icon nằm ngay bên dưới. */
