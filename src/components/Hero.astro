@@ -91,44 +91,46 @@ const vi = UI.vi, en = UI.en;
   .hero-tiles .hero-tile{ aspect-ratio:auto; border-radius:0; box-shadow:none; }
   .hero-tiles .hero-tile:hover{ transform:none; box-shadow:none; }
 
-  /* ===== Desktop ≥1024px: CANVAS FIGMA scale theo bề rộng =====
-     Toàn bộ hero = khung thiết kế 1920×1147.77 thu/phóng NGUYÊN TỈ LỆ:
-     trái sát mép trái (101 tràn -1.14%), phải sát mép phải (lưới icon kết thúc ở 100%).
-     Dùng đơn vị cqw (1cqw = 1% bề rộng stage) thay vì vw để KHÔNG bị lệch bởi
-     thanh cuộn dọc (100vw tính cả scrollbar → hụt ~15px mép phải).
-     Toạ độ = (px trong Figma)/1920 × 100cqw; trừ 72px vì section đệm pt-[72px]. */
+  /* ===== Desktop ≥1024px: CANVAS FIGMA, GỌN TRONG 1 MÀN HÌNH =====
+     --u = 1px thiết kế (khung gốc 1920×1147.77), lấy theo chiều CHẬT hơn:
+       • màn cao  → scale theo bề rộng (như Figma nguyên bản)
+       • màn thấp → scale theo chiều cao để KHÔNG tràn xuống dưới
+     Cụm trái (101 + bút + chữ) neo MÉP TRÁI, lưới icon neo MÉP PHẢI —
+     mỗi cụm giữ nguyên tỉ lệ nội bộ, khoảng hở giữa hai cụm tự co giãn.
+     Dùng cqw (bề rộng thực, không dính thanh cuộn) + svh; trừ 72px header (pt-[72px]). */
   @media(min-width:1024px){
-    /* container đặt ở SECTION để cqw của stage (kể cả height của chính nó) tham chiếu đúng */
+    /* container đặt ở SECTION để cqw của stage tham chiếu đúng bề rộng trang */
     #home{ align-items:flex-start; container-type:inline-size; }
     .hero-stage{
+      --u: min(0.0520833cqw, 0.0871254svh);   /* 100/1920 ; 100/1147.77 */
       display:block; width:100%; max-width:none;
-      height:calc(59.78cqw - 72px);   /* 1147.77/1920 = 59.78% bề rộng */
+      height:calc(var(--u)*1147.77 - 72px);
       margin:0; padding:0;
     }
     .hero-mark{ position:absolute; inset:0; min-height:0; display:block; overflow:visible; }
     .hero-101{
-      top:calc(8.05cqw - 72px); left:-1.14cqw;
-      width:54.62cqw; max-width:none; transform:none;
+      top:calc(var(--u)*154.5 - 72px); left:calc(var(--u)*-21.8);
+      width:calc(var(--u)*1048.7); max-width:none; transform:none;
     }
     .hero-lockup{ position:absolute; inset:0; display:block; }
     .hero-nib{
-      position:absolute; left:2.38cqw; top:calc(8.16cqw - 72px);
-      width:25.29cqw; max-width:none;
+      position:absolute; left:calc(var(--u)*45.8); top:calc(var(--u)*156.7 - 72px);
+      width:calc(var(--u)*485.6); max-width:none;
     }
     .hero-copy{
-      position:absolute; left:31.56cqw; top:calc(34.90cqw - 72px);
-      width:17.81cqw; transform:none; text-align:left;
+      position:absolute; left:calc(var(--u)*606); top:calc(var(--u)*670 - 72px);
+      width:calc(var(--u)*342); transform:none; text-align:left;
     }
-    .hero-headline{ line-height:4.06cqw; }
-    .hero-word-top,.hero-word-main{ font-size:3.36cqw; line-height:4.06cqw; }
+    .hero-headline{ line-height:calc(var(--u)*78); }
+    .hero-word-top,.hero-word-main{ font-size:calc(var(--u)*64.5); line-height:calc(var(--u)*78); }
     .hero-subline{
-      width:17.81cqw; max-width:none;
-      margin-top:1.15cqw; font-size:1.15cqw; line-height:1.5cqw;
+      width:calc(var(--u)*342); max-width:none;
+      margin-top:calc(var(--u)*22); font-size:calc(var(--u)*22); line-height:calc(var(--u)*28.8);
     }
     .hero-tiles{
-      position:absolute; left:58.18cqw; top:calc(8.06cqw - 72px);
-      width:41.82cqw; max-width:none; aspect-ratio:auto;
-      height:calc(59.78cqw - 8.06cqw);
+      position:absolute; right:0; left:auto; top:calc(var(--u)*154.8 - 72px);
+      width:calc(var(--u)*803); height:calc(var(--u)*993);
+      max-width:none; aspect-ratio:auto;
       margin:0; justify-self:auto;
       display:grid; grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(3,1fr); gap:0;
     }
