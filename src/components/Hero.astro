@@ -47,6 +47,7 @@ const vi = UI.vi, en = UI.en;
   .hero-mark{
     position:relative; min-width:0; min-height:clamp(620px,46vw,790px);
     display:flex; align-items:center; overflow:visible;
+    transform:translateX(clamp(36px,3.4vw,66px));
   }
   .hero-101{
     position:absolute; z-index:0; top:50%; left:max(-1.14vw,-22px);
@@ -145,7 +146,7 @@ const vi = UI.vi, en = UI.en;
       width:min(820px,calc(100% - 40px)); display:grid; grid-template-columns:1fr;
       gap:28px; padding:32px 0 56px;
     }
-    .hero-mark{ min-height:clamp(480px,70vw,600px); }
+    .hero-mark{ min-height:clamp(480px,70vw,600px); transform:none; }
     .hero-101{ left:43%; width:min(112%,820px); transform:translate(-50%,-50%); }
     .hero-lockup{ grid-template-columns:minmax(220px,.9fr) minmax(230px,.75fr); gap:18px; }
     .hero-nib{ width:min(100%,330px); }

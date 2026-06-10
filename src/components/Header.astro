@@ -81,7 +81,7 @@ const vi = UI.vi, en = UI.en;
     .logo-lockup{ width:60px; }
     .logo-line{ display:none; }
   }
-  @media(max-width:1099px){
+  @media(max-width:1120px){
     .primary-nav{ display:none !important; }
     .header-actions{ margin-left:auto; }
   }
@@ -105,17 +105,21 @@ const vi = UI.vi, en = UI.en;
   .navlink:hover::after,.navlink.active::after{ width:100%; }
 
   .lang-toggle{ display:inline-flex; border:1px solid rgba(230,149,46,.55); border-radius:9999px; padding:2px; }
-  .lang-toggle button{ padding:5px 12px; font-size:11px; font-weight:700; letter-spacing:.1em; color:#b08a4f; border-radius:9999px; transition:all .25s; }
+  .lang-toggle button{ padding:5px 15px; font-size:11px; font-weight:700; letter-spacing:.1em; color:#b08a4f; border-radius:9999px; transition:all .25s; }
   .lang-toggle button.active{ background:var(--grad-orange-pill); color:#fff; box-shadow:0 3px 8px -2px rgba(185,110,20,.5); }
 
   /* nút VR vàng gradient (header) */
   .btn-vr{
     background:var(--grad-gold-btn);
     color:#fff; font-weight:600; border-radius:9999px;
+    min-width:clamp(215px,12vw,240px); justify-content:center;
     box-shadow:0 10px 24px -10px rgba(185,110,20,.7), inset 0 1px 0 rgba(255,255,255,.5);
     transition:transform .25s, box-shadow .25s, filter .25s;
   }
   .btn-vr:hover{ transform:translateY(-2px); box-shadow:0 16px 30px -10px rgba(185,110,20,.85); filter:brightness(1.04); }
+  @media(max-width:639px){
+    .lang-toggle button{ padding-inline:10px; }
+  }
 </style>
 
 <script>
