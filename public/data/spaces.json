@@ -108,15 +108,15 @@
         ],
         "links": [
           {
-            "pitch": -11,
-            "yaw": -43,
+            "pitch": -21,
+            "yaw": -177,
             "to": "sanh-ngoai",
             "vi": "Quay ra trước sảnh",
             "en": "Back to the forecourt"
           },
           {
-            "pitch": -10,
-            "yaw": 23,
+            "pitch": -9,
+            "yaw": -93,
             "to": "canh-mq5d4xwk",
             "vi": "Gian Khánh tiết",
             "en": "Ceremonial Hall"
@@ -145,8 +145,8 @@
         ],
         "links": [
           {
-            "pitch": -22,
-            "yaw": 99,
+            "pitch": -18,
+            "yaw": 98,
             "vi": "Đi tới Báo chí 1865 - 1925",
             "en": "Go to Press 1865 - 1925",
             "toRoom": "bao-chi-1865-1925",
