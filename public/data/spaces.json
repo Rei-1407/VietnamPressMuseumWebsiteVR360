@@ -1482,43 +1482,185 @@
           "en": "Scene 1"
         },
         "hotspots": [],
-        "links": []
+        "links": [
+          {
+            "pitch": -33,
+            "yaw": -39,
+            "to": "canh-mq9opg2p",
+            "vi": "",
+            "en": ""
+          }
+        ]
       },
       {
         "id": "canh-mq9opg2p",
-        "photo": "",
+        "photo": "assets/panos/khu-tuong-niem-1781194374751.jpg",
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh mới",
+          "vi": "Cảnh 2",
           "en": "New scene"
         },
         "hotspots": [],
-        "links": []
+        "links": [
+          {
+            "pitch": -34,
+            "yaw": 166,
+            "to": "canh-mq9opkax",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -22,
+            "yaw": -30,
+            "to": "khu-tuong-niem-1",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -33,
+            "yaw": -135,
+            "to": "canh-mq9opnvv",
+            "vi": "",
+            "en": ""
+          }
+        ]
       },
       {
         "id": "canh-mq9opkax",
-        "photo": "",
+        "photo": "assets/panos/khu-tuong-niem-1781194493581.jpg",
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh mới",
+          "vi": "Cảnh 3",
           "en": "New scene"
         },
         "hotspots": [],
-        "links": []
+        "links": [
+          {
+            "pitch": -27,
+            "yaw": 170,
+            "to": "canh-mq9opg2p",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -13,
+            "yaw": 156,
+            "to": "khu-tuong-niem-1",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -30,
+            "yaw": 111,
+            "to": "canh-mq9opnvv",
+            "vi": "",
+            "en": ""
+          }
+        ]
       },
       {
         "id": "canh-mq9opnvv",
-        "photo": "",
+        "photo": "assets/panos/khu-tuong-niem-1781194500546.jpg",
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh mới",
+          "vi": "Cảnh 4",
           "en": "New scene"
         },
         "hotspots": [],
-        "links": []
+        "links": [
+          {
+            "pitch": -6,
+            "yaw": 0,
+            "to": "khu-tuong-niem-1",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -24,
+            "yaw": 149,
+            "to": "canh-mq9p3ytb",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -6,
+            "yaw": 92,
+            "to": "canh-mq9p4681",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9p3ytb",
+        "photo": "assets/panos/khu-tuong-niem-1781194660606.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 5",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -24,
+            "yaw": 36,
+            "to": "khu-tuong-niem-1",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -20,
+            "yaw": 96,
+            "to": "canh-mq9opg2p",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -4,
+            "yaw": -105,
+            "to": "canh-mq9p4681",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -26,
+            "yaw": -72,
+            "vi": "",
+            "en": "",
+            "toRoom": "trien-lam-dinh-ky"
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9p4681",
+        "photo": "assets/panos/khu-tuong-niem-1781194759208.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 6",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -21,
+            "yaw": -96,
+            "vi": "",
+            "en": "",
+            "toRoom": "phong-duong-dai"
+          },
+          {
+            "pitch": -4,
+            "yaw": -14,
+            "to": "canh-mq9p3ytb",
+            "vi": "",
+            "en": ""
+          }
+        ]
       }
     ]
   },
@@ -1532,12 +1674,65 @@
       "en": "Exhibition"
     },
     "floor": 2,
-    "photo": "assets/panos/trien-lam-dinh-ky-1780936124832.jpg",
     "thumb": "assets/panos/trien-lam-dinh-ky-1780936124832-thumb.jpg",
-    "initYaw": 0,
-    "initPitch": -2,
-    "hotspots": [],
-    "id": "trien-lam-dinh-ky"
+    "id": "trien-lam-dinh-ky",
+    "scenes": [
+      {
+        "id": "trien-lam-dinh-ky-1",
+        "photo": "assets/panos/trien-lam-dinh-ky-1780936124832.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 1",
+          "en": "Scene 1"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -19,
+            "yaw": 95,
+            "vi": "",
+            "en": "",
+            "toRoom": "khu-tuong-niem",
+            "toScene": "canh-mq9p3ytb"
+          },
+          {
+            "pitch": -35,
+            "yaw": -88,
+            "to": "canh-mq9pfrns",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9pfrns",
+        "photo": "assets/panos/trien-lam-dinh-ky-1781194996425.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 2",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -18,
+            "yaw": 83,
+            "to": "trien-lam-dinh-ky-1",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -20,
+            "yaw": -104,
+            "vi": "",
+            "en": "",
+            "toRoom": "phong-duong-dai"
+          }
+        ]
+      }
+    ]
   },
   {
     "card": {
@@ -1549,12 +1744,77 @@
       "en": "Contemporary"
     },
     "floor": 2,
-    "photo": "assets/panos/phong-duong-dai-1780935781556.jpg",
     "thumb": "assets/panos/phong-duong-dai-1780935781556-thumb.jpg",
-    "initYaw": 0,
-    "initPitch": -2,
-    "hotspots": [],
-    "id": "phong-duong-dai"
+    "id": "phong-duong-dai",
+    "scenes": [
+      {
+        "id": "phong-duong-dai-1",
+        "photo": "assets/panos/phong-duong-dai-1780935781556.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 1",
+          "en": "Scene 1"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -15,
+            "yaw": -43,
+            "to": "canh-mq9plebs",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9plebs",
+        "photo": "assets/panos/phong-duong-dai-1781195179930.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 2",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -44,
+            "yaw": -129,
+            "to": "phong-duong-dai-1",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9plk6w",
+        "photo": "assets/panos/phong-duong-dai-1781195188249.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 3",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -28,
+            "yaw": -75,
+            "vi": "",
+            "en": "",
+            "toRoom": "truyen-hinh-phat-thanh"
+          },
+          {
+            "pitch": -40,
+            "yaw": 166,
+            "to": "canh-mq9plebs",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      }
+    ]
   },
   {
     "card": {
@@ -1566,12 +1826,252 @@
       "en": "Broadcast"
     },
     "floor": 2,
-    "photo": "assets/panos/truyen-hinh-phat-thanh-1780935814548.jpg",
-    "thumb": "assets/panos/truyen-hinh-phat-thanh-1780935814548-thumb.jpg",
-    "initYaw": 0,
-    "initPitch": -2,
-    "hotspots": [],
-    "id": "truyen-hinh-phat-thanh"
+    "thumb": "assets/panos/truyen-hinh-phat-thanh-1781195478737-thumb.jpg",
+    "id": "truyen-hinh-phat-thanh",
+    "scenes": [
+      {
+        "id": "truyen-hinh-phat-thanh-1",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195478737.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 1",
+          "en": "Scene 1"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -54,
+            "yaw": -55,
+            "to": "canh-mq9pp11d",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -20,
+            "yaw": 119,
+            "vi": "",
+            "en": "",
+            "toRoom": "phong-duong-dai",
+            "toScene": "canh-mq9plk6w"
+          },
+          {
+            "pitch": -6,
+            "yaw": 0,
+            "to": "canh-mq9pp9s9",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9pp11d",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195457970.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 2",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -6,
+            "yaw": 0,
+            "to": "truyen-hinh-phat-thanh-1",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9pp9s9",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195606002.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 3",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -20,
+            "yaw": -88,
+            "to": "truyen-hinh-phat-thanh-1",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -46,
+            "yaw": -14,
+            "to": "canh-mq9pphrt",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -27,
+            "yaw": -14,
+            "to": "canh-mq9ppo2x",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9pphrt",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195702768.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 4",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -38,
+            "yaw": -88,
+            "to": "canh-mq9pp9s9",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -26,
+            "yaw": 30,
+            "to": "canh-mq9ppuqh",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9ppo2x",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195757971.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 5",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -32,
+            "yaw": 13,
+            "to": "canh-mq9ppuqh",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9ppuqh",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195828608.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 6",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -25,
+            "yaw": 52,
+            "to": "canh-mq9q16k8",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9q16k8",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195923218.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 7",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -48,
+            "yaw": 85,
+            "to": "canh-mq9q1add",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -30,
+            "yaw": 96,
+            "to": "canh-mq9q1e28",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9q1add",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781196105915.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 8",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq9q1e28",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781196119169.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 9",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -34,
+            "yaw": 71,
+            "to": "canh-mq9q1hqh",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -30,
+            "yaw": -96,
+            "to": "canh-mq9q1add",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9q1hqh",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781196222539.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 10",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -37,
+            "yaw": 80,
+            "vi": "",
+            "en": "",
+            "toRoom": "bao-in-va-bao-dien-tu"
+          }
+        ]
+      }
+    ]
   },
   {
     "card": {
@@ -1583,12 +2083,130 @@
       "en": "Print & Online"
     },
     "floor": 2,
-    "photo": "assets/panos/bao-in-va-bao-dien-tu-1780935952396.jpg",
-    "thumb": "assets/panos/bao-in-va-bao-dien-tu-1780935952396-thumb.jpg",
-    "initYaw": 0,
-    "initPitch": -2,
-    "hotspots": [],
-    "id": "bao-in-va-bao-dien-tu"
+    "thumb": "assets/panos/bao-in-va-bao-dien-tu-1781196906353-thumb.jpg",
+    "id": "bao-in-va-bao-dien-tu",
+    "scenes": [
+      {
+        "id": "canh-mq9qi801",
+        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781196906353.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 1",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -34,
+            "yaw": 101,
+            "to": "canh-mq9qiqxs",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9qiqxs",
+        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781197008424.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 2",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -24,
+            "yaw": 98,
+            "to": "canh-mq9qivsw",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9qivsw",
+        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781197111923.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 3",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -39,
+            "yaw": 63,
+            "to": "canh-mq9qk8vd",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9qk8vd",
+        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781197156525.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 4",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -25,
+            "yaw": 163,
+            "to": "canh-mq9qud0h",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9qud0h",
+        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781197266091.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 5",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -30,
+            "yaw": -7,
+            "to": "canh-mq9qv4pm",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9qv4pm",
+        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781197301614.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 6",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -20,
+            "yaw": 159,
+            "vi": "",
+            "en": "",
+            "toRoom": "tu-1975-den-nay"
+          }
+        ]
+      }
+    ]
   },
   {
     "card": {
@@ -1600,11 +2218,408 @@
       "en": "1975 – Today"
     },
     "floor": 2,
-    "photo": "assets/panos/tu-1975-den-nay-1780935988940.jpg",
     "thumb": "assets/panos/tu-1975-den-nay-1780935988940-thumb.jpg",
-    "initYaw": 0,
-    "initPitch": -2,
-    "hotspots": [],
-    "id": "tu-1975-den-nay"
+    "id": "tu-1975-den-nay",
+    "scenes": [
+      {
+        "id": "tu-1975-den-nay-1",
+        "photo": "assets/panos/tu-1975-den-nay-1780935988940.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 1",
+          "en": "Scene 1"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -34,
+            "yaw": -75,
+            "to": "canh-mq9qwy8h",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9qwy8h",
+        "photo": "assets/panos/tu-1975-den-nay-1781198353727.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 2",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -22,
+            "yaw": -84,
+            "to": "canh-mq9qx8rl",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -42,
+            "yaw": -4,
+            "to": "canh-mq9qxg3u",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9qx8rl",
+        "photo": "assets/panos/tu-1975-den-nay-1781198555258.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 3",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -47,
+            "yaw": -24,
+            "to": "canh-mq9rc1yi",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9qxg3u",
+        "photo": "assets/panos/tu-1975-den-nay-1781198804368.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 4",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -15,
+            "yaw": 86,
+            "to": "canh-mq9rb2pd",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rb2pd",
+        "photo": "assets/panos/tu-1975-den-nay-1781199549611.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 5",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -19,
+            "yaw": -86,
+            "to": "canh-mq9rb6sh",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rb6sh",
+        "photo": "assets/panos/tu-1975-den-nay-1781199623052.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 6",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -42,
+            "yaw": -112,
+            "to": "canh-mq9rbhqa",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rbhqa",
+        "photo": "assets/panos/tu-1975-den-nay-1781199678323.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 7",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -19,
+            "yaw": 95,
+            "to": "canh-mq9rbliy",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rbliy",
+        "photo": "assets/panos/tu-1975-den-nay-1781199919858.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 8",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq9rbpb6",
+        "photo": "assets/panos/tu-1975-den-nay-1781200087652.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 9",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -51,
+            "yaw": 59,
+            "to": "canh-mq9rbszm",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rbszm",
+        "photo": "assets/panos/tu-1975-den-nay-1781200298273.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 10",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -53,
+            "yaw": 95,
+            "to": "canh-mq9rbwsi",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rbwsi",
+        "photo": "assets/panos/tu-1975-den-nay-1781200368613.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 11",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -51,
+            "yaw": 81,
+            "to": "tu-1975-den-nay-1",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rc1yi",
+        "photo": "assets/panos/tu-1975-den-nay-1781200574544.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 12",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -28,
+            "yaw": 96,
+            "to": "canh-mq9rc6ma",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rc6ma",
+        "photo": "assets/panos/tu-1975-den-nay-1781200644880.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 13",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -25,
+            "yaw": 98,
+            "to": "canh-mq9rcama",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rcama",
+        "photo": "assets/panos/tu-1975-den-nay-1781200769558.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 14",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -25,
+            "yaw": 83,
+            "to": "canh-mq9rcepu",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rcepu",
+        "photo": "assets/panos/tu-1975-den-nay-1781200805982.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 15",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -17,
+            "yaw": 81,
+            "to": "canh-mq9rcij6",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rcij6",
+        "photo": "assets/panos/tu-1975-den-nay-1781200954059.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 16",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -24,
+            "yaw": -86,
+            "to": "canh-mq9rcn1u",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rcn1u",
+        "photo": "assets/panos/tu-1975-den-nay-1781200969929.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 17",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -43,
+            "yaw": -80,
+            "to": "canh-mq9rcr8y",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rcr8y",
+        "photo": "assets/panos/tu-1975-den-nay-1781201048484.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 18",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -27,
+            "yaw": -110,
+            "to": "canh-mq9rcv5m",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rcv5m",
+        "photo": "assets/panos/tu-1975-den-nay-1781201116856.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 19",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -6,
+            "yaw": 0,
+            "to": "tu-1975-den-nay-1",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rcyz6",
+        "photo": "assets/panos/tu-1975-den-nay-1781201125960.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 20",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -18,
+            "yaw": -95,
+            "to": "canh-mq9rbpb6",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      }
+    ]
   }
 ]
