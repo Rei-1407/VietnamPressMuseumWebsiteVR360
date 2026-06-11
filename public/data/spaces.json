@@ -180,8 +180,132 @@
           "vi": "Cảnh 1",
           "en": "Scene 1"
         },
+        "hotspots": [
+          {
+            "pitch": 0,
+            "yaw": 0,
+            "vi": "",
+            "en": ""
+          }
+        ],
+        "links": []
+      },
+      {
+        "id": "canh-mq9ktdao",
+        "photo": "assets/panos/bao-chi-1865-1925-1781187296070.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
         "hotspots": [],
         "links": []
+      },
+      {
+        "id": "canh-mq9l0df3",
+        "photo": "assets/panos/bao-chi-1865-1925-1781187442842.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq9l0l8f",
+        "photo": "assets/panos/bao-chi-1865-1925-1781187468071.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq9l1em6",
+        "photo": "assets/panos/bao-chi-1865-1925-1781187496217.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq9l23im",
+        "photo": "assets/panos/bao-chi-1865-1925-1781187523932.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq9l2b6u",
+        "photo": "assets/panos/bao-chi-1865-1925-1781187578091.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq9l3qof",
+        "photo": "assets/panos/bao-chi-1865-1925-1781187616196.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq9l4bke",
+        "photo": "assets/panos/bao-chi-1865-1925-1781187627275.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq9l4ir2",
+        "photo": "assets/panos/bao-chi-1865-1925-1781187650261.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -16,
+            "yaw": -93,
+            "vi": "Đi sang phòng Báo chí 1925-1945",
+            "en": "",
+            "toRoom": "bao-chi-1925-1945",
+            "toScene": "bao-chi-1925-1945-1"
+          }
+        ]
       }
     ]
   },
@@ -208,7 +332,15 @@
           "en": "Scene 1"
         },
         "hotspots": [],
-        "links": []
+        "links": [
+          {
+            "pitch": -30,
+            "yaw": -12,
+            "to": "canh-mq6aigod",
+            "vi": "",
+            "en": ""
+          }
+        ]
       },
       {
         "id": "canh-mq6aigod",
@@ -216,35 +348,226 @@
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh mới",
+          "vi": "Cảnh 2",
           "en": "New scene"
         },
         "hotspots": [],
-        "links": []
+        "links": [
+          {
+            "pitch": -30,
+            "yaw": -95,
+            "to": "canh-mq9le1gu",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -26,
+            "yaw": -132,
+            "to": "canh-mq9lkdxj",
+            "vi": "",
+            "en": ""
+          }
+        ]
       },
       {
-        "id": "canh-mq6ajkzp",
-        "photo": "assets/panos/bao-chi-1925-1945-1780988470886.jpg",
+        "id": "canh-mq9le1gu",
+        "photo": "assets/panos/bao-chi-1925-1945-1781188088793.jpg",
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh mới",
+          "vi": "Cảnh 3",
           "en": "New scene"
         },
         "hotspots": [],
-        "links": []
+        "links": [
+          {
+            "pitch": -33,
+            "yaw": -82,
+            "to": "canh-mq9lgcf2",
+            "vi": "",
+            "en": ""
+          }
+        ]
       },
       {
-        "id": "canh-mq6ajyec",
-        "photo": "assets/panos/bao-chi-1925-1945-1780988488935.jpg",
+        "id": "canh-mq9lgcf2",
+        "photo": "assets/panos/bao-chi-1925-1945-1781188196810.jpg",
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh mới",
+          "vi": "Cảnh 4",
           "en": "New scene"
         },
         "hotspots": [],
-        "links": []
+        "links": [
+          {
+            "pitch": -49,
+            "yaw": -71,
+            "to": "canh-mq9lhvvs",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9lhvvs",
+        "photo": "assets/panos/bao-chi-1925-1945-1781188347912.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 5",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -22,
+            "yaw": -158,
+            "to": "canh-mq9lkdxj",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9lkdxj",
+        "photo": "assets/panos/bao-chi-1925-1945-1781188455918.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 6",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -6,
+            "yaw": 0,
+            "to": "bao-chi-1925-1945-1",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9lklv3",
+        "photo": "assets/panos/bao-chi-1925-1945-1781188608181.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 7",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -36,
+            "yaw": 120,
+            "to": "canh-mq9lkru7",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9lkru7",
+        "photo": "assets/panos/bao-chi-1925-1945-1781188679123.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 8",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -34,
+            "yaw": 124,
+            "to": "canh-mq9lkwxz",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9lkwxz",
+        "photo": "assets/panos/bao-chi-1925-1945-1781188720417.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 9",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -34,
+            "yaw": 91,
+            "to": "canh-mq9ll2fj",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9ll2fj",
+        "photo": "assets/panos/bao-chi-1925-1945-1781188788044.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 10",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -42,
+            "yaw": 85,
+            "to": "canh-mq9ltgpb",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9ltgpb",
+        "photo": "assets/panos/bao-chi-1925-1945-1781188878525.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 11",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -33,
+            "yaw": -79,
+            "to": "canh-mq9ltm3z",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9ltm3z",
+        "photo": "assets/panos/bao-chi-1925-1945-1781188906997.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 12",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -43,
+            "yaw": -87,
+            "vi": "",
+            "en": "",
+            "toRoom": "bao-chi-1945-1954"
+          }
+        ]
       }
     ]
   },
@@ -258,12 +581,370 @@
       "en": "1945 – 1954"
     },
     "floor": 1,
-    "photo": "assets/panos/bao-chi-1945-1954-1780934999780.jpg",
     "thumb": "assets/panos/bao-chi-1945-1954-1780934999780-thumb.jpg",
-    "initYaw": 0,
-    "initPitch": -2,
-    "hotspots": [],
-    "id": "bao-chi-1945-1954"
+    "id": "bao-chi-1945-1954",
+    "scenes": [
+      {
+        "id": "bao-chi-1945-1954-1",
+        "photo": "assets/panos/bao-chi-1945-1954-1780934999780.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 1",
+          "en": "Scene 1"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -43,
+            "yaw": -81,
+            "to": "canh-mq9lxkha",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -36,
+            "yaw": 148,
+            "to": "canh-mq9lxq92",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9lxkha",
+        "photo": "assets/panos/bao-chi-1945-1954-1781189234741.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 2",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -24,
+            "yaw": 137,
+            "to": "canh-mq9lxq92",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9lxq92",
+        "photo": "assets/panos/bao-chi-1945-1954-1781189405688.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 3",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -31,
+            "yaw": 148,
+            "to": "canh-mq9lxt0u",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -30,
+            "yaw": -114,
+            "to": "bao-chi-1945-1954-1",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -32,
+            "yaw": 84,
+            "to": "canh-mq9lxvlb",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9lxt0u",
+        "photo": "assets/panos/bao-chi-1945-1954-1781189517678.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 4",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -28,
+            "yaw": 124,
+            "to": "canh-mq9lxvlb",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9lxvlb",
+        "photo": "assets/panos/bao-chi-1945-1954-1781189636680.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 5",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -38,
+            "yaw": 12,
+            "to": "canh-mq9lxy8n",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -36,
+            "yaw": -152,
+            "to": "canh-mq9lxt0u",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -38,
+            "yaw": -86,
+            "to": "canh-mq9lxq92",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9lxy8n",
+        "photo": "assets/panos/bao-chi-1945-1954-1781189688748.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 6",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -34,
+            "yaw": 90,
+            "to": "canh-mq9ly1nz",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -40,
+            "yaw": 91,
+            "to": "canh-mq9lxvlb",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -29,
+            "yaw": -158,
+            "to": "canh-mq9lxt0u",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -39,
+            "yaw": -97,
+            "to": "canh-mq9lxq92",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9ly1nz",
+        "photo": "assets/panos/bao-chi-1945-1954-1781190316458.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 7",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -53,
+            "yaw": 171,
+            "to": "canh-mq9ly467",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -35,
+            "yaw": 82,
+            "to": "canh-mq9lxy8n",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -24,
+            "yaw": 43,
+            "to": "canh-mq9lxvlb",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -26,
+            "yaw": -3,
+            "to": "canh-mq9lxt0u",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -15,
+            "yaw": 29,
+            "to": "canh-mq9lxq92",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -10,
+            "yaw": 23,
+            "to": "bao-chi-1945-1954-1",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9ly467",
+        "photo": "assets/panos/bao-chi-1945-1954-1781190513333.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 8",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -37,
+            "yaw": -85,
+            "to": "canh-mq9ly7ni",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -66,
+            "yaw": 10,
+            "to": "canh-mq9ly1nz",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -35,
+            "yaw": 85,
+            "to": "canh-mq9ly467",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9ly7ni",
+        "photo": "assets/panos/bao-chi-1945-1954-1781190605923.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 9",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -24,
+            "yaw": -91,
+            "to": "canh-mq9lzsvb",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -33,
+            "yaw": -3,
+            "to": "canh-mq9ly467",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -18,
+            "yaw": -4,
+            "to": "canh-mq9ly1nz",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9lzsvb",
+        "photo": "assets/panos/bao-chi-1945-1954-1781190695892.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 10",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -31,
+            "yaw": -98,
+            "to": "canh-mq9lzvqf",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -29,
+            "yaw": -39,
+            "to": "canh-mq9lxt0u",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -47,
+            "yaw": 92,
+            "to": "canh-mq9ly7ni",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9lzvqf",
+        "photo": "assets/panos/bao-chi-1945-1954-1781190842633.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 11",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -28,
+            "yaw": -56,
+            "to": "bao-chi-1945-1954-1",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -23,
+            "yaw": -104,
+            "vi": "",
+            "en": "",
+            "toRoom": "bao-chi-1954-1975"
+          }
+        ]
+      }
+    ]
   },
   {
     "card": {
@@ -275,12 +956,508 @@
       "en": "1954 – 1975"
     },
     "floor": 1,
-    "photo": "assets/panos/bao-chi-1954-1975-1780935714441.jpg",
-    "thumb": "assets/panos/bao-chi-1954-1975-1780935714441-thumb.jpg",
-    "initYaw": 0,
-    "initPitch": -2,
-    "hotspots": [],
-    "id": "bao-chi-1954-1975"
+    "thumb": "assets/panos/bao-chi-1954-1975-1781190937207-thumb.jpg",
+    "id": "bao-chi-1954-1975",
+    "scenes": [
+      {
+        "id": "bao-chi-1954-1975-1",
+        "photo": "assets/panos/bao-chi-1954-1975-1780935714441.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 1",
+          "en": "Scene 1"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -39,
+            "yaw": 81,
+            "to": "canh-mq9n3j1z",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9n3j1z",
+        "photo": "assets/panos/bao-chi-1954-1975-1781191140481.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 2",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -18,
+            "yaw": 2,
+            "to": "canh-mq9n43zk",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -24,
+            "yaw": -83,
+            "to": "canh-mq9n3vmw",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9n3vmw",
+        "photo": "assets/panos/bao-chi-1954-1975-1781191391740.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 3",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -29,
+            "yaw": 109,
+            "to": "canh-mq9n3j1z",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -16,
+            "yaw": 107,
+            "to": "bao-chi-1954-1975-1",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -8,
+            "yaw": 101,
+            "vi": "",
+            "en": "",
+            "toRoom": "bao-chi-1925-1945",
+            "toScene": "canh-mq9ltm3z"
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9n3y7b",
+        "photo": "assets/panos/bao-chi-1954-1975-1781191541258.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 4",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -34,
+            "yaw": 93,
+            "to": "canh-mq9n3vmw",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -19,
+            "yaw": -87,
+            "to": "canh-mq9n41hb",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9n41hb",
+        "photo": "assets/panos/bao-chi-1954-1975-1781191686155.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 5",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -19,
+            "yaw": 105,
+            "to": "canh-mq9n3y7b",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -20,
+            "yaw": 21,
+            "to": "canh-mq9n43zk",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -7,
+            "yaw": -119,
+            "to": "canh-mq9n46mg",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -6,
+            "yaw": 0,
+            "to": "bao-chi-1954-1975-1",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9n43zk",
+        "photo": "assets/panos/bao-chi-1954-1975-1781191757588.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 6",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -22,
+            "yaw": 171,
+            "to": "canh-mq9n41hb",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -16,
+            "yaw": 88,
+            "to": "canh-mq9n3j1z",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -12,
+            "yaw": -86,
+            "to": "canh-mq9n4908",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9n46mg",
+        "photo": "assets/panos/bao-chi-1954-1975-1781191980977.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 7",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -9,
+            "yaw": -120,
+            "to": "canh-mq9n41hb",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9n4908",
+        "photo": "assets/panos/bao-chi-1954-1975-1781192140485.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 8",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -35,
+            "yaw": -177,
+            "to": "canh-mq9n4bpb",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -19,
+            "yaw": 83,
+            "to": "canh-mq9n43zk",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9n4bpb",
+        "photo": "assets/panos/bao-chi-1954-1975-1781192211844.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 9",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -38,
+            "yaw": 82,
+            "to": "canh-mq9n4908",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -21,
+            "yaw": -123,
+            "to": "canh-mq9n4ef3",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -26,
+            "yaw": 28,
+            "to": "canh-mq9n4stc",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -32,
+            "yaw": 1,
+            "to": "canh-mq9n4v4o",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9n4ef3",
+        "photo": "assets/panos/bao-chi-1954-1975-1781192348717.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 10",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -13,
+            "yaw": -92,
+            "to": "canh-mq9n41hb",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -33,
+            "yaw": -178,
+            "to": "canh-mq9n4bpb",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -22,
+            "yaw": 96,
+            "to": "canh-mq9n4gxl",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9n4gxl",
+        "photo": "assets/panos/bao-chi-1954-1975-1781192500913.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 11",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -26,
+            "yaw": -137,
+            "to": "canh-mq9n4ef3",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -26,
+            "yaw": 119,
+            "to": "canh-mq9n4k60",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9n4k60",
+        "photo": "assets/panos/bao-chi-1954-1975-1781192624509.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 12",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -34,
+            "yaw": -180,
+            "to": "canh-mq9n4gxl",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -31,
+            "yaw": -3,
+            "to": "canh-mq9n4myg",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -34,
+            "yaw": 45,
+            "to": "canh-mq9n4stc",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9n4myg",
+        "photo": "assets/panos/bao-chi-1954-1975-1781192704490.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 13",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -40,
+            "yaw": -141,
+            "to": "canh-mq9n4k60",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -19,
+            "yaw": -150,
+            "to": "canh-mq9n4gxl",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -39,
+            "yaw": 91,
+            "to": "canh-mq9n4prz",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -47,
+            "yaw": 135,
+            "to": "canh-mq9n4stc",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9n4prz",
+        "photo": "assets/panos/bao-chi-1954-1975-1781192978205.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 14",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -31,
+            "yaw": -90,
+            "to": "canh-mq9n4bpb",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -41,
+            "yaw": 77,
+            "to": "canh-mq9n4myg",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9n4stc",
+        "photo": "assets/panos/bao-chi-1954-1975-1781193171669.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 15",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -35,
+            "yaw": -78,
+            "to": "canh-mq9n4bpb",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -46,
+            "yaw": 85,
+            "to": "canh-mq9n4myg",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9n4v4o",
+        "photo": "assets/panos/bao-chi-1954-1975-1781193342062.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 16",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -42,
+            "yaw": 88,
+            "to": "canh-mq9n4myg",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -37,
+            "yaw": -95,
+            "to": "canh-mq9n4bpb",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -23,
+            "yaw": 75,
+            "vi": "",
+            "en": "",
+            "toRoom": "gian-khanh-tiet",
+            "toScene": "sanh-trong"
+          }
+        ]
+      }
+    ],
+    "photo": "assets/panos/bao-chi-1954-1975-1781190937207.jpg"
   },
   {
     "card": {
@@ -292,12 +1469,58 @@
       "en": "Memorial"
     },
     "floor": 2,
-    "photo": "assets/panos/khu-tuong-niem-1780935745819.jpg",
     "thumb": "assets/panos/khu-tuong-niem-1780935745819-thumb.jpg",
-    "initYaw": 0,
-    "initPitch": -2,
-    "hotspots": [],
-    "id": "khu-tuong-niem"
+    "id": "khu-tuong-niem",
+    "scenes": [
+      {
+        "id": "khu-tuong-niem-1",
+        "photo": "assets/panos/khu-tuong-niem-1780935745819.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 1",
+          "en": "Scene 1"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq9opg2p",
+        "photo": "",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq9opkax",
+        "photo": "",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq9opnvv",
+        "photo": "",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh mới",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      }
+    ]
   },
   {
     "card": {
