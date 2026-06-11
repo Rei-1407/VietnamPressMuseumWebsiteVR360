@@ -61,7 +61,7 @@
       },
       {
         "id": "sanh-trong",
-        "photo": "assets/panos/sanh-trong.jpg",
+        "photo": "assets/panos/gian-khanh-tiet-1781161141248.jpg",
         "yaw": 25,
         "pitch": -2,
         "label": {
@@ -129,10 +129,20 @@
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh mới",
+          "vi": "Gian Khánh Tiết",
           "en": "New scene"
         },
-        "hotspots": [],
+        "hotspots": [
+          {
+            "pitch": -6,
+            "yaw": 3,
+            "vi": "",
+            "en": "",
+            "dVi": "Bút Sen",
+            "dEn": "Điểm nhấn trung tâm của tác phẩm là một ngòi bút máy mang sắc vàng vươn cao kiêu hãnh, đại diện cho vũ khí sắc bén, cho công cụ tác nghiệp thiêng liêng của những người cầm bút. Nâng đỡ ngòi bút ấy là đôi cánh sen mềm mại được kết tinh một cách công phu từ tên của hơn 800 tòa soạn và cơ quan báo chí trải dài suốt chiều dài lịch sử nước nhà. Sự hòa quyện độc đáo giữa hình ảnh ngòi bút và hoa sen không chỉ tôn vinh nhân cách, đạo đức trong sáng của người làm báo, mà còn là lời khẳng định đanh thép cho lý tưởng cao đẹp: \"Bút sắc, lòng trong, tâm sáng\". Biểu tượng này vừa mang hơi thở của thời đại, vừa mang đậm bản sắc văn hóa dân tộc, trở thành linh hồn kết nối các thế hệ nhà báo Việt Nam.",
+            "img": "assets/exhibits/gian-khanh-tiet-1781161586613.jpg"
+          }
+        ],
         "links": [
           {
             "pitch": -22,
