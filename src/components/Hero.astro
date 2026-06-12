@@ -2,6 +2,12 @@
 /* Hero — "101" + ngòi bút + headline "Bút Sắc / Lòng Son / Tâm Sáng" + lưới 6 ô icon */
 import { UI } from '../content/site';
 const vi = UI.vi, en = UI.en;
+const viHeroSubBreak = vi.heroSub.indexOf(' Việt Nam ');
+const viHeroSubLine1 = viHeroSubBreak >= 0 ? vi.heroSub.slice(0, viHeroSubBreak) : vi.heroSub;
+const viHeroSubLine2 = viHeroSubBreak >= 0 ? vi.heroSub.slice(viHeroSubBreak + 1) : '';
+const enHeroSubBreak = en.heroSub.indexOf(', keeping ');
+const enHeroSubLine1 = enHeroSubBreak >= 0 ? en.heroSub.slice(0, enHeroSubBreak + 1) : en.heroSub;
+const enHeroSubLine2 = enHeroSubBreak >= 0 ? en.heroSub.slice(enHeroSubBreak + 2) : '';
 ---
 
 <section id="home" class="relative pt-[72px] min-h-screen flex items-center overflow-hidden">
@@ -20,7 +26,11 @@ const vi = UI.vi, en = UI.en;
             <span class="hero-word hero-word-main" data-vi-text={vi.heroW2} data-en-text={en.heroW2}>{vi.heroW2}</span>
             <span class="hero-word hero-word-main" data-vi-text={vi.heroW3} data-en-text={en.heroW3}>{vi.heroW3}</span>
           </h1>
-          <p class="hero-subline" data-vi-text={vi.heroSub} data-en-text={en.heroSub}>{vi.heroSub}</p>
+          <p class="hero-subline" aria-label={vi.heroSub}
+             data-vi-aria-label={vi.heroSub} data-en-aria-label={en.heroSub}>
+            <span data-vi-text={viHeroSubLine1} data-en-text={enHeroSubLine1}>{viHeroSubLine1}</span>
+            <span data-vi-text={viHeroSubLine2} data-en-text={enHeroSubLine2}>{viHeroSubLine2}</span>
+          </p>
         </div>
       </div>
     </div>
@@ -83,6 +93,7 @@ const vi = UI.vi, en = UI.en;
     max-width:33ch; margin-top:24px; color:var(--brown);
     font-size:clamp(23px,calc(1.25vw + 5px),25px); line-height:1.25; font-style:italic;
   }
+  .hero-subline span{ display:inline; }
   .hero-tiles{
     width:100%; max-width:none; margin:0; justify-self:end; display:grid;
     grid-template-columns:repeat(2,minmax(0,1fr));
@@ -135,6 +146,11 @@ const vi = UI.vi, en = UI.en;
       display:grid; grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(3,1fr); gap:0;
     }
     .hero-tiles .hero-tile{ aspect-ratio:auto; border-radius:0; box-shadow:none; }
+  }
+
+  @media(min-width:1700px){
+    html[data-lang="vi"] .hero-subline{ width:max-content; }
+    html[data-lang="vi"] .hero-subline span{ display:block; white-space:nowrap; }
   }
 
   /* Tablet: giới thiệu thành một khối, lưới icon nằm ngay bên dưới. */
