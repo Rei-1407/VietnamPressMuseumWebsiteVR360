@@ -25,7 +25,7 @@
 
 <style is:global>
   /* ===== Mục ảnh — dải cam tự cuộn (is:global vì item render bằng JS lúc chạy) ===== */
-  .gallery-section{ position:relative; width:100%; margin:clamp(10px,2vw,28px) 0; }
+  .gallery-section{ position:relative; width:100%; margin:clamp(10px,2vw,28px) 0; scroll-margin-top:84px; }
   .gallery-band{
     position:relative; width:100%; overflow:hidden;
     background:var(--orange);
@@ -129,6 +129,16 @@
     let items: any[] = [];
     let cur = 0;
 
+    // preload ảnh full kế bên → bấm ◀▶ chuyển gần như tức thì (không chờ tải lại)
+    const preloaded: Record<string, HTMLImageElement> = {};
+    function preload(i: number) {
+      if (!items.length) return;
+      const k = (i % items.length + items.length) % items.length;
+      const u = fullOf(items[k]);
+      if (!u || preloaded[u]) return;
+      const im = new Image(); im.src = u; preloaded[u] = im;
+    }
+
     function itemHTML(gi: number, dup: boolean) {
       const it = items[gi];
       const hid = dup ? ' tabindex="-1" aria-hidden="true"' : '';
@@ -158,6 +168,7 @@
       cur = (i % items.length + items.length) % items.length;
       lbImg!.src = fullOf(items[cur]);
       lb!.hidden = false; lb!.classList.add('open'); lb!.setAttribute('aria-hidden', 'false');
+      preload(cur + 1); preload(cur - 1);     // nạp sẵn 2 ảnh kế bên
       document.addEventListener('keydown', onKey);
     }
     function closeLB() {
