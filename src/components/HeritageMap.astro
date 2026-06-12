@@ -109,19 +109,32 @@ const vi = UI.vi, en = UI.en;
   .map-card:focus-visible{ outline:none; }
   .map-card:focus-visible .body{ box-shadow:0 0 0 3px rgba(230,149,46,.7), var(--shadow-tile); }
 
-  /* nút VR 360° lớn (vàng gradient) */
-  .cta-vr{ display:inline-flex; align-items:center; gap:14px;
+  /* nút VR 360° lớn (vàng gradient) — hover nhấc + ánh sáng quét, nhấn lún nhẹ */
+  .cta-vr{ position:relative; overflow:hidden; isolation:isolate;
+    display:inline-flex; align-items:center; gap:14px;
     background:var(--grad-gold-btn);
     color:#fff; font-family:var(--hv); font-weight:600; border-radius:9999px;
     padding:16px 44px; font-size:clamp(17px,1.5vw,20px); cursor:pointer; border:none;
     box-shadow:var(--shadow-btn);
-    transition:transform .25s, filter .25s; }
-  .cta-vr:hover{ transform:translateY(-2px); filter:brightness(1.04); }
+    transition:transform .25s, filter .25s, box-shadow .25s; }
+  .cta-vr > *{ position:relative; z-index:1; }
+  .cta-vr::after{
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.42) 50%,transparent 62%);
+    transform:translateX(-130%);
+    transition:transform .8s cubic-bezier(.2,.7,.2,1); }
+  .cta-vr:hover{ transform:translateY(-2px); filter:brightness(1.04);
+    box-shadow:0 24px 48px -16px rgba(185,110,20,.78), inset 0 1px 0 rgba(255,255,255,.55); }
+  .cta-vr:hover::after{ transform:translateX(130%); }
+  .cta-vr:active{ transform:translateY(-1px) scale(.98); transition-duration:.08s; }
   .cta-vr img{ width:30px; height:30px; }
   @media (prefers-reduced-motion: reduce){
     .map-card .body > .photo{ transition:none; }
     .map-card:hover .body > .photo,
     .map-card:nth-child(even):hover .body > .photo{ transform:scale(1.01); }
+    .cta-vr,.cta-vr::after{ transition:none; }
+    .cta-vr:hover,.cta-vr:active{ transform:none; }
+    .cta-vr:hover::after{ transform:translateX(-130%); }
   }
 </style>
 
@@ -136,7 +149,7 @@ const vi = UI.vi, en = UI.en;
       || s.photo || '';
   }
 
-  function cardHTML(s: any, gi: number): string {
+  function cardHTML(s: any, gi: number, li: number): string {
     const lang = (window as any).__lang?.() || 'vi';
     const labelVi = s.card?.vi ?? '';
     const labelEn = s.card?.en ?? labelVi;
@@ -145,7 +158,10 @@ const vi = UI.vi, en = UI.en;
     const bg = prev
       ? `<div class="photo" style="background-image:url('${prev}')"></div><div class="tint"></div>`
       : '';
+    // stagger so le: thẻ trong cùng tầng hiện lần lượt (li = vị trí trong tầng)
+    const delay = (Math.min(li, 7) * 0.07).toFixed(2);
     return `<div class="map-card reveal${prev ? ' has-photo' : ''}" role="button" tabindex="0"
+         style="--rv-d:${delay}s"
          aria-label="${label}" title="${label}" data-zone data-idx="${gi}">
       <div class="body">
         ${bg}
@@ -164,7 +180,7 @@ const vi = UI.vi, en = UI.en;
       grid.innerHTML = SPACES
         .map((s, gi) => ({ s, gi }))
         .filter((o) => (o.s.floor || 1) === floor)
-        .map((o) => cardHTML(o.s, o.gi))
+        .map((o, li) => cardHTML(o.s, o.gi, li))
         .join('');
     }
     wireClicks();

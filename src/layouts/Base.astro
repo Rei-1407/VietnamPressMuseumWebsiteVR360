@@ -62,14 +62,40 @@ const { title = 'Bảo tàng Báo chí Việt Nam · VR 360°' } = Astro.props;
       });
       applyLang(currentLang());
 
-      /* ---------- hiệu ứng hiện dần khi cuộn ---------- */
-      let revealObs: IntersectionObserver | null = null;
+      /* ---------- hiệu ứng hiện dần khi cuộn ----------
+         - phần tử .reveal lẻ: hiện khi lọt tầm nhìn
+         - [data-reveal-group]: khi nhóm lọt tầm nhìn, các .reveal con hiện
+           theo trình tự (cascade) + nhóm nhận class 'is-in' cho hiệu ứng phụ
+           (vd: đường nối nét đứt của timeline tự vẽ). */
+      let revealObs: IntersectionObserver | null = null;  // phần tử lẻ
+      let groupObs: IntersectionObserver | null = null;   // nhóm cascade
       const noFx = /[?&]nofx/.test(location.search)
         || matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+      const RV_STEP = 95;   // ms giữa hai phần tử kế tiếp trong một nhóm
+      const RV_CAP = 8;     // trần số bước (nhóm đông không bị trễ quá lâu)
+
+      function showGroup(group: HTMLElement) {
+        group.querySelectorAll<HTMLElement>('.reveal:not(.in)').forEach((el, i) => {
+          el.style.setProperty('--rv-d', (Math.min(i, RV_CAP) * RV_STEP) / 1000 + 's');
+          el.classList.add('in');
+        });
+        group.classList.add('is-in');
+      }
+
       function rescanReveal() {
-        const els = document.querySelectorAll<HTMLElement>('.reveal:not(.in)');
-        if (noFx) { els.forEach((el) => el.classList.add('in')); return; }
+        if (noFx) {
+          document.querySelectorAll('.reveal:not(.in)').forEach((el) => el.classList.add('in'));
+          document.querySelectorAll('[data-reveal-group]').forEach((g) => g.classList.add('is-in'));
+          return;
+        }
+        if (!groupObs) {
+          groupObs = new IntersectionObserver((entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) { showGroup(e.target as HTMLElement); groupObs!.unobserve(e.target); }
+            });
+          }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+        }
         if (!revealObs) {
           revealObs = new IntersectionObserver((entries) => {
             entries.forEach((e) => {
@@ -77,7 +103,16 @@ const { title = 'Bảo tàng Báo chí Việt Nam · VR 360°' } = Astro.props;
             });
           }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
         }
-        els.forEach((el) => revealObs!.observe(el));
+        // nhóm cascade (mỗi nhóm chỉ gắn observer một lần)
+        document.querySelectorAll<HTMLElement>('[data-reveal-group]:not(.rv-armed)').forEach((g) => {
+          g.classList.add('rv-armed');
+          groupObs!.observe(g);
+        });
+        // phần tử lẻ (bỏ qua phần tử đã nằm trong nhóm)
+        document.querySelectorAll<HTMLElement>('.reveal:not(.in)').forEach((el) => {
+          if (el.closest('[data-reveal-group]')) return;
+          revealObs!.observe(el);
+        });
       }
       // phần động render thêm .reveal mới thì gọi lại hàm này
       (window as any).__rescanReveal = rescanReveal;

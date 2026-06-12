@@ -215,6 +215,22 @@ const vi = UI.vi, en = UI.en;
     to{ opacity:1; transform:translateY(0) scale(1); }
   }
   @keyframes bob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(8px); } }
+
+  /* ===== Hiệu ứng vào trang — nhịp nhàng, sang trọng =====
+     ⚠️ Số 101 chỉ làm mờ→rõ (KHÔNG animate transform vì nó dùng transform
+        translate để căn tâm ở mobile). Ngòi bút + chữ trượt lên nhẹ. */
+  @media (prefers-reduced-motion:no-preference){
+    .hero-101{ animation:heroFade 1.2s ease both; }
+    .hero-nib{ animation:heroRise 1s cubic-bezier(.2,.7,.2,1) .1s both; }
+    .hero-headline .hero-word{ animation:heroRise .85s cubic-bezier(.2,.7,.2,1) both; }
+    .hero-headline .hero-word:nth-child(1){ animation-delay:.16s; }
+    .hero-headline .hero-word:nth-child(2){ animation-delay:.25s; }
+    .hero-headline .hero-word:nth-child(3){ animation-delay:.34s; }
+    .hero-subline{ animation:heroRise .85s cubic-bezier(.2,.7,.2,1) .44s both; }
+  }
+  @keyframes heroRise{ from{ opacity:0; transform:translateY(20px); } to{ opacity:1; transform:none; } }
+  @keyframes heroFade{ from{ opacity:0; } to{ opacity:1; } }
+
   @media (prefers-reduced-motion: reduce){
     .arrow-bounce{ animation:none; }
     .hero-tile{ animation:none; }

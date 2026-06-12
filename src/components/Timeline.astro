@@ -25,7 +25,7 @@ for (const item of TIMELINE) {
 
   <div class="tl-wrap">
     {blocks.map((block, index) => (
-      <div class={`tl-block tl-block-${index + 1} ${block.events.length ? 'has-events' : 'no-events'}`}>
+      <div class={`tl-block tl-block-${index + 1} ${block.events.length ? 'has-events' : 'no-events'}`} data-reveal-group>
         {(index === 0 || index === blocks.length - 1) && <div class="tl-decor" aria-hidden="true"></div>}
 
         <div class="tl-era-card tl-card reveal">
@@ -248,6 +248,23 @@ for (const item of TIMELINE) {
     left:50%;
     height:calc(var(--event-gap) / 2);
     border-width:0 0 0 1px;
+  }
+
+  /* Đường nối nét đứt "tự vẽ" khi khối lọt vào tầm nhìn (.is-in do client gắn).
+     Bọc trong no-preference để khi giảm chuyển động thì đường nối hiện đầy đủ. */
+  @media (prefers-reduced-motion:no-preference){
+    .tl-events::before,
+    .tl-events.double .tl-event-card::before{
+      transform:scaleY(0); transform-origin:top center;
+      transition:transform .7s cubic-bezier(.2,.7,.2,1) .2s;
+    }
+    .tl-events.double::after{
+      transform:scaleX(0); transform-origin:left center;
+      transition:transform .55s cubic-bezier(.2,.7,.2,1) .15s;
+    }
+    .tl-block.is-in .tl-events::before,
+    .tl-block.is-in .tl-events.double .tl-event-card::before{ transform:scaleY(1); }
+    .tl-block.is-in .tl-events.double::after{ transform:scaleX(1); transition-delay:.32s; }
   }
 
   @media(max-width:900px){

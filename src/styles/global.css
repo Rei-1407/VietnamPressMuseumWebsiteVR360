@@ -40,10 +40,32 @@ body{ font-family:var(--hv); overflow-x:hidden; }
 .gold-rule{ height:1px; background:linear-gradient(90deg,transparent,rgba(230,149,46,.6),transparent); }
 .gold-rule-v{ width:1px; background:linear-gradient(180deg,transparent,rgba(230,149,46,.5),transparent); }
 
-/* hiệu ứng hiện dần khi cuộn (initReveal trong client script) */
-.reveal{ opacity:0; transform:translateY(34px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
-.reveal.in{ opacity:1; transform:none; }
+/* ===== Hiệu ứng hiện dần khi cuộn (initReveal trong client script) =====
+   - reveal: mờ + trượt lên + nét nhòe nhẹ → cảm giác "lấy nét" sang trọng
+   - biến thể hướng: .reveal-left / .reveal-right / .reveal-scale
+   - stagger: client gán --rv-d (transition-delay) cho từng con của [data-reveal-group] */
+.reveal{
+  opacity:0; transform:translateY(30px); filter:blur(5px);
+  transition:
+    opacity   .9s cubic-bezier(.2,.7,.2,1) var(--rv-d,0s),
+    transform .9s cubic-bezier(.2,.7,.2,1) var(--rv-d,0s),
+    filter    .9s ease                     var(--rv-d,0s);
+}
+.reveal-left  { transform:translate(-38px,0); }
+.reveal-right { transform:translate(38px,0); }
+.reveal-scale { transform:scale(.94); }
+.reveal.in{ opacity:1; transform:none; filter:none; }
 
 @media (prefers-reduced-motion: reduce){
-  .reveal{ opacity:1 !important; transform:none !important; }
+  .reveal{ opacity:1 !important; transform:none !important; filter:none !important; transition:none !important; }
+}
+
+/* ===== Micro-interaction dùng chung ===== */
+/* vòng focus thống nhất (rõ ràng, đúng tông cam) cho thao tác bàn phím */
+:where(a,button,[tabindex],[role="button"]):focus-visible{
+  outline:2px solid rgba(230,149,46,.78);
+  outline-offset:3px; border-radius:6px;
+}
+@media (prefers-reduced-motion: reduce){
+  *{ scroll-behavior:auto !important; }
 }
