@@ -93,11 +93,26 @@ import '../styles/global.css'; // Tailwind utilities (editor render class lúc c
       <span id="status" class="text-sm text-stone-500"></span>
     </div>
 
+    <!-- ===== Hình ảnh bảo tàng (dải ảnh tự cuộn ở trang chủ) ===== -->
+    <div class="card p-4 md:p-5 mb-6">
+      <div class="flex items-start justify-between gap-3 mb-3 flex-wrap">
+        <div>
+          <h2 class="font-bold text-stone-700">🖼 Hình ảnh bảo tàng
+            <span class="text-sm font-normal text-stone-400">— dải ảnh tự cuộn ở trang chủ</span></h2>
+          <p class="text-sm text-stone-500">Thêm · xoá · sắp xếp ảnh. Trên web bấm vào ảnh sẽ mở xem lớn.</p>
+        </div>
+        <button id="btnAddGallery" class="btn btn-gold whitespace-nowrap">➕ Thêm ảnh</button>
+      </div>
+      <div id="galleryAdmin" class="flex flex-wrap gap-3"></div>
+    </div>
+
+    <h2 class="font-bold text-stone-700 mb-2">🏛 Không gian VR 360°</h2>
     <div id="spaces" class="space-y-4"></div>
 
     <p class="text-xs text-stone-400 mt-8 leading-relaxed">
       Sau khi “Lưu thay đổi”, GitHub tự build lại web (~1–2 phút). Ảnh tải lên được lưu vào
-      <code>assets/panos/</code>; danh sách không gian lưu vào <code>data/spaces.json</code>.
+      <code>assets/panos/</code> hoặc <code>assets/gallery/</code>; dữ liệu lưu vào
+      <code>data/spaces.json</code> và <code>data/gallery.json</code>.
     </p>
   </div>
 

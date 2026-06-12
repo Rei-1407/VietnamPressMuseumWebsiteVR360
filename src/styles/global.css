@@ -69,3 +69,9 @@ body{ font-family:var(--hv); overflow-x:hidden; }
 @media (prefers-reduced-motion: reduce){
   *{ scroll-behavior:auto !important; }
 }
+
+/* ===== Cân dòng chữ (tránh chữ "mồ côi" cuối dòng) — nền chung =====
+   balance: cho tiêu đề/câu ngắn ; pretty: cho đoạn mô tả.
+   (Chỉnh chính xác từng chỗ theo thiết kế sẽ làm riêng.) */
+.hero-subline, .tl-subtitle, .map-heading p{ text-wrap:balance; }
+.tl-card-copy p{ text-wrap:pretty; }

@@ -18,6 +18,8 @@ const vi = UI.vi, en = UI.en;
     <nav class="primary-nav hidden md:flex items-center gap-7 text-[15px]">
       <a href="#home" class="navlink" data-nav data-vi-text={vi.nHome} data-en-text={en.nHome}>{vi.nHome}</a>
       <span class="gold-rule-v h-4"></span>
+      <a href="#muc-anh" class="navlink" data-nav data-vi-text={vi.nGallery} data-en-text={en.nGallery}>{vi.nGallery}</a>
+      <span class="gold-rule-v h-4"></span>
       <a href="#lich-su" class="navlink" data-nav data-vi-text={vi.nHist} data-en-text={en.nHist}>{vi.nHist}</a>
       <span class="gold-rule-v h-4"></span>
       <a href="#ban-do" class="navlink" data-nav data-vi-text={vi.nMap} data-en-text={en.nMap}>{vi.nMap}</a>
@@ -141,7 +143,7 @@ const vi = UI.vi, en = UI.en;
   const header = document.querySelector('.site-header')!;
   function onScroll() {
     header.classList.toggle('scrolled', window.scrollY > 40);
-    const secs = ['home', 'lich-su', 'ban-do', 'footer'];
+    const secs = ['home', 'muc-anh', 'lich-su', 'ban-do', 'footer'];
     let cur = 'home';
     for (const id of secs) {
       const el = document.getElementById(id);

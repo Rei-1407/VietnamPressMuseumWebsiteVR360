@@ -1,0 +1,202 @@
+---
+/* Gallery — "Mục ảnh": dải ảnh bảo tàng TỰ CUỘN ngang (marquee) + lightbox.
+   ⚠️ Ảnh render Ở CLIENT từ /data/gallery.json (admin sửa file đó qua GitHub API)
+      — y như HeritageMap đọc spaces.json. Đổi nội dung KHÔNG cần build lại. */
+---
+
+<section id="muc-anh" class="gallery-section reveal" aria-label="Hình ảnh bảo tàng"
+         data-vi-aria-label="Hình ảnh bảo tàng" data-en-aria-label="Museum gallery">
+  <div class="gallery-band">
+    <div class="gallery-track" data-gallery-track></div>
+  </div>
+</section>
+
+<!-- Lightbox (đặt NGOÀI section reveal để tránh stacking-context của transform) -->
+<div class="gallery-lightbox" data-lightbox hidden aria-hidden="true" role="dialog" aria-modal="true"
+     aria-label="Xem ảnh" data-vi-aria-label="Xem ảnh" data-en-aria-label="Image viewer">
+  <button class="gl-close" data-gl-close type="button" aria-label="Đóng"
+          data-vi-aria-label="Đóng" data-en-aria-label="Close">✕</button>
+  <button class="gl-nav gl-prev" data-gl-prev type="button" aria-label="Ảnh trước"
+          data-vi-aria-label="Ảnh trước" data-en-aria-label="Previous image">‹</button>
+  <img class="gl-img" data-gl-img alt="" />
+  <button class="gl-nav gl-next" data-gl-next type="button" aria-label="Ảnh sau"
+          data-vi-aria-label="Ảnh sau" data-en-aria-label="Next image">›</button>
+</div>
+
+<style is:global>
+  /* ===== Mục ảnh — dải cam tự cuộn (is:global vì item render bằng JS lúc chạy) ===== */
+  .gallery-section{ position:relative; width:100%; margin:clamp(10px,2vw,28px) 0; }
+  .gallery-band{
+    position:relative; width:100%; overflow:hidden;
+    background:var(--orange);
+    padding:clamp(26px,3.4vw,50px) 0;
+    box-shadow:inset 0 14px 26px -20px rgba(58,36,8,.55), inset 0 -14px 26px -20px rgba(58,36,8,.55);
+  }
+  /* mép mờ hai bên để ảnh "trôi" vào/ra êm */
+  .gallery-band::before, .gallery-band::after{
+    content:""; position:absolute; top:0; bottom:0; width:clamp(40px,7vw,120px); z-index:2; pointer-events:none;
+  }
+  .gallery-band::before{ left:0;  background:linear-gradient(90deg, var(--orange), transparent); }
+  .gallery-band::after{  right:0; background:linear-gradient(270deg, var(--orange), transparent); }
+
+  .gallery-track{
+    display:flex; width:max-content; will-change:transform;
+    animation:gal-scroll var(--gal-dur,40s) linear infinite;
+  }
+  .gallery-band:hover .gallery-track{ animation-play-state:paused; }
+  @keyframes gal-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+  /* item = khung trắng kiểu polaroid; KHÔNG dùng flex-gap mà dùng margin-right
+     để mỗi "bộ" rộng đúng bằng nhau → vòng lặp -50% liền mạch tuyệt đối */
+  .gallery-item{
+    flex:0 0 auto; margin-right:clamp(16px,2vw,28px);
+    padding:clamp(8px,0.9vw,13px) clamp(8px,0.9vw,13px) clamp(13px,1.5vw,22px);
+    background:#fff; border:none; border-radius:6px; cursor:pointer;
+    box-shadow:0 18px 34px -20px rgba(58,36,8,.6), 0 2px 6px -3px rgba(58,36,8,.3);
+    transition:transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s;
+  }
+  .gallery-item:hover{
+    transform:translateY(-6px) scale(1.015);
+    box-shadow:0 30px 50px -22px rgba(58,36,8,.7), 0 3px 8px -3px rgba(58,36,8,.35);
+  }
+  .gallery-item:active{ transform:translateY(-3px) scale(.99); }
+  .gallery-item .photo{
+    display:block; width:clamp(210px,23vw,300px); aspect-ratio:4/3;
+    object-fit:cover; border-radius:3px; background:#e7ddcf; user-select:none;
+  }
+
+  /* tắt tự cuộn khi giảm chuyển động / ?nofx → cuộn tay được */
+  .gallery-band.no-anim .gallery-track{ animation:none; }
+  .gallery-band.no-anim{ overflow-x:auto; scrollbar-width:thin; }
+  @media (prefers-reduced-motion: reduce){
+    .gallery-track{ animation:none !important; }
+    .gallery-band{ overflow-x:auto; }
+    .gallery-item{ transition:none; }
+  }
+
+  /* ===== Lightbox ===== */
+  .gallery-lightbox{
+    position:fixed; inset:0; z-index:90; display:none; place-items:center;
+    background:rgba(20,12,4,.93); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
+  }
+  .gallery-lightbox.open{ display:grid; animation:gl-fade .25s ease both; }
+  @keyframes gl-fade{ from{ opacity:0; } to{ opacity:1; } }
+  .gl-img{
+    max-width:92vw; max-height:86vh; object-fit:contain; border-radius:6px;
+    box-shadow:0 40px 90px -20px rgba(0,0,0,.8); background:#1a140b;
+    animation:gl-zoom .3s cubic-bezier(.2,.7,.2,1) both;
+  }
+  @keyframes gl-zoom{ from{ opacity:0; transform:scale(.96); } to{ opacity:1; transform:none; } }
+  .gl-close, .gl-nav{
+    position:fixed; z-index:1; display:grid; place-items:center;
+    color:#fff; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25);
+    border-radius:9999px; cursor:pointer; backdrop-filter:blur(4px);
+    transition:background .2s, transform .2s;
+  }
+  .gl-close:hover, .gl-nav:hover{ background:rgba(255,255,255,.22); }
+  .gl-close{ top:clamp(14px,3vw,28px); right:clamp(14px,3vw,28px); width:46px; height:46px; font-size:20px; }
+  .gl-nav{ top:50%; transform:translateY(-50%); width:54px; height:54px; font-size:34px; line-height:1; padding-bottom:4px; }
+  .gl-nav:hover{ transform:translateY(-50%) scale(1.08); }
+  .gl-prev{ left:clamp(10px,2.5vw,30px); }
+  .gl-next{ right:clamp(10px,2.5vw,30px); }
+  @media (max-width:560px){
+    .gl-nav{ width:44px; height:44px; font-size:28px; }
+    .gl-close{ width:40px; height:40px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .gallery-lightbox.open, .gl-img{ animation:none; }
+  }
+</style>
+
+<script>
+  /* Tải /data/gallery.json → dựng marquee liền mạch + lightbox.
+     Không có chữ song ngữ trong item nên không cần render lại khi đổi ngôn ngữ. */
+  const section = document.getElementById('muc-anh');
+  const band = section?.querySelector<HTMLElement>('.gallery-band');
+  const track = section?.querySelector<HTMLElement>('[data-gallery-track]');
+  const lb = document.querySelector<HTMLElement>('[data-lightbox]');
+  const lbImg = lb?.querySelector<HTMLImageElement>('[data-gl-img]');
+  if (section && band && track && lb && lbImg) {
+
+    const noFx = /[?&]nofx/.test(location.search)
+      || matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // đường dẫn web (assets/…) → root-absolute để chắc chắn đúng ở mọi route
+    const url = (p: string) => !p ? '' : (p.startsWith('http') ? p : '/' + p.replace(/^\/+/, ''));
+    const thumbOf = (it: any) => url(it.thumb || it.src);
+    const fullOf = (it: any) => url(it.src || it.thumb);
+
+    let items: any[] = [];
+    let cur = 0;
+
+    function itemHTML(gi: number, dup: boolean) {
+      const it = items[gi];
+      const hid = dup ? ' tabindex="-1" aria-hidden="true"' : '';
+      return `<button class="gallery-item" type="button" data-gi="${gi}"${hid}
+        aria-label="Xem ảnh lớn" data-vi-aria-label="Xem ảnh lớn" data-en-aria-label="View larger image">
+        <img class="photo" src="${thumbOf(it)}" alt="" loading="lazy" decoding="async" draggable="false">
+      </button>`;
+    }
+
+    function buildMarquee() {
+      // đo 1 "bộ" gốc để biết cần lặp bao nhiêu lần cho đầy ~1.4× bề rộng màn hình
+      track!.innerHTML = items.map((_, i) => itemHTML(i, false)).join('');
+      const oneW = track!.scrollWidth || 1;
+      const reps = Math.max(1, Math.ceil((window.innerWidth * 1.4) / oneW));
+      let half = '';
+      for (let r = 0; r < reps; r++) half += items.map((_, i) => itemHTML(i, false)).join('');
+      let dupHalf = '';
+      for (let r = 0; r < reps; r++) dupHalf += items.map((_, i) => itemHTML(i, true)).join('');
+      track!.innerHTML = half + dupHalf;                  // 2 nửa giống hệt → -50% liền mạch
+      const setW = track!.scrollWidth / 2;
+      const dur = Math.max(16, Math.round(setW / 55));    // ~55px/giây
+      track!.style.setProperty('--gal-dur', dur + 's');
+    }
+
+    /* ----- lightbox ----- */
+    function openLB(i: number) {
+      cur = (i % items.length + items.length) % items.length;
+      lbImg!.src = fullOf(items[cur]);
+      lb!.hidden = false; lb!.classList.add('open'); lb!.setAttribute('aria-hidden', 'false');
+      document.addEventListener('keydown', onKey);
+    }
+    function closeLB() {
+      lb!.classList.remove('open'); lb!.setAttribute('aria-hidden', 'true');
+      lb!.hidden = true; lbImg!.src = '';
+      document.removeEventListener('keydown', onKey);
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') closeLB();
+      else if (e.key === 'ArrowLeft') openLB(cur - 1);
+      else if (e.key === 'ArrowRight') openLB(cur + 1);
+    }
+    track.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest<HTMLElement>('.gallery-item');
+      if (b && b.dataset.gi != null) openLB(+b.dataset.gi);
+    });
+    lb.querySelector('[data-gl-close]')!.addEventListener('click', closeLB);
+    lb.querySelector('[data-gl-prev]')!.addEventListener('click', () => openLB(cur - 1));
+    lb.querySelector('[data-gl-next]')!.addEventListener('click', () => openLB(cur + 1));
+    lb.addEventListener('click', (e) => { if (e.target === lb) closeLB(); });
+
+    /* ----- nạp dữ liệu ----- */
+    let rt: any;
+    window.addEventListener('resize', () => {
+      clearTimeout(rt);
+      rt = setTimeout(() => { if (items.length && !noFx) buildMarquee(); }, 200);
+    });
+
+    (async () => {
+      let data: any = [];
+      try {
+        const r = await fetch('/data/gallery.json', { cache: 'no-store' });
+        if (r.ok) data = await r.json();
+      } catch (e) { console.error('Không tải được data/gallery.json:', e); }
+      items = Array.isArray(data) ? data.filter((x) => x && (x.src || x.thumb)) : [];
+      if (!items.length) { section!.style.display = 'none'; return; }
+      buildMarquee();
+      if (noFx) band!.classList.add('no-anim');
+      (window as any).__rescanReveal?.();
+    })();
+  }
+</script>

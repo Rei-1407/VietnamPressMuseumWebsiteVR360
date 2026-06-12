@@ -19,7 +19,8 @@ const ADMIN_PASS = '1234567890';
 const repoPath = (p) => 'public/' + p;
 
 /* ---------- trạng thái ---------- */
-let state = { spaces: [] };
+let state = { spaces: [], gallery: [] };
+let baseline = { spaces: '', gallery: '' };  // bản gốc lúc nạp → so để chỉ ghi file đã đổi
 let token = '';
 let dirty = false;
 let pending = null;        // mục tiêu cho lần chọn file kế tiếp
@@ -43,7 +44,7 @@ function slug(s){
 function getByPath(root, path){ return path.split('.').reduce((o,k)=> (o==null?o:o[k]), root); }
 function setByPath(root, path, val){ const ks=path.split('.'); const last=ks.pop(); let o=root; for(const k of ks) o=o[k]; o[last]=val; }
 function delByPath(root, path){ const ks=path.split('.'); const last=ks.pop(); let o=root; for(const k of ks){ if(o==null) return; o=o[k]; } if(o) delete o[last]; }
-function markOldForDelete(p){ if(p && typeof p==='string' && /^assets\/(panos|exhibits|audio)\//.test(p)) imagesToDelete.push(p); }
+function markOldForDelete(p){ if(p && typeof p==='string' && /^assets\/(panos|exhibits|audio|gallery)\//.test(p)) imagesToDelete.push(p); }
 
 function b64utf8(str){
   const bytes = new TextEncoder().encode(str);
@@ -137,10 +138,44 @@ function convertPhotoToScenes(sp){
 
 function render(){
   ensureRoomIds();
+  renderGallery();
   const root = $('#spaces');
   if(!state.spaces.length){ root.innerHTML = `<div class="card p-6 text-center text-stone-500">Chưa có không gian nào. Bấm “➕ Thêm không gian”.</div>`; return; }
   root.innerHTML = state.spaces.map((sp,i)=>renderSpace(sp,i)).join('');
 }
+
+/* ---------- Hình ảnh bảo tàng (dải ảnh trang chủ) ---------- */
+function renderGallery(){
+  const root = $('#galleryAdmin'); if(!root) return;
+  const list = state.gallery || [];
+  if(!list.length){ root.innerHTML = `<div class="text-sm text-stone-400 py-2">Chưa có ảnh nào. Bấm “➕ Thêm ảnh”.</div>`; return; }
+  root.innerHTML = list.map((g,i)=>{
+    const src = previewUrl(g.thumb || g.src);
+    return `<div class="w-32">
+      <div class="w-32 h-24 rounded-lg bg-stone-200 bg-center bg-cover border border-stone-200" style="${src?`background-image:url('${src}')`:''}"></div>
+      <div class="flex items-center justify-between mt-1">
+        <div class="flex gap-1">
+          <button class="btn btn-ghost px-2 py-0.5 text-xs" data-gact="up" data-i="${i}" title="Sang trái" ${i===0?'disabled style="opacity:.4"':''}>◀</button>
+          <button class="btn btn-ghost px-2 py-0.5 text-xs" data-gact="down" data-i="${i}" title="Sang phải" ${i===list.length-1?'disabled style="opacity:.4"':''}>▶</button>
+        </div>
+        <button class="btn btn-danger px-2 py-0.5 text-xs" data-gact="del" data-i="${i}" title="Xoá ảnh">🗑</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// thao tác trên dải ảnh (container riêng → listener riêng, không đụng #spaces)
+$('#galleryAdmin').addEventListener('click', (e)=>{
+  const btn = e.target.closest('[data-gact]'); if(!btn) return;
+  const act = btn.dataset.gact; const i = +btn.dataset.i;
+  if(act==='del'){
+    if(!confirm('Xoá ảnh này khỏi dải ảnh? (Ảnh được dọn khỏi kho khi bấm “Lưu thay đổi”.)')) return;
+    const g = state.gallery[i]; markOldForDelete(g && g.src); markOldForDelete(g && g.thumb);
+    state.gallery.splice(i,1); markDirty(true); renderGallery();
+  } else if(act==='up' && i>0){ [state.gallery[i-1],state.gallery[i]]=[state.gallery[i],state.gallery[i-1]]; markDirty(true); renderGallery(); }
+  else if(act==='down' && i<state.gallery.length-1){ [state.gallery[i+1],state.gallery[i]]=[state.gallery[i],state.gallery[i+1]]; markDirty(true); renderGallery(); }
+});
+$('#btnAddGallery').addEventListener('click', ()=>{ pending={kind:'gallery', i:null}; pickFile(); });
 
 function renderSpace(sp, i){
   const type = spaceType(sp);
@@ -509,6 +544,22 @@ $('#filePicker').addEventListener('change', async (e)=>{
       markDirty(true); render(); setStatus('Đã tải ảnh ✓ — nhớ bấm “Lưu thay đổi”.','ok'); return;
     }
 
+    /* --- ẢNH DẢI "MỤC ẢNH" — bản xem lớn (src) + thumb cho dải cuộn --- */
+    if(p.kind==='gallery'){
+      setStatus('Đang xử lý & tải ảnh…');
+      const big   = await compressToBase64(file, 1920, 0.85);
+      const thumb = await compressToBase64(file, 700, 0.82);
+      const nm = slug(file.name.replace(/\.[a-z0-9]+$/i,'')) || 'anh';
+      const srcPath   = `assets/gallery/${nm}-${ts}.jpg`;
+      const thumbPath = `assets/gallery/${nm}-${ts}-thumb.jpg`;
+      previewCache[srcPath]=big.dataURL; previewCache[thumbPath]=thumb.dataURL;
+      await ghPutFile(repoPath(srcPath),   big.base64,   'admin: tải ảnh mục ảnh '+srcPath);
+      await ghPutFile(repoPath(thumbPath), thumb.base64, 'admin: thumbnail '+thumbPath);
+      state.gallery = state.gallery || [];
+      state.gallery.push({ src:srcPath, thumb:thumbPath });
+      markDirty(true); renderGallery(); setStatus('Đã tải ảnh ✓ — nhớ bấm “Lưu thay đổi”.','ok'); return;
+    }
+
     /* --- ẢNH 360° (pano) — nén vừa + tự tạo thumbnail --- */
     setStatus('Đang xử lý & tải ảnh 360°… (có thể mất chút thời gian)');
     const full  = await compressToBase64(file, 6144, 0.85);
@@ -583,14 +634,23 @@ $('#btnSave').addEventListener('click', async ()=>{
       (sp.hotspots||[]).forEach(h=>h.img&&stillUsed.add(h.img));
       (sp.scenes||[]).forEach(s=>{ s.photo&&stillUsed.add(s.photo); (s.hotspots||[]).forEach(h=>h.img&&stillUsed.add(h.img)); });
     });
+    (state.gallery||[]).forEach(g=>{ g&&g.src&&stillUsed.add(g.src); g&&g.thumb&&stillUsed.add(g.thumb); });
     for(const path of [...new Set(imagesToDelete)]) if(!stillUsed.has(path)) await ghDeletePathBestEffort(path);
     imagesToDelete = [];
-    // 2) ghi public/data/spaces.json
-    const cur = await ghGetContent(repoPath('data/spaces.json'));
-    const json = JSON.stringify(state.spaces, null, 2) + '\n';
-    await ghPutFile(repoPath('data/spaces.json'), b64utf8(json), 'admin: cập nhật không gian VR', cur && cur.sha);
+    // 2) chỉ ghi file dữ liệu THỰC SỰ thay đổi (1 lần lưu = 1 deploy, không commit thừa)
+    let wrote = 0;
+    if(JSON.stringify(state.spaces) !== baseline.spaces){
+      const cur = await ghGetContent(repoPath('data/spaces.json'));
+      await ghPutFile(repoPath('data/spaces.json'), b64utf8(JSON.stringify(state.spaces, null, 2)+'\n'), 'admin: cập nhật không gian VR', cur && cur.sha);
+      baseline.spaces = JSON.stringify(state.spaces); wrote++;
+    }
+    if(JSON.stringify(state.gallery||[]) !== baseline.gallery){
+      const cur = await ghGetContent(repoPath('data/gallery.json'));
+      await ghPutFile(repoPath('data/gallery.json'), b64utf8(JSON.stringify(state.gallery||[], null, 2)+'\n'), 'admin: cập nhật hình ảnh bảo tàng', cur && cur.sha);
+      baseline.gallery = JSON.stringify(state.gallery||[]); wrote++;
+    }
     markDirty(false);
-    setStatus('Đã lưu ✓ Web sẽ tự cập nhật sau ~1–2 phút (nhớ Ctrl+F5).', 'ok');
+    setStatus(wrote ? 'Đã lưu ✓ Web sẽ tự cập nhật sau ~1–2 phút (nhớ Ctrl+F5).' : 'Không có thay đổi để lưu.', 'ok');
   }catch(err){ setStatus(err.message,'err'); }
 });
 
@@ -604,10 +664,17 @@ $('#btnSaveToken').addEventListener('click', ()=>{
 });
 $('#btnClearToken').addEventListener('click', ()=>{ token=''; localStorage.removeItem('gh_token'); updateTokenBadge(); $('#tokenMsg').textContent='Đã xoá token khỏi máy này.'; $('#tokenMsg').className='text-sm mt-2 text-stone-500'; });
 
-/* ---------- nạp danh sách không gian ---------- */
+/* ---------- nạp dữ liệu (không gian VR + hình ảnh bảo tàng) ---------- */
 async function loadSpaces(){
   const res = await fetch(PREVIEW + 'data/spaces.json?t='+Date.now(), { cache:'no-store' });
   state.spaces = await res.json();
+  try{
+    const gr = await fetch(PREVIEW + 'data/gallery.json?t='+Date.now(), { cache:'no-store' });
+    state.gallery = gr.ok ? await gr.json() : [];
+  }catch(e){ state.gallery = []; }
+  if(!Array.isArray(state.gallery)) state.gallery = [];
+  baseline.spaces  = JSON.stringify(state.spaces);
+  baseline.gallery = JSON.stringify(state.gallery);
   imagesToDelete = [];
   render();
 }
