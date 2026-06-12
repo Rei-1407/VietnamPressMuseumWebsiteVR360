@@ -131,6 +131,11 @@
     let items: any[] = [];
     let cur = 0;
     let justDragged = false;   // vừa kéo → bỏ qua click mở lightbox
+    let hoverRows = 0;         // chỉ pause khi chuột ở đúng vùng hàng ảnh có thể kéo/cuộn
+    rows.forEach((row) => {
+      row.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hoverRows += 1; });
+      row.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') hoverRows = Math.max(0, hoverRows - 1); });
+    });
 
     // preload ảnh full kế bên → bấm ◀▶ chuyển gần như tức thì
     const preloaded: Record<string, HTMLImageElement> = {};
@@ -169,25 +174,28 @@
     function setupRow(rowEl: HTMLElement, order: number[]) {
       const dir = +(rowEl.dataset.dir || '1');     // 1: phải→trái ; -1: trái→phải
       let setW = buildRow(rowEl, order);
-      rowEl.scrollLeft = dir > 0 ? 0 : setW;
+      // pos = vị trí dạng float, TỰ CỘNG DỒN. Phải tách riêng vì gán scrollLeft sẽ bị
+      // trình duyệt làm tròn về pixel → nếu cộng thẳng vào scrollLeft thì bước <1px
+      // bị "nuốt" và dải đứng im ở 60fps.
+      let pos = dir > 0 ? 0 : setW;
+      rowEl.scrollLeft = pos;
 
-      let hovering = false, pointerActive = false, downX = 0, downScroll = 0;
+      let pointerActive = false, downX = 0, downScroll = 0;
       let last = performance.now();
 
       function tick(now: number) {
         const dt = Math.min(64, now - last); last = now;
-        if (!noFx && !hovering && !pointerActive && setW > 0) {
-          rowEl.scrollLeft += dir * SPEED * dt / 1000;
-          if (rowEl.scrollLeft >= setW) rowEl.scrollLeft -= setW;        // vòng lặp liền mạch
-          else if (rowEl.scrollLeft <= 0) rowEl.scrollLeft += setW;
+        if (!noFx && hoverRows === 0 && !pointerActive && setW > 0) {
+          pos += dir * SPEED * dt / 1000;
+          if (pos >= setW) pos -= setW;                 // vòng lặp liền mạch
+          else if (pos < 0) pos += setW;
+          rowEl.scrollLeft = pos;
+        } else {
+          pos = rowEl.scrollLeft;                        // đồng bộ khi người dùng tự cuộn
         }
         requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
-
-      // hover (chuột) → tạm dừng tự chạy, cho lăn/kéo tay
-      rowEl.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovering = true; });
-      rowEl.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { hovering = false; last = performance.now(); } });
 
       // kéo-để-cuộn (chuột) ; chạm thì để trình duyệt cuộn tự nhiên (pan-x)
       rowEl.addEventListener('pointerdown', (e) => {
@@ -202,6 +210,7 @@
       });
       function up(e: PointerEvent) {
         rowEl.classList.remove('dragging');
+        pos = rowEl.scrollLeft;
         if (e.pointerType === 'mouse') { pointerActive = false; last = performance.now(); }
         else { setTimeout(() => { pointerActive = false; last = performance.now(); }, 600); }  // chờ quán tính chạm
       }
@@ -209,7 +218,7 @@
       rowEl.addEventListener('pointercancel', up);
 
       // trả về hàm dựng lại khi đổi kích thước
-      return () => { setW = buildRow(rowEl, order); rowEl.scrollLeft = dir > 0 ? 0 : setW; };
+      return () => { setW = buildRow(rowEl, order); pos = dir > 0 ? 0 : setW; rowEl.scrollLeft = pos; };
     }
 
     /* ----- lightbox ----- */
