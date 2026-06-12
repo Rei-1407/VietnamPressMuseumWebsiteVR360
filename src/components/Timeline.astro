@@ -11,6 +11,48 @@ for (const item of TIMELINE) {
   if (item.kind === 'era') blocks.push({ era: item, events: [] });
   else if (blocks.length) blocks[blocks.length - 1].events.push(item);
 }
+
+type TextPart = 't' | 'd';
+type BreakSpec = Partial<Record<TextPart, string[]>>;
+const viBreaks: Record<string, BreakSpec> = {
+  'era:1865 - 1925': { d: ['tờ báo cổ'] },
+  'event:1865': { d: ['đầu tiên,'] },
+  'event:21.06.1925': { t: ['Cách mạng'], d: ['báo Thanh Niên,'] },
+  'era:1925 - 1945': { d: ['vinh danh'] },
+  'era:1945 - 1954': { d: ['cùng cuộc'] },
+  'event:1949': { t: ['làm', 'tên'] },
+  'era:1954 - 1975': { d: ['miền Bắc,'] },
+  'event:1972': { d: ['Cùng với đó', 'thời kỳ đầu'] },
+  'event:30.04.1975': { t: ['ngày'] },
+  'era:1975 - Nay': { d: ['tiên phong'] },
+  'event:1986': { d: ['khơi nguồn từ', 'Tổng Bí thư'] },
+  'event:Hiện tại': { d: ['chống tiêu cực'] },
+};
+
+const keyOf = (item: TimelineItem) => `${item.kind}:${item.year}`;
+function splitAfter(text: string, markers?: string[]): string[] {
+  if (!markers?.length || !text) return text ? [text] : [''];
+  const lines: string[] = [];
+  let rest = text;
+  for (const marker of markers) {
+    const idx = rest.indexOf(marker);
+    if (idx < 0) return text ? [text] : [''];
+    const end = idx + marker.length;
+    lines.push(rest.slice(0, end).trim());
+    rest = rest.slice(end).trim();
+  }
+  if (rest) lines.push(rest);
+  return lines.length ? lines : [''];
+}
+function displayLines(item: TimelineItem, part: TextPart) {
+  const viLines = splitAfter(item.vi[part], viBreaks[keyOf(item)]?.[part]);
+  const enLines = splitAfter(item.en[part]);
+  const count = Math.max(viLines.length, enLines.length);
+  return Array.from({ length: count }, (_, i) => ({
+    vi: viLines[i] ?? '',
+    en: enLines[i] ?? '',
+  }));
+}
 ---
 
 <section id="lich-su">
@@ -32,8 +74,18 @@ for (const item of TIMELINE) {
           <div class="tl-card-body"></div>
           <div class="tl-year" data-vi-text={block.era.year} data-en-text={block.era.yearEn ?? block.era.year}>{block.era.year}</div>
           <div class="tl-card-copy">
-            <h3 data-vi-text={block.era.vi.t} data-en-text={block.era.en.t}>{block.era.vi.t}</h3>
-            <p data-vi-text={block.era.vi.d} data-en-text={block.era.en.d}>{block.era.vi.d}</p>
+            <h3 aria-label={block.era.vi.t}
+                data-vi-aria-label={block.era.vi.t} data-en-aria-label={block.era.en.t}>
+              {displayLines(block.era, 't').map((line) => (
+                <span class="tl-line" data-vi-text={line.vi} data-en-text={line.en}>{line.vi}</span>
+              ))}
+            </h3>
+            <p aria-label={block.era.vi.d}
+               data-vi-aria-label={block.era.vi.d} data-en-aria-label={block.era.en.d}>
+              {displayLines(block.era, 'd').map((line) => (
+                <span class="tl-line" data-vi-text={line.vi} data-en-text={line.en}>{line.vi}</span>
+              ))}
+            </p>
           </div>
         </div>
 
@@ -44,8 +96,18 @@ for (const item of TIMELINE) {
                 <div class="tl-card-body"></div>
                 <div class="tl-year" data-vi-text={event.year} data-en-text={event.yearEn ?? event.year}>{event.year}</div>
                 <div class="tl-card-copy">
-                  <h3 data-vi-text={event.vi.t} data-en-text={event.en.t}>{event.vi.t}</h3>
-                  <p data-vi-text={event.vi.d} data-en-text={event.en.d}>{event.vi.d}</p>
+                  <h3 aria-label={event.vi.t}
+                      data-vi-aria-label={event.vi.t} data-en-aria-label={event.en.t}>
+                    {displayLines(event, 't').map((line) => (
+                      <span class="tl-line" data-vi-text={line.vi} data-en-text={line.en}>{line.vi}</span>
+                    ))}
+                  </h3>
+                  <p aria-label={event.vi.d}
+                     data-vi-aria-label={event.vi.d} data-en-aria-label={event.en.d}>
+                    {displayLines(event, 'd').map((line) => (
+                      <span class="tl-line" data-vi-text={line.vi} data-en-text={line.en}>{line.vi}</span>
+                    ))}
+                  </p>
                 </div>
               </div>
             ))}
@@ -62,14 +124,14 @@ for (const item of TIMELINE) {
     position:relative;
     overflow:hidden;
     background:#fff;
-    padding:clamp(76px,5.95vw,114px) 0 clamp(72px,5.47vw,105px);
+    padding:clamp(70px,4.58vw,88px) 0 clamp(72px,5.47vw,105px);
   }
 
   .tl-heading{
     position:relative;
     z-index:2;
     width:min(92vw,1425px);
-    margin:0 auto clamp(84px,7.08vw,136px);
+    margin:0 auto clamp(70px,5.2vw,100px);
     text-align:center;
   }
   .tl-kicker,.tl-title{
@@ -171,6 +233,12 @@ for (const item of TIMELINE) {
     line-height:1.08;
     text-transform:uppercase;
   }
+  .tl-card-copy .tl-line{
+    display:block;
+  }
+  .tl-card-copy .tl-line:empty{
+    display:none;
+  }
   .tl-card-copy p{
     margin-top:auto;
     margin-bottom:4%;
@@ -203,9 +271,20 @@ for (const item of TIMELINE) {
     margin-top:var(--event-gap);
   }
   .tl-event-card{ width:min(40.1vw,770px); color:#fff; }
+  .tl-event-card .tl-card-copy{
+    right:4%;
+    left:4%;
+  }
   .tl-event-card .tl-card-body{
     border:1px solid rgba(255,255,255,.95);
     background:var(--orange);
+  }
+  .tl-event-card .tl-card-copy h3{
+    font-size:clamp(14px,1.88vw,36px);
+  }
+  .tl-event-card .tl-card-copy p{
+    font-size:clamp(9px,1.1vw,21px);
+    line-height:1.18;
   }
   .tl-event-card .tl-year{
     border:1px solid #fff;
@@ -265,6 +344,12 @@ for (const item of TIMELINE) {
     .tl-block.is-in .tl-events::before,
     .tl-block.is-in .tl-events.double .tl-event-card::before{ transform:scaleY(1); }
     .tl-block.is-in .tl-events.double::after{ transform:scaleX(1); transition-delay:.32s; }
+  }
+
+  @media(min-width:901px){
+    .tl-card-copy .tl-line{
+      white-space:nowrap;
+    }
   }
 
   @media(max-width:900px){
