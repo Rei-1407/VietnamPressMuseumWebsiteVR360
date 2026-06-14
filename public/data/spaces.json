@@ -136,11 +136,59 @@
           {
             "pitch": -6,
             "yaw": 3,
-            "vi": "",
+            "vi": "Bút Sen",
             "en": "",
-            "dVi": "Bút Sen\n\nĐiểm nhấn trung tâm của tác phẩm là một ngòi bút máy mang sắc vàng vươn cao kiêu hãnh, đại diện cho vũ khí sắc bén, cho công cụ tác nghiệp thiêng liêng của những người cầm bút. Nâng đỡ ngòi bút ấy là đôi cánh sen mềm mại được kết tinh một cách công phu từ tên của hơn 800 tòa soạn và cơ quan báo chí trải dài suốt chiều dài lịch sử nước nhà. Sự hòa quyện độc đáo giữa hình ảnh ngòi bút và hoa sen không chỉ tôn vinh nhân cách, đạo đức trong sáng của người làm báo, mà còn là lời khẳng định đanh thép cho lý tưởng cao đẹp: \"Bút sắc, lòng trong, tâm sáng\". Biểu tượng này vừa mang hơi thở của thời đại, vừa mang đậm bản sắc văn hóa dân tộc, trở thành linh hồn kết nối các thế hệ nhà báo Việt Nam.",
+            "dVi": "Điểm nhấn trung tâm của tác phẩm là một ngòi bút máy mang sắc vàng vươn cao kiêu hãnh, đại diện cho vũ khí sắc bén, cho công cụ tác nghiệp thiêng liêng của những người cầm bút. Nâng đỡ ngòi bút ấy là đôi cánh sen mềm mại được kết tinh một cách công phu từ tên của hơn 800 tòa soạn và cơ quan báo chí trải dài suốt chiều dài lịch sử nước nhà. Sự hòa quyện độc đáo giữa hình ảnh ngòi bút và hoa sen không chỉ tôn vinh nhân cách, đạo đức trong sáng của người làm báo, mà còn là lời khẳng định đanh thép cho lý tưởng cao đẹp: \"Bút sắc, lòng trong, tâm sáng\". Biểu tượng này vừa mang hơi thở của thời đại, vừa mang đậm bản sắc văn hóa dân tộc, trở thành linh hồn kết nối các thế hệ nhà báo Việt Nam.",
             "dEn": "",
             "img": "assets/exhibits/gian-khanh-tiet-1781161586613.jpg"
+          },
+          {
+            "pitch": -3,
+            "yaw": 49,
+            "vi": "Học giả Trương Vĩnh Ký (1837 - 1898) – \"Ông tổ của nghề báo chữ Quốc ngữ\"",
+            "en": "",
+            "dVi": "Trương Vĩnh Ký (còn gọi là Pétrus Ký) là một trong những học giả uyên bác nhất của Việt Nam thế kỷ XIX, thông thạo 26 ngôn ngữ. Trong lĩnh vực báo chí, ông chính là Tổng biên tập của tờ Gia Định Báo (ra mắt năm 1865) - tờ báo viết bằng chữ Quốc ngữ đầu tiên của Việt Nam. Sự xuất hiện của tờ báo này dưới sự điều hành của ông đã đặt nền móng vĩ đại cho \"Bình minh Báo chí Quốc ngữ\", giúp phổ biến chữ viết và mở ra kỷ nguyên truyền thông hiện đại của nước nhà.",
+            "img": "assets/exhibits/gian-khanh-tiet-1781457948459.jpg"
+          },
+          {
+            "pitch": -3,
+            "yaw": 55,
+            "vi": "Cụ Huỳnh Thúc Kháng (1876 - 1947) – \"Ngòi bút ái quốc kiên trung\"",
+            "en": "",
+            "dVi": "Cụ Huỳnh Thúc Kháng là một chí sĩ yêu nước lỗi lạc, đồng thời là một nhà báo vĩ đại. Ông là người sáng lập kiêm Chủ bút tờ báo Tiếng Dân (1927) - tờ báo quốc ngữ đầu tiên tại miền Trung. Với ngòi bút sắc bén, ông đã biến tờ báo thành diễn đàn đấu tranh đòi dân chủ, dân quyền, thức tỉnh lòng yêu nước của đồng bào. Để vinh danh những cống hiến to lớn của ông, tên của cụ đã được Chủ tịch Hồ Chí Minh đặt cho Trường dạy làm báo đầu tiên của nền Báo chí Cách mạng Việt Nam (thành lập năm 1949) tại chiến khu Việt Bắc.",
+            "img": "assets/exhibits/gian-khanh-tiet-1781458027842.jpg"
+          },
+          {
+            "pitch": -3,
+            "yaw": 63,
+            "vi": "Học giả Phan Khôi (1887 - 1959) – \"Ngọn cờ tiên phong của tư duy phản biện\"",
+            "en": "",
+            "dVi": "Phan Khôi là một nhà báo, nhà văn, và học giả có tầm ảnh hưởng sâu rộng trong nửa đầu thế kỷ XX. Ông cộng tác và làm chủ bút cho hàng loạt tờ báo danh tiếng thời bấy giờ như Nam Phong tạp chí, Phụ nữ tân văn, Thực nghiệp dân báo... Ông được giới truyền thông tôn vinh là người có tư duy phản biện sắc sảo, độc lập, và đặc biệt là người châm ngòi cho phong trào Thơ Mới trên báo chí. Ngòi bút của ông đã góp phần đập tan những hủ tục phong kiến, thúc đẩy sự hiện đại hóa trong tư duy và văn phong báo chí Việt Nam.",
+            "img": "assets/exhibits/gian-khanh-tiet-1781458055624.jpg"
+          },
+          {
+            "pitch": 0,
+            "yaw": 0,
+            "vi": "Nhà báo Trần Huy Liệu (1901 - 1969) – \"Nhà báo cách mạng tiên phong\"",
+            "en": "",
+            "dVi": "Trần Huy Liệu là một nhà cách mạng kiên trung và là một cây bút xuất chúng của nền Báo chí Cách mạng Việt Nam. Ông từng là chủ bút của nhiều tờ báo yêu nước, dùng báo chí làm vũ khí sắc bén để tuyên truyền chủ nghĩa Mác - Lênin và vạch trần tội ác của thực dân Pháp. Sau Cách mạng Tháng Tám (1945), ông vinh dự được cử làm Bộ trưởng Bộ Thông tin Tuyên truyền đầu tiên của Chính phủ nước Việt Nam Dân chủ Cộng hòa, đóng góp to lớn vào việc định hình và phát triển mặt trận văn hóa - tư tưởng và báo chí cách mạng trong giai đoạn mới.",
+            "img": "assets/exhibits/gian-khanh-tiet-1781458073303.jpg"
+          },
+          {
+            "pitch": 7,
+            "yaw": -74,
+            "vi": "Tượng bán thân Chủ tịch Hồ Chí Minh",
+            "en": "",
+            "dVi": "Ngay tại không gian trang trọng này, chúng ta cùng khắc ghi lời dạy bất hủ của Chủ tịch Hồ Chí Minh - người sáng lập nền Báo chí Cách mạng Việt Nam: 'Cán bộ báo chí cũng là chiến sĩ cách mạng. Cây bút, trang giấy là vũ khí sắc bén của họ'. Lời căn dặn ấy không chỉ là kim chỉ nam, mà còn là ngọn lửa thiêng soi đường cho lớp lớp thế hệ nhà báo Việt Nam kiên trung trên mặt trận tư tưởng, văn hóa.",
+            "img": "assets/exhibits/gian-khanh-tiet-1781458479716.jpg"
+          },
+          {
+            "pitch": 13,
+            "yaw": 148,
+            "vi": "Biển thông tin giới thiệu Bảo tàng Báo chí Việt Nam",
+            "en": "",
+            "dVi": "Trải qua hơn một thế kỷ rưỡi hình thành và phát triển, dòng chảy báo chí Việt Nam đã gắn liền với vận mệnh của dân tộc\n. Từ cột mốc tờ Gia Định Báo ra mắt năm 1865, đến khi tờ báo Thanh Niên cất lên tiếng nói cách mạng năm 1925\n, báo chí đã luôn đồng hành cùng non sông. Và hôm nay, để lưu giữ những trang sử hào hùng ấy, Bảo tàng Báo chí Việt Nam đã chính thức mở cửa đón khách vào ngày 19 tháng 6 năm 2020. Xin kính mời quý vị bắt đầu hành trình khám phá những ký ức vô giá đang được lưu giữ tại đây.",
+            "img": "assets/exhibits/gian-khanh-tiet-1781458536620.jpg"
           }
         ],
         "links": [
@@ -188,7 +236,29 @@
             "en": ""
           }
         ],
-        "links": []
+        "links": [
+          {
+            "pitch": -34,
+            "yaw": -7,
+            "to": "canh-mq9ktdao",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -21,
+            "yaw": 60,
+            "to": "canh-mq9l4bke",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -21,
+            "yaw": 20,
+            "to": "canh-mq9l3qof",
+            "vi": "",
+            "en": ""
+          }
+        ]
       },
       {
         "id": "canh-mq9ktdao",
@@ -196,11 +266,44 @@
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh mới",
+          "vi": "Cảnh 2",
           "en": "New scene"
         },
-        "hotspots": [],
-        "links": []
+        "hotspots": [
+          {
+            "pitch": -28,
+            "yaw": -3,
+            "vi": "BÁO THE BOSTON NEWS-LETTER",
+            "en": "",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781459829736.jpg",
+            "dVi": "Tờ báo ra mắt lần đầu vào năm 1704. Đây được ghi nhận là tờ báo được xuất bản liên tục đầu tiên tại Bắc Mỹ, đánh dấu một cột mốc quan trọng trong lịch sử hình thành và phát triển của nền báo chí Hoa Kỳ."
+          },
+          {
+            "pitch": -21,
+            "yaw": -30,
+            "vi": "BÁO ANNONCES, AFFICHES ET AVIS DIVERS",
+            "en": "",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781460004796.jpg",
+            "dVi": "Tờ báo phát hành ngày 13/01/1773 tại Mauritius. Ấn phẩm này được tổ chức World Atlas đánh giá và ghi nhận là tờ báo cổ nhất của toàn châu Phi."
+          },
+          {
+            "pitch": -22,
+            "yaw": 27,
+            "vi": "BÁO AVISA RELATION ODER ZEITUNG",
+            "en": "",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781460151713.jpg",
+            "dVi": "Tờ thư tín báo chí phát hành ngày 15/01/1609 tại Đức. Ấn phẩm này được giới sử học xếp hạng là tờ báo cổ thứ hai trên toàn thế giới."
+          }
+        ],
+        "links": [
+          {
+            "pitch": -25,
+            "yaw": -111,
+            "to": "canh-mq9l0df3",
+            "vi": "",
+            "en": ""
+          }
+        ]
       },
       {
         "id": "canh-mq9l0df3",
@@ -208,11 +311,44 @@
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh mới",
+          "vi": "Cảnh 3",
           "en": "New scene"
         },
-        "hotspots": [],
-        "links": []
+        "hotspots": [
+          {
+            "pitch": -27,
+            "yaw": 38,
+            "vi": "Trưng bày hiện vật đầu thế kỷ XX.",
+            "en": "",
+            "dVi": "Trưng bày máy ảnh hiệu Kodak (Kodak Camera) và bút máy (Fountain pen). Đây là những công cụ tác nghiệp hiện đại đầu tiên đồng hành cùng các nhà báo Việt Nam trên chặng đường săn tin, ghi chép sự kiện và phản ánh hiện thực xã hội trong giai đoạn đầu thế kỷ XX.",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781459491523.jpg"
+          },
+          {
+            "pitch": -30,
+            "yaw": 5,
+            "vi": "DỤNG CỤ VIẾT CHỮ TRUYỀN THỐNG",
+            "en": "",
+            "dVi": "Tủ kính bảo quản các vật dụng dùng để viết chữ thời xưa, bao gồm bút lông, nghiên mài mực và khay đựng. Những kỷ vật này mang đậm dấu ấn Nho học, đại diện cho thời kỳ sơ khai khi các bậc trí thức bắt đầu sử dụng ngòi bút làm đòn bẩy tư tưởng và canh tân đất nước.",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781459607110.jpg"
+          },
+          {
+            "pitch": -30,
+            "yaw": -31,
+            "vi": "TỪ ĐIỂN VIỆT - BỒ - LA (NĂM 1651)",
+            "en": "",
+            "dVi": "Bản sao trang bìa cuốn Từ điển Việt - Bồ - La (Dictionarium Annamiticum Lusitanum et Latinum) do giáo sĩ Alexandre de Rhodes biên soạn, được in tại Rome (Ý) vào năm 1651. Đây là tài liệu lịch sử đặc biệt quan trọng đánh dấu sự hình thành của chữ Quốc ngữ, tạo tiền đề ngôn ngữ vững chắc cho sự ra đời của tờ báo quốc ngữ đầu tiên - Gia Định Báo vào năm 1865.",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781459641585.jpg"
+          }
+        ],
+        "links": [
+          {
+            "pitch": -33,
+            "yaw": -151,
+            "to": "canh-mq9l0l8f",
+            "vi": "",
+            "en": ""
+          }
+        ]
       },
       {
         "id": "canh-mq9l0l8f",
@@ -220,11 +356,43 @@
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh mới",
+          "vi": "Cảnh 4",
           "en": "New scene"
         },
-        "hotspots": [],
-        "links": []
+        "hotspots": [
+          {
+            "pitch": -17,
+            "yaw": -8,
+            "vi": "BÁO SYDNEY GAZETTE (CÔNG BÁO SYDNEY)",
+            "en": "",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781460228088.jpg",
+            "dVi": "Tờ báo phát hành ngày 05/03/1803 tại Australia. Đây là ấn phẩm được Thư viện Quốc gia Australia xếp hạng là tờ báo cổ nhất châu Đại Dương, đánh dấu sự khởi nguồn của ngành báo chí tại khu vực này."
+          },
+          {
+            "pitch": -18,
+            "yaw": 12,
+            "vi": "BÁO HICKY'S BENGAL GAZETTE",
+            "en": "",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781460338379.jpg",
+            "dVi": "Tờ báo phát hành ngày 10/03/1781 tại Ấn Độ (ấn bản đầu tiên ra mắt ngày 19/01/1780). Đây được ghi nhận là tờ báo cổ nhất châu Á, đặt những viên gạch đầu tiên cho nền báo chí tại lục địa đông dân nhất thế giới."
+          }
+        ],
+        "links": [
+          {
+            "pitch": -41,
+            "yaw": 166,
+            "to": "canh-mq9l1em6",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -34,
+            "yaw": -82,
+            "to": "canh-mq9l23im",
+            "vi": "",
+            "en": ""
+          }
+        ]
       },
       {
         "id": "canh-mq9l1em6",
@@ -232,11 +400,65 @@
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh mới",
+          "vi": "Cảnh 5",
           "en": "New scene"
         },
-        "hotspots": [],
-        "links": []
+        "hotspots": [
+          {
+            "pitch": 11,
+            "yaw": 34,
+            "vi": " LÀNG NHIẾP ẢNH LAI XÁ",
+            "en": "",
+            "dVi": "Bảng tư liệu giới thiệu làng Lai Xá – địa danh lịch sử ghi dấu sự ra đời của nghề ảnh tại Việt Nam. Tại đây, ông Nguyễn Đình Khánh (Khánh Ký) (1874 - 1946) vinh dự được suy tôn là vị tổ nghề nhiếp ảnh của làng",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781460628970.jpg"
+          },
+          {
+            "pitch": 5,
+            "yaw": -47,
+            "vi": "BÁO KHAI HÓA NHẬT BÁO",
+            "en": "",
+            "dVi": "Tờ báo do Bạch Thái Bưởi sáng lập và phát hành trong giai đoạn 1921 - 1927. Ấn phẩm này mang đậm tinh thần chấn hưng thực nghiệp, khuyến khích phát triển kinh tế thương mại nội địa và truyền bá tư tưởng canh tân học thuật",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781460706262.jpg"
+          },
+          {
+            "pitch": 23,
+            "yaw": -38,
+            "vi": "BÁO NỮ GIỚI CHUNG",
+            "en": "",
+            "dVi": "Tờ báo phát hành trong giai đoạn 1918 - 1919 dưới sự chủ biên của nữ sĩ Sương Nguyệt Anh. Đây là tờ báo dành riêng cho phụ nữ đầu tiên tại Việt Nam, mang ý nghĩa tiên phong thúc đẩy phong trào nữ quyền và bình đẳng giới.",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781460782895.jpg"
+          },
+          {
+            "pitch": -11,
+            "yaw": -38,
+            "vi": "CÔNG LUẬN BÁO",
+            "en": "",
+            "dVi": "Tờ báo uy tín phát hành tại Sài Gòn vào những thập niên đầu thế kỷ XX. Đây là một trong những diễn đàn ngôn luận quan trọng, phản ánh sâu sắc đời sống chính trị, xã hội, văn hóa của người dân Nam Kỳ và đóng góp tích cực vào phong trào duy tân, nâng cao dân trí thời bấy giờ."
+          },
+          {
+            "pitch": -15,
+            "yaw": -27,
+            "vi": "NAM KỲ KINH TẾ BÁO",
+            "en": "",
+            "dVi": "Ấn phẩm báo chí chuyên sâu về lĩnh vực kinh tế, thương mại và nông nghiệp phát hành tại khu vực phía Nam. Tờ báo đóng vai trò thiết thực trong việc cổ vũ tinh thần tự lực tự cường, khuyến khích phát triển thực nghiệp và nâng cao năng lực thương thuyết của giới công thương Việt Nam."
+          },
+          {
+            "pitch": 5,
+            "yaw": -26,
+            "vi": "BÁO NÔNG CỔ MÍN ĐÀM",
+            "en": "",
+            "dVi": "Phát hành số đầu tiên vào ngày 01/08/1901 tại Sài Gòn, Nông Cổ Mín Đàm (có nghĩa là: Bàn chuyện nông thương) được ghi nhận là tờ báo kinh tế đầu tiên xuất bản bằng chữ Quốc ngữ tại Việt Nam. Tờ báo đóng vai trò lịch sử tiên phong trong việc khích lệ tinh thần tự cường, cổ vũ giới công thương và nông dân Việt Nam phát triển thực nghiệp để cạnh tranh kinh tế."
+          }
+        ],
+        "links": [
+          {
+            "pitch": -29,
+            "yaw": 121,
+            "to": "canh-mq9l23im",
+            "vi": "",
+            "en": ""
+          }
+        ]
       },
       {
         "id": "canh-mq9l23im",
@@ -244,11 +466,36 @@
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh mới",
+          "vi": "Cảnh 6",
           "en": "New scene"
         },
-        "hotspots": [],
-        "links": []
+        "hotspots": [
+          {
+            "pitch": -41,
+            "yaw": 3,
+            "vi": "BÁO KHAI HÓA NHẬT BÁO",
+            "en": "",
+            "dVi": "Tờ báo do Bạch Thái Bưởi sáng lập và phát hành trong giai đoạn 1921 - 1927. Ấn phẩm này mang đậm tinh thần chấn hưng thực nghiệp, khuyến khích phát triển kinh tế thương mại nội địa và truyền bá tư tưởng canh tân học thuật",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781461417483.jpg"
+          },
+          {
+            "pitch": -36,
+            "yaw": -30,
+            "vi": "BÁO TRUNG BẮC TÂN VĂN",
+            "en": "",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781461528124.jpg",
+            "dVi": "Phát hành số đầu tiên vào năm 1915 tại Hà Nội dưới sự điều hành của học giả Nguyễn Văn Vĩnh. Đây là tờ nhật báo (báo xuất bản hằng ngày) bằng chữ Quốc ngữ đầu tiên tại Bắc Kỳ. Tờ báo đóng vai trò to lớn trong việc cổ vũ phong trào học chữ Quốc ngữ, truyền bá tư tưởng duy tân và đánh dấu bước phát triển chuyên nghiệp của nền báo chí hiện đại tại khu vực phía Bắc.\n"
+          }
+        ],
+        "links": [
+          {
+            "pitch": -29,
+            "yaw": 86,
+            "to": "canh-mq9l2b6u",
+            "vi": "",
+            "en": ""
+          }
+        ]
       },
       {
         "id": "canh-mq9l2b6u",
@@ -256,11 +503,44 @@
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh mới",
+          "vi": "Cảnh 7",
           "en": "New scene"
         },
-        "hotspots": [],
-        "links": []
+        "hotspots": [
+          {
+            "pitch": -35,
+            "yaw": -24,
+            "vi": "TÂN DÂN BÁO (TÒA SOẠN TÂN DÂN)",
+            "en": "",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781461654714.jpg",
+            "dVi": "Là một trong những cơ quan báo chí và xuất bản tư nhân lớn mạnh, có tầm ảnh hưởng sâu rộng bậc nhất tại Hà Nội những năm 1930. Dưới sự dẫn dắt của ông bầu Vũ Đình Long, Tân Dân Báo cùng các ấn phẩm phụ trợ (như Tiểu thuyết thứ Bảy, Phổ thông bán nguyệt san...) đã đóng vai trò to lớn trong việc thúc đẩy sự phát triển của nền văn học chữ Quốc ngữ và định hình thị trường báo chí - xuất bản chuyên nghiệp trước Cách mạng tháng Tám."
+          },
+          {
+            "pitch": -17,
+            "yaw": 178,
+            "vi": "TỜ GIA ĐỊNH BÁO SỐ 4 (1865)",
+            "en": "",
+            "dVi": "Ấn bản ra ngày 15/07/1865. Đây là tờ báo đầu tiên được xuất bản bằng chữ Quốc ngữ của Việt Nam, mở ra kỷ nguyên phát triển rực rỡ cho nền báo chí và truyền thông bằng ngôn ngữ dân tộc.",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781461756484.jpg"
+          },
+          {
+            "pitch": -13,
+            "yaw": -167,
+            "vi": "BÁO THE PRINCE OF WALES ISLAND GAZETTE",
+            "en": "",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781461808291.jpg",
+            "dVi": "Tờ báo phát hành ngày 01/11/1806 tại Malaysia. Tờ báo này được giới nghiên cứu lịch sử đánh giá là tờ báo cổ nhất của khu vực Đông Nam Á."
+          }
+        ],
+        "links": [
+          {
+            "pitch": -23,
+            "yaw": 147,
+            "to": "canh-mq9l3qof",
+            "vi": "",
+            "en": ""
+          }
+        ]
       },
       {
         "id": "canh-mq9l3qof",
@@ -268,11 +548,36 @@
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh mới",
+          "vi": "Cảnh 8",
           "en": "New scene"
         },
-        "hotspots": [],
-        "links": []
+        "hotspots": [
+          {
+            "pitch": -19,
+            "yaw": -10,
+            "vi": "BÁO RELATION (1609)",
+            "en": "",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781461911119.jpg",
+            "dVi": "Tờ báo Relation: Aller Fürnemmen und gedenckwürdigen Historien xuất bản năm 1609 (ấn bản đầu tiên bằng tiếng Đức ra đời năm 1605). Đây là ấn phẩm được Hiệp hội Báo chí Thế giới công nhận là tờ báo cổ nhất trên thế giới."
+          },
+          {
+            "pitch": -21,
+            "yaw": 14,
+            "vi": "BÁO AVISA RELATION ODER ZEITUNG",
+            "en": "",
+            "dVi": "Tờ thư tín báo chí phát hành ngày 15/01/1609 tại Đức. Ấn phẩm này được giới sử học xếp hạng là tờ báo cổ thứ hai trên toàn thế giới.",
+            "img": "assets/exhibits/bao-chi-1865-1925-1781462013452.jpg"
+          }
+        ],
+        "links": [
+          {
+            "pitch": -26,
+            "yaw": -128,
+            "to": "canh-mq9l4bke",
+            "vi": "",
+            "en": ""
+          }
+        ]
       },
       {
         "id": "canh-mq9l4bke",
@@ -280,11 +585,26 @@
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh mới",
+          "vi": "Cảnh 9",
           "en": "New scene"
         },
         "hotspots": [],
-        "links": []
+        "links": [
+          {
+            "pitch": -25,
+            "yaw": -54,
+            "to": "canh-mq9l4ir2",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -23,
+            "yaw": -93,
+            "to": "canh-mq9l3qof",
+            "vi": "",
+            "en": ""
+          }
+        ]
       },
       {
         "id": "canh-mq9l4ir2",
@@ -292,18 +612,25 @@
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh mới",
+          "vi": "Cảnh 10",
           "en": "New scene"
         },
         "hotspots": [],
         "links": [
           {
-            "pitch": -16,
-            "yaw": -93,
+            "pitch": -17,
+            "yaw": -92,
             "vi": "Đi sang phòng Báo chí 1925-1945",
             "en": "",
             "toRoom": "bao-chi-1925-1945",
             "toScene": "bao-chi-1925-1945-1"
+          },
+          {
+            "pitch": -33,
+            "yaw": -166,
+            "to": "canh-mq9l3qof",
+            "vi": "",
+            "en": ""
           }
         ]
       }
