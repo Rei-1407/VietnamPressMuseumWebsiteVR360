@@ -4,7 +4,7 @@
       "vi": "Gian khánh tiết",
       "en": "The Ceremonial Hall"
     },
-    "thumb": "assets/panos/sanh-ngoai-thumb.jpg",
+    "thumb": "assets/panos/gian-khanh-tiet-1781517318043-thumb.jpg",
     "tag": {
       "vi": "Sảnh đón",
       "en": "Lobby"
@@ -16,7 +16,7 @@
     "scenes": [
       {
         "id": "sanh-ngoai",
-        "photo": "assets/panos/sanh-ngoai.jpg",
+        "photo": "assets/panos/gian-khanh-tiet-1781517318043.jpg",
         "yaw": 0,
         "pitch": -2,
         "label": {
@@ -26,27 +26,15 @@
         "hotspots": [
           {
             "pitch": 5,
-            "yaw": -44,
+            "yaw": -69,
             "vi": "Biểu tượng “Bảo tàng Báo chí Việt Nam”",
             "en": "“Vietnam Press Museum” emblem"
           },
           {
-            "pitch": 7,
-            "yaw": 38,
+            "pitch": 40,
+            "yaw": 10,
             "vi": "Trưng bày “Hoa Xuân Dâng Đảng” · Xuân 2026",
             "en": "“Spring Blossoms to the Party” · 2026"
-          },
-          {
-            "pitch": 2,
-            "yaw": 120,
-            "vi": "Phù điêu cột · chiến sĩ cầm bút",
-            "en": "Column relief · the reporter-soldier"
-          },
-          {
-            "pitch": 0,
-            "yaw": -120,
-            "vi": "Cột tranh cổ động · 1976",
-            "en": "Propaganda column · 1976"
           }
         ],
         "links": [
@@ -61,7 +49,7 @@
       },
       {
         "id": "sanh-trong",
-        "photo": "assets/panos/gian-khanh-tiet-1781161141248.jpg",
+        "photo": "assets/panos/gian-khanh-tiet-1781517420138.jpg",
         "yaw": 25,
         "pitch": -2,
         "label": {
@@ -70,53 +58,53 @@
         },
         "hotspots": [
           {
-            "pitch": 7,
-            "yaw": 25,
+            "pitch": 9,
+            "yaw": -92,
             "vi": "Biển “Bảo tàng Báo chí Việt Nam”",
             "en": "“Vietnam Press Museum” sign"
           },
           {
-            "pitch": 40,
-            "yaw": 90,
+            "pitch": 15,
+            "yaw": -33,
             "vi": "Cờ Đảng & cờ Tổ quốc trang trí trần sảnh",
             "en": "Party & national flags on the ceiling"
           },
           {
-            "pitch": -8,
-            "yaw": 33,
+            "pitch": -14,
+            "yaw": -70,
             "vi": "Thảm đỏ dẫn vào khu trưng bày",
             "en": "Red carpet to the exhibition wing"
           },
           {
-            "pitch": -2,
-            "yaw": 60,
+            "pitch": -7,
+            "yaw": -57,
             "vi": "Cầu thang lên các tầng trưng bày",
             "en": "Stairs to the exhibition floors"
           },
           {
-            "pitch": -6,
-            "yaw": 78,
-            "vi": "Quầy lễ tân & vé tham quan",
+            "pitch": -5,
+            "yaw": -32,
+            "vi": "Quầy lễ tân",
             "en": "Reception & ticket desk"
           },
           {
             "pitch": -2,
-            "yaw": 135,
+            "yaw": 4,
             "vi": "Thang máy tham quan",
             "en": "Visitor elevators"
           }
         ],
         "links": [
           {
-            "pitch": -21,
+            "pitch": -20,
             "yaw": -177,
             "to": "sanh-ngoai",
             "vi": "Quay ra trước sảnh",
             "en": "Back to the forecourt"
           },
           {
-            "pitch": -9,
-            "yaw": -93,
+            "pitch": -11,
+            "yaw": -92,
             "to": "canh-mq5d4xwk",
             "vi": "Gian Khánh tiết",
             "en": "Ceremonial Hall"
