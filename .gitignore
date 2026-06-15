@@ -26,3 +26,6 @@ public/font/*.otf
 
 # thư mục sao lưu tạm của người dùng
 _backup_*/
+
+# tài liệu nội bộ (có thông tin đăng nhập) — giữ ở máy, không chia sẻ
+HUONG-DAN.md

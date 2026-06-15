@@ -7,8 +7,7 @@ không gian VR ngay trên web.
 
 - 🌐 **Web:** https://baotangsobaochivietnam.com
   *(dự phòng: https://rei-1407.github.io/VietnamPressMuseumWebsiteVR360/)*
-- 🔐 **Admin:** https://baotangsobaochivietnam.com/admin/ — tài khoản `Chuyen`
-- 📘 **Hướng dẫn vận hành (tiếng Việt):** [HUONG-DAN.md](HUONG-DAN.md)
+- 🔐 **Admin:** https://baotangsobaochivietnam.com/admin/ *(cần tài khoản admin + GitHub token để lưu)*
 
 > Trang xây bằng **Astro** (xuất HTML tĩnh) + **Tailwind CSS**, host **miễn phí trên
 > GitHub Pages**. Push lên `main` là **GitHub Actions tự build & deploy** (~1–2 phút).
@@ -58,7 +57,8 @@ Chạy thử ở máy: `npm install` (lần đầu) → `npm run dev` → mở h
   thêm/đổi/xoá ảnh, sửa tên & điểm chú thích → **Lưu**. Web tự build & cập nhật ~1–2 phút.
 - **Cách 2:** sửa tay `public/data/spaces.json` rồi chạy `scripts\deploy.ps1`.
 
-Chi tiết (kể cả cách tạo GitHub token) xem [HUONG-DAN.md](HUONG-DAN.md).
+GitHub token tạo tại **Settings → Developer settings → Fine-grained tokens** (quyền
+*Contents: Read and write* cho repo này); token chỉ lưu trong trình duyệt máy bạn, không commit.
 
 ## Deploy
 
