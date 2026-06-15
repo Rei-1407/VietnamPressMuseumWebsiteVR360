@@ -192,7 +192,9 @@
       }
     ],
     "floor": 1,
-    "id": "gian-khanh-tiet"
+    "id": "gian-khanh-tiet",
+    "audio": "assets/audio/gian-khanh-tiet-1781518581311.mp3",
+    "audioLoop": true
   },
   {
     "card": {
@@ -622,7 +624,9 @@
           }
         ]
       }
-    ]
+    ],
+    "audio": "assets/audio/bao-chi-1865-1925-1781518829073.mp3",
+    "audioLoop": true
   },
   {
     "card": {
@@ -884,7 +888,9 @@
           }
         ]
       }
-    ]
+    ],
+    "audio": "assets/audio/bao-chi-1925-1945-1781519025984.mp3",
+    "audioLoop": true
   },
   {
     "card": {
@@ -1259,7 +1265,9 @@
           }
         ]
       }
-    ]
+    ],
+    "audio": "assets/audio/bao-chi-1945-1954-1781519211314.mp3",
+    "audioLoop": true
   },
   {
     "card": {
@@ -1772,7 +1780,9 @@
         ]
       }
     ],
-    "photo": "assets/panos/bao-chi-1954-1975-1781190937207.jpg"
+    "photo": "assets/panos/bao-chi-1954-1975-1781190937207.jpg",
+    "audio": "assets/audio/bao-chi-1954-1975-1781519324715.mp3",
+    "audioLoop": true
   },
   {
     "card": {
