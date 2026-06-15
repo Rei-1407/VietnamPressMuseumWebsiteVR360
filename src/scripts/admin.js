@@ -16,7 +16,7 @@ const GH = { owner: 'Rei-1407', repo: 'VietnamPressMuseumWebsiteVR360', branch: 
    Lưu ý: đây chỉ là lớp khoá nhẹ phía trình duyệt; bảo mật thật nằm ở GitHub token (lưu cục bộ). */
 const ADMIN_SALT = 'vpm360-vr';
 const ADMIN_USER_HASH = 'b954dc147daead5915fd775c971afefa929a519b16b5840e30b3b6042a8b58e7';
-const ADMIN_PASS_HASH = 'd7eb9128032ee7d5ea46bac81770e134c12ad991e2bbb7de85f49e20504e381a';
+const ADMIN_PASS_HASH = 'afebdff59ff352cd34ce7ad24ce26576eace50723cd941539288d85fb051e961';
 async function sha256(s){
   const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(ADMIN_SALT + '|' + s));
   return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join('');
