@@ -290,9 +290,13 @@ function renderPhoto(sp, i){
 function renderScenes(sp, i){
   const scenes = sp.scenes.map((sc,j)=>`
     <div class="rounded-xl border border-stone-200 p-3">
-      <div class="flex items-center justify-between mb-2">
+      <div class="flex items-center justify-between gap-2 mb-2">
         <span class="pill bg-stone-100 text-stone-600">Cảnh ${j+1} · id: ${esc(sc.id)}</span>
-        <button class="btn btn-danger px-2 py-1" data-act="del-scene" data-i="${i}" data-j="${j}">Xoá cảnh</button>
+        <div class="flex items-center gap-1">
+          <button class="btn btn-ghost px-2 py-1" data-act="scene-up" data-i="${i}" data-j="${j}" title="Đưa cảnh lên trước" ${j===0?'disabled style="opacity:.4"':''}>▲</button>
+          <button class="btn btn-ghost px-2 py-1" data-act="scene-down" data-i="${i}" data-j="${j}" title="Đưa cảnh xuống sau" ${j===sp.scenes.length-1?'disabled style="opacity:.4"':''}>▼</button>
+          <button class="btn btn-danger px-2 py-1" data-act="del-scene" data-i="${i}" data-j="${j}">Xoá cảnh</button>
+        </div>
       </div>
       ${imgBox(`${i}.scenes.${j}.photo`, sc.photo, 'Ảnh 360° của cảnh', `
         <button class="btn btn-ghost px-3 py-1" data-act="replace-scene" data-i="${i}" data-j="${j}">⬆️ Đổi ảnh</button>`)}
@@ -492,6 +496,8 @@ $('#spaces').addEventListener('click', async (e)=>{
       markDirty(true); render();
     }
     else if(act==='del-scene'){ const sp=state.spaces[i]; if(sp.scenes.length<=1){ alert('Phòng cần ít nhất 1 cảnh.'); return; } if(!confirm('Xoá cảnh này?')) return; collectImagesToDelete({scenes:[sp.scenes[j]]}); sp.scenes.splice(j,1); markDirty(true); render(); }
+    else if(act==='scene-up' && j>0){ const a=state.spaces[i].scenes; [a[j-1],a[j]]=[a[j],a[j-1]]; markDirty(true); render(); }
+    else if(act==='scene-down'){ const a=state.spaces[i].scenes; if(j<a.length-1){ [a[j],a[j+1]]=[a[j+1],a[j]]; markDirty(true); render(); } }
     else if(act==='replace-photo'){ pending={kind:'photo', i}; pickFile(); }
     else if(act==='replace-scene'){ pending={kind:'scene', i, j}; pickFile(); }
     else if(act==='to-photo'){ pending={kind:'to-photo', i}; pickFile(); }

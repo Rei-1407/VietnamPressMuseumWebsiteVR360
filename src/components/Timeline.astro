@@ -350,6 +350,12 @@ function displayLines(item: TimelineItem, part: TextPart) {
     .tl-card-copy .tl-line{
       white-space:nowrap;
     }
+    /* Tiếng Anh không có điểm ngắt dòng thủ công (viBreaks) như tiếng Việt — cả câu
+       nằm trong một dòng nên bị tràn khỏi khung. Ở chế độ EN cho phép tự xuống dòng
+       để chữ gọn trong thẻ, không tràn ra ngoài hay bị cắt (KHÔNG đụng tiếng Việt). */
+    html[data-lang="en"] .tl-card-copy .tl-line{
+      white-space:normal;
+    }
   }
 
   @media(max-width:900px){
