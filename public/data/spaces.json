@@ -1786,761 +1786,6 @@
   },
   {
     "card": {
-      "vi": "Khu tưởng niệm",
-      "en": "Memorial Area"
-    },
-    "tag": {
-      "vi": "Tưởng niệm",
-      "en": "Memorial"
-    },
-    "floor": 2,
-    "thumb": "assets/panos/khu-tuong-niem-1780935745819-thumb.jpg",
-    "id": "khu-tuong-niem",
-    "scenes": [
-      {
-        "id": "khu-tuong-niem-1",
-        "photo": "assets/panos/khu-tuong-niem-1780935745819.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 1",
-          "en": "Scene 1"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -33,
-            "yaw": -39,
-            "to": "canh-mq9opg2p",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9opg2p",
-        "photo": "assets/panos/khu-tuong-niem-1781194374751.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 2",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -34,
-            "yaw": 166,
-            "to": "canh-mq9opkax",
-            "vi": "",
-            "en": ""
-          },
-          {
-            "pitch": -22,
-            "yaw": -30,
-            "to": "khu-tuong-niem-1",
-            "vi": "",
-            "en": ""
-          },
-          {
-            "pitch": -33,
-            "yaw": -135,
-            "to": "canh-mq9opnvv",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9opkax",
-        "photo": "assets/panos/khu-tuong-niem-1781194493581.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 3",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -27,
-            "yaw": 170,
-            "to": "canh-mq9opg2p",
-            "vi": "",
-            "en": ""
-          },
-          {
-            "pitch": -13,
-            "yaw": 156,
-            "to": "khu-tuong-niem-1",
-            "vi": "",
-            "en": ""
-          },
-          {
-            "pitch": -30,
-            "yaw": 111,
-            "to": "canh-mq9opnvv",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9opnvv",
-        "photo": "assets/panos/khu-tuong-niem-1781194500546.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 4",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -6,
-            "yaw": 0,
-            "to": "khu-tuong-niem-1",
-            "vi": "",
-            "en": ""
-          },
-          {
-            "pitch": -24,
-            "yaw": 149,
-            "to": "canh-mq9p3ytb",
-            "vi": "",
-            "en": ""
-          },
-          {
-            "pitch": -6,
-            "yaw": 92,
-            "to": "canh-mq9p4681",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9p3ytb",
-        "photo": "assets/panos/khu-tuong-niem-1781194660606.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 5",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -24,
-            "yaw": 36,
-            "to": "khu-tuong-niem-1",
-            "vi": "",
-            "en": ""
-          },
-          {
-            "pitch": -20,
-            "yaw": 96,
-            "to": "canh-mq9opg2p",
-            "vi": "",
-            "en": ""
-          },
-          {
-            "pitch": -4,
-            "yaw": -105,
-            "to": "canh-mq9p4681",
-            "vi": "",
-            "en": ""
-          },
-          {
-            "pitch": -26,
-            "yaw": -72,
-            "vi": "",
-            "en": "",
-            "toRoom": "trien-lam-dinh-ky"
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9p4681",
-        "photo": "assets/panos/khu-tuong-niem-1781194759208.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 6",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -21,
-            "yaw": -96,
-            "vi": "",
-            "en": "",
-            "toRoom": "phong-duong-dai"
-          },
-          {
-            "pitch": -4,
-            "yaw": -14,
-            "to": "canh-mq9p3ytb",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      }
-    ],
-    "audio": "assets/audio/khu-tuong-niem-1781576017422.mp3",
-    "audioLoop": true
-  },
-  {
-    "card": {
-      "vi": "Triển lãm định kỳ",
-      "en": "Periodic Exhibitions"
-    },
-    "tag": {
-      "vi": "Triển lãm",
-      "en": "Exhibition"
-    },
-    "floor": 2,
-    "thumb": "assets/panos/trien-lam-dinh-ky-1780936124832-thumb.jpg",
-    "id": "trien-lam-dinh-ky",
-    "scenes": [
-      {
-        "id": "trien-lam-dinh-ky-1",
-        "photo": "assets/panos/trien-lam-dinh-ky-1780936124832.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 1",
-          "en": "Scene 1"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -19,
-            "yaw": 95,
-            "vi": "",
-            "en": "",
-            "toRoom": "khu-tuong-niem",
-            "toScene": "canh-mq9p3ytb"
-          },
-          {
-            "pitch": -35,
-            "yaw": -88,
-            "to": "canh-mq9pfrns",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9pfrns",
-        "photo": "assets/panos/trien-lam-dinh-ky-1781194996425.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 2",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -18,
-            "yaw": 83,
-            "to": "trien-lam-dinh-ky-1",
-            "vi": "",
-            "en": ""
-          },
-          {
-            "pitch": -20,
-            "yaw": -104,
-            "vi": "",
-            "en": "",
-            "toRoom": "phong-duong-dai"
-          }
-        ]
-      }
-    ],
-    "audio": "assets/audio/trien-lam-dinh-ky-1781576143211.mp3",
-    "audioLoop": true
-  },
-  {
-    "card": {
-      "vi": "Phòng đương đại",
-      "en": "Contemporary Room"
-    },
-    "tag": {
-      "vi": "Đương đại",
-      "en": "Contemporary"
-    },
-    "floor": 2,
-    "thumb": "assets/panos/phong-duong-dai-1780935781556-thumb.jpg",
-    "id": "phong-duong-dai",
-    "scenes": [
-      {
-        "id": "phong-duong-dai-1",
-        "photo": "assets/panos/phong-duong-dai-1780935781556.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 1",
-          "en": "Scene 1"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -15,
-            "yaw": -43,
-            "to": "canh-mq9plebs",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9plebs",
-        "photo": "assets/panos/phong-duong-dai-1781195179930.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 2",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -44,
-            "yaw": -129,
-            "to": "phong-duong-dai-1",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9plk6w",
-        "photo": "assets/panos/phong-duong-dai-1781195188249.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 3",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -28,
-            "yaw": -75,
-            "vi": "",
-            "en": "",
-            "toRoom": "truyen-hinh-phat-thanh"
-          },
-          {
-            "pitch": -40,
-            "yaw": 166,
-            "to": "canh-mq9plebs",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      }
-    ],
-    "audio": "assets/audio/phong-duong-dai-1781576764687.mp3",
-    "audioLoop": true
-  },
-  {
-    "card": {
-      "vi": "Truyền hình phát thanh",
-      "en": "Radio & Television"
-    },
-    "tag": {
-      "vi": "Phát thanh – Truyền hình",
-      "en": "Broadcast"
-    },
-    "floor": 2,
-    "thumb": "assets/panos/truyen-hinh-phat-thanh-1781195478737-thumb.jpg",
-    "id": "truyen-hinh-phat-thanh",
-    "scenes": [
-      {
-        "id": "truyen-hinh-phat-thanh-1",
-        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195478737.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 1",
-          "en": "Scene 1"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -54,
-            "yaw": -55,
-            "to": "canh-mq9pp11d",
-            "vi": "",
-            "en": ""
-          },
-          {
-            "pitch": -20,
-            "yaw": 119,
-            "vi": "",
-            "en": "",
-            "toRoom": "phong-duong-dai",
-            "toScene": "canh-mq9plk6w"
-          },
-          {
-            "pitch": -6,
-            "yaw": 0,
-            "to": "canh-mq9pp9s9",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9pp11d",
-        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195457970.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 2",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -6,
-            "yaw": 0,
-            "to": "truyen-hinh-phat-thanh-1",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9pp9s9",
-        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195606002.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 3",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -20,
-            "yaw": -88,
-            "to": "truyen-hinh-phat-thanh-1",
-            "vi": "",
-            "en": ""
-          },
-          {
-            "pitch": -46,
-            "yaw": -14,
-            "to": "canh-mq9pphrt",
-            "vi": "",
-            "en": ""
-          },
-          {
-            "pitch": -27,
-            "yaw": -14,
-            "to": "canh-mq9ppo2x",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9pphrt",
-        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195702768.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 4",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -38,
-            "yaw": -88,
-            "to": "canh-mq9pp9s9",
-            "vi": "",
-            "en": ""
-          },
-          {
-            "pitch": -26,
-            "yaw": 30,
-            "to": "canh-mq9ppuqh",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9ppo2x",
-        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195757971.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 5",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -32,
-            "yaw": 13,
-            "to": "canh-mq9ppuqh",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9ppuqh",
-        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195828608.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 6",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -25,
-            "yaw": 52,
-            "to": "canh-mq9q16k8",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9q16k8",
-        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195923218.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 7",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -48,
-            "yaw": 85,
-            "to": "canh-mq9q1add",
-            "vi": "",
-            "en": ""
-          },
-          {
-            "pitch": -30,
-            "yaw": 96,
-            "to": "canh-mq9q1e28",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9q1add",
-        "photo": "assets/panos/truyen-hinh-phat-thanh-1781196105915.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 8",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": []
-      },
-      {
-        "id": "canh-mq9q1e28",
-        "photo": "assets/panos/truyen-hinh-phat-thanh-1781196119169.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 9",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -34,
-            "yaw": 71,
-            "to": "canh-mq9q1hqh",
-            "vi": "",
-            "en": ""
-          },
-          {
-            "pitch": -30,
-            "yaw": -96,
-            "to": "canh-mq9q1add",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9q1hqh",
-        "photo": "assets/panos/truyen-hinh-phat-thanh-1781196222539.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 10",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -37,
-            "yaw": 80,
-            "vi": "",
-            "en": "",
-            "toRoom": "bao-in-va-bao-dien-tu"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "card": {
-      "vi": "Báo in và Báo điện tử",
-      "en": "Print & Online Press"
-    },
-    "tag": {
-      "vi": "Báo in – Điện tử",
-      "en": "Print & Online"
-    },
-    "floor": 2,
-    "thumb": "assets/panos/bao-in-va-bao-dien-tu-1781196906353-thumb.jpg",
-    "id": "bao-in-va-bao-dien-tu",
-    "scenes": [
-      {
-        "id": "canh-mq9qi801",
-        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781196906353.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 1",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -34,
-            "yaw": 101,
-            "to": "canh-mq9qiqxs",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9qiqxs",
-        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781197008424.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 2",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -24,
-            "yaw": 98,
-            "to": "canh-mq9qivsw",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9qivsw",
-        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781197111923.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 3",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -39,
-            "yaw": 63,
-            "to": "canh-mq9qk8vd",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9qk8vd",
-        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781197156525.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 4",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -25,
-            "yaw": 163,
-            "to": "canh-mq9qud0h",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9qud0h",
-        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781197266091.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 5",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -30,
-            "yaw": -7,
-            "to": "canh-mq9qv4pm",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9qv4pm",
-        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781197301614.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 6",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -20,
-            "yaw": 159,
-            "vi": "",
-            "en": "",
-            "toRoom": "tu-1975-den-nay"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "card": {
       "vi": "Từ 1975 đến nay",
       "en": "From 1975 to Present"
     },
@@ -2952,5 +2197,760 @@
         ]
       }
     ]
+  },
+  {
+    "card": {
+      "vi": "Báo in và Báo điện tử",
+      "en": "Print & Online Press"
+    },
+    "tag": {
+      "vi": "Báo in – Điện tử",
+      "en": "Print & Online"
+    },
+    "floor": 2,
+    "thumb": "assets/panos/bao-in-va-bao-dien-tu-1781196906353-thumb.jpg",
+    "id": "bao-in-va-bao-dien-tu",
+    "scenes": [
+      {
+        "id": "canh-mq9qi801",
+        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781196906353.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 1",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -34,
+            "yaw": 101,
+            "to": "canh-mq9qiqxs",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9qiqxs",
+        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781197008424.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 2",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -24,
+            "yaw": 98,
+            "to": "canh-mq9qivsw",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9qivsw",
+        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781197111923.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 3",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -39,
+            "yaw": 63,
+            "to": "canh-mq9qk8vd",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9qk8vd",
+        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781197156525.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 4",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -25,
+            "yaw": 163,
+            "to": "canh-mq9qud0h",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9qud0h",
+        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781197266091.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 5",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -30,
+            "yaw": -7,
+            "to": "canh-mq9qv4pm",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9qv4pm",
+        "photo": "assets/panos/bao-in-va-bao-dien-tu-1781197301614.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 6",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -20,
+            "yaw": 159,
+            "vi": "",
+            "en": "",
+            "toRoom": "tu-1975-den-nay"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "card": {
+      "vi": "Truyền hình phát thanh",
+      "en": "Radio & Television"
+    },
+    "tag": {
+      "vi": "Phát thanh – Truyền hình",
+      "en": "Broadcast"
+    },
+    "floor": 2,
+    "thumb": "assets/panos/truyen-hinh-phat-thanh-1781195478737-thumb.jpg",
+    "id": "truyen-hinh-phat-thanh",
+    "scenes": [
+      {
+        "id": "truyen-hinh-phat-thanh-1",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195478737.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 1",
+          "en": "Scene 1"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -54,
+            "yaw": -55,
+            "to": "canh-mq9pp11d",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -20,
+            "yaw": 119,
+            "vi": "",
+            "en": "",
+            "toRoom": "phong-duong-dai",
+            "toScene": "canh-mq9plk6w"
+          },
+          {
+            "pitch": -6,
+            "yaw": 0,
+            "to": "canh-mq9pp9s9",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9pp11d",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195457970.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 2",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -6,
+            "yaw": 0,
+            "to": "truyen-hinh-phat-thanh-1",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9pp9s9",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195606002.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 3",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -20,
+            "yaw": -88,
+            "to": "truyen-hinh-phat-thanh-1",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -46,
+            "yaw": -14,
+            "to": "canh-mq9pphrt",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -27,
+            "yaw": -14,
+            "to": "canh-mq9ppo2x",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9pphrt",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195702768.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 4",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -38,
+            "yaw": -88,
+            "to": "canh-mq9pp9s9",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -26,
+            "yaw": 30,
+            "to": "canh-mq9ppuqh",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9ppo2x",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195757971.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 5",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -32,
+            "yaw": 13,
+            "to": "canh-mq9ppuqh",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9ppuqh",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195828608.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 6",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -25,
+            "yaw": 52,
+            "to": "canh-mq9q16k8",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9q16k8",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781195923218.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 7",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -48,
+            "yaw": 85,
+            "to": "canh-mq9q1add",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -30,
+            "yaw": 96,
+            "to": "canh-mq9q1e28",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9q1add",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781196105915.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 8",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq9q1e28",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781196119169.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 9",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -34,
+            "yaw": 71,
+            "to": "canh-mq9q1hqh",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -30,
+            "yaw": -96,
+            "to": "canh-mq9q1add",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9q1hqh",
+        "photo": "assets/panos/truyen-hinh-phat-thanh-1781196222539.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 10",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -37,
+            "yaw": 80,
+            "vi": "",
+            "en": "",
+            "toRoom": "bao-in-va-bao-dien-tu"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "card": {
+      "vi": "Phòng đương đại",
+      "en": "Contemporary Room"
+    },
+    "tag": {
+      "vi": "Đương đại",
+      "en": "Contemporary"
+    },
+    "floor": 2,
+    "thumb": "assets/panos/phong-duong-dai-1780935781556-thumb.jpg",
+    "id": "phong-duong-dai",
+    "scenes": [
+      {
+        "id": "phong-duong-dai-1",
+        "photo": "assets/panos/phong-duong-dai-1780935781556.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 1",
+          "en": "Scene 1"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -15,
+            "yaw": -43,
+            "to": "canh-mq9plebs",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9plebs",
+        "photo": "assets/panos/phong-duong-dai-1781195179930.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 2",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -44,
+            "yaw": -129,
+            "to": "phong-duong-dai-1",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9plk6w",
+        "photo": "assets/panos/phong-duong-dai-1781195188249.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 3",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -28,
+            "yaw": -75,
+            "vi": "",
+            "en": "",
+            "toRoom": "truyen-hinh-phat-thanh"
+          },
+          {
+            "pitch": -40,
+            "yaw": 166,
+            "to": "canh-mq9plebs",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      }
+    ],
+    "audio": "assets/audio/phong-duong-dai-1781576764687.mp3",
+    "audioLoop": true
+  },
+  {
+    "card": {
+      "vi": "Triển lãm định kỳ",
+      "en": "Periodic Exhibitions"
+    },
+    "tag": {
+      "vi": "Triển lãm",
+      "en": "Exhibition"
+    },
+    "floor": 2,
+    "thumb": "assets/panos/trien-lam-dinh-ky-1780936124832-thumb.jpg",
+    "id": "trien-lam-dinh-ky",
+    "scenes": [
+      {
+        "id": "trien-lam-dinh-ky-1",
+        "photo": "assets/panos/trien-lam-dinh-ky-1780936124832.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 1",
+          "en": "Scene 1"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -19,
+            "yaw": 95,
+            "vi": "",
+            "en": "",
+            "toRoom": "khu-tuong-niem",
+            "toScene": "canh-mq9p3ytb"
+          },
+          {
+            "pitch": -35,
+            "yaw": -88,
+            "to": "canh-mq9pfrns",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9pfrns",
+        "photo": "assets/panos/trien-lam-dinh-ky-1781194996425.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 2",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -18,
+            "yaw": 83,
+            "to": "trien-lam-dinh-ky-1",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -20,
+            "yaw": -104,
+            "vi": "",
+            "en": "",
+            "toRoom": "phong-duong-dai"
+          }
+        ]
+      }
+    ],
+    "audio": "assets/audio/trien-lam-dinh-ky-1781576143211.mp3",
+    "audioLoop": true
+  },
+  {
+    "card": {
+      "vi": "Khu tưởng niệm",
+      "en": "Memorial Area"
+    },
+    "tag": {
+      "vi": "Tưởng niệm",
+      "en": "Memorial"
+    },
+    "floor": 2,
+    "thumb": "assets/panos/khu-tuong-niem-1780935745819-thumb.jpg",
+    "id": "khu-tuong-niem",
+    "scenes": [
+      {
+        "id": "khu-tuong-niem-1",
+        "photo": "assets/panos/khu-tuong-niem-1780935745819.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 1",
+          "en": "Scene 1"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -33,
+            "yaw": -39,
+            "to": "canh-mq9opg2p",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9opg2p",
+        "photo": "assets/panos/khu-tuong-niem-1781194374751.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 2",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -34,
+            "yaw": 166,
+            "to": "canh-mq9opkax",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -22,
+            "yaw": -30,
+            "to": "khu-tuong-niem-1",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -33,
+            "yaw": -135,
+            "to": "canh-mq9opnvv",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9opkax",
+        "photo": "assets/panos/khu-tuong-niem-1781194493581.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 3",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -27,
+            "yaw": 170,
+            "to": "canh-mq9opg2p",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -13,
+            "yaw": 156,
+            "to": "khu-tuong-niem-1",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -30,
+            "yaw": 111,
+            "to": "canh-mq9opnvv",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9opnvv",
+        "photo": "assets/panos/khu-tuong-niem-1781194500546.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 4",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -6,
+            "yaw": 0,
+            "to": "khu-tuong-niem-1",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -24,
+            "yaw": 149,
+            "to": "canh-mq9p3ytb",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -6,
+            "yaw": 92,
+            "to": "canh-mq9p4681",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9p3ytb",
+        "photo": "assets/panos/khu-tuong-niem-1781194660606.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 5",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -24,
+            "yaw": 36,
+            "to": "khu-tuong-niem-1",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -20,
+            "yaw": 96,
+            "to": "canh-mq9opg2p",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -4,
+            "yaw": -105,
+            "to": "canh-mq9p4681",
+            "vi": "",
+            "en": ""
+          },
+          {
+            "pitch": -26,
+            "yaw": -72,
+            "vi": "",
+            "en": "",
+            "toRoom": "trien-lam-dinh-ky"
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9p4681",
+        "photo": "assets/panos/khu-tuong-niem-1781194759208.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 6",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -21,
+            "yaw": -96,
+            "vi": "",
+            "en": "",
+            "toRoom": "phong-duong-dai"
+          },
+          {
+            "pitch": -4,
+            "yaw": -14,
+            "to": "canh-mq9p3ytb",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      }
+    ],
+    "audio": "assets/audio/khu-tuong-niem-1781576017422.mp3",
+    "audioLoop": true
   }
 ]
