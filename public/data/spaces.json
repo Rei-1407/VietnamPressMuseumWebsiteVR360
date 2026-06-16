@@ -1791,20 +1791,352 @@
     "id": "tu-1975-den-nay",
     "scenes": [
       {
-        "id": "tu-1975-den-nay-1",
-        "photo": "assets/panos/tu-1975-den-nay-1780935988940.jpg",
+        "id": "canh-mq9rcyz6",
+        "photo": "assets/panos/tu-1975-den-nay-1781201125960.jpg",
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh 1",
-          "en": "Scene 1"
+          "vi": "Cảnh 20",
+          "en": "New scene"
         },
         "hotspots": [],
         "links": [
           {
-            "pitch": -34,
-            "yaw": -75,
-            "to": "canh-mq9qwy8h",
+            "pitch": -18,
+            "yaw": -95,
+            "to": "canh-mq9rbpb6",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rcv5m",
+        "photo": "assets/panos/tu-1975-den-nay-1781201116856.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 19",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -6,
+            "yaw": 0,
+            "to": "tu-1975-den-nay-1",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rcr8y",
+        "photo": "assets/panos/tu-1975-den-nay-1781201048484.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 18",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -27,
+            "yaw": -110,
+            "to": "canh-mq9rcv5m",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rcn1u",
+        "photo": "assets/panos/tu-1975-den-nay-1781200969929.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 17",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -43,
+            "yaw": -80,
+            "to": "canh-mq9rcr8y",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rcij6",
+        "photo": "assets/panos/tu-1975-den-nay-1781200954059.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 16",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -24,
+            "yaw": -86,
+            "to": "canh-mq9rcn1u",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rcepu",
+        "photo": "assets/panos/tu-1975-den-nay-1781200805982.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 15",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -17,
+            "yaw": 81,
+            "to": "canh-mq9rcij6",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rcama",
+        "photo": "assets/panos/tu-1975-den-nay-1781200769558.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 14",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -25,
+            "yaw": 83,
+            "to": "canh-mq9rcepu",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rc6ma",
+        "photo": "assets/panos/tu-1975-den-nay-1781200644880.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 13",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -25,
+            "yaw": 98,
+            "to": "canh-mq9rcama",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rc1yi",
+        "photo": "assets/panos/tu-1975-den-nay-1781200574544.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 12",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -28,
+            "yaw": 96,
+            "to": "canh-mq9rc6ma",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rbwsi",
+        "photo": "assets/panos/tu-1975-den-nay-1781200368613.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 11",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -51,
+            "yaw": 81,
+            "to": "tu-1975-den-nay-1",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rbszm",
+        "photo": "assets/panos/tu-1975-den-nay-1781200298273.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 10",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -53,
+            "yaw": 95,
+            "to": "canh-mq9rbwsi",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rbpb6",
+        "photo": "assets/panos/tu-1975-den-nay-1781200087652.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 9",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -51,
+            "yaw": 59,
+            "to": "canh-mq9rbszm",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rbliy",
+        "photo": "assets/panos/tu-1975-den-nay-1781199919858.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 8",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": []
+      },
+      {
+        "id": "canh-mq9rbhqa",
+        "photo": "assets/panos/tu-1975-den-nay-1781199678323.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 7",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -19,
+            "yaw": 95,
+            "to": "canh-mq9rbliy",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rb6sh",
+        "photo": "assets/panos/tu-1975-den-nay-1781199623052.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 6",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -42,
+            "yaw": -112,
+            "to": "canh-mq9rbhqa",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9rb2pd",
+        "photo": "assets/panos/tu-1975-den-nay-1781199549611.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 5",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -19,
+            "yaw": -86,
+            "to": "canh-mq9rb6sh",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9qxg3u",
+        "photo": "assets/panos/tu-1975-den-nay-1781198804368.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 4",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -15,
+            "yaw": 86,
+            "to": "canh-mq9rb2pd",
+            "vi": "",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "id": "canh-mq9qx8rl",
+        "photo": "assets/panos/tu-1975-den-nay-1781198555258.jpg",
+        "yaw": 0,
+        "pitch": -2,
+        "label": {
+          "vi": "Cảnh 3",
+          "en": "New scene"
+        },
+        "hotspots": [],
+        "links": [
+          {
+            "pitch": -47,
+            "yaw": -24,
+            "to": "canh-mq9rc1yi",
             "vi": "",
             "en": ""
           }
@@ -1838,352 +2170,20 @@
         ]
       },
       {
-        "id": "canh-mq9qx8rl",
-        "photo": "assets/panos/tu-1975-den-nay-1781198555258.jpg",
+        "id": "tu-1975-den-nay-1",
+        "photo": "assets/panos/tu-1975-den-nay-1780935988940.jpg",
         "yaw": 0,
         "pitch": -2,
         "label": {
-          "vi": "Cảnh 3",
-          "en": "New scene"
+          "vi": "Cảnh 1",
+          "en": "Scene 1"
         },
         "hotspots": [],
         "links": [
           {
-            "pitch": -47,
-            "yaw": -24,
-            "to": "canh-mq9rc1yi",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9qxg3u",
-        "photo": "assets/panos/tu-1975-den-nay-1781198804368.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 4",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -15,
-            "yaw": 86,
-            "to": "canh-mq9rb2pd",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9rb2pd",
-        "photo": "assets/panos/tu-1975-den-nay-1781199549611.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 5",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -19,
-            "yaw": -86,
-            "to": "canh-mq9rb6sh",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9rb6sh",
-        "photo": "assets/panos/tu-1975-den-nay-1781199623052.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 6",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -42,
-            "yaw": -112,
-            "to": "canh-mq9rbhqa",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9rbhqa",
-        "photo": "assets/panos/tu-1975-den-nay-1781199678323.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 7",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -19,
-            "yaw": 95,
-            "to": "canh-mq9rbliy",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9rbliy",
-        "photo": "assets/panos/tu-1975-den-nay-1781199919858.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 8",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": []
-      },
-      {
-        "id": "canh-mq9rbpb6",
-        "photo": "assets/panos/tu-1975-den-nay-1781200087652.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 9",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -51,
-            "yaw": 59,
-            "to": "canh-mq9rbszm",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9rbszm",
-        "photo": "assets/panos/tu-1975-den-nay-1781200298273.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 10",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -53,
-            "yaw": 95,
-            "to": "canh-mq9rbwsi",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9rbwsi",
-        "photo": "assets/panos/tu-1975-den-nay-1781200368613.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 11",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -51,
-            "yaw": 81,
-            "to": "tu-1975-den-nay-1",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9rc1yi",
-        "photo": "assets/panos/tu-1975-den-nay-1781200574544.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 12",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -28,
-            "yaw": 96,
-            "to": "canh-mq9rc6ma",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9rc6ma",
-        "photo": "assets/panos/tu-1975-den-nay-1781200644880.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 13",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -25,
-            "yaw": 98,
-            "to": "canh-mq9rcama",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9rcama",
-        "photo": "assets/panos/tu-1975-den-nay-1781200769558.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 14",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -25,
-            "yaw": 83,
-            "to": "canh-mq9rcepu",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9rcepu",
-        "photo": "assets/panos/tu-1975-den-nay-1781200805982.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 15",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -17,
-            "yaw": 81,
-            "to": "canh-mq9rcij6",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9rcij6",
-        "photo": "assets/panos/tu-1975-den-nay-1781200954059.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 16",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -24,
-            "yaw": -86,
-            "to": "canh-mq9rcn1u",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9rcn1u",
-        "photo": "assets/panos/tu-1975-den-nay-1781200969929.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 17",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -43,
-            "yaw": -80,
-            "to": "canh-mq9rcr8y",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9rcr8y",
-        "photo": "assets/panos/tu-1975-den-nay-1781201048484.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 18",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -27,
-            "yaw": -110,
-            "to": "canh-mq9rcv5m",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9rcv5m",
-        "photo": "assets/panos/tu-1975-den-nay-1781201116856.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 19",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -6,
-            "yaw": 0,
-            "to": "tu-1975-den-nay-1",
-            "vi": "",
-            "en": ""
-          }
-        ]
-      },
-      {
-        "id": "canh-mq9rcyz6",
-        "photo": "assets/panos/tu-1975-den-nay-1781201125960.jpg",
-        "yaw": 0,
-        "pitch": -2,
-        "label": {
-          "vi": "Cảnh 20",
-          "en": "New scene"
-        },
-        "hotspots": [],
-        "links": [
-          {
-            "pitch": -18,
-            "yaw": -95,
-            "to": "canh-mq9rbpb6",
+            "pitch": -34,
+            "yaw": -75,
+            "to": "canh-mq9qwy8h",
             "vi": "",
             "en": ""
           }
