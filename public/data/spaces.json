@@ -1987,7 +1987,9 @@
           }
         ]
       }
-    ]
+    ],
+    "audio": "assets/audio/khu-tuong-niem-1781576017422.mp3",
+    "audioLoop": true
   },
   {
     "card": {
@@ -2057,7 +2059,9 @@
           }
         ]
       }
-    ]
+    ],
+    "audio": "assets/audio/trien-lam-dinh-ky-1781576143211.mp3",
+    "audioLoop": true
   },
   {
     "card": {
@@ -2139,7 +2143,9 @@
           }
         ]
       }
-    ]
+    ],
+    "audio": "assets/audio/phong-duong-dai-1781576764687.mp3",
+    "audioLoop": true
   },
   {
     "card": {
